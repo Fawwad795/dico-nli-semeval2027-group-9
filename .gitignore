@@ -1,0 +1,48 @@
+# Scratch space: labs, repro scripts, throwaway tooling (see CLAUDE.md)
+.tmp/
+
+# Per-machine Claude Code settings
+.claude/settings.local.json
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
+# Dependencies / build output
+node_modules/
+dist/
+build/
+
+# OS noise
+Thumbs.db
+.DS_Store
+debug.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Generated results: promoted to experiments/ or docs/ when they matter (see artifacts/README.md)
+artifacts/*
+!artifacts/README.md
+
+# Raw data never lands in git; datasets/ holds metadata and download instructions only
+datasets/*
+!datasets/README.md
+!datasets/*.md
+!datasets/*.json
+!datasets/*.yaml
+!datasets/*.yml
+!datasets/*.toml
+
+# Notebook noise
+.ipynb_checkpoints/
+
+# Playwright MCP session artifacts (snapshots, console logs)
+.playwright-mcp/

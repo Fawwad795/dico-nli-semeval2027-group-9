@@ -1,0 +1,11 @@
+# Shell scripts must stay LF. CRLF breaks bash on Windows (git-bash) checkouts.
+*.sh text eol=lf
+
+# Workflow and issue-template YAML stays LF. A Windows checkout that rewrites it
+# to CRLF produces a whole-file diff for everyone with core.autocrlf off.
+*.yml text eol=lf
+
+# Patch files are byte-exact inputs to `git apply`. With core.autocrlf=true a checkout
+# would rewrite them to CRLF and the apply would fail or drift. Never normalise them.
+*.patch -text
+*.diff -text

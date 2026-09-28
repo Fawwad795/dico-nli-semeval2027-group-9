@@ -1,0 +1,176 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash $CLAUDE_PROJECT_DIR/.claude/hooks/session-start.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-git-writes.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking for git write commands"
+          },
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-control-plane-writes.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking for control-plane writes"
+          },
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/require-tests-first.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking tests-before-modules"
+          },
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/require-feature-branch.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking for a feature branch"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/require-tests-first.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking tests-before-modules"
+          },
+          {
+            "type": "command",
+            "command": "python \"$CLAUDE_PROJECT_DIR/.claude/hooks/require-feature-branch.py\"",
+            "timeout": 15,
+            "statusMessage": "Checking for a feature branch"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(grep *)",
+      "Bash(ls)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(find *)",
+      "Bash(rg *)",
+      "Bash(mkdir *)",
+      "Bash(git status)",
+      "Bash(git status *)",
+      "Bash(git log *)",
+      "Bash(git remote *)",
+      "Bash(git diff *)",
+      "Bash(git show *)",
+      "Bash(git ls-tree *)",
+      "Bash(git ls-files)",
+      "Bash(git ls-files *)",
+      "Bash(git branch)",
+      "Bash(git branch *)",
+      "Bash(git fetch)",
+      "Bash(git fetch *)",
+      "Bash(git blame *)",
+      "Bash(git rev-parse *)",
+      "Bash(git check-ignore *)",
+      "Bash(git worktree list)",
+      "Bash(git worktree list *)",
+      "Bash(git stash list)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr list)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr checks *)",
+      "Bash(gh pr status)",
+      "Bash(gh repo view *)",
+      "Bash(gh run list *)",
+      "Bash(gh run view *)",
+      "Bash(gh issue view *)",
+      "Bash(gh issue list *)"
+    ],
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(git push -f *)",
+      "Bash(gh pr merge --admin*)",
+      "Bash(git add *)",
+      "Bash(git commit)",
+      "Bash(git commit *)",
+      "Bash(git push)",
+      "Bash(git push *)",
+      "Bash(git pull)",
+      "Bash(git pull *)",
+      "Bash(git merge *)",
+      "Bash(git rebase *)",
+      "Bash(git reset *)",
+      "Bash(git checkout *)",
+      "Bash(git switch *)",
+      "Bash(git restore *)",
+      "Bash(git stash)",
+      "Bash(git stash push*)",
+      "Bash(git stash pop*)",
+      "Bash(git stash apply*)",
+      "Bash(git stash drop*)",
+      "Bash(git stash clear*)",
+      "Bash(git cherry-pick *)",
+      "Bash(git revert *)",
+      "Bash(git rm *)",
+      "Bash(git mv *)",
+      "Bash(git clean *)",
+      "Bash(git am *)",
+      "Bash(git apply *)",
+      "Bash(git gc*)",
+      "Bash(git tag -a *)",
+      "Bash(git tag -d *)",
+      "Bash(git branch -d *)",
+      "Bash(git branch -D *)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr merge *)",
+      "Bash(gh pr close *)",
+      "Bash(gh pr edit *)",
+      "Bash(gh pr comment *)",
+      "Bash(gh pr review *)",
+      "Bash(gh pr checkout *)",
+      "Bash(gh issue create *)",
+      "Bash(gh release create *)",
+      "Bash(gh repo create *)",
+      "Bash(gh repo delete *)"
+    ],
+    "ask": [
+      "Edit(CLAUDE.md)",
+      "Edit(.mcp.json)",
+      "Edit(.claude/settings.json)",
+      "Edit(.claude/settings.local.json)",
+      "Edit(.claude/hooks/**)",
+      "Edit(.claude/skills/**)",
+      "Edit(.claude/reference/**)",
+      "Edit(.claude/scripts/**)",
+      "Edit(.github/workflows/**)"
+    ]
+  },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "includeGitInstructions": false,
+  "skillOverrides": {
+    "merge": "off"
+  }
+}
