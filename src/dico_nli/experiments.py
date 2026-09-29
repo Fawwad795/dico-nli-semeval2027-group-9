@@ -90,7 +90,8 @@ def write_results_table(directory: Path | str, rows: Mapping[str, Scores], *, ti
         lines.append(f"| {name} | {scores.weighted_f1:.3f} | {scores.soft_cons:.3f} | {scores.hard_cons:.3f} |")
     lines += [
         "",
-        "Scores are the official scorer's output; each system's full report is under `scores/`. "
+        "Scores are the official scorer's output; a system's full report is under `scores/<system>/`, "
+        "and a summary row (a mean over seeds) points to its table instead. "
         "Seed, data commit and command: `config.json`.",
         "",
     ]
