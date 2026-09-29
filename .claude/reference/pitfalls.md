@@ -363,6 +363,23 @@ store ships without `index_metadata.pickle`, so top-1 retrieval varied by 0 to 2
 between process starts. If a result depends on retrieval, freeze the retrieved results once in a
 committed cache rather than re-querying.
 
+## A run folder holds hand-written notes too; a rerun must not wipe them (2026-09-29)
+
+`experiment_dir(..., overwrite=True)` was changed to empty the folder so stale outputs of an
+earlier run cannot masquerade as current ones. The first rerun then deleted `findings.md`,
+which had been written by hand into the same folder minutes earlier. The function now keeps
+`findings.md` and removes everything else; anything else a person writes into a run folder
+needs the same treatment, or a home outside it. Write notes after the final rerun, and check
+`git status` for a vanished file after any overwrite.
+
+## pandas 3 string columns are not numpy dtypes (2026-09-29)
+
+pandas 3.0 stores text columns as its own `StringDtype`, and `np.issubdtype(series.dtype, ...)`
+raises `TypeError: Cannot interpret '<StringDtype(...)>' as a data type` on them. A test that
+classified feature columns this way failed on the first string column. Use
+`pd.api.types.is_numeric_dtype` / `is_string_dtype` (they accept the Series itself), and expect
+`object` to be rare in frames pandas built from Python strings.
+
 ## Renaming the project folder breaks the uv venv's script launchers (2026-09-29)
 
 After the repository folder was renamed, `uv sync` reported success and `uv run python -c

@@ -4,11 +4,13 @@
 
 | | Due | Branch area | Lands in |
 |---|---|---|---|
-| A1 Problem formulation, literature and baseline | Friday 2 October 2026, 11:59 PM | `a1/` | `docs/deliverables/a1-problem-and-baseline/` |
-| A2 Proposed approach and experimental design | Friday 13 November 2026, 11:59 PM | `a2/` | `docs/deliverables/a2-approach-and-design/` |
-| A3 Experiments, analysis and research paper | Friday 4 December 2026, 11:59 PM | `a3/` | `docs/deliverables/a3-experiments-and-paper/` |
+| Assignment 1: problem formulation, literature and baseline | Friday 2 October 2026, 11:59 PM | `assignment-1/` | `docs/deliverables/assignment-1-problem-and-baseline/` |
+| Assignment 2: proposed approach and experimental design | Friday 13 November 2026, 11:59 PM | `assignment-2/` | `docs/deliverables/assignment-2-approach-and-design/` |
+| Assignment 3: experiments, analysis and research paper | Friday 4 December 2026, 11:59 PM | `assignment-3/` | `docs/deliverables/assignment-3-experiments-and-paper/` |
 
-## A1: problem formulation, literature and baseline
+Notebooks that produce an assignment's runs live under `notebooks/assignment-<n>/`.
+
+## Assignment 1: problem formulation, literature and baseline
 
 - Task and data understanding
 - Selected literature
@@ -16,7 +18,7 @@
 - Appropriate baselines
 - Initial results
 
-## A2: proposed approach and experimental design
+## Assignment 2: proposed approach and experimental design
 
 - Proposed method
 - Justification
@@ -25,7 +27,7 @@
 - Experimental protocol
 - Initial implementation
 
-## A3: experiments, analysis and research paper
+## Assignment 3: experiments, analysis and research paper
 
 - Completed experiments
 - Ablations and error analysis

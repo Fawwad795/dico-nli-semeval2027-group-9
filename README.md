@@ -24,7 +24,7 @@ None yet. The first target is the organizers' pilot baseline on the English dev 
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/timeline-dark.svg">
-  <img alt="A1 problem, literature and baseline, due 2 October 2026, in progress. A2 approach and experimental design, due 13 November 2026. A3 experiments, analysis and paper, due 4 December 2026." src="assets/readme/timeline-light.svg" width="1200">
+  <img alt="Assignment 1, problem, literature and baseline, due 2 October 2026, in progress. Assignment 2, approach and experimental design, due 13 November 2026. Assignment 3, experiments, analysis and paper, due 4 December 2026." src="assets/readme/timeline-light.svg" width="1200">
 </picture>
 
 Each assignment has a folder under [docs/deliverables/](docs/deliverables/) whose README lists its items and ticks them off as they land.
@@ -48,9 +48,10 @@ Requires [uv](https://docs.astral.sh/uv/). It installs Python 3.11 if the machin
 | [tests/](tests/) | `unit`, `integration` and `regression` tiers |
 | [experiments/](experiments/) | One folder per run family: config, seed, command, data version, promoted results |
 | [datasets/](datasets/) | Metadata and download instructions. Raw data stays out of git |
-| [docs/deliverables/](docs/deliverables/) | What is handed in for A1, A2 and A3 |
+| [notebooks/](notebooks/) | One notebook per experiment, grouped by assignment; run one headlessly to reproduce its folder under `experiments/` |
+| [docs/deliverables/](docs/deliverables/) | What is handed in for each of the three assignments |
 | [docs/research/](docs/research/) | Literature notes and the reading log |
-| [docs/paper/](docs/paper/) | The A3 paper and its figures |
+| [docs/paper/](docs/paper/) | The Assignment 3 paper and its figures |
 
 ## Team
 

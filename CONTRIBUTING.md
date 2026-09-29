@@ -43,13 +43,13 @@ Nothing lands on `main` directly. Every change goes on its own branch and reache
    ```
    git checkout main
    git pull
-   git checkout -b a1/eda-english
+   git checkout -b assignment-1/eda-english
    ```
-   Branch names are `<area>/<topic>`. Areas: `a1`, `a2`, `a3` for assignment work, `exp` for experiments, `docs`, `fix`, `harness`. One self-contained piece of work per branch, so the reviewer can tell what changed from the name.
+   Branch names are `<area>/<topic>`. Areas: `assignment-1`, `assignment-2`, `assignment-3` for assignment work, `exp` for experiments, `docs`, `fix`, `harness`. One self-contained piece of work per branch, so the reviewer can tell what changed from the name.
 2. Commit in plain English, one line, under about 60 characters, no prefixes or ticket codes. `Add the English EDA notebook` is good. `feat(eda): init nb` is not.
 3. Push and open the pull request:
    ```
-   git push -u origin a1/eda-english
+   git push -u origin assignment-1/eda-english
    gh pr create --fill --base main
    ```
    Without `gh`, open the pull request on GitHub; it will offer the branch you just pushed.
@@ -66,11 +66,11 @@ Unrelated changes never share a branch or a commit. If you notice a second probl
 | `experiments/YYYY-MM-DD-<slug>/` | Config, seed, exact command, data commit hash, and the promoted tables, metric JSON and figures a deliverable cites |
 | `artifacts/` | Raw run outputs, checkpoints, caches. Ignored by git |
 | `datasets/` | Metadata and download instructions only |
-| `notebooks/` | Exploration. Strip outputs before committing. Anything a reported number depends on moves into the package or `experiments/` |
-| `docs/deliverables/a1-*/`, `a2-*/`, `a3-*/` | What is handed in, with a README that ticks off the items |
+| `notebooks/assignment-<n>/` | One notebook per experiment, the layer a reviewer reads cell by cell. It calls tested functions from the package and writes the run folder; strip outputs before committing (`notebooks/README.md`) |
+| `docs/deliverables/assignment-<n>-*/` | What is handed in, with a README that ticks off the items |
 | `docs/research/` | Literature notes, one file per paper or theme |
-| `docs/paper/` | The A3 paper source and figures |
-| `scripts/` | Reusable tooling, including the README panel generator |
+| `docs/paper/` | The Assignment 3 paper source and figures |
+| `scripts/` | What has to stay a plain script: Modal launchers and the README panel generator |
 
 Detailed conventions live in `.claude/reference/` (`testing.md`, `architecture.md`, `research-decisions.md`). They are written for the coding assistant but read fine as plain documentation, and when they disagree with a `docs/` file, fix the disagreement.
 

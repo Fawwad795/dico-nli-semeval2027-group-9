@@ -1,4 +1,4 @@
-# A1: Problem formulation, literature and baseline
+# Assignment 1: Problem formulation, literature and baseline
 
 Due Friday 2 October 2026, 11:59 PM.
 

@@ -182,28 +182,29 @@ def relations(p):
 
 
 # -------------------------------------------------------------------------- timeline
-def timeline(p, current="A1"):
-    w, h = 1200, 140
+def timeline(p, current="Assignment 1"):
+    w, h = 1200, 150
     nodes = [
-        ("A1", "Problem, literature and baseline", "Friday 2 October 2026", 230),
-        ("A2", "Approach and experimental design", "Friday 13 November 2026", 600),
-        ("A3", "Experiments, analysis and paper", "Friday 4 December 2026", 970),
+        ("Assignment 1", "Problem, literature and baseline", "Friday 2 October 2026", 230),
+        ("Assignment 2", "Approach and experimental design", "Friday 13 November 2026", 600),
+        ("Assignment 3", "Experiments, analysis and paper", "Friday 4 December 2026", 970),
     ]
-    out = [card(w, h, p), f'<line x1="230" y1="66" x2="970" y2="66" stroke="{p["line"]}" stroke-width="1.5"/>']
+    out = [card(w, h, p), f'<line x1="230" y1="80" x2="970" y2="80" stroke="{p["line"]}" stroke-width="1.5"/>']
     for code, name, when, x in nodes:
         is_current = code == current
         if is_current:
-            out.append(f'<circle cx="{x}" cy="66" r="14" fill="{p["accent_soft"]}" stroke="{p["accent"]}"/>')
-            out.append(f'<circle cx="{x}" cy="66" r="6" fill="{p["accent"]}"/>')
+            out.append(f'<circle cx="{x}" cy="80" r="14" fill="{p["accent_soft"]}" stroke="{p["accent"]}"/>')
+            out.append(f'<circle cx="{x}" cy="80" r="6" fill="{p["accent"]}"/>')
         else:
-            out.append(f'<circle cx="{x}" cy="66" r="8" fill="{p["bg"]}" stroke="{p["line"]}" stroke-width="1.5"/>')
-        out.append(text(x, 38, f"{code} · {name}", p, size=14, weight=600, anchor="middle",
+            out.append(f'<circle cx="{x}" cy="80" r="8" fill="{p["bg"]}" stroke="{p["line"]}" stroke-width="1.5"/>')
+        out.append(text(x, 32, code, p, size=14, weight=600, anchor="middle",
                         fill=p["accent"] if is_current else p["text"]))
-        out.append(text(x, 96, when, p, size=12, fill=p["muted"], anchor="middle"))
+        out.append(text(x, 52, name, p, size=13, fill=p["text"], anchor="middle"))
+        out.append(text(x, 110, when, p, size=12, fill=p["muted"], anchor="middle"))
         if is_current:
-            out.append(text(x, 118, "in progress", p, size=11, weight=600, fill=p["accent"], anchor="middle"))
+            out.append(text(x, 132, "in progress", p, size=11, weight=600, fill=p["accent"], anchor="middle"))
     body = "\n".join(out)
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="Assignments: A1 problem, literature and baseline, due Friday 2 October 2026, in progress; A2 approach and experimental design, due Friday 13 November 2026; A3 experiments, analysis and paper, due Friday 4 December 2026">
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="Assignments: Assignment 1, problem, literature and baseline, due Friday 2 October 2026, in progress; Assignment 2, approach and experimental design, due Friday 13 November 2026; Assignment 3, experiments, analysis and paper, due Friday 4 December 2026">
 {body}
 </svg>
 """

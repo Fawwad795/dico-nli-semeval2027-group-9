@@ -10,6 +10,7 @@
 | `uv run pytest` | Run the whole suite (`testpaths = ["tests"]`, `pythonpath = ["src"]`). Exit 5 with "no tests ran" while the suite is empty |
 | `uv run pytest tests/unit` | One tier only (`unit`, `integration`, `regression`) |
 | `uv add <package>` | Adds a dependency to the shared lockfile. Ask first; see CLAUDE.md |
+| `PYTHONIOENCODING=utf-8 uv run jupyter execute notebooks/assignment-1/<notebook>.ipynb` | Runs an experiment notebook headlessly (no outputs saved into the file) and writes its run folder under `experiments/`. Notebooks are the runner layer since 2026-09-29 (user decision, for cell-by-cell review); library code stays in `src/dico_nli/`, tests stay pytest, Modal launchers stay scripts |
 
 ## Harness
 

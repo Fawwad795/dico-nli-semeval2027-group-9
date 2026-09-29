@@ -14,9 +14,9 @@ The semester research project for the Large Language Models course (semester 7).
 
 Three graded assignments; deliverable lists and the rule that they flex with the topic live in `.claude/reference/assignments.md`:
 
-- **A1**, due Friday 2 October 2026, 11:59 PM: problem formulation, literature and baseline.
-- **A2**, due Friday 13 November 2026, 11:59 PM: proposed approach and experimental design.
-- **A3**, due Friday 4 December 2026, 11:59 PM: experiments, analysis and research paper.
+- **Assignment 1**, due Friday 2 October 2026, 11:59 PM: problem formulation, literature and baseline.
+- **Assignment 2**, due Friday 13 November 2026, 11:59 PM: proposed approach and experimental design.
+- **Assignment 3**, due Friday 4 December 2026, 11:59 PM: experiments, analysis and research paper.
 
 Won't compromise on, whatever the topic:
 - **Reproducible experiments.** Seeded, versioned data and configs; a result nobody can re-run is not a result.
@@ -91,7 +91,7 @@ Four hard rules. The first is enforced by `.claude/hooks/block-git-writes.py` (P
 - **Commit messages handed to the user are short, plain English, beginner-friendly.** One line, under about 60 characters, no double quotes inside it, saying what changed in words anyone would understand. No jargon, no ticket codes, no `feat:`/`chore:` prefixes. Good: `Set up the project structure`. Bad: `chore(scaffold): init pkg layout + harness cfg`.
 - **No AI attribution in commits or PRs.** No `Co-Authored-By`, no "Generated with Claude", no trailer of any kind. This overrides the harness's default attribution reminder. AI use is disclosed in `docs/governance/ai-usage-disclosure.md`, not in git history.
 
-- **Every piece of work lives on its own branch and reaches `main` through a reviewed pull request.** Never on `main` directly. Branch names are `<area>/<topic>` (`a1/literature-review`, `a1/baseline-run`, `harness/setup`; areas: a1 to a3, harness, fix, docs, exp), one distinct, self-explanatory part per branch, so a teammate can review the PR and know what changed. `require-feature-branch.py` refuses edits while the checkout is on `main`, detached, or a branch outside that pattern; scratch under `.tmp/` is exempt. When a task starts and the checkout is on `main`, the first thing to hand the user is `git checkout -b <area>/<topic>`.
+- **Every piece of work lives on its own branch and reaches `main` through a reviewed pull request.** Never on `main` directly. Branch names are `<area>/<topic>` (`assignment-1/literature-review`, `assignment-1/baseline-run`, `harness/setup`; areas: assignment-1 to assignment-3, harness, fix, docs, exp), one distinct, self-explanatory part per branch, so a teammate can review the PR and know what changed. `require-feature-branch.py` refuses edits while the checkout is on `main`, detached, or a branch outside that pattern; scratch under `.tmp/` is exempt. When a task starts and the checkout is on `main`, the first thing to hand the user is `git checkout -b <area>/<topic>`.
 
 Hand over commands only when the change is finished and verified to this environment's limits; mid-task work gets no commit suggestion. Give a copy-paste block: `git add <explicit paths>` (`git add -A` only when every change belongs to the one unit of work), `git commit -m "<message>"`, `git push -u origin <branch>`, then `gh pr create --fill --base main`. Merge is the reviewer's act: squash, after at least one teammate approves, then delete the branch. Never bundle unrelated changes into one commit or one branch.
 

@@ -21,8 +21,8 @@ import re
 import sys
 
 PROTECTED = {"main", "master"}
-BRANCH_PATTERN = re.compile(r"^[a-z0-9]+/[a-z0-9][a-z0-9-]*$")
-SUGGESTED_AREAS = "a1, a2, a3, harness, fix, docs, exp"
+BRANCH_PATTERN = re.compile(r"^[a-z0-9][a-z0-9-]*/[a-z0-9][a-z0-9-]*$")
+SUGGESTED_AREAS = "assignment-1, assignment-2, assignment-3, harness, fix, docs, exp"
 EXEMPT_PREFIXES = (".tmp/", ".venv/")
 REDIRECT_TARGET = re.compile(r"(?:^|[^2&<])>>?\s*(\S+)")
 FILE_COMMAND_ARGS = re.compile(r"\b(?:tee|cp|mv|install|rm|rmdir|mkdir|touch)\b([^;&|\n]*)")

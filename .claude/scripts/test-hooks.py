@@ -244,11 +244,13 @@ def check_feature_branch():
             (root_with_head("0123456789abcdef0123456789abcdef01234567"), "Write", {"file_path": "src/x.py"}, True),
             (root_with_head("ref: refs/heads/wip"), "Write", {"file_path": "src/x.py"}, True),
             (root_with_head("ref: refs/heads/Fawwad-branch"), "Write", {"file_path": "src/x.py"}, True),
-            (root_with_head("ref: refs/heads/a1/literature-review"), "Write", {"file_path": "src/x.py"}, False),
+            (root_with_head("ref: refs/heads/assignment-1/literature-review"), "Write", {"file_path": "src/x.py"}, False),
             (root_with_head("ref: refs/heads/harness/branch-rule"), "Edit", {"file_path": "CLAUDE.md"}, False),
-            (root_with_head("ref: refs/heads/a1/baseline-run"), "Bash", {"command": "echo x > README.md"}, False),
+            (root_with_head("ref: refs/heads/assignment-1/baseline-run"), "Bash", {"command": "echo x > README.md"}, False),
             (root_with_head("ref: refs/heads/main", via_gitdir=True), "Write", {"file_path": "src/x.py"}, True),
-            (root_with_head("ref: refs/heads/a2/method", via_gitdir=True), "Write", {"file_path": "src/x.py"}, False),
+            (root_with_head("ref: refs/heads/assignment-2/method", via_gitdir=True), "Write", {"file_path": "src/x.py"}, False),
+            (root_with_head("ref: refs/heads/-bad/area"), "Write", {"file_path": "src/x.py"}, True),   # area must start alphanumeric
+            (root_with_head("ref: refs/heads/Assignment-1/x"), "Write", {"file_path": "src/x.py"}, True),  # lower case only
             (root_with_head(None), "Write", {"file_path": "src/x.py"}, False),   # not a git repo
         ]
         for root, tool, tool_input, expect_block in cases:
