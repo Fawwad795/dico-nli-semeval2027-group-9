@@ -5,11 +5,6 @@
   <img alt="DiCo-NLI, SemEval-2027 Task 2: a phrase pair swaps order and its label flips from forward to backward entailment, consistent when reversed" src="assets/readme/hero-light.svg" width="1200">
 </picture>
 
-[![Python 3.11](https://img.shields.io/badge/python-3.11-3776AB?logo=python&logoColor=white)](.python-version)
-[![uv](https://img.shields.io/badge/env-uv-261230?logo=uv&logoColor=white)](https://docs.astral.sh/uv/)
-[![pytest](https://img.shields.io/badge/tests-pytest-0A9EDC?logo=pytest&logoColor=white)](tests/)
-[![SemEval-2027 Task 2](https://img.shields.io/badge/SemEval--2027-Task%202-8250df)](https://inigolopezgazpio.net/SemEval-2027-Task-2-DiCo-NLI/)
-
 Given two short phrases in order, say how they relate: the same meaning, the first entails the second, the second entails the first, or neither. The scorer also shows every pair reversed. A system that answers "forward" one way has to answer "backward" the other, and two of the three official metrics, SoftCons and HardCons, measure exactly that. The third is weighted F1.
 
 [Task page](https://inigolopezgazpio.net/SemEval-2027-Task-2-DiCo-NLI/) · [Data and official scorer](https://github.com/ilopezgazpio/SemEval-2027-Task-2-DiCo-NLI) · Tracks: English, Spanish, Basque and mixed. This project starts with English.
@@ -62,3 +57,20 @@ Requires [uv](https://docs.astral.sh/uv/). It installs Python 3.11 if the machin
 Muhammad Shaheer Saleh · Ahmad Imran · Syed Fawwad Ahmed · Aqib Raza
 
 Large Language Models course, semester 7, NUST. AI assistance on this repository is disclosed in [docs/governance/ai-usage-disclosure.md](docs/governance/ai-usage-disclosure.md).
+
+---
+
+<p align="center">
+  <a href=".python-version">
+    <img src="https://img.shields.io/badge/python-3.11-3776AB?logo=python&logoColor=white" alt="Python 3.11">
+  </a>
+  <a href="https://docs.astral.sh/uv/">
+    <img src="https://img.shields.io/badge/env-uv-261230?logo=uv&logoColor=white" alt="uv">
+  </a>
+  <a href="tests/">
+    <img src="https://img.shields.io/badge/tests-pytest-0A9EDC?logo=pytest&logoColor=white" alt="pytest">
+  </a>
+  <a href="https://inigolopezgazpio.net/SemEval-2027-Task-2-DiCo-NLI/">
+    <img src="https://img.shields.io/badge/SemEval--2027-Task%202-8250df" alt="SemEval-2027 Task 2">
+  </a>
+</p>
