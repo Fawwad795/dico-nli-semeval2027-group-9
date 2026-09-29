@@ -1,0 +1,19 @@
+{
+  "command": "PYTHONIOENCODING=utf-8 uv run jupyter execute notebooks/assignment-1/02_eda_track1.ipynb",
+  "data_commit": "588968e610197ddc4c440314701cbc587afc4c1b",
+  "dev_size": 660,
+  "dev_used_for": [
+    "label_distribution",
+    "pair_structure",
+    "train_dev_overlap"
+  ],
+  "facets_on": "train",
+  "note": "deterministic; seed unused",
+  "repo_commit": "bfa899d7c7bd5243d474edbf58f59142da140501",
+  "repo_dirty": true,
+  "seed": 0,
+  "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "spacy_model": "en_core_web_sm",
+  "track": 1,
+  "train_size": 3042
+}

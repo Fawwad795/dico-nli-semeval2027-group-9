@@ -1,0 +1,9 @@
+quantity,value,split
+instances,3042,train
+source_pairs,1760,train
+reversible_pairs,1282,train
+negative_instances,478,train
+instances,660,dev
+source_pairs,383,dev
+reversible_pairs,277,dev
+negative_instances,106,dev
