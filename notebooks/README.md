@@ -17,3 +17,4 @@ Rules:
 |---|---|
 | `assignment-1/01_trivial_baselines.ipynb` | `experiments/2026-09-29-trivial-baselines-track1/` |
 | `assignment-1/02_eda_track1.ipynb` | `experiments/2026-09-29-eda-track1/` and per-instance frames under `artifacts/eda-track1/` |
+| `assignment-1/03_ml_baseline_track1.ipynb` | `experiments/2026-09-29-ml-baseline-track1/` and the cross-validation folds under `artifacts/ml-baseline-track1/` |

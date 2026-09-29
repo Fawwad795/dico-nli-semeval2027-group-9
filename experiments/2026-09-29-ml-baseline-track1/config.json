@@ -1,0 +1,23 @@
+{
+  "C": 1.0,
+  "best_by_cv": "both+logreg",
+  "class_weight": "balanced",
+  "command": "PYTHONIOENCODING=utf-8 uv run jupyter execute notebooks/assignment-1/03_ml_baseline_track1.ipynb",
+  "data_commit": "588968e610197ddc4c440314701cbc587afc4c1b",
+  "dev_size": 660,
+  "gbdt": "HistGradientBoosting, 300 iterations, learning rate 0.05",
+  "n_splits": 5,
+  "repo_commit": "d360f503c1870aad02d1534d91f847917bb6eb09",
+  "repo_dirty": true,
+  "seed": 13,
+  "selection": "best mean cross-validated weighted F1 on train",
+  "systems": [
+    "cues+logreg",
+    "tfidf+logreg",
+    "both+logreg",
+    "cues+gbdt"
+  ],
+  "tfidf": "word 1-2 grams, sublinear tf",
+  "track": 1,
+  "train_size": 3042
+}
