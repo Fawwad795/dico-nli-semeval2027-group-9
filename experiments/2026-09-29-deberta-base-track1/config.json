@@ -1,0 +1,41 @@
+{
+  "best_epoch": {
+    "1234": 5,
+    "13": 5,
+    "42": 4
+  },
+  "command": "PYTHONIOENCODING=utf-8 uv run jupyter execute notebooks/assignment-1/04_dl_baseline_track1.ipynb",
+  "data_commit": "588968e610197ddc4c440314701cbc587afc4c1b",
+  "gpu": {
+    "1234": "Tesla T4",
+    "13": "Tesla T4",
+    "42": "Tesla T4"
+  },
+  "holdout_fraction": 0.2,
+  "launcher": "scripts/modal/train_encoder.py",
+  "repo_commit": "acd2ff740653d8c5193d5eb3e08c0ba462840890",
+  "repo_dirty": true,
+  "run_id": "2026-09-29-deberta-base-track1",
+  "seed": 13,
+  "seeds": [
+    13,
+    42,
+    1234
+  ],
+  "track": 1,
+  "train_seconds": {
+    "1234": 140.4,
+    "13": 141.0,
+    "42": 139.9
+  },
+  "training": {
+    "batch_size": 16,
+    "epochs": 5,
+    "learning_rate": 2e-05,
+    "max_length": 32,
+    "model_name": "microsoft/deberta-v3-base",
+    "seed": 13,
+    "warmup_fraction": 0.06,
+    "weight_decay": 0.01
+  }
+}
