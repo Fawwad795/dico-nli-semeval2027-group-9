@@ -31,9 +31,13 @@ Chosen from the SemEval-2027 task list and the ICASSP 2027 grand challenges afte
 
 The placeholder `llm_project` became `src/dico_nli/` (distribution name `dico-nli`) before any module existed, so no test path or import ever had to change. Done as one unit: package directory, `pyproject.toml` and `uv.lock`, the tests-first hook's `GUARDED` pattern and its fixtures in `test-hooks.py`, and every reference to the path in the kernel, the reference library, and the READMEs. The GitHub repository is `dico-nli-semeval2027-group-9`; the import name is the short form because the group number is not part of the code.
 
-## Open, to decide with Assignment 1
+## 2026-09-29: research question settled with the Assignment 1 baselines
 
-- Exact research question and hypothesis wording.
+Wording (also in `docs/deliverables/assignment-1-problem-and-baseline/a1-notes.md`): on fine-grained phrase NLI, do systems achieve directional consistency by representing the relation between the two phrases, or by exploiting surface asymmetries such as length and lexical containment, and how much of a fine-tuned encoder's weighted F1, SoftCons and HardCons does a cue-only model recover? Hypotheses: H1, a cue-only model reaches a large share of the encoder's SoftCons because its cues are symmetric or sign-flipping under reversal; H2, the encoder's advantage concentrates in HardCons and on the equivalence-versus-entailment boundary; H3, accuracy and consistency trade off in models trained on single ordered instances.
+
+Measured on track 1 dev (runs of 2026-09-29): H1 supported (cue-only logistic regression SoftCons 0.79 at weighted F1 0.53); H2 supported (DeBERTa-v3-base 0.807 / 0.877 / 0.810 over three seeds, equivalence F1 0.45 to 0.78, direction confusions rare for both); H3 held inside the ML family and failed for the encoder, which gained both. Assignment 2 therefore targets decoder LLMs, where the pilot found the consistency gap, with pair-swap augmentation, a consistency loss over the pair and its reverse, and symmetric prompting as candidates.
+
+## Open, to decide with Assignment 1
 - The ML baseline's feature set and the DL baseline's exact config (model, seed policy, epochs), with three seeds if compute allows.
 - Which decoder LLM(s) for the method: open-weight, small enough for an A10 or A100 LoRA run.
 - Whether to add Spanish or Basque after English, and when.
