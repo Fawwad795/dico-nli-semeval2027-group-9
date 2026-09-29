@@ -54,6 +54,22 @@ def write_predictions(path: Path | str, predictions: Mapping[str, str]) -> Path:
     return path
 
 
+REFERENCE_COLUMNS = ("instance_id", "pair_id", "text1_lang", "text2_lang", "text1", "text2", "reverse_pair_id", "label")
+
+
+def write_reference(path: Path | str, instances) -> Path:
+    """Write instances as a reference CSV the official scorer accepts, e.g. a held-out fold."""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.writer(f, lineterminator="\n")
+        writer.writerow(REFERENCE_COLUMNS)
+        for i in instances:
+            writer.writerow([i.instance_id, i.pair_id, i.text1_lang, i.text2_lang, i.text1, i.text2,
+                             i.reverse_pair_id or "", i.label or ""])
+    return path
+
+
 def score(
     gold_csv: Path | str, predictions_csv: Path | str, output_dir: Path | str, scorer_root: Path = SCORER_ROOT
 ) -> Scores:
