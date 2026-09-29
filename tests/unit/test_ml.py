@@ -62,6 +62,17 @@ def test_cue_baseline_learns_the_length_direction_on_the_training_data(instances
     assert predictions["fx_0001__en-en__original"] == "BACKWARD_ENTAILMENT"
 
 
+def test_cue_coefficients_cover_every_label_even_for_a_two_label_fit(instances):
+    two_labels = [i for i in instances if i.label in ("EQUIVALENCE", "NEGATIVE_OTHER")]
+    baseline = MLBaseline(MLConfig(features="cues", model="logreg", seed=13)).fit(two_labels)
+
+    coefficients = baseline.cue_coefficients()
+
+    assert set(coefficients["label"]) == {"EQUIVALENCE", "NEGATIVE_OTHER"}
+    pivot = coefficients.pivot(index="cue", columns="label", values="coefficient")
+    assert (pivot["EQUIVALENCE"] == -pivot["NEGATIVE_OTHER"]).all()  # one log-odds vector, both signs
+
+
 @requires_data_clone
 def test_cross_validate_groups_by_pair_and_scores_each_fold_officially(instances, tmp_path):
     config = MLConfig(features="cues", model="logreg", seed=13)

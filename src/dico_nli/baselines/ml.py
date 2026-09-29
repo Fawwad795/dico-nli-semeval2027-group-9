@@ -96,10 +96,14 @@ class MLBaseline:
         """Standardised logistic-regression weights per label and cue (cue-bearing configs only)."""
         if self.config.model != "logreg" or self.config.features == "tfidf":
             raise ValueError("cue coefficients exist for logistic regression on cues")
+        classes = [str(c) for c in self.model.classes_]
+        coef = self.model.coef_
+        if coef.shape[0] == 1:  # binary fit: one log-odds vector for classes_[1] against classes_[0]
+            coef = np.vstack([-coef[0], coef[0]])
         rows = []
-        for label, weights in zip(self.model.classes_, self.model.coef_):
+        for label, weights in zip(classes, coef):
             for cue, weight in zip(CUE_COLUMNS, weights[: len(CUE_COLUMNS)]):
-                rows.append({"label": str(label), "cue": cue, "coefficient": float(weight)})
+                rows.append({"label": label, "cue": cue, "coefficient": float(weight)})
         return pd.DataFrame(rows)
 
 
