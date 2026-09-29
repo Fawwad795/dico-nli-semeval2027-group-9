@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="260" viewBox="0 0 1200 260" role="img" aria-label="DiCo-NLI, SemEval-2027 Task 2: directional-consistent fine-grained natural language inference. A phrase pair labelled FORWARD_ENTAILMENT swaps order and is labelled BACKWARD_ENTAILMENT, consistent when reversed.">
+<style>
+    .pa   { animation: swap-a 12s ease-in-out infinite; }
+    .pb   { animation: swap-b 12s ease-in-out infinite; }
+    .fwd  { animation: show-fwd 12s steps(1, end) infinite; }
+    .bwd  { animation: show-bwd 12s steps(1, end) infinite; }
+    .ok   { animation: show-ok 12s ease-in-out infinite; }
+    @keyframes swap-a { 0%, 36% { transform: translate(0,0); } 41% { transform: translate(120.0px,46px); } 46%, 88% { transform: translate(240px,0); } 93% { transform: translate(120.0px,46px); } 98%, 100% { transform: translate(0,0); } }
+    @keyframes swap-b { 0%, 36% { transform: translate(0,0); } 46%, 88% { transform: translate(-240px,0); } 98%, 100% { transform: translate(0,0); } }
+    @keyframes show-fwd { 0% { opacity: 1; } 36% { opacity: 0; } 98% { opacity: 1; } 100% { opacity: 1; } }
+    @keyframes show-bwd { 0% { opacity: 0; } 46% { opacity: 1; } 88% { opacity: 0; } 100% { opacity: 0; } }
+    @keyframes show-ok  { 0%, 54% { opacity: 0; transform: translateY(6px); } 60% { opacity: 1; transform: translateY(0); } 84% { opacity: 1; transform: translateY(0); } 88%, 100% { opacity: 0; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { .anim { animation: none !important; } }
+    </style>
+<rect x="0.5" y="0.5" width="1199" height="259" rx="12" fill="#111a2e" stroke="#2a3650"/>
+<text x="48" y="92" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="#e6edf3" text-anchor="start" >DiCo-NLI · SemEval-2027 Task 2</text>
+<text x="48" y="130" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="400" fill="#8b98a9" text-anchor="start" >Directional-consistent fine-grained natural language inference.</text>
+<text x="48" y="154" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="400" fill="#8b98a9" text-anchor="start" >Label how two phrases relate, and give a compatible answer when the pair is flipped.</text>
+<text x="48" y="212" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#8b98a9" text-anchor="start" >Large Language Models course · semester 7 · group 9</text>
+<line x1="740" y1="40" x2="740" y2="220" stroke="#2a3650"/>
+<defs><marker id="m-fwd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#58a6ff"/></marker><marker id="m-bwd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#a371f7"/></marker></defs>
+<text x="850.0" y="66" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#8b98a9" text-anchor="middle" >premise</text>
+<text x="1090.0" y="66" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#8b98a9" text-anchor="middle" >hypothesis</text>
+<g transform="translate(770,80)"><g class="pa anim" style="transform:translate(0,0)"><rect width="160" height="40" rx="8" fill="#0b1220" stroke="#2a3650"/><text x="80.0" y="25" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#e6edf3" text-anchor="middle" >a red sports car</text></g></g>
+<g transform="translate(1010,80)"><g class="pb anim" style="transform:translate(0,0)"><rect width="160" height="40" rx="8" fill="#0b1220" stroke="#2a3650"/><text x="80.0" y="25" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#e6edf3" text-anchor="middle" >a car</text></g></g>
+<line class="fwd anim" x1="940" y1="100" x2="1000" y2="100" stroke="#58a6ff" stroke-width="2.5" marker-end="url(#m-fwd)" style="opacity:1"/>
+<line class="bwd anim" x1="1000" y1="100" x2="940" y2="100" stroke="#a371f7" stroke-width="2.5" marker-end="url(#m-bwd)" style="opacity:0"/>
+<g transform="translate(882.0,140)"><g class="fwd anim" style="opacity:1"><rect width="176" height="26" rx="13" fill="#0b1220" stroke="#58a6ff"/><text x="88.0" y="17.5" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#58a6ff" text-anchor="middle" >FORWARD_ENTAILMENT</text></g></g>
+<g transform="translate(878.0,140)"><g class="bwd anim" style="opacity:0"><rect width="184" height="26" rx="13" fill="#0b1220" stroke="#a371f7"/><text x="92.0" y="17.5" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#a371f7" text-anchor="middle" >BACKWARD_ENTAILMENT</text></g></g>
+<g transform="translate(870.0,180)"><g class="ok anim" style="opacity:0"><rect width="200" height="26" rx="13" fill="#0b1220" stroke="#3fb950"/><circle cx="16" cy="13" r="7" fill="#3fb950"/><path d="M12.5 13.2l2.3 2.3 4.4-4.6" fill="none" stroke="#0b1220" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><text x="30" y="17.5" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#3fb950" text-anchor="start" >consistent when reversed</text></g></g>
+</svg>

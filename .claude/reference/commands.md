@@ -18,7 +18,7 @@
 | `node .claude/scripts/doctor.mjs` | Harness health: settings, SessionStart hook, skill frontmatter, reference files, template markers. Exit 1 on FAIL |
 | `python .claude/scripts/test-hooks.py` | Regression tests for the four PreToolUse hooks. Prints `ALL PASS` |
 | `bash .claude/scripts/context-weight.sh` | Approximate always-loaded context weight |
-| `python scripts/readme/build_assets.py` | Previous project's README panel generator. Stale; do not run until it is redesigned for the new topic |
+| `PYTHONIOENCODING=utf-8 python scripts/readme/build_assets.py` | Regenerates the README's SVG panels into `assets/readme/` (light and dark; hero, hero-narrow, relations, timeline). Run after editing the script and commit the SVGs with it |
 
 ## Runs only the user can execute
 

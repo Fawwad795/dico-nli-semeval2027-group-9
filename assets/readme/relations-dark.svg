@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="150" viewBox="0 0 1200 150" role="img" aria-label="The four DiCo-NLI labels: EQUIVALENCE, each phrase entails the other; FORWARD_ENTAILMENT, the first entails the second; BACKWARD_ENTAILMENT, the second entails the first; NEGATIVE_OTHER, neither direction holds">
+<rect x="0.5" y="0.5" width="1199" height="149" rx="12" fill="#111a2e" stroke="#2a3650"/>
+<rect x="32" y="14" width="270" height="122" rx="10" fill="#0b1220" stroke="#2a3650"/>
+<circle cx="62" cy="44" r="14" fill="#111a2e" stroke="#3fb950"/>
+<text x="62" y="49" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#3fb950" text-anchor="middle" >↔</text>
+<text x="86" y="49" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#3fb950" text-anchor="start" >EQUIVALENCE</text>
+<text x="52" y="88" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#e6edf3" text-anchor="start" >a big house  ↔  a large house</text>
+<text x="52" y="114" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#8b98a9" text-anchor="start" >each phrase entails the other</text>
+<rect x="322" y="14" width="270" height="122" rx="10" fill="#0b1220" stroke="#2a3650"/>
+<circle cx="352" cy="44" r="14" fill="#16263f" stroke="#58a6ff"/>
+<text x="352" y="49" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#58a6ff" text-anchor="middle" >→</text>
+<text x="376" y="49" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#58a6ff" text-anchor="start" >FORWARD_ENTAILMENT</text>
+<text x="342" y="88" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#e6edf3" text-anchor="start" >a red sports car  →  a car</text>
+<text x="342" y="114" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#8b98a9" text-anchor="start" >the first phrase entails the second</text>
+<rect x="612" y="14" width="270" height="122" rx="10" fill="#0b1220" stroke="#2a3650"/>
+<circle cx="642" cy="44" r="14" fill="#111a2e" stroke="#a371f7"/>
+<text x="642" y="49" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#a371f7" text-anchor="middle" >←</text>
+<text x="666" y="49" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#a371f7" text-anchor="start" >BACKWARD_ENTAILMENT</text>
+<text x="632" y="88" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#e6edf3" text-anchor="start" >a car  ←  a red sports car</text>
+<text x="632" y="114" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#8b98a9" text-anchor="start" >the second phrase entails the first</text>
+<rect x="902" y="14" width="270" height="122" rx="10" fill="#0b1220" stroke="#2a3650"/>
+<circle cx="932" cy="44" r="14" fill="#111a2e" stroke="#f85149"/>
+<text x="932" y="49" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#f85149" text-anchor="middle" >✕</text>
+<text x="956" y="49" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#f85149" text-anchor="start" >NEGATIVE_OTHER</text>
+<text x="922" y="88" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="500" fill="#e6edf3" text-anchor="start" >a red car  ✕  a blue car</text>
+<text x="922" y="114" font-family="-apple-system, 'Segoe UI', Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#8b98a9" text-anchor="start" >neither direction holds</text>
+</svg>

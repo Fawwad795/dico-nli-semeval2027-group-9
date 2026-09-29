@@ -203,6 +203,20 @@ Three things that each cost a retry while building animated README panels:
 Also: the feature-branch hook treats a `>` inside HTML in a heredoc as a shell
 redirect and blocks the command. Build such files from a script file, not inline.
 
+Two more from the DiCo-NLI panels (2026-09-29):
+
+4. **Inlined panels share one document, so same-named `@keyframes` collide.** The wide and
+   narrow hero both define `swap-a` with different travel distances; inlined side by side for
+   measurement, the later definition won and the wide panel's chips flew 350 px instead of 240
+   and left the card. The `<img>` rendering, one document per panel, was correct. When
+   inlining several panels into one harness, give each panel's keyframes and classes a
+   unique prefix, or inline one panel at a time. Frame checks are cheapest with frozen
+   clones: set `animation-delay: -<t>s` and `animation-play-state: paused` on every `.anim`
+   element and screenshot each phase, instead of racing the live loop.
+5. **A reloaded `<img>` SVG does not restart its animation.** Chrome kept the cached image
+   document, so a screenshot taken right after navigation showed the loop at 57 %, not 0 %.
+   Add `?v=<n>` to the image `src` too, not only to the page URL, when a fresh start matters.
+
 ## Same test basename in two subdirectories collides without `__init__.py` (2026-09-21)
 
 `tests/unit/<a>/test_report.py` and `tests/unit/<b>/test_report.py` share a basename. With
