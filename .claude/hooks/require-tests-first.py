@@ -3,7 +3,7 @@
 
 Hard rule from CLAUDE.md: tests before core modules. This hook refuses to write a guarded
 source module until a test file for it exists under tests/ and contains at least one test
-function. Guarded: every .py file under src/llm_project/, at any depth. Exempt: __init__.py
+function. Guarded: every .py file under src/dico_nli/, at any depth. Exempt: __init__.py
 and conftest.py. Test files themselves are never guarded, so the only order that works is
 the intended one: write the failing test, then the module.
 
@@ -26,7 +26,7 @@ import os
 import re
 import sys
 
-GUARDED = re.compile(r"^src/llm_project/.+\.py$")
+GUARDED = re.compile(r"^src/dico_nli/.+\.py$")
 EXEMPT = {"__init__.py", "conftest.py"}
 REDIRECT_TARGET = re.compile(r"(?:^|[^2&<])>>?\s*(\S+)")
 FILE_COMMAND_ARGS = re.compile(r"\b(?:tee|cp|mv|install)\b([^;&|\n]*)")

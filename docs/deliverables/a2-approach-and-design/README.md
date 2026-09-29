@@ -11,6 +11,6 @@ Items (from the course's generic requirements; they flex with the topic, and any
 - [ ] Comparison systems
 - [ ] Evaluation measures
 - [ ] Experimental protocol
-- [ ] Initial implementation (in `src/llm_project/`, tests first)
+- [ ] Initial implementation (in `src/dico_nli/`, tests first)
 
 Every number reported here traces to a folder under `experiments/` with its seed, data version, config, and command.

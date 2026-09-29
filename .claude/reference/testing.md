@@ -8,7 +8,7 @@ before it.
 ## The rule
 
 A core module never lands before its test. Guarded: every `.py` under
-`src/llm_project/`, at any depth, except `__init__.py` and `conftest.py`. Write the test
+`src/dico_nli/`, at any depth, except `__init__.py` and `conftest.py`. Write the test
 first, watch it fail, then write the module. `.claude/hooks/require-tests-first.py`
 refuses a Write, Edit, or Bash redirect to a guarded module until a matching test file
 exists under `tests/` and contains a `def test_`. Naming: `test_<module stem>*.py`

@@ -1,4 +1,4 @@
-# llm-project
+# dico-nli-semeval2027-group-9
 
 Semester research project for the Large Language Models course (semester 7).
 

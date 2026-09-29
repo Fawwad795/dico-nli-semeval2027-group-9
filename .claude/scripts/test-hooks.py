@@ -145,27 +145,27 @@ def check_tests_first():
         msys_root = "/" + drive[0].lower() + rest.replace("\\", "/") if drive else root
 
         cases = [
-            ("Write", {"file_path": "src/llm_project/models/scorer.py"}, True),
-            ("Edit", {"file_path": os.path.join(root, "src", "llm_project", "data", "loader.py")}, True),
-            ("Write", {"file_path": "src/llm_project/pipeline.py"}, True),
-            ("Write", {"file_path": "src/llm_project/baselines/majority.py"}, True),
-            ("Write", {"file_path": "src/llm_project/models/base.py"}, True),          # test_database is not a match
-            ("Write", {"file_path": "src/llm_project/eval/policy.py"}, True),          # stub without def test_
-            ("Write", {"file_path": "src/llm_project/tokenizer.py"}, False),           # fixture test exists
-            ("Write", {"file_path": "src/llm_project/__init__.py"}, False),
-            ("Write", {"file_path": "src/llm_project/models/__init__.py"}, False),
-            ("Write", {"file_path": "src/llm_project/conftest.py"}, False),
+            ("Write", {"file_path": "src/dico_nli/models/scorer.py"}, True),
+            ("Edit", {"file_path": os.path.join(root, "src", "dico_nli", "data", "loader.py")}, True),
+            ("Write", {"file_path": "src/dico_nli/pipeline.py"}, True),
+            ("Write", {"file_path": "src/dico_nli/baselines/majority.py"}, True),
+            ("Write", {"file_path": "src/dico_nli/models/base.py"}, True),          # test_database is not a match
+            ("Write", {"file_path": "src/dico_nli/eval/policy.py"}, True),          # stub without def test_
+            ("Write", {"file_path": "src/dico_nli/tokenizer.py"}, False),           # fixture test exists
+            ("Write", {"file_path": "src/dico_nli/__init__.py"}, False),
+            ("Write", {"file_path": "src/dico_nli/models/__init__.py"}, False),
+            ("Write", {"file_path": "src/dico_nli/conftest.py"}, False),
             ("Write", {"file_path": "scripts/tools/helper.py"}, False),                # outside the package
             ("Write", {"file_path": "tests/unit/test_scorer.py"}, False),
             ("Write", {"file_path": "README.md"}, False),
-            ("Read", {"file_path": "src/llm_project/models/scorer.py"}, False),
-            ("Bash", {"command": "cat > src/llm_project/models/scorer.py <<'EOF'\nx\nEOF"}, True),
-            ("Bash", {"command": "echo x > src/llm_project/data/validator.py"}, True),
-            ("Bash", {"command": "cp x.py src/llm_project/data/store.py"}, True),
-            ("Bash", {"command": "echo x > $CLAUDE_PROJECT_DIR/src/llm_project/models/scorer.py"}, True),
-            ("Bash", {"command": f"echo x > {msys_root}/src/llm_project/models/scorer.py"}, True),
-            ("Bash", {"command": "echo x > src/llm_project/tokenizer.py"}, False),
-            ("Bash", {"command": "cat src/llm_project/models/scorer.py"}, False),
+            ("Read", {"file_path": "src/dico_nli/models/scorer.py"}, False),
+            ("Bash", {"command": "cat > src/dico_nli/models/scorer.py <<'EOF'\nx\nEOF"}, True),
+            ("Bash", {"command": "echo x > src/dico_nli/data/validator.py"}, True),
+            ("Bash", {"command": "cp x.py src/dico_nli/data/store.py"}, True),
+            ("Bash", {"command": "echo x > $CLAUDE_PROJECT_DIR/src/dico_nli/models/scorer.py"}, True),
+            ("Bash", {"command": f"echo x > {msys_root}/src/dico_nli/models/scorer.py"}, True),
+            ("Bash", {"command": "echo x > src/dico_nli/tokenizer.py"}, False),
+            ("Bash", {"command": "cat src/dico_nli/models/scorer.py"}, False),
             ("Bash", {"command": "echo x > .tmp/out.py"}, False),
             ("Bash", {"command": "python -m pytest tests/unit/test_tokenizer.py"}, False),
         ]
@@ -180,11 +180,11 @@ def check_tests_first():
             if not isinstance(payload, str):
                 payload = json.dumps(payload)
             return subprocess.run([sys.executable, path], input=payload, capture_output=True, text=True, env=env).returncode
-        if rc({"tool_name": "Write", "tool_input": {"file_path": "src/llm_project/models/scorer.py"}}) != 2:
+        if rc({"tool_name": "Write", "tool_input": {"file_path": "src/dico_nli/models/scorer.py"}}) != 2:
             failures.append("tests-first: entrypoint did not exit 2 on an untested module")
-        if rc({"tool_name": "Write", "tool_input": {"file_path": "src/llm_project/tokenizer.py"}}) != 0:
+        if rc({"tool_name": "Write", "tool_input": {"file_path": "src/dico_nli/tokenizer.py"}}) != 0:
             failures.append("tests-first: entrypoint did not exit 0 on a tested module")
-        if rc({"tool_name": "Read", "tool_input": {"file_path": "src/llm_project/models/scorer.py"}}) != 0:
+        if rc({"tool_name": "Read", "tool_input": {"file_path": "src/dico_nli/models/scorer.py"}}) != 0:
             failures.append("tests-first: entrypoint did not ignore a read")
         if rc("not json") != 2:
             failures.append("tests-first: entrypoint did not fail closed on bad input")
@@ -224,7 +224,7 @@ def check_feature_branch():
         outside = tempfile.mkdtemp(prefix="outside-")
         made.append(outside)
         cases = [
-            (on_main, "Write", {"file_path": "src/llm_project/pipeline.py"}, True),
+            (on_main, "Write", {"file_path": "src/dico_nli/pipeline.py"}, True),
             (on_main, "Edit", {"file_path": "CLAUDE.md"}, True),
             (on_main, "Write", {"file_path": os.path.join(on_main, "docs", "x.md")}, True),
             (on_main, "Write", {"file_path": ".tmp/notes.md"}, False),

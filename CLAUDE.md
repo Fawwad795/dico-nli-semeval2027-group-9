@@ -66,7 +66,7 @@ Defaults:
 
 ## Tests before core modules, plan before code
 
-- **A core module never lands before its test.** Every `.py` under `src/llm_project/` except `__init__.py` and `conftest.py` is written test-first: create `tests/<tier>/test_<stem>.py` with a failing test, then the module. `.claude/hooks/require-tests-first.py` refuses a Write, Edit, or Bash redirect to a guarded module that has no matching test file. Tiers (`unit`, `integration`, `regression`), naming, conventions: `.claude/reference/testing.md`.
+- **A core module never lands before its test.** Every `.py` under `src/dico_nli/` except `__init__.py` and `conftest.py` is written test-first: create `tests/<tier>/test_<stem>.py` with a failing test, then the module. `.claude/hooks/require-tests-first.py` refuses a Write, Edit, or Bash redirect to a guarded module that has no matching test file. Tiers (`unit`, `integration`, `regression`), naming, conventions: `.claude/reference/testing.md`.
 - **Implementation starts with a plan, not code.** For any feature or experiment: inspect the repository and the reference library (`architecture`, `assignments`, `research-decisions`, `testing`), propose a plan in chat, and stop for approval. Plan mode is the tool. No code until the plan is accepted.
 - **The first code is the smallest testable vertical slice**: load one data sample, run the baseline once, produce one metric under a fixed seed, end to end. Method design grows only after that slice runs and its baseline number exists. No large method design before a measured baseline.
 

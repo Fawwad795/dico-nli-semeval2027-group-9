@@ -27,10 +27,13 @@ Chosen from the SemEval-2027 task list and the ICASSP 2027 grand challenges afte
 - **Compute.** Modal is primary: Starter plan, $30 free compute per workspace per month, no card; one workspace per teammate, so four accounts held by four people and no multi-accounting. Azure for Students was checked and rejected: the subscription is capped at 3 vCPUs with no GPU quota and no quota increases (Microsoft staff, 2025), and self-service sign-up from Pakistan appears blocked (Microsoft Q&A, Nov 2025 and Feb 2026); NUST has no public institutional arrangement. Free Colab T4 is the fallback for the encoder baseline. Modal for Academics (up to $10k) is worth one application, not a plan.
 - **Professor's working notes** (black-box then white-box, five-facet EDA, ML and DL baselines, PDF plots, Overleaf report by email) are recorded in `assignments.md` and shape A1.
 
+## 2026-09-29: package renamed to `dico_nli`
+
+The placeholder `llm_project` became `src/dico_nli/` (distribution name `dico-nli`) before any module existed, so no test path or import ever had to change. Done as one unit: package directory, `pyproject.toml` and `uv.lock`, the tests-first hook's `GUARDED` pattern and its fixtures in `test-hooks.py`, and every reference to the path in the kernel, the reference library, and the READMEs. The GitHub repository is `dico-nli-semeval2027-group-9`; the import name is the short form because the group number is not part of the code.
+
 ## Open, to decide with A1
 
 - Exact research question and hypothesis wording.
-- Package rename from `llm_project` (suggested `dico_nli`), in one commit touching the hook pattern, hook tests, `pyproject.toml`, and `testing.md`.
 - The ML baseline's feature set and the DL baseline's exact config (model, seed policy, epochs), with three seeds if compute allows.
 - Which decoder LLM(s) for the method: open-weight, small enough for an A10 or A100 LoRA run.
 - Whether to add Spanish or Basque after English, and when.

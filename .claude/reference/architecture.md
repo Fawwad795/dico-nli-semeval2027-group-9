@@ -4,7 +4,7 @@
 
 ## Package
 
-`src/llm_project/` is the only Python package. It is empty apart from `__init__.py`; the rename to a topic name is an open item in `research-decisions.md`. Every module under it is guarded by the tests-first hook (`testing.md`).
+`src/dico_nli/` is the only Python package (distribution name `dico-nli` in `pyproject.toml`). It is empty apart from `__init__.py`. Every module under it is guarded by the tests-first hook (`testing.md`).
 
 ## Data flow
 
@@ -32,7 +32,7 @@ Compute: CPU and Colab for the encoder baseline; Modal for anything larger (`com
 
 | Path | Holds | In git? |
 |---|---|---|
-| `src/llm_project/` | Library code: data loading, baselines, the proposed method, evaluation glue | yes |
+| `src/dico_nli/` | Library code: data loading, baselines, the proposed method, evaluation glue | yes |
 | `tests/{unit,integration,regression}/` | pytest tiers, see `testing.md` | yes |
 | `experiments/` | One folder per run family: config, seed, command, data commit hash, and the promoted results that a report cites | yes |
 | `datasets/` | Metadata, licence, split definitions, download instructions. Never raw data | metadata only |

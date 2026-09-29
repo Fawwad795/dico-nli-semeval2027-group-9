@@ -348,3 +348,14 @@ copy, never a shipped store. And chromadb 0.5.0 rebuilds the HNSW graph on every
 store ships without `index_metadata.pickle`, so top-1 retrieval varied by 0 to 2 of 400 queries
 between process starts. If a result depends on retrieval, freeze the retrieved results once in a
 committed cache rather than re-querying.
+
+## Renaming the project folder breaks the uv venv's script launchers (2026-09-29)
+
+After the repository folder was renamed, `uv sync` reported success and `uv run python -c
+"import dico_nli"` worked, but `uv run pytest` died with `error: uv trampoline failed to
+canonicalize script path`. The `.venv/Scripts/*.exe` launchers embed the absolute path of the
+interpreter at install time (`strings .venv/Scripts/pytest.exe` showed the old folder), and
+`uv sync` only reinstalls packages whose spec changed, so the stale launchers survive. Fix: delete
+`.venv` and run `uv sync` again; `uv run python -m pytest` also works in the meantime. Do this on
+every machine where the folder moves; the `prompt =` line in `.venv/pyvenv.cfg` still naming the
+old project is the tell.

@@ -1,5 +1,5 @@
 [project]
-name = "llm-project"
+name = "dico-nli"
 version = "0.1.0"
 description = "SemEval-2027 Task 2 (DiCo-NLI): directional-consistent fine-grained NLI. Semester research project for the Large Language Models course."
 readme = "README.md"

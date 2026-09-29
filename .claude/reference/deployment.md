@@ -7,7 +7,7 @@ There is no deploy target. The project ships three assignment submissions and th
 | Deliverable | Form | Lands in |
 |---|---|---|
 | A1 problem formulation, literature, baseline | Document plus initial results | `docs/deliverables/a1-problem-and-baseline/` |
-| A2 proposed approach and experimental design | Document plus initial implementation | `docs/deliverables/a2-approach-and-design/` and `src/llm_project/` |
+| A2 proposed approach and experimental design | Document plus initial implementation | `docs/deliverables/a2-approach-and-design/` and `src/dico_nli/` |
 | A3 experiments, analysis, paper | Paper-style report, presentation or demo | `docs/deliverables/a3-experiments-and-paper/` and `docs/paper/` |
 
 Dates and item lists: `assignments.md`.
