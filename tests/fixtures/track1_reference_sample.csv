@@ -1,0 +1,13 @@
+instance_id,pair_id,text1_lang,text2_lang,text1,text2,reverse_pair_id,label
+fx_0001__en-en__original,fx_0001,en,en,a car,a red sports car,fx_0001__en-en__flipped,BACKWARD_ENTAILMENT
+fx_0001__en-en__flipped,fx_0001,en,en,a red sports car,a car,fx_0001__en-en__original,FORWARD_ENTAILMENT
+fx_0002__en-en__original,fx_0002,en,en,Everyone is hungry,Someone is hungry,fx_0002__en-en__flipped,FORWARD_ENTAILMENT
+fx_0002__en-en__flipped,fx_0002,en,en,Someone is hungry,Everyone is hungry,fx_0002__en-en__original,BACKWARD_ENTAILMENT
+fx_0003__en-en__original,fx_0003,en,en,a big house,a large house,fx_0003__en-en__flipped,EQUIVALENCE
+fx_0003__en-en__flipped,fx_0003,en,en,a large house,a big house,fx_0003__en-en__original,EQUIVALENCE
+fx_0004__en-en__original,fx_0004,en,en,to repeal,revokes,fx_0004__en-en__flipped,EQUIVALENCE
+fx_0004__en-en__flipped,fx_0004,en,en,revokes,to repeal,fx_0004__en-en__original,EQUIVALENCE
+fx_0005__en-en__original,fx_0005,en,en,off Mexico,on Mexico,,NEGATIVE_OTHER
+fx_0006__en-en__original,fx_0006,en,en,in southern Iraq,in northern Iraq,,NEGATIVE_OTHER
+fx_0007__en-en__original,fx_0007,en,en,a red car,a blue car,,NEGATIVE_OTHER
+fx_0008__en-en__original,fx_0008,en,en,"Crimea annexation","Crimea 's independence",,NEGATIVE_OTHER
