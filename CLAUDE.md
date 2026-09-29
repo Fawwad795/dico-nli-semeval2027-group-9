@@ -10,7 +10,7 @@ You are a Senior Software Engineer. LLMs are probabilistic; code is deterministi
 
 The semester research project for the Large Language Models course (semester 7). Team: Muhammad Shaheer Saleh, Ahmad Imran, Syed Fawwad Ahmed, Aqib Raza.
 
-**Topic: [TOPIC-TBD].** The research topic is not chosen yet; a later session settles it. When it is, replace every `[TOPIC-TBD]` marker (`grep -rn "TOPIC-TBD" .`): this block, `pyproject.toml`, `README.md`, `.claude/reference/architecture.md`, `.claude/reference/research-decisions.md`, and the deliverable READMEs under `docs/deliverables/`.
+**Topic: SemEval-2027 Task 2, DiCo-NLI (Directional-Consistent Fine-Grained Natural Language Inference).** Given an ordered phrase pair, predict EQUIVALENCE, FORWARD_ENTAILMENT, BACKWARD_ENTAILMENT, or NEGATIVE_OTHER, and stay consistent when the pair is reversed; the official scorer reports weighted F1, SoftCons, and HardCons. Data and scorer: `https://github.com/ilopezgazpio/SemEval-2027-Task-2-DiCo-NLI` (GPL-3.0). Decisions, compute, and the open list: `.claude/reference/research-decisions.md`. Professor's working notes: `.claude/reference/assignments.md`.
 
 Three graded assignments; deliverable lists and the rule that they flex with the topic live in `.claude/reference/assignments.md`:
 
@@ -40,7 +40,7 @@ Local-only project, Windows 11 + Git Bash (teammates on Windows and possibly mac
 
 - Python 3.11 pinned, `src/` layout, uv-managed `.venv/` with pytest as the only dependency so far (see `.claude/reference/tech-stack.md`). `uv run pytest` is the project's test command; `node .claude/scripts/doctor.mjs` verifies the harness only, never the project.
 - Experimental results are the deliverable, so they get the strictest bar: report every number from an actual run, with the seed, data version, and config. No projected or illustrative numbers.
-- Evaluations needing API keys or a GPU are not runnable in-session today. When that changes, record the boundary in `.claude/reference/commands.md` and say plainly which runs only the user can execute.
+- GPU runs go through Modal, launched by a teammate with their own token; nothing needing a GPU or a provider key runs in-session. The boundary and the launch commands live in `.claude/reference/commands.md`; say plainly which runs only the user can execute.
 
 Defaults:
 

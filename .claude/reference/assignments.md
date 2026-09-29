@@ -34,6 +34,16 @@
 - Paper-style report
 - Presentation or demo
 
+## Professor's working notes (recorded 2026-09-29)
+
+Given in class as the expected way of working on the assignment, whichever SemEval or ICASSP task is chosen:
+
+1. **Black-box understanding first, then white-box.** Start by treating models as black boxes (what goes in, what comes out, where they fail), then open them up.
+2. **EDA to understand the data and its patterns**, covering statistical, readability, lexical, semantic, and linguistic properties. For DiCo-NLI: label balance per track, phrase lengths, readability scores, vocabulary overlap between premise and hypothesis, embedding similarity by label, and part-of-speech or syntactic patterns per label.
+3. **Baselines of two kinds: ML and DL.** A classical machine-learning baseline (features plus a linear model or tree) and a deep-learning baseline (the fine-tuned encoder), both reported.
+4. **Plots and graphs saved as PDF**, not raster images, so they drop into the paper cleanly.
+5. **Report written in Overleaf and sent by email** to the professor.
+
 ## Standing rules
 
 - Every number in a deliverable traces to a run under `experiments/` with its seed, data version, config, and command.

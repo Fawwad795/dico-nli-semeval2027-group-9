@@ -2,7 +2,11 @@
 
 Semester research project for the Large Language Models course (semester 7).
 
-Topic: [TOPIC-TBD]. The topic is not chosen yet; this README is updated when it is.
+Topic: **SemEval-2027 Task 2, DiCo-NLI** (Directional-Consistent Fine-Grained Natural Language Inference). Given two short phrases in order, a system says whether they mean the same thing, the first implies the second, the second implies the first, or neither. The catch is consistency: when the pair is shown reversed, the answer must flip accordingly, and the scorer measures that directly.
+
+- Task page: https://inigolopezgazpio.net/SemEval-2027-Task-2-DiCo-NLI/
+- Data and official scorer: https://github.com/ilopezgazpio/SemEval-2027-Task-2-DiCo-NLI
+- Tracks: English, Spanish, Basque, and a mixed multilingual track. The course project starts with English.
 
 ## Team
 

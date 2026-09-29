@@ -22,4 +22,15 @@
 
 ## Runs only the user can execute
 
-Nothing yet. When the topic picks a model provider or a GPU path, record here which commands need an API key, paid inference, or a GPU, and how the user runs them. Until then, anything needing those is out of reach in-session and gets flagged, never claimed.
+Anything on a GPU. The path is Modal (decision: `research-decisions.md`, 2026-09-29). Claude prepares the Modal script and the exact command; a teammate launches it from their own workspace and fetches the results.
+
+| Command | Does |
+|---|---|
+| `modal token new` | One-time login for a teammate's own workspace |
+| `PYTHONIOENCODING=utf-8 uv run modal run --detach scripts/modal/<script>.py::<entrypoint> ...` | Launch a run. `--detach` on anything longer than a few minutes, the encoding variable on anything whose output is logged (`pitfalls.md`) |
+| `modal app list`, `modal app logs <app-id>` | State and logs of a detached run |
+| `modal volume get <vol> <run_id> <existing-local-parent>` | Fetch results; the local parent must already exist (`pitfalls.md`) |
+
+`modal` is not a project dependency yet. Adding it (`uv add --dev modal`) is a team decision under the dependency rule; until then the commands above are the plan, not something that runs.
+
+CPU-only work (the encoder baseline on a few thousand pairs, the official scorer, EDA) runs locally or on a free Colab T4 and needs none of this.

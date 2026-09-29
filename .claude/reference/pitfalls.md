@@ -326,6 +326,21 @@ Looping slides rendered to video and embedded in a hand-built `.pptx` cost these
   version") even when the version is unchanged. A `read` with `paths` did not count; a plain
   `read` of the canvas URL did.
 
+## Modal: launch, container, volume, and billing quirks (2026-09-21 to 2026-09-24, restored 2026-09-29)
+
+Observed on modal 1.5.x during multi-hour GPU experiments in the previous project. Restored when Modal became this project's primary compute.
+
+1. **`modal run` without `--detach` dies with the local connection.** A network drop on this machine (`socket.gaierror`, then `ConnectionResetError`) tore down the whole remote app, GPU container included, not just the log stream; `modal container list` showed nothing to reconnect to. Pass `--detach` on any run longer than a few minutes, from the start. A detached run is watched with `modal app list`, `modal app logs <app-id>`, and `modal volume get` on its checkpoints.
+2. **App creation is rate-limited.** Five `modal run` invocations within seconds got two rejected with `RESOURCE_EXHAUSTED` / `App create rate limit exceeded`, exit code 1, before any container started. Stagger concurrent launches by 60 s or more, and reconcile the artifact count against the expected cell count before aggregating a sweep.
+3. **Long GPU containers get preempted and restart from zero.** A pass was preempted 57 minutes in with nothing to resume from, roughly one preemption per four-hour pass. Anything expected to run beyond about an hour needs checkpointing designed in before launch: split the work into slices, write a volume checkpoint per slice, and make the launcher resume from the last one.
+4. **A warm container is reused across `Function.remote()` calls**, so filesystem changes persist into the next call. A container-side patch succeeded on the first call and hit an already-patched tree on the second. Make container-side mutation idempotent.
+5. **`modal volume get <vol> <id> <dest>` with a non-existent `<dest>` concatenates the whole run directory into one file** and reports success. The local parent must already exist; the reliable form is `modal volume get <vol> <run_id> <existing-parent>`. Re-fetching into an existing directory refuses without `--force`. `dir/*` globs are no longer accepted. Verify the fetched file count, not the exit code.
+6. **`modal run <file>` refuses to choose** once the file defines more than one local entrypoint; name it: `file.py::entrypoint`.
+7. **The streamed log is not strictly ordered.** `grep ... | tail -1` showed batch 1 while batch 26 was already logged. Take the maximum, never the last line.
+8. **Redirected Modal output needs `PYTHONIOENCODING=utf-8`** on Windows (the check-mark entry above); the CLI prints one at startup.
+9. **Billing:** `modal billing summary` runs ahead of `modal billing report` by up to about $11 and converges an hour later; quote the per-app report. `modal app list` drops stopped apps after about two hours, so the billing report is the lasting record. An A10G request can land on an A10 (billed as A10G); record the GPU per attempt.
+10. **Compiled CUDA extensions in a plain image fail fast.** A `flash-attn` pin failed at metadata generation in `modal.Image.debian_slim()` (no `packaging`, no `torch`, then no `nvcc`). Before reaching for a CUDA-devel image and a 20-minute compile, check for a PyTorch-native alternative such as `attn_implementation="sdpa"`.
+
 ## chromadb: open copies only, and 0.5.0 rebuilds the index on every open (2026-09-23)
 
 A newer chromadb migrates an older store's sqlite schema **in place** when it opens it, so open a
