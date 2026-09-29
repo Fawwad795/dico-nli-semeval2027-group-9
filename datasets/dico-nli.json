@@ -1,0 +1,29 @@
+{
+  "name": "DiCo-NLI (SemEval-2027 Task 2)",
+  "source": "https://github.com/ilopezgazpio/SemEval-2027-Task-2-DiCo-NLI",
+  "commit": "588968e610197ddc4c440314701cbc587afc4c1b",
+  "commit_date": "2026-09-08T18:38:25+02:00",
+  "licence": "GPL-3.0",
+  "recorded": "2026-09-29",
+  "local_path": "datasets/dico-nli",
+  "download": "git clone https://github.com/ilopezgazpio/SemEval-2027-Task-2-DiCo-NLI.git datasets/dico-nli && git -C datasets/dico-nli checkout 588968e610197ddc4c440314701cbc587afc4c1b",
+  "tracks_used": ["track1"],
+  "splits": {
+    "train": "final_data/train, used for training and, through a grouped held-out slice, for model selection",
+    "dev": "final_data/dev, the course test set; the official test set is released on 2027-01-10 and is never used for selection"
+  },
+  "scorer": "evaluation_functions (stdlib only, Python 3.10+): python -m evaluation_functions --gold <reference.csv> --predictions <predictions.csv> --output-dir <dir>",
+  "checksums": "blob_sha1 is git's object id for the file at the recorded commit (git -C datasets/dico-nli ls-tree -r <commit> -- <path>) and is the same on every platform; md5_lf is the md5 of the file bytes after CRLF is normalised to LF, so a Windows checkout with autocrlf matches a macOS or Linux one.",
+  "files": {
+    "final_data/train/dico_nli_train_track1_participant_labeled.csv": {"blob_sha1": "396bc7260379f8a01b50759f3b4bc995f7f75ff9", "md5_lf": "c6718d35bc7a53b4c30303b93bde6c49", "rows": 3042},
+    "final_data/train/dico_nli_train_track1_reference.csv": {"blob_sha1": "d64dff12df6b70fb7442896bf5c14f50d5082b7b", "md5_lf": "6f3c9ccfe81acaf8e9d5056c34d112a1", "rows": 3042},
+    "final_data/train/dico_nli_train_track1_submission_template.csv": {"blob_sha1": "13a46e37f13a6892093fc3815b8575a9274f76a5", "md5_lf": "a675374ced634cbde2ff9a07b8e95469", "rows": 3042},
+    "final_data/dev/dico_nli_dev_track1_participant_labeled.csv": {"blob_sha1": "c7a630fb6a214939af7110046b3a916769ba5de3", "md5_lf": "55d3e755fc6ecf26aaee1d13719738ce", "rows": 660},
+    "final_data/dev/dico_nli_dev_track1_reference.csv": {"blob_sha1": "d32aa710351929f8d3784519b49cf18a5842b34a", "md5_lf": "6d1cda9b344cffb52c0641ec3933972b", "rows": 660},
+    "final_data/dev/dico_nli_dev_track1_submission_template.csv": {"blob_sha1": "7044b4cc6c4df7fc16c5bb971cf67f7353057f86", "md5_lf": "d65a7773407a54a99259c84fe7cae2af", "rows": 660}
+  },
+  "notes": [
+    "Every __flipped instance is the reversal of an __original one and NEGATIVE_OTHER instances have no flipped twin, so instance_id leaks the label; no model input may include it.",
+    "Track 1 train and dev share no pair_id; 7 unordered text pairs and 155 of 712 dev phrases also occur in train."
+  ]
+}
