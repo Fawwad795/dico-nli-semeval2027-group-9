@@ -4,7 +4,7 @@
 
 | | Due | Branch area | Lands in |
 |---|---|---|---|
-| Assignment 1: problem formulation, literature and baseline | Friday 2 October 2026, 11:59 PM | `assignment-1/` | `docs/deliverables/assignment-1-problem-and-baseline/` |
+| Assignment 1: problem formulation, literature and baseline | Sunday 4 October 2026, 11:59 PM (extended from 2 October) | `assignment-1/` | `docs/deliverables/assignment-1-problem-and-baseline/` |
 | Assignment 2: proposed approach and experimental design | Friday 13 November 2026, 11:59 PM | `assignment-2/` | `docs/deliverables/assignment-2-approach-and-design/` |
 | Assignment 3: experiments, analysis and research paper | Friday 4 December 2026, 11:59 PM | `assignment-3/` | `docs/deliverables/assignment-3-experiments-and-paper/` |
 
@@ -12,11 +12,17 @@ Notebooks that produce an assignment's runs live under `notebooks/assignment-<n>
 
 ## Assignment 1: problem formulation, literature and baseline
 
-- Task and data understanding
-- Selected literature
-- Research question or hypothesis
-- Appropriate baselines
-- Initial results
+The professor's brief (received 2026-10-02) is `docs/deliverables/assignment-1-problem-and-baseline/Assignment_1_Shared_Task_Project_Guidelines.pdf` and replaces the generic list. What it requires beyond the generic items:
+
+- Progression: task understanding, data understanding, selective EDA, classical ML baseline, pretrained baseline, evaluation, error analysis.
+- Task understanding black-box first (input, output, label space, metric, formulation), then white-box (cues, confounds, shortcuts, artifacts, imbalance, source effects).
+- Minimum data checks: split sizes, label distribution, missing, empty, duplicated and unusually short or long samples, length statistics, metadata distributions.
+- EDA: 4 to 8 feature groups, each answering a stated question, each interpreted as observation, interpretation, modeling implication. Never bare numbers.
+- One single PDF of the selected EDA figures, without traditional captions: each plot carries a concise title, axis labels with units, and a legend where needed.
+- Classical baseline on engineered features plus TF-IDF with logistic regression or linear SVM, with feature importance tied back to the EDA. Pretrained baseline only after it, stating frozen, feature extraction, fine-tuning or prompting.
+- Metrics understood mathematically, why the task uses them, what they reward or penalise, the averaging scheme, and the effect of imbalance.
+- Literature: the task description, the organizer paper and 3 to 5 related papers, read for formulation, data, features, models, evaluation and limitations.
+- Report in LaTeX on Overleaf with BibTeX, maths and cross-references, in eleven sections: introduction and task definition, related work, dataset, EDA, feature engineering, baseline models, evaluation setup, results, error analysis, discussion, next steps.
 
 ## Assignment 2: proposed approach and experimental design
 
