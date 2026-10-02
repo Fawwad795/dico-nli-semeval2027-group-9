@@ -24,7 +24,7 @@ None yet. The first target is the organizers' pilot baseline on the English dev 
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/timeline-dark.svg">
-  <img alt="Assignment 1, problem, literature and baseline, due 2 October 2026, in progress. Assignment 2, approach and experimental design, due 13 November 2026. Assignment 3, experiments, analysis and paper, due 4 December 2026." src="assets/readme/timeline-light.svg" width="1200">
+  <img alt="Assignment 1, problem, literature and baseline, due 4 October 2026, in progress. Assignment 2, approach and experimental design, due 13 November 2026. Assignment 3, experiments, analysis and paper, due 4 December 2026." src="assets/readme/timeline-light.svg" width="1200">
 </picture>
 
 Each assignment has a folder under [docs/deliverables/](docs/deliverables/) whose README lists its items and ticks them off as they land.

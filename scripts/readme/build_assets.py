@@ -185,7 +185,7 @@ def relations(p):
 def timeline(p, current="Assignment 1"):
     w, h = 1200, 150
     nodes = [
-        ("Assignment 1", "Problem, literature and baseline", "Friday 2 October 2026", 230),
+        ("Assignment 1", "Problem, literature and baseline", "Sunday 4 October 2026", 230),
         ("Assignment 2", "Approach and experimental design", "Friday 13 November 2026", 600),
         ("Assignment 3", "Experiments, analysis and paper", "Friday 4 December 2026", 970),
     ]
@@ -204,7 +204,7 @@ def timeline(p, current="Assignment 1"):
         if is_current:
             out.append(text(x, 132, "in progress", p, size=11, weight=600, fill=p["accent"], anchor="middle"))
     body = "\n".join(out)
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="Assignments: Assignment 1, problem, literature and baseline, due Friday 2 October 2026, in progress; Assignment 2, approach and experimental design, due Friday 13 November 2026; Assignment 3, experiments, analysis and paper, due Friday 4 December 2026">
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="Assignments: Assignment 1, problem, literature and baseline, due Sunday 4 October 2026, in progress; Assignment 2, approach and experimental design, due Friday 13 November 2026; Assignment 3, experiments, analysis and paper, due Friday 4 December 2026">
 {body}
 </svg>
 """
