@@ -10,7 +10,7 @@
   ],
   "facets_on": "train",
   "note": "deterministic; seed unused",
-  "repo_commit": "f332f4efa583e688dac688d4cff3cac3ecd321b1",
+  "repo_commit": "8e3d379756e6dfe8d31232c28953a02bfbfdaed0",
   "repo_dirty": true,
   "seed": 0,
   "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
