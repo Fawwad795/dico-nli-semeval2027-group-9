@@ -14,7 +14,7 @@ The semester research project for the Large Language Models course (semester 7).
 
 Three graded assignments; deliverable lists and the rule that they flex with the topic live in `.claude/reference/assignments.md`:
 
-- **Assignment 1**, due Friday 2 October 2026, 11:59 PM: problem formulation, literature and baseline.
+- **Assignment 1**, due Sunday 4 October 2026, 11:59 PM (extended from 2 October): problem formulation, literature and baseline.
 - **Assignment 2**, due Friday 13 November 2026, 11:59 PM: proposed approach and experimental design.
 - **Assignment 3**, due Friday 4 December 2026, 11:59 PM: experiments, analysis and research paper.
 

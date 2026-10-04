@@ -1,0 +1,15 @@
+{
+  "command": "PYTHONIOENCODING=utf-8 uv run jupyter execute notebooks/assignment-1/01_trivial_baselines.ipynb",
+  "data_commit": "588968e610197ddc4c440314701cbc587afc4c1b",
+  "dev_size": 660,
+  "majority_label": "FORWARD_ENTAILMENT",
+  "repo_commit": "bfa899d7c7bd5243d474edbf58f59142da140501",
+  "repo_dirty": true,
+  "seed": 13,
+  "systems": [
+    "majority",
+    "random (seed 13)"
+  ],
+  "track": 1,
+  "train_size": 3042
+}

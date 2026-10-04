@@ -1,0 +1,22 @@
+{
+  "command": "PYTHONIOENCODING=utf-8 uv run jupyter execute notebooks/assignment-1/02_eda_track1.ipynb",
+  "data_commit": "588968e610197ddc4c440314701cbc587afc4c1b",
+  "dev_size": 660,
+  "dev_used_for": [
+    "label_distribution",
+    "pair_structure",
+    "train_dev_overlap",
+    "data_quality_checks"
+  ],
+  "facets_on": "train",
+  "note": "deterministic; seed unused",
+  "repo_commit": "f332f4efa583e688dac688d4cff3cac3ecd321b1",
+  "repo_dirty": true,
+  "seed": 0,
+  "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "spacy_model": "en_core_web_sm",
+  "task_specific_cues_on": "train",
+  "track": 1,
+  "train_size": 3042,
+  "trial_source_metadata": "datasets/dico-nli/trial_data/trial_dataset.json"
+}

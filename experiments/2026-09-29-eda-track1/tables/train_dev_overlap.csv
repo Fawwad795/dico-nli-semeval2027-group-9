@@ -1,0 +1,6 @@
+quantity,value
+shared_pair_ids,0
+shared_unordered_text_pairs,7
+dev_phrases,712
+dev_phrases_seen_in_train,155
+train_phrases,2903

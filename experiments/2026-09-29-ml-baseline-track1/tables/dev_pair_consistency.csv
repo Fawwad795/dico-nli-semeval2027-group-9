@@ -1,0 +1,5 @@
+system,reversible_pairs,soft_consistent_pairs,hard_correct_pairs,consistent_but_wrong
+cues+logreg,277,220,153,67
+tfidf+logreg,277,118,71,47
+both+logreg,277,207,158,49
+cues+gbdt,277,199,146,53

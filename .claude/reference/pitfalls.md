@@ -354,6 +354,8 @@ Observed on modal 1.5.x during multi-hour GPU experiments in the previous projec
 8. **Redirected Modal output needs `PYTHONIOENCODING=utf-8`** on Windows (the check-mark entry above); the CLI prints one at startup.
 9. **Billing:** `modal billing summary` runs ahead of `modal billing report` by up to about $11 and converges an hour later; quote the per-app report. `modal app list` drops stopped apps after about two hours, so the billing report is the lasting record. An A10G request can land on an A10 (billed as A10G); record the GPU per attempt.
 10. **Compiled CUDA extensions in a plain image fail fast.** A `flash-attn` pin failed at metadata generation in `modal.Image.debian_slim()` (no `packaging`, no `torch`, then no `nvcc`). Before reaching for a CUDA-devel image and a 20-minute compile, check for a PyTorch-native alternative such as `attn_implementation="sdpa"`.
+11. **A new workspace refuses GPU functions until a payment method is on file (2026-09-29).** `modal run` on a fresh Starter workspace built the whole image, then stopped with "Please add a payment method to use T4 GPU functions"; the $30 free credit does not waive it. Add a card under the workspace's billing settings before the first GPU launch; CPU functions and image builds run without one. Update to the compute decision in `research-decisions.md`, which said "no card".
+12. **The launcher module is imported again inside the container (2026-09-29).** Modal copies the `modal run` script to `/root/<name>.py` and imports it there, so module-level code runs twice: once locally, once remotely where the repository does not exist. `Path(__file__).resolve().parents[2]` raised `IndexError` remotely and the function crash-looped before any training. Guard everything that touches local paths (`add_local_dir` sources, data lookups) with `if modal.is_local():`.
 
 ## chromadb: open copies only, and 0.5.0 rebuilds the index on every open (2026-09-23)
 
@@ -362,6 +364,16 @@ copy, never a shipped store. And chromadb 0.5.0 rebuilds the HNSW graph on every
 store ships without `index_metadata.pickle`, so top-1 retrieval varied by 0 to 2 of 400 queries
 between process starts. If a result depends on retrieval, freeze the retrieved results once in a
 committed cache rather than re-querying.
+
+## transformers 5 loads checkpoints in their stored dtype; DeBERTa-v3-base is float16 (2026-09-29)
+
+`AutoModelForSequenceClassification.from_pretrained("microsoft/deberta-v3-base")` under transformers
+5.17 returned a float16 model (the checkpoint's stored dtype), where transformers 4 gave float32. One
+forward pass still yields a finite loss, so nothing failed locally, but the first GPU epoch trained
+with `train_loss=nan` from step one (pure half precision, no loss scaling) and the same model made
+a CPU timing probe crawl at over a minute per step. Pass `dtype=torch.float32` (the `torch_dtype`
+name is deprecated in 5.x) whenever a model is loaded for fine-tuning, and log the first loss
+before trusting a run.
 
 ## A run folder holds hand-written notes too; a rerun must not wipe them (2026-09-29)
 

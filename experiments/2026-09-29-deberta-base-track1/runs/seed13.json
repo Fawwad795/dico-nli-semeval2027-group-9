@@ -1,0 +1,57 @@
+{
+  "config": {
+    "model_name": "microsoft/deberta-v3-base",
+    "max_length": 32,
+    "batch_size": 16,
+    "epochs": 5,
+    "learning_rate": 2e-05,
+    "warmup_fraction": 0.06,
+    "weight_decay": 0.01,
+    "seed": 13
+  },
+  "holdout_fraction": 0.2,
+  "fit_size": 2443,
+  "holdout_size": 599,
+  "dev_size": 660,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.1701501611310636,
+      "holdout_weighted_f1": 0.6684080082325426,
+      "holdout_accuracy": 0.7028380634390651
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.5764664890968161,
+      "holdout_weighted_f1": 0.7877820248271474,
+      "holdout_accuracy": 0.7913188647746243
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.296968240999951,
+      "holdout_weighted_f1": 0.7932529883511308,
+      "holdout_accuracy": 0.7963272120200334
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.16200224028971172,
+      "holdout_weighted_f1": 0.8067861996351237,
+      "holdout_accuracy": 0.8030050083472454
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.09938934565541982,
+      "holdout_weighted_f1": 0.8192984046093639,
+      "holdout_accuracy": 0.8196994991652755
+    }
+  ],
+  "best_epoch": 5,
+  "train_seconds": 141.0,
+  "gpu": "Tesla T4",
+  "torch": "2.14.0+cu130",
+  "code": {
+    "repo_commit": "acd2ff740653d8c5193d5eb3e08c0ba462840890",
+    "repo_dirty": true,
+    "source_sha256": "1e6133668f686c039f4fe9600adf3f1a98be841932dc7fbc2760c5abbc549c71"
+  }
+}
