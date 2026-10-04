@@ -1,0 +1,35 @@
+{
+  "analysis": "committed dev predictions; no model fitting",
+  "command": "PYTHONIOENCODING=utf-8 uv run jupyter execute notebooks/assignment-1/05_error_analysis_track1.ipynb",
+  "cue_model": "cues+logreg",
+  "data_commit": "588968e610197ddc4c440314701cbc587afc4c1b",
+  "deberta_seeds": [
+    13,
+    42,
+    1234
+  ],
+  "length_tokenizer": "dico_nli.eda.tokens; word count",
+  "prediction_sources": {
+    "DeBERTa seed 1234": "experiments/2026-09-29-deberta-base-track1/predictions/seed1234.csv",
+    "DeBERTa seed 13": "experiments/2026-09-29-deberta-base-track1/predictions/seed13.csv",
+    "DeBERTa seed 42": "experiments/2026-09-29-deberta-base-track1/predictions/seed42.csv",
+    "both+logreg": "experiments/2026-09-29-ml-baseline-track1/predictions/both+logreg.csv",
+    "cues+logreg": "experiments/2026-09-29-ml-baseline-track1/predictions/cues+logreg.csv"
+  },
+  "repo_commit": "bbb3b75338fa808c26740ee1c99d07a647239831",
+  "repo_dirty": true,
+  "run_date": "2026-10-02",
+  "score_sources": {
+    "DeBERTa seed 1234": "experiments/2026-09-29-deberta-base-track1/scores/seed1234/scores.json",
+    "DeBERTa seed 13": "experiments/2026-09-29-deberta-base-track1/scores/seed13/scores.json",
+    "DeBERTa seed 42": "experiments/2026-09-29-deberta-base-track1/scores/seed42/scores.json",
+    "both+logreg": "experiments/2026-09-29-ml-baseline-track1/scores/both+logreg/scores.json",
+    "cues+gbdt": "experiments/2026-09-29-ml-baseline-track1/scores/cues+gbdt/scores.json",
+    "cues+logreg": "experiments/2026-09-29-ml-baseline-track1/scores/cues+logreg/scores.json",
+    "majority": "experiments/2026-09-29-trivial-baselines-track1/scores/majority/scores.json",
+    "random seed 13": "experiments/2026-09-29-trivial-baselines-track1/scores/random/scores.json",
+    "tfidf+logreg": "experiments/2026-09-29-ml-baseline-track1/scores/tfidf+logreg/scores.json"
+  },
+  "seed": 13,
+  "track": 1
+}

@@ -1,0 +1,21 @@
+system,outcome,count,share
+cues+logreg,both_directions_correct,153,0.5523465703971119
+cues+logreg,consistent_but_wrong,67,0.24187725631768953
+cues+logreg,inconsistent_one_direction_correct,1,0.0036101083032490976
+cues+logreg,inconsistent_both_directions_wrong,56,0.20216606498194944
+both+logreg,both_directions_correct,158,0.5703971119133574
+both+logreg,consistent_but_wrong,49,0.17689530685920576
+both+logreg,inconsistent_one_direction_correct,21,0.07581227436823104
+both+logreg,inconsistent_both_directions_wrong,49,0.17689530685920576
+DeBERTa seed 13,both_directions_correct,228,0.8231046931407943
+DeBERTa seed 13,consistent_but_wrong,16,0.05776173285198556
+DeBERTa seed 13,inconsistent_one_direction_correct,15,0.05415162454873646
+DeBERTa seed 13,inconsistent_both_directions_wrong,18,0.06498194945848375
+DeBERTa seed 42,both_directions_correct,224,0.8086642599277978
+DeBERTa seed 42,consistent_but_wrong,21,0.07581227436823104
+DeBERTa seed 42,inconsistent_one_direction_correct,12,0.04332129963898917
+DeBERTa seed 42,inconsistent_both_directions_wrong,20,0.07220216606498195
+DeBERTa seed 1234,both_directions_correct,221,0.7978339350180506
+DeBERTa seed 1234,consistent_but_wrong,19,0.06859205776173286
+DeBERTa seed 1234,inconsistent_one_direction_correct,17,0.061371841155234655
+DeBERTa seed 1234,inconsistent_both_directions_wrong,20,0.07220216606498195
