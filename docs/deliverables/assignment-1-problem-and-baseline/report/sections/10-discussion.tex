@@ -1,0 +1,14 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Direction is the easy part.}
+Seventeen surface cues decide \FW{} against \BW{} almost as reliably as a fine-tuned encoder (8 against 3 confusions out of 380). What the cues cannot decide is the kind of relation: whether added material narrows the meaning or paraphrases it, and whether a substituted word breaks the relation. That is where most of the encoder's 0.21 gain in weighted F1 comes from (\cref{tab:slices}), and where its remaining errors are.
+
+\paragraph{\SoftCons{} on its own is easy to game.}
+A constant \EQ{} predictor scores a perfect 1.000, and the cue model reaches 0.794 while being wrong in both directions on a quarter of the pairs. A system can be consistent by construction, through symmetric or sign-flipping inputs, without understanding the relation. We therefore read \SoftCons{} only next to \HardCons{} and macro F1, and count consistent-but-wrong pairs explicitly.
+
+\paragraph{The encoder is consistent because it is correct.}
+The accuracy-consistency trade within the classical family did not carry over: DeBERTa improved all three scores at once, and its consistent pairs are almost all correct ones. This makes the open question for decoder models, which the pilot found far less coherent, sharper: their consistency gap may be a correctness gap on the hard relations and not a separate defect.
+
+\paragraph{How far the numbers travel.}
+The development set behaves a little harder than held-out training folds, a fifth of its phrases also occur in training, and some gold labels look questionable. Differences of a few points between systems should be read with these in mind; the differences we draw conclusions from are 0.2 or more.

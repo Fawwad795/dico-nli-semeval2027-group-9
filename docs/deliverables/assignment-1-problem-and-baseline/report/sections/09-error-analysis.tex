@@ -1,0 +1,72 @@
+\section{Error Analysis}
+\label{sec:error}
+
+\paragraph{How pairs fail.}
+\Cref{tab:pairs} sorts each reversible development pair by what a system did with its two directions. The cue model almost never gets one direction right and the other wrong (1 pair): its errors are symmetric, either consistent and wrong (67) or wrong both ways (56). Adding n-grams turns 21 pairs into half-right ones, the order-specific behaviour behind its lower \SoftCons{}. DeBERTa leaves 49 to 56 pairs not fully correct per seed, spread evenly over the three failure types.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{Consistent} & \multicolumn{2}{c}{Inconsistent} \\
+\cmidrule(lr){2-3} \cmidrule(l){4-5}
+System & right & wrong & one right & both wrong \\
+\midrule
+Cues & 153 & 67 & 1 & 56 \\
+Cues and n-grams & 158 & 49 & 21 & 49 \\
+DeBERTa, seed 13 & 228 & 16 & 15 & 18 \\
+DeBERTa, seed 42 & 224 & 21 & 12 & 20 \\
+DeBERTa, seed 1234 & 221 & 19 & 17 & 20 \\
+\bottomrule
+\end{tabular}
+\caption{Outcomes on the 277 reversible development pairs. A consistent pair is either right in both directions or wrong in both.}
+\label{tab:pairs}
+\end{table}
+
+\paragraph{Where the encoder wins (H2).}
+We split the development instances by what the length cue says about the gold label (\cref{tab:slices}). It agrees on 282 instances, points the wrong way on 10, and says nothing on 368 (equal length, or a label without direction). Where it agrees, the cue model is already strong and the encoder adds 0.02 weighted F1. Where it says nothing, the cue model falls to 0.31 and the encoder holds 0.75, a gap of 0.44.
+
+The misleading slice is too small to read. Slice scores are classification scores only, since a slice can separate the two directions of a pair.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Length cue & $n$ & Cues & Cues + n-grams & DeBERTa \\
+\midrule
+Agrees & 282 & 0.907 & 0.917 & 0.931 \\
+Misleads & 10 & 0.000 & 0.000 & 0.800 \\
+Uninformative & 368 & 0.313 & 0.425 & 0.754 \\
+\bottomrule
+\end{tabular}
+\caption{Weighted F1 on development slices defined by the length cue; DeBERTa is the mean of three seeds.}
+\label{tab:slices}
+\end{table}
+
+\paragraph{What the encoder still gets wrong.}
+DeBERTa rarely confuses direction: seed 13 swaps \FW{} and \BW{} on 3 instances. Its errors sit on the \EQ{} and \NO{} boundaries: 26 directional instances predicted as \EQ{}, 19 \EQ{} instances predicted as \NO{}, and 34 of 106 negatives called related. All three seeds miss the same 80 instances, and the cue model misses 50 of those too. We read 20 hand-picked errors of seed 13 and sorted them into five categories modelled on the pilot's manual analysis (\cref{tab:categories}); the counts are four per category by construction, so they illustrate the kinds of error and do not estimate their rates.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+Category & Premise & Hypothesis & Gold & Predicted \\
+\midrule
+Preposition & at a pool & in front of a pool & \BW & \NO \\
+Numeral or quantifier & A group of people & Six people & \FW & \EQ \\
+Near-synonym or taxonomy & a chocolate bar & a candy bar & \FW & \EQ \\
+One-word negative contrast & on a crowded street & on a public street & \NO & \EQ \\
+Chunking fragment & in destroying & destroy & \FW & \EQ \\
+\bottomrule
+\end{tabular}
+\caption{One example per error category, DeBERTa seed 13 on the development set.}
+\label{tab:categories}
+\end{table*}
+
+\paragraph{Some errors may be in the gold labels.}
+``two people'' and ``2'' are labelled \NO{}, and ``Saudi Women'' to ``Saudis'' is labelled \BW{} although the first phrase is the more specific one; with the conflicting ``South Africans'' duplicate in training (\cref{sec:dataset}), this suggests a share of the remaining errors are annotation disagreements. We have not audited the labels systematically.

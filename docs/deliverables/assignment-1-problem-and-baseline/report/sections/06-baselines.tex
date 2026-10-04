@@ -1,0 +1,13 @@
+\section{Baseline Models}
+\label{sec:baselines}
+
+All settings below were fixed before the first run and none was tuned on the development set.
+
+\paragraph{Trivial systems.}
+A majority-label predictor, a uniform random predictor (seed 13) and two constant predictors, \EQ{} everywhere and \NO{} everywhere. Training ties \FW{} and \BW{} at 881 instances each; the tie goes to the first label in canonical order, so the majority system predicts \FW{} everywhere. The constant systems probe the metrics (\cref{sec:evaluation}).
+
+\paragraph{Classical baselines.}
+Logistic regression on the cues, on the n-grams, and on both side by side, and gradient-boosted trees on the cues, all in scikit-learn \citep{pedregosa-etal-2011-scikit} with balanced class weights; the regressions use $C = 1$, the trees 300 iterations at learning rate 0.05, and every other setting is a library default.
+
+\paragraph{Pretrained baseline.}
+DeBERTa-v3-base \citep{he-etal-2023-debertav3} with a classification head, fully fine-tuned with Hugging Face Transformers \citep{wolf-etal-2020-transformers} in our own training loop. The pair is tokenised as one sequence of at most 32 tokens. We train for 5 epochs with AdamW, learning rate $2 \times 10^{-5}$, batch size 16, weight decay 0.01, a linear schedule with 6\% warm-up and gradient clipping at 1.0, and keep the epoch with the best weighted F1 on a 20\% slice of the training data split by source pair. We train three seeds (13, 42, 1234); each seed also draws its own slice. Each run trained in about 140 seconds on one NVIDIA T4, and a second execution reproduced every development prediction exactly.

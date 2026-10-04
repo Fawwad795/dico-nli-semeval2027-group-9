@@ -1,0 +1,66 @@
+% Assignment 1 report, LLM course, Group 9. ACL template, preprint mode (named authors, page numbers).
+% Build: pdflatex main && bibtex main && pdflatex main && pdflatex main  (or latexmk -pdf main)
+\documentclass[11pt]{article}
+
+\usepackage[preprint]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+% Label names. The official tokens are EQUIVALENCE, FORWARD_ENTAILMENT,
+% BACKWARD_ENTAILMENT and NEGATIVE_OTHER.
+\newcommand{\EQ}{\textsc{Equivalence}}
+\newcommand{\FW}{\textsc{Forward}}
+\newcommand{\BW}{\textsc{Backward}}
+\newcommand{\NO}{\textsc{Negative}}
+\newcommand{\Rev}{\operatorname{Rev}}
+\newcommand{\SoftCons}{\textsc{SoftCons}}
+\newcommand{\HardCons}{\textsc{HardCons}}
+
+\title{Surface Cues and a Fine-Tuned Encoder on Directional-Consistent NLI:\\
+Baselines for SemEval-2027 Task 2, English Track}
+
+\author{
+  M. Shaheer Saleh \\ Reg.\ No.\ 467668 \And
+  Ahmad Imran \\ Reg.\ No.\ 462852 \And
+  Syed Fawwad Ahmed \\ Reg.\ No.\ 463933 \And
+  Aqib Raza \\ Reg.\ No.\ 461312 \AND
+  Group 9, Large Language Models course, NUST \\
+  \url{https://github.com/Fawwad795/dico-nli-semeval2027-group-9}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+SemEval-2027 Task 2 (DiCo-NLI) asks for one of four relations between two ordered phrases and also scores whether a system's answers on a pair and on its reversal are compatible. On the English track we ask how much of a fine-tuned encoder's accuracy and consistency surface cues alone recover. A selective exploratory analysis of 3,042 training instances shows direction leaking through form: the premise is the longer phrase in 78\% of forward-entailment instances, and every hypothesis word occurs in the premise in 45\% of them. A logistic regression on 17 such cues reaches weighted F1 0.531 and \SoftCons{} 0.794 on the development set, the most self-consistent of our classical baselines. DeBERTa-v3-base, fine-tuned over three seeds, reaches 0.807 $\pm$ 0.015 weighted F1, 0.877 \SoftCons{} and 0.810 \HardCons{}. Its advantage sits on instances where length carries no signal and on the boundary between equivalence and entailment; its remaining errors involve one-word substitutions, prepositions and numerals. A constant \EQ{} predictor obtains \SoftCons{} 1.0, which is why we read the three official scores only together.
+\end{abstract}
+
+\input{sections/01-introduction}
+\input{sections/02-related-work}
+\input{sections/03-dataset}
+\input{sections/04-eda}
+\input{sections/05-features}
+\input{sections/06-baselines}
+\input{sections/07-evaluation}
+\input{sections/08-results}
+\input{sections/09-error-analysis}
+\input{sections/10-discussion}
+\input{sections/11-next-steps}
+\input{sections/limitations}
+
+\bibliography{references}
+
+\appendix
+\input{sections/appendix-runs}
+
+\end{document}

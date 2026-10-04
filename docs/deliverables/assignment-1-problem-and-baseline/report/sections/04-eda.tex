@@ -1,0 +1,52 @@
+\section{Exploratory Data Analysis}
+\label{sec:eda}
+
+We analyse the training split only and choose six feature groups, each to answer one question about the task (\cref{tab:eda-groups}). Lexical-richness measures such as TTR, MTLD and HD-D are left out: on phrases of about three words they are undefined or unstable. All seven figures of the analysis are collected, uncaptioned, in the separate EDA PDF; two appear below.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}p{0.25\columnwidth}p{0.67\columnwidth}@{}}
+\toprule
+Group & Question \\
+\midrule
+Length & Does the longer phrase predict the direction? \\
+Readability & Do word and syllable lengths differ by relation? \\
+Lexical & Do overlap and containment separate direction, equivalence and negatives? \\
+Semantic & Does embedding similarity separate the relations, and can it see direction? \\
+Linguistic & Do heads, POS patterns, adjectives and prepositions vary by relation? \\
+Task cues & Are quantifiers, negation, numerals and named entities frequent enough to matter? \\
+\bottomrule
+\end{tabular}
+\caption{The six EDA feature groups and the question each answers.}
+\label{tab:eda-groups}
+\end{table}
+
+\paragraph{Length.}
+\textit{Observation:} the premise is longer in 78\% of \FW{} instances and the hypothesis in 78\% of \BW{} instances, while \EQ{} splits evenly (36\% premise longer, 29\% equal, 36\% hypothesis longer) and half of the \NO{} instances (49\%) have equal length (\cref{fig:length}). \textit{Interpretation:} direction leaks through form, because the entailing phrase is usually the more specific one with an added modifier; this is a shortcut a model can learn without semantics. \textit{Implication:} length belongs in the cue baseline, and every model should also be scored on instances where length points the wrong way or nowhere (\cref{sec:error}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/eda-length-cue}
+\caption{Which phrase is longer, by gold label (train).}
+\label{fig:length}
+\end{figure}
+
+\paragraph{Lexical overlap and containment.}
+\textit{Observation:} mean word-set Jaccard overlap is 0.41 for directional pairs against 0.24 for \EQ{} and 0.27 for \NO{}. Every hypothesis word occurs in the premise in 45\% of \FW{} instances and 2\% of \BW{} instances, and the mirror holds; the last word is shared in 58\% of directional instances (\cref{fig:lexical}). \textit{Interpretation:} directional pairs are mostly one phrase with words added or removed around a kept head, while equivalences are paraphrases with little literal overlap. \textit{Implication:} containment in both orientations is a strong but partial direction cue, firing on fewer than half of the directional pairs; overlap signals relatedness, not equivalence.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/eda-lexical-containment}
+\caption{Word overlap (left) and full containment in each direction (right), by gold label (train).}
+\label{fig:lexical}
+\end{figure*}
+
+\paragraph{Semantic similarity.}
+\textit{Observation:} cosine similarity of MiniLM sentence embeddings \citep{reimers-gurevych-2019-sentence} has median 0.76 for \EQ{}, 0.77 for both directions and 0.64 for \NO{}; 52\% of directional and 50\% of \EQ{} instances lie at or above the \EQ{} median, against 27\% of negatives. Cosine is symmetric, so a pair and its reversal get the same value. \textit{Interpretation:} similarity separates negatives from related pairs moderately and \EQ{} from entailment not at all, and it carries no information about direction. \textit{Implication:} a symmetric representation cannot recover direction, so we leave cosine out of the cue set and expect the encoder, which reads the ordered pair, to be needed for the equivalence boundary.
+
+\paragraph{Linguistic and task-specific cues.}
+\textit{Observation:} the two heads share a lemma in 52\% of directional instances against 30\% of \EQ{}; the part-of-speech pattern is identical in 31\% of \NO{} instances against 7\% of directional ones; the premise of a \FW{} pair carries 0.33 more adjectives on average. Numerals occur in 18\% of directional instances, named entities in 47\%, while quantifiers (3\%) and negation (under 1\%) are rare. \textit{Interpretation:} negatives are typically a single substitution inside an unchanged frame, and adjectives are the material that narrows a phrase. \textit{Implication:} head and modifier comparisons matter more than global similarity; quantifiers and negation are too rare to train on and serve as error-analysis slices instead.
+
+\paragraph{Readability.}
+\textit{Observation:} syllables per word range from 1.53 to 1.60 and characters per word from 4.5 to 4.9 across labels, and median Flesch reading ease from 77.9 to 82.4. \textit{Interpretation:} the phrases are uniformly short caption and headline language; Flesch assumes sentences and here tracks syllable density only. \textit{Implication:} readability adds nothing to separate the labels and stays out of the feature set.

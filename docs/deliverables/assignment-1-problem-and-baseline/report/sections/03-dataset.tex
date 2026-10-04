@@ -1,0 +1,38 @@
+\section{Dataset}
+\label{sec:dataset}
+
+We use the track 1 (English) training and development files of the official release at commit \texttt{588968e} (8 September 2026). Each reference row holds an instance identifier, a source-pair identifier, the two phrases with language codes, the identifier of its reversed twin and the gold label. \Cref{tab:dataset} gives the split statistics and the quality checks.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrr@{}}
+\toprule
+ & Train & Dev \\
+\midrule
+Instances & 3,042 & 660 \\
+Source pairs & 1,760 & 383 \\
+\quad reversible (two instances) & 1,282 & 277 \\
+\quad negative (one instance) & 478 & 106 \\
+Labels E/F/B/N (\%) & 26/29/29/16 & 26/29/29/16 \\
+Words per phrase, mean (max) & 3.0 (15) & 2.9 (10) \\
+\midrule
+Missing or empty texts & 0 & 0 \\
+Duplicate pairs, groups (rows) & 43 (51) & 4 (4) \\
+\quad with conflicting labels & 1 & 0 \\
+One-word phrases & 563 & 135 \\
+Phrases of 8+ words & 27 & 7 \\
+Phrases starting with a clitic & 56 & 21 \\
+Language pair & en, en & en, en \\
+\bottomrule
+\end{tabular}
+\caption{Track 1 splits and quality checks. E/F/B/N: \EQ, \FW, \BW, \NO. Duplicate rows are extra copies of an ordered pair; phrase counts are occurrences over both sides of every instance; clitic phrases include those starting with punctuation.}
+\label{tab:dataset}
+\end{table}
+
+\paragraph{Splits.}
+The official test set appears only on 10 January 2027, after the course ends, so the development set is our test set. We never select anything on it: model selection uses slices of the training data split by source pair, so that both directions of a pair stay on the same side. Train and dev share no source pair, but 7 unordered phrase pairs and 155 of the 712 distinct development phrases (22\%) also occur in training.
+
+\paragraph{Quality.}
+The data is complete, and the one real defect is small: ``South Africans'' and ``South Africa'' appear in training once as \FW{} and once as \NO{}. One-word phrases are common, and phrases such as ``'s war shrine visit'' are fragments of the source chunking. The image-caption versus news-headline origin is absent from the train and dev files; only the 461-pair trial sample records it (244 caption and 217 headline pairs), so we cannot stratify by source.
