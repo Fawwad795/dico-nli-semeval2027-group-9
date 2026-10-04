@@ -3,12 +3,14 @@
   "data_commit": "588968e610197ddc4c440314701cbc587afc4c1b",
   "dev_size": 660,
   "majority_label": "FORWARD_ENTAILMENT",
-  "repo_commit": "bfa899d7c7bd5243d474edbf58f59142da140501",
+  "repo_commit": "8e3d379756e6dfe8d31232c28953a02bfbfdaed0",
   "repo_dirty": true,
   "seed": 13,
   "systems": [
     "majority",
-    "random (seed 13)"
+    "random (seed 13)",
+    "always EQUIVALENCE",
+    "always NEGATIVE_OTHER"
   ],
   "track": 1,
   "train_size": 3042
