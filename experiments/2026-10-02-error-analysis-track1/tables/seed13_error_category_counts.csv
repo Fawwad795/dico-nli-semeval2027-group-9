@@ -1,0 +1,6 @@
+category,count,rationale
+prepositional_relation,4,Preposition choice or attachment changes the relation.
+numeral_or_quantifier,4,Cardinality and quantifier scope need explicit reasoning.
+near_synonym_or_taxonomy,4,Close lexical relations are not always equivalence or entailment.
+one_word_negative_contrast,4,A single lexical substitution preserves overlap but changes the gold relation.
+chunking_or_fragment,4,Short phrase fragments and different chunk boundaries obscure the relation.
