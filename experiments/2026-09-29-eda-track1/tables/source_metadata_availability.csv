@@ -1,0 +1,7 @@
+split,source_field,available
+train,source_split,False
+train,source_modality,False
+train,original_source_file,False
+dev,source_split,False
+dev,source_modality,False
+dev,original_source_file,False

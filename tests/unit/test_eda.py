@@ -1,10 +1,11 @@
-"""dico_nli.eda: the five-facet exploratory analysis, one DataFrame per facet."""
+"""dico_nli.eda: six-group exploratory analysis, one DataFrame per feature function."""
 
 import numpy as np
 import pytest
 
 from dico_nli.data import LABELS, read_instances
 from dico_nli.eda import (
+    data_quality_checks,
     label_distribution,
     length_features,
     lexical_features,
@@ -12,7 +13,9 @@ from dico_nli.eda import (
     pair_structure,
     readability_features,
     semantic_similarity,
+    task_specific_features,
     top_tokens_by_label,
+    trial_source_summary,
 )
 from tests.support import FIXTURE_REFERENCE
 
@@ -175,3 +178,96 @@ def test_linguistic_features_find_heads_modifiers_and_prepositions(instances):
     iraq = by_id(frame, "fx_0006__en-en__original")  # "in southern Iraq" vs "in northern Iraq"
     assert bool(iraq["has_prep1"]) is True and bool(iraq["has_prep2"]) is True
     assert isinstance(car["pos1"], str) and car["pos1"].startswith("DET")
+
+
+# data quality -------------------------------------------------------------------------------
+
+def test_data_quality_checks_report_duplicate_groups_conflicts_and_phrase_flags():
+    from dico_nli.data import Instance
+
+    instances = [
+        Instance("a", "p1", "'s war shrine visit", "one", "FORWARD_ENTAILMENT"),
+        Instance("b", "p2", "'s war shrine visit", "one", "BACKWARD_ENTAILMENT"),
+        Instance("c", "p3", "one", "'s war shrine visit", "BACKWARD_ENTAILMENT"),
+        Instance("d", "p4", None, "   ", "NEGATIVE_OTHER", text1_lang="en", text2_lang="es"),
+    ]
+
+    table = data_quality_checks(instances).set_index("check")["value"]
+
+    assert table["instances"] == 4
+    assert table["missing_text_values"] == 1
+    assert table["empty_text_values"] == 1
+    assert table["exact_ordered_duplicate_groups"] == 1
+    assert table["exact_ordered_duplicate_extra_instances"] == 1
+    assert table["exact_ordered_duplicate_groups_with_label_disagreement"] == 1
+    assert table["reversed_pair_groups"] == 1
+    assert table["unordered_duplicate_groups"] == 1
+    assert table["unordered_duplicate_extra_instances"] == 2
+    assert table["one_word_phrases"] == 3
+    assert table["phrases_8plus_words"] == 0
+    assert table["phrases_starting_clitic_or_punctuation"] == 3
+    assert table["en_en_instances"] == 3
+    assert table["non_en_language_pairs"] == 1
+
+
+def test_task_specific_features_detect_pair_level_quantifier_negation_number_and_entity():
+    import spacy
+    from dico_nli.data import Instance
+
+    nlp = spacy.blank("en")
+    ruler = nlp.add_pipe("entity_ruler")
+    ruler.add_patterns([{"label": "GPE", "pattern": "Paris"}])
+    instances = [
+        Instance("a", "p1", "Every 3 cars", "not near Paris", "FORWARD_ENTAILMENT"),
+        Instance("b", "p2", "blue cars", "ordinary things", "EQUIVALENCE"),
+    ]
+
+    frame = task_specific_features(instances, nlp=nlp)
+    first = by_id(frame, "a")
+    second = by_id(frame, "b")
+
+    assert bool(first["has_quantifier"]) is True
+    assert bool(first["has_negation"]) is True
+    assert bool(first["has_numeral"]) is True
+    assert bool(first["has_named_entity"]) is True
+    assert bool(second["has_quantifier"]) is False
+    assert bool(second["has_negation"]) is False
+    assert bool(second["has_numeral"]) is False
+    assert bool(second["has_named_entity"]) is False
+
+
+def test_trial_source_summary_counts_split_modality_and_original_source():
+    pairs = [
+        {
+            "split": "trial",
+            "metadata": {
+                "source_split": "train",
+                "source_modality": "headlines",
+                "original_source_file": "PhrasIS.train.headlines.positives.txt",
+            }
+        },
+        {
+            "split": "trial",
+            "metadata": {
+                "source_split": "train",
+                "source_modality": "captions",
+                "original_source_file": "PhrasIS.train.captions.positives.txt",
+            }
+        },
+        {
+            "split": "trial",
+            "metadata": {
+                "source_split": "dev",
+                "source_modality": "headlines",
+                "original_source_file": "PhrasIS.dev.headlines.positives.txt",
+            }
+        },
+    ]
+
+    table = trial_source_summary(pairs).set_index(["field", "value"])["count"]
+
+    assert table.loc[("split", "trial")] == 3
+    assert table.loc[("source_split", "train")] == 2
+    assert table.loc[("source_split", "dev")] == 1
+    assert table.loc[("source_modality", "captions")] == 1
+    assert table.loc[("original_source_file", "PhrasIS.train.headlines.positives.txt")] == 1

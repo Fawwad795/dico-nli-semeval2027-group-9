@@ -1,5 +1,5 @@
-"""Five-facet exploratory analysis of DiCo-NLI instances: statistical, readability, lexical,
-semantic, linguistic.
+"""Six-group exploratory analysis of DiCo-NLI instances: statistical, readability, lexical,
+semantic, linguistic, and task-specific cues.
 
 Every per-instance function returns a pandas DataFrame with ``instance_id``, ``pair_id`` and
 ``label`` as bookkeeping columns (for joins, tables and figures) and the facet's measurements
@@ -88,6 +88,74 @@ def split_overlap(train: Sequence[Instance], dev: Sequence[Instance]) -> pd.Data
         ("train_phrases", len(train_phrases)),
     ]
     return pd.DataFrame(rows, columns=["quantity", "value"])
+
+
+def data_quality_checks(instances: Sequence[Instance]) -> pd.DataFrame:
+    """Count text, pair, phrase-shape, and language checks for one split.
+
+    Duplicate pairs are exact and case-sensitive. Unordered pairs intentionally combine
+    identical rows with reversed rows; label disagreement is checked only within identical
+    ordered pairs, where opposite directional labels are a genuine conflict.
+    """
+    ordered: dict[tuple[str, str], list[Instance]] = {}
+    unordered: dict[tuple[str, str], list[Instance]] = {}
+    missing_texts = empty_texts = one_word = long_phrases = marked_starts = 0
+    en_en = non_en = 0
+
+    for instance in instances:
+        texts = (instance.text1, instance.text2)
+        for text in texts:
+            if text is None:
+                missing_texts += 1
+                continue
+            if not text.strip():
+                empty_texts += 1
+                continue
+            words = tokens(text)
+            one_word += len(words) == 1
+            long_phrases += len(words) >= 8
+            first = text.lstrip()
+            marked_starts += bool(first and not first[0].isalnum())
+
+        if all(isinstance(text, str) and text.strip() for text in texts):
+            pair = (texts[0], texts[1])
+            ordered.setdefault(pair, []).append(instance)
+            unordered.setdefault(tuple(sorted(pair)), []).append(instance)
+
+        lang1 = (instance.text1_lang or "").strip().lower()
+        lang2 = (instance.text2_lang or "").strip().lower()
+        en_en += (lang1, lang2) == ("en", "en")
+        non_en += (lang1, lang2) != ("en", "en")
+
+    duplicate_ordered = [group for group in ordered.values() if len(group) > 1]
+    duplicate_unordered = [group for group in unordered.values() if len(group) > 1]
+    conflicting_ordered = sum(
+        len({instance.label for instance in group if instance.label is not None}) > 1
+        for group in duplicate_ordered
+    )
+    reversed_pair_groups = {
+        tuple(sorted(pair))
+        for pair in ordered
+        if pair[0] != pair[1] and (pair[1], pair[0]) in ordered
+    }
+    rows = [
+        ("instances", len(instances)),
+        ("missing_text_values", missing_texts),
+        ("empty_text_values", empty_texts),
+        ("complete_nonempty_pairs", sum(1 for i in instances if i.text1 and i.text1.strip() and i.text2 and i.text2.strip())),
+        ("exact_ordered_duplicate_groups", len(duplicate_ordered)),
+        ("exact_ordered_duplicate_extra_instances", sum(len(group) - 1 for group in duplicate_ordered)),
+        ("exact_ordered_duplicate_groups_with_label_disagreement", conflicting_ordered),
+        ("reversed_pair_groups", len(reversed_pair_groups)),
+        ("unordered_duplicate_groups", len(duplicate_unordered)),
+        ("unordered_duplicate_extra_instances", sum(len(group) - 1 for group in duplicate_unordered)),
+        ("one_word_phrases", one_word),
+        ("phrases_8plus_words", long_phrases),
+        ("phrases_starting_clitic_or_punctuation", marked_starts),
+        ("en_en_instances", en_en),
+        ("non_en_language_pairs", non_en),
+    ]
+    return pd.DataFrame(rows, columns=["check", "value"])
 
 
 def length_features(instances: Sequence[Instance]) -> pd.DataFrame:
@@ -244,3 +312,74 @@ def linguistic_features(instances: Sequence[Instance], nlp) -> pd.DataFrame:
             }
         )
     return pd.DataFrame(rows)
+
+
+_QUANTIFIERS = frozenset(
+    {
+        "all", "any", "both", "each", "either", "enough", "every", "few", "fewer",
+        "fewest", "many", "more", "most", "much", "neither", "several", "some",
+        "various", "whole",
+    }
+)
+_NEGATIONS = frozenset(
+    {
+        "cannot", "hardly", "never", "no", "nobody", "none", "nor", "not", "nothing",
+        "nowhere", "n't", "without",
+    }
+)
+
+
+def task_specific_features(instances: Sequence[Instance], nlp) -> pd.DataFrame:
+    """Pair-level quantifier, negation, numeral, and named-entity presence.
+
+    A cue is present when either phrase contains at least one matching token/entity. Numerals
+    and named entities use spaCy's token and entity annotations; the lexical cue lists are fixed
+    here so the analysis is deterministic and reviewable.
+    """
+    texts = list(
+        dict.fromkeys(
+            text
+            for instance in instances
+            for text in (instance.text1, instance.text2)
+            if isinstance(text, str) and text.strip()
+        )
+    )
+    docs = dict(zip(texts, nlp.pipe(texts)))
+
+    def has_token(doc, vocabulary: frozenset[str]) -> bool:
+        return bool(doc and any(token.lower_ in vocabulary for token in doc))
+
+    def has_numeral(doc) -> bool:
+        return bool(doc and any(token.like_num or token.pos_ == "NUM" for token in doc))
+
+    rows = []
+    for instance in instances:
+        doc1 = docs.get(instance.text1)
+        doc2 = docs.get(instance.text2)
+        rows.append(
+            {
+                **_keys(instance),
+                "has_quantifier": has_token(doc1, _QUANTIFIERS) or has_token(doc2, _QUANTIFIERS),
+                "has_negation": has_token(doc1, _NEGATIONS) or has_token(doc2, _NEGATIONS),
+                "has_numeral": has_numeral(doc1) or has_numeral(doc2),
+                "has_named_entity": bool((doc1 and doc1.ents) or (doc2 and doc2.ents)),
+            }
+        )
+    return pd.DataFrame(rows)
+
+
+def trial_source_summary(pairs: Sequence[dict]) -> pd.DataFrame:
+    """Count trial examples by trial split and their original source metadata."""
+    rows = []
+    fields = ("split", "source_split", "source_modality", "original_source_file")
+    for field in fields:
+        counts = Counter()
+        for pair in pairs:
+            metadata = pair.get("metadata") or {}
+            value = pair.get(field) if field == "split" else metadata.get(field)
+            counts[str(value) if value not in (None, "") else "unavailable"] += 1
+        rows.extend(
+            {"field": field, "value": value, "count": count}
+            for value, count in sorted(counts.items())
+        )
+    return pd.DataFrame(rows, columns=["field", "value", "count"])

@@ -1,0 +1,14 @@
+field,value,count
+split,trial,461
+source_split,test,167
+source_split,train,294
+source_modality,headlines,217
+source_modality,images,244
+original_source_file,PhrasIS.test.headlines.negatives.txt,23
+original_source_file,PhrasIS.test.headlines.positives.txt,54
+original_source_file,PhrasIS.test.images.negatives.txt,17
+original_source_file,PhrasIS.test.images.positives.txt,73
+original_source_file,PhrasIS.train.headlines.negatives.txt,35
+original_source_file,PhrasIS.train.headlines.positives.txt,105
+original_source_file,PhrasIS.train.images.negatives.txt,32
+original_source_file,PhrasIS.train.images.positives.txt,122

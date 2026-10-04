@@ -5,15 +5,18 @@
   "dev_used_for": [
     "label_distribution",
     "pair_structure",
-    "train_dev_overlap"
+    "train_dev_overlap",
+    "data_quality_checks"
   ],
   "facets_on": "train",
   "note": "deterministic; seed unused",
-  "repo_commit": "bfa899d7c7bd5243d474edbf58f59142da140501",
+  "repo_commit": "f332f4efa583e688dac688d4cff3cac3ecd321b1",
   "repo_dirty": true,
   "seed": 0,
   "semantic_model": "sentence-transformers/all-MiniLM-L6-v2",
   "spacy_model": "en_core_web_sm",
+  "task_specific_cues_on": "train",
   "track": 1,
-  "train_size": 3042
+  "train_size": 3042,
+  "trial_source_metadata": "datasets/dico-nli/trial_data/trial_dataset.json"
 }
