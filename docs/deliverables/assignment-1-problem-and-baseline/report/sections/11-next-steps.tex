@@ -1,0 +1,4 @@
+\section{Next Steps}
+\label{sec:next}
+
+Assignment 2 moves to decoder language models, where the pilot found the largest consistency gap. We plan to compare open-weight instruction-tuned models used by prompting and fine-tuned with low-rank adapters, and to test three ways of giving a model direction: training on both orders of every pair, a loss term that penalises incompatible predictions on a pair and its reversal in the manner of \citet{li-etal-2019-logic}, and prompts that show both orders at once. Every system will be reported with weighted F1, macro F1, \SoftCons{}, \HardCons{}, the consistent-but-wrong count and the length-cue slices of \cref{tab:slices}, against the baselines in this report. Before we lean on the error categories any further we will audit the conflicting and questionable gold labels. The Spanish and Basque tracks come in if time allows.

@@ -1,8 +1,24 @@
 """dico_nli.baselines.trivial: majority and seeded random baselines."""
 
-from dico_nli.baselines.trivial import majority_label, predict_majority, predict_random
+import pytest
+
+from dico_nli.baselines.trivial import majority_label, predict_constant, predict_majority, predict_random
 from dico_nli.data import LABELS, read_instances
 from tests.support import FIXTURE_REFERENCE
+
+
+def test_predict_constant_gives_every_target_the_same_label():
+    instances = read_instances(FIXTURE_REFERENCE)
+
+    predictions = predict_constant(instances, "EQUIVALENCE")
+
+    assert list(predictions) == [i.instance_id for i in instances]
+    assert set(predictions.values()) == {"EQUIVALENCE"}
+
+
+def test_predict_constant_rejects_a_label_outside_the_task():
+    with pytest.raises(ValueError, match="ENTAILS"):
+        predict_constant(read_instances(FIXTURE_REFERENCE), "ENTAILS")
 
 
 def test_majority_label_picks_the_most_frequent_label():

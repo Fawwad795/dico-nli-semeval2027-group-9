@@ -58,11 +58,11 @@ Track 1 dev, official scorer.
 | cues + gbdt | 0.574 | 0.718 | 0.527 |
 | DeBERTa-v3-base, mean ± sd of 3 seeds | 0.807 ± 0.015 | 0.877 ± 0.010 | 0.810 ± 0.013 |
 
-Cross-validated weighted F1 on train: cues + logreg 0.575 ± 0.037, tfidf + logreg 0.429 ± 0.011, both + logreg 0.617 ± 0.021, cues + gbdt 0.572 ± 0.024; dev sits within about one standard deviation for three systems and 1.2 below for the cue-only model, with the same ranking.
+Cross-validated weighted F1 on train: cues + logreg 0.575 ± 0.037, tfidf + logreg 0.429 ± 0.011, both + logreg 0.617 ± 0.021, cues + gbdt 0.572 ± 0.024; every dev score is at or below its cross-validated mean (0.1 standard deviations for the trees, 1.0 for the combined model, 1.2 for the cue-only model, 2.0 for TF-IDF alone), with the same ranking.
 
 **What the results say so far.**
 
-- H1 is supported by the ML baseline: the cue-only model is the most self-consistent system (SoftCons 0.79, 220 of 277 dev pairs) while confusing the two directions in only 14 of 380 directional instances; 67 of its consistent pairs are wrong in both directions, which is why HardCons stays at 0.55.
+- H1 is supported by the ML baseline: the cue-only model is the most self-consistent system (SoftCons 0.79, 220 of 277 dev pairs) while confusing the two directions in only 8 of 380 directional instances (the combined cue and n-gram model confuses them 14 times); 67 of its consistent pairs are wrong in both directions, which is why HardCons stays at 0.55.
 - H3 shows inside the ML family: adding TF-IDF raises F1 to 0.60 and lowers SoftCons to 0.75; trees on the cues raise F1 to 0.57 and lower SoftCons to 0.72.
 - Equivalence is the hard class for every system (F1 0.39 to 0.46), as the EDA predicted: the cues say whether one phrase adds material, not whether the addition narrows the meaning.
 - H2 is supported by the encoder: DeBERTa-v3-base clears the cue-based systems on all three scores (weighted F1 0.81 against 0.60, HardCons 0.81 against 0.57, SoftCons 0.88 against 0.79), and the gain concentrates where the cues were blind: EQUIVALENCE F1 from 0.45 to 0.78 while direction confusions stay rare (3 of 380 for seed 13). NEGATIVE_OTHER becomes the hardest class (F1 0.63).

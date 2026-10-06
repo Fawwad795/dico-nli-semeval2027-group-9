@@ -1,0 +1,72 @@
+% Assignment 1 report, LLM course, Group 9. ACL template, preprint mode (named authors, page numbers).
+% Build: pdflatex main && bibtex main && pdflatex main && pdflatex main  (or latexmk -pdf main)
+\documentclass[11pt]{article}
+
+\usepackage[preprint]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+% Tighter reference list: no extra space between entries.
+\makeatletter
+\let\acl@thebibliography\thebibliography
+\renewcommand{\thebibliography}[1]{\acl@thebibliography{#1}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}}
+\makeatother
+
+% Label names. The official tokens are EQUIVALENCE, FORWARD_ENTAILMENT,
+% BACKWARD_ENTAILMENT and NEGATIVE_OTHER.
+\newcommand{\EQ}{\textsc{Equivalence}}
+\newcommand{\FW}{\textsc{Forward}}
+\newcommand{\BW}{\textsc{Backward}}
+\newcommand{\NO}{\textsc{Negative}}
+\newcommand{\Rev}{\operatorname{Rev}}
+\newcommand{\SoftCons}{\textsc{SoftCons}}
+\newcommand{\HardCons}{\textsc{HardCons}}
+
+\title{How Far Do Surface Cues Go?\\
+Baselines for SemEval-2027 Task 2 (DiCo-NLI)}
+
+\author{
+  M. Shaheer Saleh \\ 467668 \And
+  Ahmad Imran \\ 462852 \And
+  Syed Fawwad Ahmed \\ 463933 \And
+  Aqib Raza \\ 461312 \AND
+  Group 9, Large Language Models course, NUST \\
+  \url{https://github.com/Fawwad795/dico-nli-semeval2027-group-9}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+SemEval-2027 Task 2 (DiCo-NLI) hands a system two short phrases in a fixed order and asks which of four relations holds between them: equivalence, entailment in either direction, or none. It also checks whether the system's answer on a pair agrees with its answer when the pair is turned around. We wanted to know how much of this a model can get right without reading for meaning at all. On the English track, surface form already gives direction away. In 78\% of forward-entailment training instances the premise is the longer phrase, and in 45\% every word of the hypothesis already appears in the premise. A logistic regression on 17 cues of this kind reaches weighted F1 0.531 on the development set, and it is the most self-consistent of our classical baselines, with \SoftCons{} 0.794. A fine-tuned DeBERTa-v3-base does far better, 0.807 $\pm$ 0.015 weighted F1 over three seeds with \SoftCons{} 0.877 and \HardCons{} 0.810, and its gain comes almost entirely from the instances where length says nothing and from the line between equivalence and entailment. What it still gets wrong are prepositions, numerals and single substituted words. We also note that a system which answers \EQ{} to everything gets a perfect \SoftCons{}, so none of the three official scores means much on its own.
+\end{abstract}
+
+\input{sections/01-introduction}
+\input{sections/02-related-work}
+\input{sections/03-dataset}
+\input{sections/04-eda}
+\input{sections/05-features}
+\input{sections/06-baselines}
+\input{sections/07-evaluation}
+\input{sections/08-results}
+\input{sections/09-error-analysis}
+\input{sections/10-discussion}
+\input{sections/11-next-steps}
+\input{sections/limitations}
+
+\bibliography{references}
+
+\appendix
+\input{sections/appendix-runs}
+
+\end{document}
