@@ -1,15 +1,20 @@
 \section{Where Every Number Comes From}
 \label{app:runs}
 
-\raggedright
-Each run folder under \texttt{experiments/} holds a \texttt{config.json} with the seed, the data commit (\texttt{588968e}), the code commit and the exact command, together with the official scorer's report for every system. The notebooks under \texttt{notebooks/assignment-1/} rerun headlessly with \texttt{uv run jupyter execute}; the encoder was trained by the Modal launcher \texttt{scripts/modal/train\_encoder.py} and its outputs fetched before scoring.
+Each run folder under \texttt{experiments/} holds a \texttt{config.json} with the seed, the data commit (\texttt{588968e}), the code commit and the exact command, next to the official scorer's reports. The notebook in \texttt{notebooks/assignment-1/} that produced each folder:
 
-\begin{itemize}
-\setlength{\itemsep}{2pt}
-\small
-\item Data checks and EDA: notebook \texttt{02\_eda\_track1}, folder \texttt{2026-09-29-eda-track1}.
-\item Trivial and constant systems: notebook \texttt{01\_trivial\_baselines}, folder \texttt{2026-09-29-trivial-baselines-track1}.
-\item Classical baselines: notebook \texttt{03\_ml\_baseline\_track1}, folder \texttt{2026-09-29-ml-baseline-track1}.
-\item DeBERTa-v3-base: notebook \texttt{04\_dl\_baseline\_track1}, folder \texttt{2026-09-29-deberta-base-track1}.
-\item Error analysis: notebook \texttt{05\_error\_analysis\_track1}, folder \texttt{2026-10-02-error-analysis-track1}.
-\end{itemize}
+\begin{center}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Notebook & Run folder \\
+\midrule
+\texttt{01\_trivial\_baselines} & \texttt{2026-09-29-trivial-baselines-track1} \\
+\texttt{02\_eda\_track1} & \texttt{2026-09-29-eda-track1} \\
+\texttt{03\_ml\_baseline\_track1} & \texttt{2026-09-29-ml-baseline-track1} \\
+\texttt{04\_dl\_baseline\_track1} & \texttt{2026-09-29-deberta-base-track1} \\
+\texttt{05\_error\_analysis\_track1} & \texttt{2026-10-02-error-analysis-track1} \\
+\bottomrule
+\end{tabular}
+\end{center}

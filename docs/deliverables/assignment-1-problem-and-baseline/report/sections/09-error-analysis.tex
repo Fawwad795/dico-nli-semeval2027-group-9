@@ -2,7 +2,7 @@
 \label{sec:error}
 
 \paragraph{How pairs fail.}
-\Cref{tab:pairs} sorts each reversible development pair by what a system did with its two directions. The cue model almost never gets one direction right and the other wrong (1 pair): its errors are symmetric, either consistent and wrong (67) or wrong both ways (56). Adding n-grams turns 21 pairs into half-right ones, the order-specific behaviour behind its lower \SoftCons{}. DeBERTa leaves 49 to 56 pairs not fully correct per seed, spread evenly over the three failure types.
+\Cref{tab:pairs} sorts each reversible development pair by what a system did with its two directions. The cue model almost never gets one direction right and the other wrong; that happens on a single pair. Its errors are symmetric, either consistent and wrong (67 pairs) or wrong both ways (56). Adding n-grams turns 21 pairs into half-right ones, and that is the order-specific behaviour behind its lower \SoftCons{}. DeBERTa leaves 49 to 56 pairs per seed short of fully correct, spread fairly evenly across the three ways of failing.
 
 \begin{table}[t]
 \centering
@@ -26,9 +26,7 @@ DeBERTa, seed 1234 & 221 & 19 & 17 & 20 \\
 \end{table}
 
 \paragraph{Where the encoder wins (H2).}
-We split the development instances by what the length cue says about the gold label (\cref{tab:slices}). It agrees on 282 instances, points the wrong way on 10, and says nothing on 368 (equal length, or a label without direction). Where it agrees, the cue model is already strong and the encoder adds 0.02 weighted F1. Where it says nothing, the cue model falls to 0.31 and the encoder holds 0.75, a gap of 0.44.
-
-The misleading slice is too small to read. Slice scores are classification scores only, since a slice can separate the two directions of a pair.
+We split the development instances by what the length cue says about the gold label (\cref{tab:slices}). It agrees with the label on 282 instances, points the wrong way on 10, and says nothing on 368, either because the two phrases have the same length or because the label has no direction. Where it agrees, the cue model is already strong and the encoder adds just 0.02 weighted F1. Where it says nothing, the cue model collapses to 0.31 and the encoder holds at 0.75. That gap of 0.44 is most of the encoder's advantage. The misleading slice has 10 instances, and we read nothing into it. Slice scores are plain classification scores, because a slice can separate the two directions of a pair, which makes the consistency measures meaningless on it.
 
 \begin{table}[t]
 \centering
@@ -48,7 +46,7 @@ Uninformative & 368 & 0.313 & 0.425 & 0.754 \\
 \end{table}
 
 \paragraph{What the encoder still gets wrong.}
-DeBERTa rarely confuses direction: seed 13 swaps \FW{} and \BW{} on 3 instances. Its errors sit on the \EQ{} and \NO{} boundaries: 26 directional instances predicted as \EQ{}, 19 \EQ{} instances predicted as \NO{}, and 34 of 106 negatives called related. All three seeds miss the same 80 instances, and the cue model misses 50 of those too. We read 20 hand-picked errors of seed 13 and sorted them into five categories modelled on the pilot's manual analysis (\cref{tab:categories}); the counts are four per category by construction, so they illustrate the kinds of error and do not estimate their rates.
+Direction is rarely the problem: seed 13 swaps \FW{} and \BW{} on 3 instances. The errors sit on the \EQ{} and \NO{} boundaries instead. 26 directional instances are predicted as \EQ{}, 19 \EQ{} instances as \NO{}, and 34 of the 106 negatives are called related. All three seeds miss the same 80 instances, and the cue model misses 50 of those too, so a hard core of the data resists both approaches. We read 20 errors of seed 13 by hand and sorted them into five categories modelled on the pilot's manual analysis (\cref{tab:categories}). We picked them, four per category, so the counts illustrate the kinds of error and say nothing about how often each occurs. ``at a pool'' against ``in front of a pool'' turns on a preposition. ``A group of people'' against ``Six people'' turns on cardinality. ``on a crowded street'' against ``on a public street'' keeps every word but one, and the gold label is \NO{}.
 
 \begin{table*}[t]
 \centering
@@ -69,4 +67,4 @@ Chunking fragment & in destroying & destroy & \FW & \EQ \\
 \end{table*}
 
 \paragraph{Some errors may be in the gold labels.}
-``two people'' and ``2'' are labelled \NO{}, and ``Saudi Women'' to ``Saudis'' is labelled \BW{} although the first phrase is the more specific one; with the conflicting ``South Africans'' duplicate in training (\cref{sec:dataset}), this suggests a share of the remaining errors are annotation disagreements. We have not audited the labels systematically.
+``two people'' and ``2'' are labelled \NO{}. ``Saudi Women'' to ``Saudis'' is labelled \BW{}, though the first phrase is the more specific one. Put these next to the conflicting ``South Africans'' duplicate in training (\cref{sec:dataset}) and it seems likely that some share of the remaining errors are annotation disagreements rather than model mistakes. We have not audited the labels systematically. We say so because it limits how much weight the error categories can carry.

@@ -1,10 +1,10 @@
 \section{Feature Engineering}
 \label{sec:features}
 
-The classical baselines use two feature sets, both computed from the two phrase strings only; a unit test checks that no identifier reaches the feature matrix.
+The classical baselines see two feature sets, and both are computed from the two phrase strings alone. A unit test checks that no identifier reaches the feature matrix, since the instance identifier would otherwise give the label away.
 
 \paragraph{Surface cues.}
-Seventeen numeric cues turn the EDA findings into features (\cref{tab:cues}). Each cue is either unchanged when the pair is reversed (overlap, shared words) or changes sign or swaps with its partner (length differences, the two containments), which matters for consistency in \cref{sec:results}. Readability and embedding similarity are excluded for the reasons given in \cref{sec:eda}. The cues are standardised on the training data.
+Seventeen numeric cues turn the EDA findings into features (\cref{tab:cues}). We chose them so that each behaves predictably when the pair is reversed: overlap and shared-word counts do not change, length differences change sign, and the two containment cues swap places. That property is what makes the cue model consistent almost by construction, and \cref{sec:results} leans on it. Readability and embedding similarity stay out, for the reasons given in \cref{sec:eda}. The cues are standardised on the training data.
 
 \begin{table}[t]
 \centering
@@ -25,4 +25,4 @@ Numerals (2) & a digit on each side \\
 \end{table}
 
 \paragraph{Lexical n-grams.}
-TF-IDF over word unigrams and bigrams of the string ``$p$ \texttt{[SEP]} $h$'', with sublinear term frequency. The token pattern keeps one-letter words and the separator as a token of its own, so bigrams that cross the separator encode which phrase a word belongs to.
+TF-IDF over word unigrams and bigrams of the string ``$p$ \texttt{[SEP]} $h$'', with sublinear term frequency. The token pattern keeps one-letter words and treats the separator as a token in its own right, so the bigrams that straddle it record which side a word came from. Without that, the bag of words would be almost blind to order.

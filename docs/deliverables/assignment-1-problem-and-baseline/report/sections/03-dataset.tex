@@ -1,7 +1,7 @@
 \section{Dataset}
 \label{sec:dataset}
 
-We use the track 1 (English) training and development files of the official release at commit \texttt{588968e} (8 September 2026). Each reference row holds an instance identifier, a source-pair identifier, the two phrases with language codes, the identifier of its reversed twin and the gold label. \Cref{tab:dataset} gives the split statistics and the quality checks.
+We work with the track 1 (English) training and development files of the official release at commit \texttt{588968e} (8 September 2026). A reference row holds an instance identifier, a source-pair identifier, the two phrases with their language codes, the identifier of the reversed twin, and the gold label. \Cref{tab:dataset} has the split statistics and the quality checks we ran.
 
 \begin{table}[t]
 \centering
@@ -32,7 +32,7 @@ Language pair & en, en & en, en \\
 \end{table}
 
 \paragraph{Splits.}
-The official test set appears only on 10 January 2027, after the course ends, so the development set is our test set. We never select anything on it: model selection uses slices of the training data split by source pair, so that both directions of a pair stay on the same side. Train and dev share no source pair, but 7 unordered phrase pairs and 155 of the 712 distinct development phrases (22\%) also occur in training.
+The official test set will not appear until 10 January 2027, after the course ends, so the development set is our test set and we treat it that way: nothing is selected on it. Model selection uses slices of the training data, split by source pair so that both directions of a pair land on the same side. Train and dev share no source pair. They do share text, though. 7 unordered phrase pairs and 155 of the 712 distinct development phrases (22\%) also occur in training. We report this rather than hide it, and we come back to it when we read the scores.
 
 \paragraph{Quality.}
-The data is complete, and the one real defect is small: ``South Africans'' and ``South Africa'' appear in training once as \FW{} and once as \NO{}. One-word phrases are common, and phrases such as ``'s war shrine visit'' are fragments of the source chunking. The image-caption versus news-headline origin is absent from the train and dev files; only the 461-pair trial sample records it (244 caption and 217 headline pairs), so we cannot stratify by source.
+The files are complete, with no missing or empty text. The one genuine defect we found is small. ``South Africans'' paired with ``South Africa'' appears twice in training, once as \FW{} and once as \NO{}, and both cannot be right. Beyond that, one-word phrases are common (563 occurrences in train), and some phrases are visibly fragments of the chunking that produced them, ``'s war shrine visit'' for instance. Whether a pair came from an image caption or a news headline is not recorded in the train and dev files. Only the 461-pair trial sample carries that field (244 caption and 217 headline pairs), so we cannot stratify by source.

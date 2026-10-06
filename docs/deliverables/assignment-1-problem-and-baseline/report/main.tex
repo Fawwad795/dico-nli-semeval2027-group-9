@@ -16,6 +16,12 @@
 \usepackage{amssymb}
 \usepackage[capitalise,noabbrev]{cleveref}
 
+% Tighter reference list: no extra space between entries.
+\makeatletter
+\let\acl@thebibliography\thebibliography
+\renewcommand{\thebibliography}[1]{\acl@thebibliography{#1}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}}
+\makeatother
+
 % Label names. The official tokens are EQUIVALENCE, FORWARD_ENTAILMENT,
 % BACKWARD_ENTAILMENT and NEGATIVE_OTHER.
 \newcommand{\EQ}{\textsc{Equivalence}}
@@ -26,14 +32,14 @@
 \newcommand{\SoftCons}{\textsc{SoftCons}}
 \newcommand{\HardCons}{\textsc{HardCons}}
 
-\title{Surface Cues and a Fine-Tuned Encoder on Directional-Consistent NLI:\\
-Baselines for SemEval-2027 Task 2, English Track}
+\title{How Far Do Surface Cues Go?\\
+Baselines for SemEval-2027 Task 2 (DiCo-NLI)}
 
 \author{
-  M. Shaheer Saleh \\ Reg.\ No.\ 467668 \And
-  Ahmad Imran \\ Reg.\ No.\ 462852 \And
-  Syed Fawwad Ahmed \\ Reg.\ No.\ 463933 \And
-  Aqib Raza \\ Reg.\ No.\ 461312 \AND
+  M. Shaheer Saleh \\ 467668 \And
+  Ahmad Imran \\ 462852 \And
+  Syed Fawwad Ahmed \\ 463933 \And
+  Aqib Raza \\ 461312 \AND
   Group 9, Large Language Models course, NUST \\
   \url{https://github.com/Fawwad795/dico-nli-semeval2027-group-9}
 }
@@ -42,7 +48,7 @@ Baselines for SemEval-2027 Task 2, English Track}
 \maketitle
 
 \begin{abstract}
-SemEval-2027 Task 2 (DiCo-NLI) asks for one of four relations between two ordered phrases and also scores whether a system's answers on a pair and on its reversal are compatible. On the English track we ask how much of a fine-tuned encoder's accuracy and consistency surface cues alone recover. A selective exploratory analysis of 3,042 training instances shows direction leaking through form: the premise is the longer phrase in 78\% of forward-entailment instances, and every hypothesis word occurs in the premise in 45\% of them. A logistic regression on 17 such cues reaches weighted F1 0.531 and \SoftCons{} 0.794 on the development set, the most self-consistent of our classical baselines. DeBERTa-v3-base, fine-tuned over three seeds, reaches 0.807 $\pm$ 0.015 weighted F1, 0.877 \SoftCons{} and 0.810 \HardCons{}. Its advantage sits on instances where length carries no signal and on the boundary between equivalence and entailment; its remaining errors involve one-word substitutions, prepositions and numerals. A constant \EQ{} predictor obtains \SoftCons{} 1.0, which is why we read the three official scores only together.
+SemEval-2027 Task 2 (DiCo-NLI) hands a system two short phrases in a fixed order and asks which of four relations holds between them: equivalence, entailment in either direction, or none. It also checks whether the system's answer on a pair agrees with its answer when the pair is turned around. We wanted to know how much of this a model can get right without reading for meaning at all. On the English track, surface form already gives direction away. In 78\% of forward-entailment training instances the premise is the longer phrase, and in 45\% every word of the hypothesis already appears in the premise. A logistic regression on 17 cues of this kind reaches weighted F1 0.531 on the development set, and it is the most self-consistent of our classical baselines, with \SoftCons{} 0.794. A fine-tuned DeBERTa-v3-base does far better, 0.807 $\pm$ 0.015 weighted F1 over three seeds with \SoftCons{} 0.877 and \HardCons{} 0.810, and its gain comes almost entirely from the instances where length says nothing and from the line between equivalence and entailment. What it still gets wrong are prepositions, numerals and single substituted words. We also note that a system which answers \EQ{} to everything gets a perfect \SoftCons{}, so none of the three official scores means much on its own.
 \end{abstract}
 
 \input{sections/01-introduction}

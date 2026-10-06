@@ -1,7 +1,7 @@
 \section{Results}
 \label{sec:results}
 
-\Cref{tab:results} lists every system on the development set. Cross-validation on the training data ranks the classical systems in the same order as the development set. Every development score is at or below its cross-validated mean, by 0.1 to 1.2 standard deviations and by 2.0 for n-grams alone, so the development set is somewhat harder than held-out training folds.
+\Cref{tab:results} lists every system on the development set. Two things first. Cross-validation on the training data ranks the classical systems in the same order as the development set does. And every development score lands at or below its cross-validated mean, by 0.1 to 1.2 standard deviations, and by 2.0 for n-grams alone, so the development set is somewhat harder than held-out training folds. Nothing was selected on it, so we take the ranking at face value and the absolute numbers with a little salt.
 
 \begin{table*}[t]
 \centering
@@ -31,7 +31,7 @@ DeBERTa-v3-base, mean $\pm$ sd of 3 seeds & \textbf{0.807} $\pm$ 0.015 & \textbf
 \end{table*}
 
 \paragraph{Surface cues buy consistency (H1).}
-The cue-only model is the most self-consistent classical system: 220 of the 277 reversible pairs get compatible answers, and it confuses \FW{} with \BW{} in only 8 of the 380 directional instances. Its weights follow the EDA (\cref{tab:weights}): hypothesis-in-premise containment pushes towards \FW{} and away from \BW{}, its mirror does the reverse, and the length differences add a smaller push of the same kind. Because these cues swap or change sign under reversal, the model's decisions on a pair and its reversal are compatible almost by construction. Consistency is not correctness, though: 67 of its 220 consistent pairs are wrong in both directions, so \HardCons{} stays at 0.552.
+The cue-only model is the most self-consistent classical system. 220 of the 277 reversible pairs get compatible answers, and across the 380 directional instances it confuses \FW{} with \BW{} only 8 times. Its weights (\cref{tab:weights}) read like a summary of the EDA: hypothesis-in-premise containment pushes towards \FW{} and away from \BW{}, its mirror does the opposite, and the length differences add a smaller push the same way. All of these swap or change sign when the pair is reversed, so the model's two decisions on a pair agree with each other almost by construction. Agreeing is not the same as being right, though. 67 of those 220 consistent pairs are wrong in both directions, which is why \HardCons{} stops at 0.552.
 
 \begin{table}[t]
 \centering
@@ -53,10 +53,10 @@ Log word ratio & $-0.02$ & $+0.39$ & $-0.38$ & $+0.02$ \\
 \end{table}
 
 \paragraph{Inside the classical family, accuracy costs consistency (H3).}
-Adding n-grams to the cues raises weighted F1 from 0.531 to 0.596 and lowers \SoftCons{} from 0.794 to 0.747; trees on the same cues show the same trade (0.574 and 0.718). The more expressive models find order-specific patterns that help single instances and break agreement across the pair. N-grams alone see the order only through bigrams that cross the separator, and score lowest on every metric.
+Add the n-grams to the cues and weighted F1 climbs from 0.531 to 0.596 while \SoftCons{} drops from 0.794 to 0.747. Trees on the same cues make the same trade (0.574 and 0.718). The more expressive models find order-specific patterns that help on single instances and break the agreement across a pair. N-grams on their own see order only through the bigrams that cross the separator, and they score lowest on every metric.
 
 \paragraph{The encoder gains on all three (H3 fails for it).}
-DeBERTa-v3-base raises weighted F1 by 0.21 and \HardCons{} by 0.24 over the best classical system, and \SoftCons{} by 0.08 over the most consistent one (\cref{fig:tradeoff}). The gain is largest where the cues were weakest: against the combined classical model, F1 on \EQ{} rises from 0.45 to 0.78 and on \NO{} from 0.41 to 0.63, while the two directions rise from 0.72 and 0.71 to 0.86 and 0.87. Its consistency follows from correctness: only 16 to 21 of its consistent pairs per seed are wrong. We do not claim it beats the pilot, whose numbers come from another track, another split and a 150-trial search.
+DeBERTa-v3-base adds 0.21 weighted F1 and 0.24 \HardCons{} over the best classical system, and 0.08 \SoftCons{} over the most consistent one (\cref{fig:tradeoff}). The gain lands where the cues were weakest. Against the combined classical model, F1 on \EQ{} goes from 0.45 to 0.78 and on \NO{} from 0.41 to 0.63, while the two directions move from 0.72 and 0.71 to 0.86 and 0.87. Its consistency is a by-product of correctness: depending on the seed, only 16 to 21 of its consistent pairs are wrong. We make no claim against the pilot's numbers, which come from another track, another split and a 150-trial search.
 
 \begin{figure}[t]
 \centering

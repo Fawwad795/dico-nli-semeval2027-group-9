@@ -2,11 +2,11 @@
 \label{sec:evaluation}
 
 \paragraph{Weighted F1.}
-With $n_c$ gold instances of label $c$ among $N$ and $F_c$ the F1 of label $c$,
+With $n_c$ gold instances of label $c$ among $N$, and $F_c$ the F1 of label $c$,
 \begin{equation}
 \text{wF1} = \sum_{c \in \mathcal{L}} \frac{n_c}{N} F_c, \qquad F_c = \frac{2 P_c R_c}{P_c + R_c}.
 \end{equation}
-Each label counts in proportion to its frequency, so \NO{}, 16\% of the data and the hardest class for every model, weighs least. Macro F1 averages $F_c$ with equal weights, and micro F1 equals accuracy for single-label prediction; we report macro F1 next to the official score so that a weak minority class stays visible.
+Each label counts in proportion to how often it occurs. So \NO{}, 16\% of the data and the hardest class for every one of our models, weighs the least. That is why we print macro F1, which averages the $F_c$ with equal weights, next to the official score: a weak minority class should stay visible. Micro F1 would equal accuracy here, since every instance has exactly one label.
 
 \paragraph{Consistency.}
 Let $\Rev$ map \EQ{} to \EQ{}, \FW{} to \BW{} and \BW{} to \FW{}; \NO{} has no reverse. Let $\mathcal{P}$ be the set of reversible pairs $(x, x^{r})$ in the development set ($|\mathcal{P}| = 277$), $f$ the system, $y$ the gold label and $\mathbb{I}[\cdot]$ the indicator:
@@ -16,10 +16,10 @@ Let $\Rev$ map \EQ{} to \EQ{}, \FW{} to \BW{} and \BW{} to \FW{}; \NO{} has no r
 \HardCons &= \frac{1}{|\mathcal{P}|} \sum_{\mathcal{P}} \mathbb{I}\big[f(x) = y \wedge f(x^{r}) = y^{r}\big].
 \end{align}
 \endgroup
-Because gold labels obey the reversal, a pair that is right in both directions is also consistent, so $\HardCons \le \SoftCons$. Negative pairs have no reversed twin and enter only weighted F1; a \NO{} prediction on a reversible pair counts as incompatible.
+Since the gold labels obey the reversal themselves, a pair that is right in both directions is automatically consistent, so $\HardCons \le \SoftCons$ always. Negative pairs have no reversed twin and enter weighted F1 only. A \NO{} prediction on a reversible pair counts as incompatible.
 
 \paragraph{What each score rewards.}
-Weighted F1 rewards correct labels on single instances, \SoftCons{} rewards self-consistency whether or not it is correct, and \HardCons{} rewards correctness on whole pairs. The constant systems show why the task reports all three. Predicting \EQ{} everywhere is consistent on every pair, so it scores \SoftCons{} 1.000 with weighted F1 0.110, and its \HardCons{} of 0.314 is the share of reversible pairs whose gold label is \EQ{} (87 of 277). Predicting \NO{} everywhere scores 0.044, 0 and 0.
+Weighted F1 rewards correct labels on single instances. \SoftCons{} rewards agreeing with yourself, right or wrong. \HardCons{} rewards being right on whole pairs. The constant systems make the difference concrete. Answer \EQ{} everywhere and you are consistent on every single pair: \SoftCons{} 1.000, weighted F1 0.110, and a \HardCons{} of 0.314 that is simply the share of reversible pairs whose gold label is \EQ{} (87 of 277). Answer \NO{} everywhere and you get 0.044, 0 and 0. Neither system knows anything. This is why we never quote one of the three scores on its own.
 
 \paragraph{Protocol.}
-Every score is computed by the official scorer, run unchanged as the competition platform runs it. The classical baselines are also cross-validated on the training data in five folds grouped by source pair, every fold scored by the same scorer. Each run records its seed, the data commit, the code commit and the exact command; \cref{app:runs} maps every number in this report to its run.
+Every score comes from the official scorer, run unchanged, the way the competition platform runs it. The classical baselines are also cross-validated on the training data, five folds grouped by source pair, each fold scored by the same scorer. Each run records its seed, the data commit, the code commit and the exact command, and \cref{app:runs} maps every number in this report back to its run folder.
