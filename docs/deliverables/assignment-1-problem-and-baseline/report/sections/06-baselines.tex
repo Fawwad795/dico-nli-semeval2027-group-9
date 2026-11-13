@@ -1,0 +1,13 @@
+\section{Baseline Models}
+\label{sec:baselines}
+
+Every setting below was fixed before the first run. Nothing was tuned on the development set.
+
+\paragraph{Trivial systems.}
+A majority-label predictor, a uniform random predictor with seed 13, and two constant predictors that answer \EQ{} everywhere and \NO{} everywhere. The majority system has a quirk worth recording: \FW{} and \BW{} tie at 881 training instances each, the tie goes to the first label in canonical order, and so it predicts \FW{} for everything. The two constant systems exist to probe the metrics (\cref{sec:evaluation}).
+
+\paragraph{Classical baselines.}
+Logistic regression on the cues, on the n-grams, and on both together, plus gradient-boosted trees on the cues, all in scikit-learn \citep{pedregosa-etal-2011-scikit} with balanced class weights. The regressions use $C = 1$; the trees run 300 iterations at learning rate 0.05; everything else is a library default.
+
+\paragraph{Pretrained baseline.}
+DeBERTa-v3-base \citep{he-etal-2023-debertav3} with a classification head, fully fine-tuned with Hugging Face Transformers \citep{wolf-etal-2020-transformers} in a training loop we wrote ourselves so that the seed controls everything. The pair is tokenised as one sequence of at most 32 tokens. Training runs 5 epochs of AdamW at learning rate $2 \times 10^{-5}$, batch size 16, weight decay 0.01, a linear schedule with 6\% warm-up and gradient clipping at 1.0, and we keep the epoch with the best weighted F1 on a 20\% slice of the training data, again split by source pair. Three seeds (13, 42, 1234), each drawing its own slice. One detail tripped us up: under Transformers 5 the checkpoint loads in float16, and the first GPU epoch trained with a NaN loss from its first step until we forced float32. After that, each run trained in about 140 seconds on one NVIDIA T4, and a second execution reproduced every development prediction exactly.

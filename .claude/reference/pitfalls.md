@@ -365,6 +365,15 @@ store ships without `index_metadata.pickle`, so top-1 retrieval varied by 0 to 2
 between process starts. If a result depends on retrieval, freeze the retrieved results once in a
 committed cache rather than re-querying.
 
+## Non-ASCII in a matplotlib label garbles in the PDF but not in the PNG (2026-10-04)
+
+The EDA figure label "Word-set Jaccard (0–1)" rendered as "0â€"1" in the vector PDF (the
+standalone figure, the combined EDA PDF, and the LaTeX report alike), while the PNG preview saved
+from the same figure looked correct; the PDF's text layer even extracted as the right character.
+The figure style embeds TrueType fonts (`pdf.fonttype = 42`), and the en dash glyph came out as its
+UTF-8 bytes. Keep figure text ASCII ("0 to 1"), and look-check figures by rendering the PDF
+(`pymupdf` page to PNG), not the PNG preview.
+
 ## transformers 5 loads checkpoints in their stored dtype; DeBERTa-v3-base is float16 (2026-09-29)
 
 `AutoModelForSequenceClassification.from_pretrained("microsoft/deberta-v3-base")` under transformers

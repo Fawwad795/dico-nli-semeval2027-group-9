@@ -1,0 +1,28 @@
+\section{Feature Engineering}
+\label{sec:features}
+
+The classical baselines see two feature sets, and both are computed from the two phrase strings alone. A unit test checks that no identifier reaches the feature matrix, since the instance identifier would otherwise give the label away.
+
+\paragraph{Surface cues.}
+Seventeen numeric cues turn the EDA findings into features (\cref{tab:cues}). We chose them so that each behaves predictably when the pair is reversed: overlap and shared-word counts do not change, length differences change sign, and the two containment cues swap places. That property is what makes the cue model consistent almost by construction, and \cref{sec:results} leans on it. Readability and embedding similarity stay out, for the reasons given in \cref{sec:eda}. The cues are standardised on the training data.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}p{0.30\columnwidth}p{0.62\columnwidth}@{}}
+\toprule
+Group & Cues \\
+\midrule
+Length (7) & words and characters per side, their differences, log word ratio \\
+Overlap (2) & shared words, Jaccard \\
+Containment (4) & share of each side's words in the other; each side contained as a contiguous span \\
+Position (2) & same first word, same last word \\
+Numerals (2) & a digit on each side \\
+\bottomrule
+\end{tabular}
+\caption{The 17 surface cues, grouped.}
+\label{tab:cues}
+\end{table}
+
+\paragraph{Lexical n-grams.}
+TF-IDF over word unigrams and bigrams of the string ``$p$ \texttt{[SEP]} $h$'', with sublinear term frequency. The token pattern keeps one-letter words and treats the separator as a token in its own right, so the bigrams that straddle it record which side a word came from. Without that, the bag of words would be almost blind to order.

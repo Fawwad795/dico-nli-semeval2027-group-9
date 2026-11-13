@@ -26,6 +26,14 @@ def predict_majority(train: Iterable[Instance], targets: Iterable[Instance]) -> 
     return {t.instance_id: label for t in targets}
 
 
+def predict_constant(targets: Iterable[Instance], label: str) -> dict[str, str]:
+    """One fixed label for every target: the degenerate systems that show what each official
+    metric rewards (EQUIVALENCE everywhere is self-consistent under reversal by definition)."""
+    if label not in LABELS:
+        raise ValueError(f"unknown label {label!r}")
+    return {t.instance_id: label for t in targets}
+
+
 def predict_random(targets: Iterable[Instance], seed: int) -> dict[str, str]:
     """A uniform label per target from ``random.Random(seed)``, in target order."""
     rng = random.Random(seed)
