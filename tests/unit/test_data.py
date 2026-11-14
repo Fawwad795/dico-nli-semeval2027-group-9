@@ -4,7 +4,15 @@ import csv
 
 import pytest
 
-from dico_nli.data import Instance, group_pairs, grouped_split, load_reference, read_instances, reverse_label
+from dico_nli.data import (
+    Instance,
+    group_pairs,
+    grouped_split,
+    load_reference,
+    read_instances,
+    reverse_label,
+    reversed_text_twins,
+)
 from tests.support import FIXTURE_REFERENCE, requires_data_clone
 
 
@@ -114,6 +122,28 @@ def test_grouped_split_changes_with_the_seed():
     splits = {tuple(i.pair_id for i in grouped_split(instances, holdout_fraction=0.5, seed=s)[1]) for s in range(6)}
 
     assert len(splits) > 1
+
+
+def test_reversed_text_twins_matches_on_the_two_phrases_only():
+    def instance(key, text1, text2, label):
+        return Instance(instance_id=key, pair_id=key, text1=text1, text2=text2, label=label)
+
+    red = instance("n1", "a red car", "a blue car", "NEGATIVE_OTHER")
+    blue = instance("n2", "a blue car", "a red car", "BACKWARD_ENTAILMENT")
+    alone = instance("n3", "off Mexico", "on Mexico", "NEGATIVE_OTHER")
+
+    twins = reversed_text_twins([red, alone], [red, blue, alone])
+
+    assert twins == [(red, blue)]
+
+
+def test_every_reversible_fixture_instance_has_its_reversed_twin():
+    instances = read_instances(FIXTURE_REFERENCE)
+    reversible = [i for i in instances if i.reverse_pair_id]
+
+    twins = reversed_text_twins(reversible, instances)
+
+    assert [(a.instance_id, b.instance_id) for a, b in twins] == [(i.instance_id, i.reverse_pair_id) for i in reversible]
 
 
 @requires_data_clone
