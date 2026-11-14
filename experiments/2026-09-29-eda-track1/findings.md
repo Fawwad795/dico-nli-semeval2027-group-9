@@ -1,6 +1,6 @@
 # EDA findings, DiCo-NLI track 1 (English)
 
-The notebook analyzes 3,042 ordered training instances across six feature groups. It uses dev only for label and pair structure, overlap, language, and data-quality checks; exploratory feature comparisons use train only. Phrase-quality counts refer to text-field occurrences across both sides, not unique strings. Tables and individual figures are in this run folder; `eda_figures.pdf` combines the seven figures. `config.json` records the command and the train-data commit.
+The notebook analyzes 3,042 ordered training instances across six feature groups. It uses dev only for label and pair structure, overlap, language, and data-quality checks; exploratory feature comparisons use train only. Phrase-quality counts refer to text-field occurrences across both sides, not unique strings. Tables and individual figures are in this run folder; `SemEval_Task2_DiCo_NLI_Group_9_Assignment_1_EDA_Figures.pdf` combines the seven figures. `config.json` records the command and the train-data commit.
 
 ## 1. Statistical and data quality
 
