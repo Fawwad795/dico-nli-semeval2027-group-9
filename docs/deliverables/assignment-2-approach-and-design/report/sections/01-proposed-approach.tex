@@ -1,0 +1,53 @@
+\section{Proposed Approach}
+\label{sec:approach}
+
+Assignment 1 left two results side by side. A fine-tuned DeBERTa-v3-base reaches weighted F1 0.807 on the development set, yet it still gives incompatible answers on 32 to 37 of the 277 reversible pairs, depending on the seed. And the organizers' pilot found decoder language models to be the least self-consistent family of all \citep{apaolaza-larraya-etal-2026-assessing}. We therefore propose a small decoder adapted to the task with the reversal rule built into both its training loss and its prediction step. We call it reversal-equivariant LoRA. \Cref{sec:architecture} draws the system; this section specifies it.
+
+\paragraph{Input, output and target.}
+The input is an ordered pair of English phrases $(a, b)$. The output is one of the four labels \EQ{}, \FW{}, \BW{} and \NO{}, and the target is the gold label $y$ of the pair. The model reads the two phrases and nothing else. The instance identifier never reaches it, because the identifier says whether an instance is a reversed copy and so gives the label away. The behaviour we want is twofold: the right label for $(a, b)$, and for $(b, a)$ the label that the reversal operator $\Rev$ assigns to it (\EQ{} stays, \FW{} and \BW{} swap).
+
+\paragraph{Prompt and label scoring.}
+Each pair is placed in one fixed chat prompt. A system line states the job, and the user turn gives ``Phrase 1'' and ``Phrase 2'', defines the four relations as options A to D, and asks for one letter. The prompt ends where the answer begins. We do not let the model generate. We read the logits of the next token, keep the four that belong to the letters A, B, C and D, and take a softmax over those four:
+\begin{equation}
+p_\theta(y \mid a, b) = \operatorname{softmax}\big(z_{\text{A}}, \dots, z_{\text{D}}\big)_y .
+\end{equation}
+One forward pass gives a full distribution over the labels, with no sampling and no output to parse. Each letter is a single token of the tokenizer, and the code refuses to run if that ever fails to hold.
+
+\paragraph{Backbone and adapters.}
+The backbone is Qwen2.5-1.5B-Instruct \citep{qwen-2024-qwen25}, an open-weight instruction-tuned decoder, and all of its weights stay frozen. The trainable part is a set of low-rank adapters \citep{hu-etal-2021-lora} on the four attention projections of every layer (query, key, value, output), with rank 16, scaling 32 and dropout 0.05. The output layer is not trained either: the four letter rows of the frozen vocabulary matrix serve as the classifier. A 0.5B model of the same family stands in for the backbone when we check the pipeline on a CPU.
+
+\paragraph{Training objective.}
+Every training step scores each pair in both orders. Write $p_{ab}$ for $p_\theta(\cdot \mid a, b)$ and $p_{ba}$ for $p_\theta(\cdot \mid b, a)$, and let $P$ be the permutation that swaps the \FW{} and \BW{} entries of a distribution, so that $P\,p_{ba}$ is the reversed-order prediction expressed in the label space of $(a, b)$. The loss for one pair is
+\begin{equation}
+\begin{split}
+\mathcal{L} = {} & \CE\big(p_{ab},\, y\big) + \CE\big(p_{ba},\, \Rev(y)\big) \\
+& + \lambda\, \JS\big(p_{ab},\; P\,p_{ba}\big).
+\end{split}
+\label{eq:loss}
+\end{equation}
+The two cross-entropy terms train on both orders. The third term is a consistency loss in the manner of \citet{li-etal-2019-logic}: the Jensen--Shannon divergence is zero exactly when the two predictions agree under the reversal rule, and it needs no gold label. With $\lambda = 0$ the method is plain LoRA fine-tuning on both orders, which is our closest comparison system.
+
+The operator $\Rev$ is not defined for \NO{}. We set $\Rev(\NO) = \NO$, and this is an assumption of ours. The organizers map every relation that has no deterministic reverse to \NO{}, so a reversed negative pair could in principle hold a directional relation.
+
+\paragraph{Prediction.}
+At prediction time we again score both orders and average them after mapping the reversed one back:
+\begin{equation}
+\begin{split}
+p_{\text{sym}}(y \mid a, b) = \tfrac{1}{2}\big[\, & p_\theta(y \mid a, b) \\
+& + p_\theta(\Rev(y) \mid b, a)\,\big],
+\end{split}
+\label{eq:sym}
+\end{equation}
+and predict $\arg\max_y p_{\text{sym}}$. We call this symmetrized decoding. The averaged distribution for $(b, a)$ is $P$ applied to the one for $(a, b)$, so the two predicted labels always obey the reversal rule and \SoftCons{} is 1 by construction. For that reason \SoftCons{} cannot count as evidence for this step. Assignment 1 showed that a system can be perfectly self-consistent and wrong: answering \EQ{} everywhere scores \SoftCons{} 1.000 with weighted F1 0.110. The test of symmetrized decoding is whether weighted F1 and \HardCons{} rise. We report single-pass decoding, the argmax of $p_\theta(\cdot \mid a, b)$ alone, next to it everywhere, because there \SoftCons{} still measures something.
+
+\paragraph{What the Assignment 1 features do here.}
+The 17 surface cues and the n-grams of Assignment 1 are not fed to the model. A decoder reads the two phrases in order, which is the property the cosine-similarity analysis showed a symmetric representation to lack. The cues come back at evaluation time. Length predicts direction (the premise is the longer phrase in 78\% of forward training instances), so every result will also be reported on the slices where the length cue agrees with the gold label, misleads, or says nothing. A gain that exists only where the cue agrees is the shortcut, relearned.
+
+\paragraph{Preprocessing, sampling and imbalance.}
+Phrases enter the prompt exactly as released: no lower-casing, no normalisation, no feature selection. The longest prompt over both orders of every training and development instance is 132 tokens against a limit of 160, and a prompt over the limit raises an error instead of being cut, since truncation would remove the answer position. Batches are padded on the left for the same reason. The only augmentation is the second order of each pair. For reversible pairs this adds nothing new, because the training file already contains both orders; it adds the reversed copy of the 478 negatives, under the assumption above. Training instances are drawn in a seeded random order with no resampling. The labels are close to balanced (\NO{} is the smallest class at 16\%), so the loss carries no class weights, and macro F1 and per-label F1 are reported so that a weak class stays visible. The data are English only and the phrases come from one source, so cross-lingual and domain variation are outside this design.
+
+\paragraph{Hypotheses.}
+H4: without training, the decoder is far below the encoder on all three official scores. H5: LoRA with cross-entropy alone ($\lambda = 0$) recovers most of the weighted F1 gap, while single-pass \SoftCons{} stays below the encoder's 0.877. H6: the consistency term raises single-pass \SoftCons{} without lowering weighted F1. H7: symmetrized decoding raises \HardCons{} and weighted F1, not only \SoftCons{}. Each one can fail, and \cref{sec:ablations} says what a failure would mean.
+
+\paragraph{Expected limitations and sources of error.}
+Symmetrized decoding costs two forward passes per prediction. The treatment of reversed negatives rests on an assumption that the data can barely test. The training file contains one duplicated pair with conflicting labels, which we keep as released. We expect the errors that survived in the encoder to survive here too: prepositions, numerals and single substituted words, where the two phrases differ by one token and the direction of entailment turns on its meaning. The consistency term can also be satisfied the wrong way, by moving both orders of a pair to \EQ{} or \NO{}, which are their own reverses; the consistent-but-wrong count from Assignment 1 is the measure that would show it.
