@@ -1,0 +1,15 @@
+<|im_start|>system
+You classify the semantic relation between two short phrases.<|im_end|>
+<|im_start|>user
+Phrase 1: Conservative opposition
+Phrase 2: Conservatives
+
+Which relation holds?
+A. Equivalence: the two phrases mean the same.
+B. Forward entailment: Phrase 1 is more specific, so it entails Phrase 2.
+C. Backward entailment: Phrase 2 is more specific, so it entails Phrase 1.
+D. Other: neither phrase entails the other.
+
+Answer with one letter.<|im_end|>
+<|im_start|>assistant
+

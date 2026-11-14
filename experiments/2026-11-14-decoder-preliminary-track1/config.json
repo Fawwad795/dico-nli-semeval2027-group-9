@@ -1,0 +1,39 @@
+{
+  "command": "PYTHONIOENCODING=utf-8 uv run jupyter execute notebooks/assignment-2/01_preliminary_verification.ipynb",
+  "data_commit": "588968e610197ddc4c440314701cbc587afc4c1b",
+  "dev_size": 660,
+  "fit_size": 2443,
+  "holdout_fraction": 0.2,
+  "holdout_size": 599,
+  "launcher": "scripts/modal/train_decoder.py",
+  "local_model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "modal_run_id": "2026-11-14-decoder-preliminary-track1",
+  "repo_commit": "532d8c3d6b6b41242c0a829656c73bab51520b27",
+  "repo_dirty": true,
+  "seed": 13,
+  "systems": {
+    "qwen2.5-0.5b-zero-shot": {
+      "batch_size": 16,
+      "consistency_weight": 1.0,
+      "epochs": 3,
+      "learning_rate": 0.0002,
+      "lora_alpha": 32,
+      "lora_dropout": 0.05,
+      "lora_rank": 16,
+      "max_length": 160,
+      "micro_batch_size": null,
+      "mixed_precision": false,
+      "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+      "seed": 13,
+      "target_modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ],
+      "warmup_fraction": 0.06,
+      "weight_decay": 0.01
+    }
+  },
+  "track": 1
+}

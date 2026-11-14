@@ -1,0 +1,2 @@
+system,mode,device,precision,train_seconds,predict_seconds,peak_gpu_memory_gb,trainable_parameters,total_parameters,fit_size,holdout_size,best_epoch
+qwen2.5-0.5b-zero-shot,zero-shot,cpu,torch.float32,0.0,1043.7,,0,494032768,,,
