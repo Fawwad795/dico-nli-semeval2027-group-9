@@ -20,3 +20,4 @@ Rules:
 | `assignment-1/03_ml_baseline_track1.ipynb` | `experiments/2026-09-29-ml-baseline-track1/` and the cross-validation folds under `artifacts/ml-baseline-track1/` |
 | `assignment-1/04_dl_baseline_track1.ipynb` | `experiments/2026-09-29-deberta-base-track1/`, from the Modal runs fetched under `artifacts/dl-baseline-track1/` (launcher: `scripts/modal/train_encoder.py`) |
 | `assignment-1/05_error_analysis_track1.ipynb` | `experiments/2026-10-02-error-analysis-track1/` (`tables/`, `figures/`, `config.json`, `findings.md`) |
+| `assignment-2/01_preliminary_verification.ipynb` | `experiments/2026-11-14-decoder-preliminary-track1/`: the 0.5B zero-shot pass computed on CPU (cached under `artifacts/decoder-preliminary-track1/local/`) and the 1.5B Modal runs fetched under `artifacts/decoder-preliminary-track1/` (launcher: `scripts/modal/train_decoder.py`) |

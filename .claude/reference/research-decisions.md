@@ -37,6 +37,19 @@ Wording (also in `docs/deliverables/assignment-1-problem-and-baseline/a1-notes.m
 
 Measured on track 1 dev (runs of 2026-09-29): H1 supported (cue-only logistic regression SoftCons 0.79 at weighted F1 0.53); H2 supported (DeBERTa-v3-base 0.807 / 0.877 / 0.810 over three seeds, equivalence F1 0.45 to 0.78, direction confusions rare for both); H3 held inside the ML family and failed for the encoder, which gained both. Assignment 2 therefore targets decoder LLMs, where the pilot found the consistency gap, with pair-swap augmentation, a consistency loss over the pair and its reverse, and symmetric prompting as candidates.
 
+## 2026-11-14: Assignment 2 method is reversal-equivariant LoRA on a small decoder
+
+Decided from the Assignment 1 runs; the full plan and the fixed-decisions table are GitHub issue 13.
+
+- **Method.** Frozen `Qwen/Qwen2.5-1.5B-Instruct` (`Qwen/Qwen2.5-0.5B-Instruct` for CPU checks), LoRA rank 16, alpha 32, dropout 0.05 on `q_proj`, `k_proj`, `v_proj`, `o_proj`. A fixed chat prompt asks for one option letter; the prediction is a softmax over the next-token logits of A, B, C, D. Loss: cross-entropy on both orders plus lambda times the Jensen-Shannon divergence between `p(. | a, b)` and the permuted `p(. | b, a)`. Prediction: symmetrized decoding, the average of the two orders. Code: `src/dico_nli/method/`.
+- **Why.** DeBERTa still breaks the reversal rule on 32 to 37 of 277 dev pairs per seed, the pilot found decoders the least coherent family, and train already holds both orders of every reversible pair, so pair-swap alone adds information only for the 478 negatives.
+- **Evidence rule.** Symmetrized decoding makes SoftCons 1.0 by construction, so it is judged on weighted F1 and HardCons, and single-pass decoding is always reported next to it.
+- **Assumption.** `Rev(NEGATIVE_OTHER) = NEGATIVE_OTHER` is ours; the organizers define no reverse for that label. Train has three negatives whose reversed text also occurs (two NEGATIVE_OTHER, one BACKWARD_ENTAILMENT that belongs to the conflicting `South Africans` / `South Africa` duplicate), dev has none.
+- **Fixed settings.** Seeds 13, 42, 1234; AdamW, learning rate 2e-4, 3 epochs, 16 pairs per step, 6 % warm-up, weight decay 0.01; prompt limit 160 tokens, never truncated (longest prompt 132); epoch chosen by weighted F1 on the 20 % grouped slice of train; lambda 0 and 1 for the preliminary run, grid 0.25, 0.5, 1, 2 on validation in Assignment 3.
+- **Compute.** Estimated, not measured: 16 pairs per step in float32 does not fit a 16 GB T4, so the launcher defaults to an L4 with bfloat16 activations and micro-batches of 8 pairs. Both levers leave the optimisation step unchanged. The first Modal run fixes GPU type and precision for every later run.
+- **Dependency.** `peft` 0.21.3 (brings `accelerate` 1.15.0), approved 2026-11-14.
+- **First recorded result.** Zero-shot, the 0.5B model answers EQUIVALENCE for 644 of 660 dev instances: weighted F1 0.112, SoftCons 0.957, HardCons 0.310 (`experiments/2026-11-14-decoder-preliminary-track1/`). A decoder without training reproduces the always-EQUIVALENCE baseline.
+
 ## Open, to decide with Assignment 1
 - The ML baseline's feature set and the DL baseline's exact config (model, seed policy, epochs), with three seeds if compute allows.
 - Which decoder LLM(s) for the method: open-weight, small enough for an A10 or A100 LoRA run.

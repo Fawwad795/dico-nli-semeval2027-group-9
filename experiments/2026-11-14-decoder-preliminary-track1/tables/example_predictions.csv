@@ -1,0 +1,11 @@
+text1,text2,gold,qwen2.5-0.5b-zero-shot__single,qwen2.5-0.5b-zero-shot__symmetrized
+fresh election for president,fresh presidential election,EQUIVALENCE,EQUIVALENCE,EQUIVALENCE
+Calif man,a man from California,EQUIVALENCE,EQUIVALENCE,EQUIVALENCE
+with its landing gears,with its landing gear,FORWARD_ENTAILMENT,EQUIVALENCE,EQUIVALENCE
+holding a baseball,with a baseball,EQUIVALENCE,EQUIVALENCE,EQUIVALENCE
+A black steam train,Train,FORWARD_ENTAILMENT,EQUIVALENCE,EQUIVALENCE
+is running,moving at a run,EQUIVALENCE,EQUIVALENCE,EQUIVALENCE
+A young boy,A small boy,NEGATIVE_OTHER,EQUIVALENCE,EQUIVALENCE
+with its landing gear,with its landing gears,BACKWARD_ENTAILMENT,EQUIVALENCE,EQUIVALENCE
+in the field,in a lush green field,BACKWARD_ENTAILMENT,EQUIVALENCE,EQUIVALENCE
+of a brown bull,while a bull,FORWARD_ENTAILMENT,EQUIVALENCE,EQUIVALENCE

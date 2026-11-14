@@ -1,0 +1,44 @@
+\section{Initial Implementation}
+\label{sec:implementation}
+
+The method of \cref{sec:approach} is implemented in full, in the same package as the Assignment 1 baselines, and it runs end to end on the complete development set. \Cref{tab:implementation} lists each part the brief asks for with the file that holds it.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}p{0.50\columnwidth}p{0.44\columnwidth}@{}}
+\toprule
+Part & Where \\
+\midrule
+Data loading, grouped split & \texttt{data.py} \\
+Prompt, letter scoring & \texttt{method/decoder.py} \\
+Reversal rule, symmetrized decoding & \texttt{method/reversal.py} \\
+Model, training loop, loss & \texttt{method/decoder.py} \\
+Checkpoint save, load, resume & \texttt{method/decoder.py} \\
+Prediction format, official scorer & \texttt{scoring.py} \\
+Run record (seed, commits, command) & \texttt{experiments.py} \\
+GPU launcher & \texttt{train\_decoder.py} \\
+Scoring notebook & notebook 01 \\
+\bottomrule
+\end{tabular}
+\caption{Parts of the initial implementation. The modules are under \texttt{src/dico\_nli/}, the launcher under \texttt{scripts/modal/} and the notebook under \texttt{notebooks/assignment-2/}.}
+\label{tab:implementation}
+\end{table}
+
+\paragraph{Data and representation.}
+The loader and the grouped split are the ones the baselines use, so every system sees the same instances on the same side of the split. \texttt{build\_prompt} takes the two phrases and returns the chat messages; its signature has no parameter through which an identifier could enter. The tokenizer's own chat template turns the messages into text. Scoring runs the transformer body, takes the hidden state at the last position, and multiplies it with the four letter rows of the output matrix. This gives the same numbers as the full model (a test compares the two) without building logits over the whole vocabulary at every position.
+
+\paragraph{Model, training and inference.}
+The class \texttt{DecoderClassifier} wraps the frozen backbone with the adapters through the PEFT library and trains them with \cref{eq:loss} in a loop we wrote ourselves, as we did for the encoder, so that one seed fixes the adapter initialisation, the batch order and the dropout masks. \texttt{predict\_both\_orders} returns the distribution for each order of every instance. Single-pass and symmetrized predictions are both derived from those two tables, so the two decodings are always compared on the same forward passes. Without training, the same class scores with the unadapted backbone, which is the zero-shot system.
+
+\paragraph{Configuration and seeds.}
+All settings live in one frozen \texttt{DecoderConfig}: model name, adapter rank, scaling, dropout and target modules, token limit, batch size, epochs, learning rate, warm-up, weight decay, $\lambda$ and the seed. The configuration is written next to every result. Two further settings change memory use and leave the optimisation step as it is: a step's pairs can pass through the model a few at a time with their gradients added up, and activations can be computed in bfloat16 on a GPU while the weights stay in float32.
+
+\paragraph{Checkpoints.}
+\texttt{save} writes the adapter weights and the configuration, and \texttt{load} restores a classifier whose scores are identical to the saved one. During training the full state (adapters, optimiser, schedule, random generators, history) is also written after every epoch. A run that is interrupted continues from its last finished epoch and ends with the same losses and predictions as an uninterrupted one. We built this in before the first GPU run, because rented GPU containers can be preempted.
+
+\paragraph{Evaluation and prediction format.}
+Predictions are written as \texttt{instance\_id,label} rows and scored by the organizers' scorer, run unchanged as a subprocess, exactly as for the baselines.
+
+\paragraph{Tests.}
+Every module was written after its test. The decoder tests train a one-layer, randomly initialised model of the same architecture family over a word-level vocabulary, so they download nothing and finish in seconds. They check, among other things, that the backbone weights are bit-identical after training, that a score does not depend on what else is in the batch, that the reversed order of a pair is scored like its twin, that a prompt over the limit is an error, that the same seed gives the same model, and that symmetrized predictions of a pair and its twin always obey the reversal rule. One integration test trains on the twelve-row fixture and passes both decodings through the official scorer.

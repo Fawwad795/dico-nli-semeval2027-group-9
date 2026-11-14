@@ -1,0 +1,76 @@
+% Assignment 2 report, LLM course, Group 9. ACL template, preprint mode (named authors, page numbers).
+% Build: pdflatex main && bibtex main && pdflatex main && pdflatex main  (or latexmk -pdf main)
+\documentclass[11pt]{article}
+
+\usepackage[preprint]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+% Tighter reference list: no extra space between entries.
+\makeatletter
+\let\acl@thebibliography\thebibliography
+\renewcommand{\thebibliography}[1]{\acl@thebibliography{#1}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}}
+\makeatother
+
+% Label names. The official tokens are EQUIVALENCE, FORWARD_ENTAILMENT,
+% BACKWARD_ENTAILMENT and NEGATIVE_OTHER.
+\newcommand{\EQ}{\textsc{Equivalence}}
+\newcommand{\FW}{\textsc{Forward}}
+\newcommand{\BW}{\textsc{Backward}}
+\newcommand{\NO}{\textsc{Negative}}
+\newcommand{\Rev}{\operatorname{Rev}}
+\newcommand{\SoftCons}{\textsc{SoftCons}}
+\newcommand{\HardCons}{\textsc{HardCons}}
+\newcommand{\JS}{\operatorname{JS}}
+\newcommand{\CE}{\operatorname{CE}}
+
+% One file per section of the brief. A section whose file has not been merged yet shows its
+% heading, its label and its owner, so the report builds at every stage.
+% #1 file stem, #2 heading, #3 label, #4 owner
+\newcommand{\sectionfile}[4]{%
+  \IfFileExists{sections/#1.tex}{\input{sections/#1}}{%
+    \section{#2}\label{#3}\emph{Written by #4; arrives with their pull request.}}}
+
+\title{Flip the Pair, Keep the Logic:\\
+Reversal-Equivariant LoRA for Directionally Consistent\\
+Fine-Grained Natural Language Inference}
+
+\author{
+  M. Shaheer Saleh \\ 467668 \And
+  Ahmad Imran \\ 462852 \And
+  Syed Fawwad Ahmed \\ 463933 \And
+  Aqib Raza \\ 461312 \AND
+  Group 9, Large Language Models course, NUST \\
+  \url{https://github.com/Fawwad795/dico-nli-semeval2027-group-9}
+}
+
+\begin{document}
+\maketitle
+
+\input{sections/00-abstract}
+
+\sectionfile{01-proposed-approach}{Proposed Approach}{sec:approach}{Syed Fawwad Ahmed}
+\sectionfile{02-method-justification}{Method Justification}{sec:justification}{Ahmad Imran}
+\sectionfile{03-system-architecture}{System Architecture}{sec:architecture}{Ahmad Imran}
+\sectionfile{04-comparison-systems}{Comparison Systems}{sec:comparison}{Aqib Raza}
+\sectionfile{05-ablation-plan}{Ablation Plan}{sec:ablations}{Aqib Raza}
+\sectionfile{06-evaluation-measures}{Evaluation Measures}{sec:evaluation}{M. Shaheer Saleh}
+\sectionfile{07-experimental-protocol}{Experimental Protocol}{sec:protocol}{Aqib Raza}
+\sectionfile{08-initial-implementation}{Initial Implementation}{sec:implementation}{Syed Fawwad Ahmed}
+\sectionfile{09-preliminary-results}{Preliminary Results}{sec:preliminary}{Syed Fawwad Ahmed}
+\sectionfile{10-reproducibility-limitations}{Reproducibility and Limitations}{sec:reproducibility}{M. Shaheer Saleh}
+\sectionfile{11-planned-experiments}{Planned Experiments}{sec:planned}{Aqib Raza}
+
+\bibliography{references}
+
+\end{document}

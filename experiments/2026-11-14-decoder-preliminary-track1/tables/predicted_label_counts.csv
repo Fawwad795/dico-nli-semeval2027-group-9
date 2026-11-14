@@ -1,0 +1,5 @@
+,gold,qwen2.5-0.5b-zero-shot__single,qwen2.5-0.5b-zero-shot__symmetrized
+EQUIVALENCE,174,644,660
+FORWARD_ENTAILMENT,190,16,0
+BACKWARD_ENTAILMENT,190,0,0
+NEGATIVE_OTHER,106,0,0

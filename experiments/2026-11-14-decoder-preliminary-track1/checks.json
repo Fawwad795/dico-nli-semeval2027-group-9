@@ -1,0 +1,37 @@
+{
+  "systems_scored": [
+    "qwen2.5-0.5b-zero-shot"
+  ],
+  "systems_expected": [
+    "qwen2.5-0.5b-zero-shot",
+    "qwen2.5-1.5b-zero-shot",
+    "qwen2.5-1.5b-lora-lambda0-seed13",
+    "qwen2.5-1.5b-lora-lambda1-seed13"
+  ],
+  "prompt": {
+    "letters": {
+      "A": "EQUIVALENCE",
+      "B": "FORWARD_ENTAILMENT",
+      "C": "BACKWARD_ENTAILMENT",
+      "D": "NEGATIVE_OTHER"
+    },
+    "letter_token_ids": {
+      "A": 32,
+      "B": 33,
+      "C": 34,
+      "D": 35
+    },
+    "longest_prompt_tokens": 132,
+    "limit_tokens": 160,
+    "padding_side": "left"
+  },
+  "every_system_predicts_every_dev_instance": true,
+  "symmetrized_soft_cons_is_one": true,
+  "pairs_on_both_sides_of_the_validation_split": 0,
+  "warnings": [
+    "qwen2.5-1.5b-zero-shot: not scored, ['probabilities_forward.csv', 'probabilities_reverse.csv', 'run.json'] missing under artifacts/decoder-preliminary-track1/2026-11-14-decoder-preliminary-track1/qwen2.5-1.5b-zero-shot",
+    "qwen2.5-1.5b-lora-lambda0-seed13: not scored, ['probabilities_forward.csv', 'probabilities_reverse.csv', 'run.json'] missing under artifacts/decoder-preliminary-track1/2026-11-14-decoder-preliminary-track1/qwen2.5-1.5b-lora-lambda0-seed13",
+    "qwen2.5-1.5b-lora-lambda1-seed13: not scored, ['probabilities_forward.csv', 'probabilities_reverse.csv', 'run.json'] missing under artifacts/decoder-preliminary-track1/2026-11-14-decoder-preliminary-track1/qwen2.5-1.5b-lora-lambda1-seed13",
+    "no trained system was scored; training_history.csv is empty"
+  ]
+}
