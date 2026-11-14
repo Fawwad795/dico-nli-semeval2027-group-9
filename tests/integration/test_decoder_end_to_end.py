@@ -1,6 +1,8 @@
 """Fixture rows through the decoder method and the official scorer, end to end: prompts, LoRA
 training with the consistency loss, both decodings, the official prediction format."""
 
+import pytest
+
 from dico_nli.data import read_instances
 from dico_nli.method.decoder import DecoderClassifier, DecoderConfig
 from dico_nli.scoring import score, write_predictions
@@ -24,5 +26,11 @@ def test_the_method_trains_predicts_and_is_scored_by_the_official_scorer(tmp_pat
     for result in results.values():
         for value in (result.weighted_f1, result.soft_cons, result.hard_cons):
             assert 0.0 <= value <= 1.0
-    # Symmetrized decoding makes every reversible pair obey the reversal rule by construction.
-    assert results["symmetrized"].soft_cons == 1.0
+    # Symmetrized predictions of a pair and its twin always agree under the reversal rule with
+    # NEGATIVE_OTHER mapped to itself. The official SoftCons is stricter: it counts a
+    # NEGATIVE_OTHER prediction on a reversible pair as inconsistent, and nothing else here.
+    symmetrized = classifier.predict(instances, symmetric=True)
+    reversible = [i for i in instances if i.reverse_pair_id]
+    negative_pairs = {i.pair_id for i in reversible if symmetrized[i.instance_id] == "NEGATIVE_OTHER"}
+    expected = 1 - len(negative_pairs) / len({i.pair_id for i in reversible})
+    assert results["symmetrized"].soft_cons == pytest.approx(expected)

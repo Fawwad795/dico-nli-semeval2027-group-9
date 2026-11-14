@@ -126,6 +126,7 @@ def run(
     out = Path(REMOTE_RUNS) / run_id / name
     out.mkdir(parents=True, exist_ok=True)
     gpu = torch.cuda.get_device_name(0)
+    torch.cuda.reset_peak_memory_stats()  # a warm container is reused; the peak belongs to this job
     print(f"{name}: fit {len(fit_part)} holdout {len(holdout)} dev {len(dev)} on {gpu}")
 
     def log(message: str) -> None:

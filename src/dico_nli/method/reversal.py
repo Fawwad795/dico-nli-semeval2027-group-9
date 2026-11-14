@@ -41,8 +41,14 @@ def symmetrize(p_forward_order, p_reverse_order) -> np.ndarray:
     """Average the distribution for ``(a, b)`` with the one for ``(b, a)`` mapped back.
 
     ``symmetrize(p_ab, p_ba)`` and ``symmetrize(p_ba, p_ab)`` are column permutations of each
-    other, so their argmax labels obey the reversal rule. The one exception is an exact tie
-    between FORWARD and BACKWARD at the top, where argmax picks FORWARD for both orders; it
-    always happens when the two phrases are identical, because both orders are then one input.
+    other, so their argmax labels obey the reversal rule as extended here (NEGATIVE_OTHER maps
+    to itself). The one exception is an exact tie between FORWARD and BACKWARD at the top, where
+    argmax picks FORWARD for both orders; it always happens when the two phrases are identical,
+    because both orders are then one input.
+
+    This does not make the official SoftCons 1.0. The official scorer defines no reverse for
+    NEGATIVE_OTHER and counts that prediction on a reversible pair as incompatible, so the
+    official SoftCons of symmetrized predictions is one minus the share of reversible pairs
+    answered NEGATIVE_OTHER (found on 2026-11-14, pinned in ``tests/regression``).
     """
     return 0.5 * (np.asarray(p_forward_order, dtype=float) + permute(p_reverse_order))
