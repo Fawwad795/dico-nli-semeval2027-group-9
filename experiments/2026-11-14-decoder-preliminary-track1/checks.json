@@ -1,6 +1,9 @@
 {
   "systems_scored": [
-    "qwen2.5-0.5b-zero-shot"
+    "qwen2.5-0.5b-zero-shot",
+    "qwen2.5-1.5b-zero-shot",
+    "qwen2.5-1.5b-lora-lambda0-seed13",
+    "qwen2.5-1.5b-lora-lambda1-seed13"
   ],
   "systems_expected": [
     "qwen2.5-0.5b-zero-shot",
@@ -26,12 +29,29 @@
     "padding_side": "left"
   },
   "every_system_predicts_every_dev_instance": true,
-  "symmetrized_soft_cons_is_one": true,
+  "symmetrized_inconsistencies_are_all_explained": true,
+  "symmetrized_pairs_counted_inconsistent": {
+    "qwen2.5-0.5b-zero-shot": {
+      "both_orders_negative": 0,
+      "exact_forward_backward_ties": 0,
+      "unexplained": 0
+    },
+    "qwen2.5-1.5b-zero-shot": {
+      "both_orders_negative": 13,
+      "exact_forward_backward_ties": 1,
+      "unexplained": 0
+    },
+    "qwen2.5-1.5b-lora-lambda0-seed13": {
+      "both_orders_negative": 26,
+      "exact_forward_backward_ties": 0,
+      "unexplained": 0
+    },
+    "qwen2.5-1.5b-lora-lambda1-seed13": {
+      "both_orders_negative": 4,
+      "exact_forward_backward_ties": 0,
+      "unexplained": 0
+    }
+  },
   "pairs_on_both_sides_of_the_validation_split": 0,
-  "warnings": [
-    "qwen2.5-1.5b-zero-shot: not scored, ['probabilities_forward.csv', 'probabilities_reverse.csv', 'run.json'] missing under artifacts/decoder-preliminary-track1/2026-11-14-decoder-preliminary-track1/qwen2.5-1.5b-zero-shot",
-    "qwen2.5-1.5b-lora-lambda0-seed13: not scored, ['probabilities_forward.csv', 'probabilities_reverse.csv', 'run.json'] missing under artifacts/decoder-preliminary-track1/2026-11-14-decoder-preliminary-track1/qwen2.5-1.5b-lora-lambda0-seed13",
-    "qwen2.5-1.5b-lora-lambda1-seed13: not scored, ['probabilities_forward.csv', 'probabilities_reverse.csv', 'run.json'] missing under artifacts/decoder-preliminary-track1/2026-11-14-decoder-preliminary-track1/qwen2.5-1.5b-lora-lambda1-seed13",
-    "no trained system was scored; training_history.csv is empty"
-  ]
+  "warnings": []
 }

@@ -1,2 +1,5 @@
 system,mode,device,precision,train_seconds,predict_seconds,peak_gpu_memory_gb,trainable_parameters,total_parameters,fit_size,holdout_size,best_epoch
 qwen2.5-0.5b-zero-shot,zero-shot,cpu,torch.float32,0.0,1043.7,,0,494032768,,,
+qwen2.5-1.5b-zero-shot,zero-shot,NVIDIA L4,"bfloat16 activations, float32 weights",0.0,27.8,8.68,0,1543714304,2443.0,599.0,
+qwen2.5-1.5b-lora-lambda0-seed13,lora,NVIDIA L4,"bfloat16 activations, float32 weights",404.3,13.5,16.14,4358144,1548072448,2443.0,599.0,3.0
+qwen2.5-1.5b-lora-lambda1-seed13,lora,NVIDIA L4,"bfloat16 activations, float32 weights",410.5,13.6,16.15,4358144,1548072448,2443.0,599.0,1.0

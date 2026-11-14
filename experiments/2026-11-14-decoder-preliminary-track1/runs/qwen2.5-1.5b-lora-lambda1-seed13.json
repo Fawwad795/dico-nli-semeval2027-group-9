@@ -1,0 +1,78 @@
+{
+  "system": "qwen2.5-1.5b-lora-lambda1-seed13",
+  "mode": "lora",
+  "config": {
+    "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "max_length": 160,
+    "batch_size": 16,
+    "epochs": 3,
+    "learning_rate": 0.0002,
+    "warmup_fraction": 0.06,
+    "weight_decay": 0.01,
+    "consistency_weight": 1.0,
+    "micro_batch_size": 8,
+    "mixed_precision": true,
+    "seed": 13
+  },
+  "holdout_fraction": 0.2,
+  "fit_size": 2443,
+  "holdout_size": 599,
+  "dev_size": 660,
+  "longest_prompt_tokens": 132,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.740710692429123,
+      "train_ce": 1.6823921406117806,
+      "train_js": 0.05831855346574141,
+      "holdout_weighted_f1": 0.7748107429298648,
+      "holdout_accuracy": 0.7896494156928213,
+      "seconds": 136.3
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.7182569728978969,
+      "train_ce": 0.6833143904012244,
+      "train_js": 0.034942582205991626,
+      "holdout_weighted_f1": 0.7673482671465811,
+      "holdout_accuracy": 0.7662771285475793,
+      "seconds": 137.0
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.3392602116734131,
+      "train_ce": 0.3167813112780092,
+      "train_js": 0.022478901627271487,
+      "holdout_weighted_f1": 0.7649340861218114,
+      "holdout_accuracy": 0.7629382303839732,
+      "seconds": 137.2
+    }
+  ],
+  "best_epoch": 1,
+  "train_seconds": 410.5,
+  "predict_seconds": 13.6,
+  "trainable_parameters": 4358144,
+  "total_parameters": 1548072448,
+  "gpu": "NVIDIA L4",
+  "peak_gpu_memory_gb": 16.15,
+  "precision": "bfloat16 activations, float32 weights",
+  "versions": {
+    "torch": "2.14.0+cu130",
+    "transformers": "5.17.0",
+    "peft": "0.21.3"
+  },
+  "code": {
+    "repo_commit": "629ec34a6f751a51f55224d71efac50c53c0d56c",
+    "repo_dirty": false,
+    "source_sha256": "4b91938dde634f6d74c9608c7f09663b3717b76174035c7d7a4fed75975e9ff4"
+  }
+}
