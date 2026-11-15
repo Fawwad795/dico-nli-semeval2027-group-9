@@ -1,0 +1,88 @@
+\section{Evaluation Measures}
+\label{sec:evaluation}
+
+\subsection{Official metrics}
+
+Let $\mathcal{L}$ contain the four task labels, $n_c$ be the number of gold instances
+with label $c$, $N$ the number of instances, and $F_c$ the label's F1 score. The official
+classification measure is
+\begin{equation}
+  \operatorname{wF1}=\sum_{c\in\mathcal{L}}\frac{n_c}{N}F_c,
+  \qquad F_c=\frac{2P_cR_c}{P_c+R_c}.
+\end{equation}
+Higher is better. Weighting makes each instance contribute equally after its class F1 is
+computed, but it also makes performance on common labels dominate the result. In our track-1
+data, \textsc{negative\_other} is 16\% of the instances and receives the smallest weight,
+although it is the hardest label for the Assignment 1 models. We therefore report macro F1
+beside the official score.
+
+Let $\operatorname{Rev}$ leave \textsc{equivalence} unchanged and exchange
+\textsc{forward\_entailment} with \textsc{backward\_entailment}. It is undefined for
+\textsc{negative\_other}. For the set $\mathcal{P}$ of reversible source pairs
+$(x,x^r)$, prediction function $f$, and gold function $y$, the consistency measures are
+\begin{align}
+  \operatorname{SoftCons}
+  &=\frac{1}{|\mathcal{P}|}\sum_{(x,x^r)\in\mathcal{P}}
+    \mathbb{I}\!\left[f(x)=\operatorname{Rev}(f(x^r))\right],\\
+  \operatorname{HardCons}
+  &=\frac{1}{|\mathcal{P}|}\sum_{(x,x^r)\in\mathcal{P}}
+    \mathbb{I}\!\left[f(x)=y(x)\land f(x^r)=y(x^r)\right].
+\end{align}
+Both range from zero to one, and higher is better. SoftCons rewards compatible predictions
+whether or not they are correct. HardCons rewards a pair only when both directions are
+correct, so $\operatorname{HardCons}\leq\operatorname{SoftCons}$. Negative examples have no
+reversed twin and affect weighted F1 only. The scorer macro-averages no tracks in this study:
+all reported values are for English track 1, with weighted F1 averaged over instances and
+the consistency measures averaged over the 277 reversible dev pairs.
+
+Symmetrized decoding forces compatible outputs and therefore makes SoftCons 1.0 by
+construction. Constant \textsc{equivalence} prediction does the same while obtaining only
+0.110 weighted F1 in Assignment 1. SoftCons carries no discriminating information between
+systems constrained this way; weighted F1 and HardCons determine whether the constraint
+also produces correct decisions.
+
+\subsection{Secondary measures}
+
+We report macro F1, accuracy, and precision, recall, and F1 for every label. Macro F1 gives
+each label equal weight, while accuracy is the micro-average for this single-label task. A
+pair-outcome table separates pairs that are correct in both directions, consistent but wrong,
+inconsistent with one correct direction, and inconsistent with neither direction correct.
+We also count direction confusions, especially forward entailment predicted as backward
+entailment and the reverse. These diagnostics distinguish semantic errors from failures to
+respect direction.
+
+\subsection{Subgroups}
+
+The subgroup analysis uses three predeclared families. The length-cue slices mark whether
+the longer phrase agrees with, misleads, or gives no information about the gold direction.
+Phrase-overlap groups record whether both, one, or neither dev phrase occurs verbatim and
+case-insensitively in train. Length groups use total words in the unordered pair: short has at
+most five words, medium has six or seven, and long has more than seven. These cutoffs are the
+nearest observed values to the 33rd and 67th percentiles of unique dev source pairs. Phrase
+overlap and length are constant across both directions of a reversible pair. We report
+weighted F1, macro F1, and accuracy for every subgroup; SoftCons and HardCons are omitted
+from sliced results because a filter can otherwise change or split their pair-level unit.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lrrr}
+\hline
+Length group & $n$ & DeBERTa-13 wF1 & both+logreg wF1 \\
+\hline
+Short ($\leq5$ words) & 306 & 0.843 & 0.647 \\
+Medium (6--7 words) & 215 & 0.833 & 0.566 \\
+Long ($>7$ words) & 139 & 0.765 & 0.540 \\
+\hline
+\end{tabular}
+\caption{The aggregate hides weaker performance on long phrase pairs. Counts and scores
+come from the fixed Assignment 1 prediction files in the reliability run.}
+\label{tab:length-subgroups}
+\end{table}
+
+The long-pair weakness occurs for all three DeBERTa seeds: seed 13 falls from 0.843 weighted
+F1 on short pairs to 0.765 on long pairs. Phrase overlap is an even larger separator for seed
+13, from 0.970 when both phrases occur in train to 0.757 when neither occurs. These are
+descriptive slices, not additional hypothesis tests, and the ten-instance misleading-cue
+group is too small for a stable effect estimate.
+
