@@ -6,7 +6,7 @@ Topic: SemEval-2027 Task 2, DiCo-NLI. The method targets directional consistency
 
 Items (from the course's generic requirements; they flex with the topic, and any item the topic makes inapplicable is noted here with the reason):
 
-- [x] Proposed method
+- [ ] Proposed method
 - [x] Justification
 - [x] System architecture diagram (issue #15)
 - [ ] Comparison systems
