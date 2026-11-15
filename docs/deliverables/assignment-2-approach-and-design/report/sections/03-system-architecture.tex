@@ -1,13 +1,13 @@
-\section{System Architecture}
+\section{System architecture}
 \label{sec:architecture}
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/architecture.pdf}
-\caption{Proposed system. Both orders of a pair share the tokenizer and the model weights. The backbone is frozen and only the LoRA adapters are trained. The training branch applies two supervised losses and a Jensen--Shannon consistency penalty after aligning the reversed label distribution; inference averages the aligned distributions before selecting the relation.}
+\includegraphics[width=\textwidth]{figures/architecture.pdf}
+\caption{The proposed system. Grey boxes are fixed, the blue box holds the only trained weights, the orange box is used in training only, and the green boxes at prediction time. Both orders of a pair share the prompt, the tokenizer and the model weights.}
 \label{fig:a2-architecture}
 \end{figure*}
 
-\Cref{fig:a2-architecture} shows the flow from an ordered phrase pair to a four-way prediction and its official evaluation. The prompt presents the two phrases, in order, with the four relation options. The same Qwen2.5-1.5B-Instruct tokenizer and model process $(a,b)$ and $(b,a)$. At the answer position, the model scores the four option letters, and a softmax over these four scores gives $p_{ab}$ for the pair as given and $p_{ba}$ for the reversed pair.
+\Cref{fig:a2-architecture} traces one pair from input to score. Both orders, $(a,b)$ and $(b,a)$, pass through the same prompt, tokenizer and Qwen2.5-1.5B-Instruct weights, and the softmax over the four option letters gives $p_{ab}$ and $p_{ba}$. The backbone is frozen; only the LoRA adapters change during training.
 
-The training branch applies the objective of \cref{eq:loss}: one cross-entropy term per order, plus $\lambda$ times the Jensen--Shannon divergence between $p_{ab}$ and the aligned $P\,p_{ba}$. Setting $\lambda=0$ gives the classification-only comparison system and $\lambda>0$ the consistency-aware system. At inference, the system averages the aligned distributions (\cref{eq:sym}) and writes the argmax label to \texttt{predictions.csv}, which the official scorer turns into weighted F1, \SoftCons{} and \HardCons{}.
+The training branch applies the loss of \cref{eq:loss}, and its gradients reach the adapters only. Setting $\lambda = 0$ gives the classification-only comparison system, and $\lambda > 0$ the consistency-aware system. The prediction branch applies symmetrized decoding (\cref{eq:sym}) and writes the predicted labels to \texttt{predictions.csv}, which the official scorer turns into weighted F1, \SoftCons{} and \HardCons{}.

@@ -1,13 +1,10 @@
-\section{Initial Implementation}
+\section{Initial implementation}
 \label{sec:implementation}
 
-The method of \cref{sec:approach} is implemented in full, in the same package as the Assignment 1 baselines, and it runs end to end on the complete development set. \Cref{app:implementation} lists each part with the file that holds it.
+The method of \cref{sec:approach} is implemented in full, in the same package as the Assignment 1 baselines, and it runs end to end on the whole development set. \Cref{app:implementation} lists each part with the file that holds it.
 
-\paragraph{Data and representation.}
-The loader and the grouped split are the ones the baselines use. The function that builds the prompt takes the two phrases and nothing else, so no identifier can enter. Scoring runs the transformer body, takes the hidden state at the last position, and multiplies it with the four letter rows of the output matrix. A test confirms that this gives the same numbers as the full model.
+The data loader and the grouped split are the ones the baselines use. The function that builds the prompt takes the two phrases and nothing else, so no identifier can enter. Scoring runs the transformer body, takes the hidden state at the last position, and multiplies it by the four letter rows of the output matrix; a test confirms that this gives the same numbers as the full model.
 
-\paragraph{Model, training and inference.}
-The class \texttt{DecoderClassifier} wraps the frozen backbone with the adapters through the PEFT library and trains them with \cref{eq:loss} in a loop we wrote ourselves, so that one seed fixes the adapter initialisation, the batch order and the dropout masks. Single-pass and symmetrized predictions are derived from the same two forward passes, so the two decodings are always compared like for like. Without training, the same class is the zero-shot system. A run that is interrupted resumes from its last finished epoch and ends with the same losses and predictions.
+The class \texttt{DecoderClassifier} adds the adapters to the frozen backbone through the PEFT library and trains them with \cref{eq:loss} in a loop we wrote ourselves, so that one seed fixes the adapter initialisation, the batch order and the dropout masks. Single-pass and symmetrized predictions come from the same two forward passes, so the two decodings are always compared on identical model outputs. Without training, the same class is the zero-shot system. An interrupted run resumes from its last finished epoch and ends with the same losses and predictions.
 
-\paragraph{Evaluation and tests.}
-Predictions are written as \texttt{instance\_id,label} rows and scored by the organizers' scorer, run unchanged, exactly as for the baselines. Paired significance tests and subgroup tags are in \texttt{stats.py}. Every module was written after its test. One regression test pins the mistake described in \cref{sec:preliminary}.
+Predictions are written as \texttt{instance\_id,label} rows and scored by the organizers' scorer, run unchanged, exactly as for the baselines. The paired significance tests and subgroup tags are in \texttt{stats.py}. Every module was written after its test, and one regression test pins the mistake described in \cref{sec:preliminary}.

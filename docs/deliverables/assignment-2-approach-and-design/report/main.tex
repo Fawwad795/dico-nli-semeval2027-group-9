@@ -12,6 +12,10 @@
 \usepackage{inconsolata}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{array}
+\usepackage{float}
+% Ragged-right table cells: justified text in narrow cells leaves wide gaps between words.
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[capitalise,noabbrev]{cleveref}

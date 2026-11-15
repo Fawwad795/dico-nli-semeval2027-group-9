@@ -1,18 +1,19 @@
-\clearpage
+\onecolumn
+\raggedbottom
 \appendix
 \crefalias{section}{appendix}
 
-\section{Evidence Behind Each Design Decision}
+\section{Evidence behind each design decision}
 \label{app:evidence}
 
-\Cref{tab:method-justification} belongs to \cref{sec:justification}.
+\Cref{tab:method-justification} gives the full evidence behind \cref{sec:justification}: each finding from Assignment 1, its source file, the design decision it supports and the effect we expect to test.
 
-\begin{table*}[t]
+\begin{table}[H]
 \centering
 \footnotesize
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{0.88}
-\begin{tabular}{p{0.30\textwidth}p{0.32\textwidth}p{0.30\textwidth}}
+\begin{tabular}{L{0.30\textwidth}L{0.32\textwidth}L{0.30\textwidth}}
 \toprule
 Evidence (file or source) & Design decision & Expected effect to test \\
 \midrule
@@ -65,30 +66,18 @@ Test a distributional constraint beyond swap augmentation. \\
 \end{tabular}
 \caption{Assignment 1 evidence mapped to method decisions and falsifiable expectations. Values are descriptive results from the recorded runs, not performance guarantees for Assignment 2.}
 \label{tab:method-justification}
-\end{table*}
+\end{table}
 
 
-\section{Settings of the Comparison Systems}
-\label{app:comparison}
-
-These paragraphs give the full settings behind \cref{tab:comparison}.
-
-\paragraph{Classical baselines (3.2).}
-They measure how far surface form goes. Preprocessing is minimal: the phrases are lower-cased and tokenised on word boundaries for TF-IDF, with a pattern that keeps one-letter words and keeps the separator as its own token, so the bigrams that straddle it record which side a word came from. The cues are computed from the raw strings and standardised on the training data. There is no feature selection. Both models use balanced class weights; the logistic regression runs up to 5{,}000 iterations, and every other hyperparameter is a scikit-learn default \citep{pedregosa-etal-2011-scikit}. The best of the four by grouped five-fold cross-validation on train was both + logreg (\path{config.json}, \path{best_by_cv}). The cue model matters most to this assignment: with \SoftCons{} 0.794 it is consistent largely because its features behave predictably under reversal, which takes no understanding of the pair.
-
-\paragraph{Pretrained baselines (3.3).}
-DeBERTa-v3-base \citep{he-etal-2023-debertav3} is the bar to reach: fully fine-tuned, with the sequence-classification head of Transformers \citep{wolf-etal-2020-transformers}, a linear layer over the pooled first-token representation. The pair is one sequence of at most 32 tokens; training is 5 epochs of AdamW at $2 \times 10^{-5}$, batch size 16, weight decay 0.01, 6\% linear warm-up, gradient clipping at 1.0, float32, and the epoch with the best validation weighted F1 is kept. Its mean over three seeds is weighted F1 0.807, \SoftCons{} 0.877 and \HardCons{} 0.810 (\path{experiments/2026-09-29-deberta-base-track1/results.md}). The zero-shot decoder is the same backbone as the proposed system with every weight frozen and no training at all; it answers through the prompt and the four option-letter scores of \cref{sec:approach}. It tells us what the backbone knows before adaptation. The plain-LoRA decoder ($\lambda = 0$) has the same prompt, adapters, data, both training orders and schedule as the proposed system and differs only in the two components we propose. It is therefore the comparison that isolates what they add.
-
-
-\section{Ablation Table}
+\section{Ablation plan in full}
 \label{app:ablations}
 
-\Cref{tab:ablations} belongs to \cref{sec:ablations}.
+\Cref{tab:ablations} expands the list in \cref{sec:ablations}. Each row names the hypothesis, the deciding metric in bold, and what each outcome would mean, including the outcome that goes against us.
 
-\begin{table*}[t]
+\begin{table}[H]
 \centering
-\small
-\begin{tabular}{@{}p{0.17\textwidth}p{0.30\textwidth}p{0.45\textwidth}@{}}
+\footnotesize
+\begin{tabular}{@{}L{0.16\textwidth}L{0.28\textwidth}L{0.50\textwidth}@{}}
 \toprule
 Ablation & Hypothesis & Expected interpretation (deciding metric in bold) \\
 \midrule
@@ -123,10 +112,22 @@ The gain of symmetrized decoding is a general property of the reversal rule, not
 \end{tabular}
 \caption{Ablation plan. Each row is compared against the system it changes, on the development set, with three seeds where training is involved.}
 \label{tab:ablations}
-\end{table*}
+\end{table}
 
 
-\section{Experimental Protocol in Full}
+\section{Settings of the comparison systems}
+\label{app:comparison}
+
+These paragraphs give the full settings behind \cref{tab:comparison}.
+
+\subsection{Classical baselines}
+They measure how far surface form goes. Preprocessing is minimal: the phrases are lower-cased and tokenised on word boundaries for TF-IDF, with a pattern that keeps one-letter words and keeps the separator as its own token, so the bigrams that straddle it record which side a word came from. The cues are computed from the raw strings and standardised on the training data. There is no feature selection. Both models use balanced class weights; the logistic regression runs up to 5{,}000 iterations, and every other hyperparameter is a scikit-learn default \citep{pedregosa-etal-2011-scikit}. The best of the four by grouped five-fold cross-validation on train was both + logreg (\path{config.json}, \path{best_by_cv}). The cue model matters most to this assignment: with \SoftCons{} 0.794 it is consistent largely because its features behave predictably under reversal, which takes no understanding of the pair.
+
+\subsection{Pretrained baselines}
+DeBERTa-v3-base \citep{he-etal-2023-debertav3} is the bar to reach: fully fine-tuned, with the sequence-classification head of Transformers \citep{wolf-etal-2020-transformers}, a linear layer over the pooled first-token representation. The pair is one sequence of at most 32 tokens; training is 5 epochs of AdamW at $2 \times 10^{-5}$, batch size 16, weight decay 0.01, 6\% linear warm-up, gradient clipping at 1.0, float32, and the epoch with the best validation weighted F1 is kept. Its mean over three seeds is weighted F1 0.807, \SoftCons{} 0.877 and \HardCons{} 0.810 (\path{experiments/2026-09-29-deberta-base-track1/results.md}). The zero-shot decoder is the same backbone as the proposed system with every weight frozen and no training at all; it answers through the prompt and the four option-letter scores of \cref{sec:approach}. It tells us what the backbone knows before adaptation. The plain-LoRA decoder ($\lambda = 0$) has the same prompt, adapters, data, both training orders and schedule as the proposed system and differs only in the two components we propose. It is therefore the comparison that isolates what they add.
+
+
+\section{Experimental protocol in full}
 \label{app:protocol}
 
 This is the complete protocol summarised in \cref{sec:protocol}. It holds for every run in \cref{sec:comparison,sec:ablations,sec:planned}. Where a setting comes from a file, the file is named.
@@ -134,13 +135,13 @@ This is the complete protocol summarised in \cref{sec:protocol}. It holds for ev
 \subsection{Data and splits}
 \label{sec:protocol-data}
 
-\paragraph{Source and version.}
-Track 1 (English) of the organizers' repository, \url{https://github.com/ilopezgazpio/SemEval-2027-Task-2-DiCo-NLI}, at commit \texttt{588968e}. The git object id and a line-ending-normalised MD5 of every file we read are recorded in \path{datasets/dico-nli.json}, so a checkout on any platform can be checked against them. We use the official files \path{final_data/train/dico_nli_train_track1_reference.csv} (3{,}042 instances in 1{,}760 source pairs) and \path{final_data/dev/dico_nli_dev_track1_reference.csv} (660 instances in 383 source pairs).
+\subsubsection*{Source and version}
+We use Track 1 (English) of the organizers' repository at commit \texttt{588968e}:\\ \url{https://github.com/ilopezgazpio/SemEval-2027-Task-2-DiCo-NLI}. The git object id and a line-ending-normalised MD5 of every file we read are recorded in \path{datasets/dico-nli.json}, so a checkout on any platform can be checked against them. We use the official files \path{final_data/train/dico_nli_train_track1_reference.csv} (3{,}042 instances in 1{,}760 source pairs) and \path{final_data/dev/dico_nli_dev_track1_reference.csv} (660 instances in 383 source pairs).
 
-\paragraph{Test set.}
+\subsubsection*{Test set}
 The official test set is released on 10 January 2027, after this course ends. The development set is therefore our test set. It is scored once per finished system and never used to choose anything. Our development scores are local runs of the official scorer, not scores from the competition server, and will not be presented as official results.
 
-\paragraph{Validation split.}
+\subsubsection*{Validation split}
 Every model that needs held-out data takes it from train: 20\% of the source pairs, drawn by \path{dico_nli.data.grouped_split} with holdout fraction 0.2 and the run's seed. The split is grouped because both orders of a reversible pair share a source pair. Splitting by instance would put the two orders of one pair on opposite sides, and the validation score would reward recall of the reversed copy. With seed 13 the split gives 2{,}443 instances (1{,}408 pairs) to fit on and 599 (352 pairs) to validate on (\path{experiments/2026-11-14-decoder-preliminary-track1/config.json} and \path{tables/split_sizes.csv}). Each seed draws its own split, as for the encoder in Assignment 1.
 
 \subsection{Preprocessing and input}
@@ -153,48 +154,40 @@ Phrases enter the prompt of \cref{sec:approach} exactly as released, with no low
 
 \Cref{tab:protocol} lists the decoder settings; they are the fixed decisions of the plan and match the recorded run configuration (\path{experiments/2026-11-14-decoder-preliminary-track1/config.json}). The DeBERTa settings are those of \cref{sec:comparison}.
 
-\begin{table}[t]
+\begin{table}[H]
 \centering
 \footnotesize
-\begin{tabular}{@{}ll@{}}
+\begin{tabular}{@{}ll@{\hspace{2.5em}}ll@{}}
 \toprule
-Setting & Value \\
+Setting & Value & Setting & Value \\
 \midrule
-Backbone (frozen) & Qwen2.5-1.5B-Instruct \\
-Initialisation & released, LoRA $B = 0$ \\
-LoRA targets & q, k, v, o projections \\
-LoRA rank, alpha, dropout & 16, 32, 0.05 \\
-Trainable parameters & 4{,}358{,}144 (0.28\%) \\
-Optimizer & AdamW \\
-Learning rate & $2 \times 10^{-4}$ \\
-Schedule & linear, 6\% warm-up \\
-Weight decay & 0.01 \\
-Gradient clipping & norm 1.0 \\
-Epochs & 3 \\
-Batch & 16 pairs, both orders \\
-Loss & \cref{eq:loss}, $\lambda \in \{0, 1\}$ \\
-Weights, activations & float32, bfloat16 \\
-Checkpoint & best validation wF1 \\
-Seeds & 13, 42, 1234 \\
+Backbone (frozen) & Qwen2.5-1.5B-Instruct & Optimizer & AdamW \\
+Initialisation & released, LoRA $B = 0$ & Learning rate & $2 \times 10^{-4}$ \\
+LoRA targets & q, k, v, o projections & Schedule & linear, 6\% warm-up \\
+LoRA rank, alpha, dropout & 16, 32, 0.05 & Weight decay & 0.01 \\
+Trainable parameters & 4{,}358{,}144 (0.28\%) & Gradient clipping & norm 1.0 \\
+Loss & \cref{eq:loss}, $\lambda \in \{0, 1\}$ & Epochs & 3 \\
+Weights, activations & float32, bfloat16 & Batch & 16 pairs, both orders \\
+Checkpoint & best validation wF1 & Seeds & 13, 42, 1234 \\
 \bottomrule
 \end{tabular}
 \caption{Decoder training settings; $\lambda$ as in the preliminary run. Parameter counts from \texttt{tables/run\_costs.csv} of the preliminary run.}
 \label{tab:protocol}
 \end{table}
 
-\paragraph{Stopping, model selection and checkpoints.}
+\subsubsection*{Stopping, model selection and checkpoints}
 Training runs a fixed three epochs. After each epoch the model scores the validation split, and the epoch with the best validation weighted F1 is kept and used for the development predictions. The adapters of every kept checkpoint and the per-label probabilities for both orders are saved, so symmetrized decoding and later analyses need no retraining.
 
-\paragraph{Hyperparameter search.}
+\subsubsection*{Hyperparameter search}
 Everything except $\lambda$ is fixed before the first run, with no search. For Assignment 3, $\lambda$ is chosen from the grid $\{0.25, 0.5, 1, 2\}$ by mean validation weighted F1 over the three seeds, the same criterion as checkpoint selection, so the choice of $\lambda$ is not driven by a consistency score that the $\lambda$ term itself optimises. Validation \HardCons{} is reported beside it. The development set plays no part in the choice.
 
-\paragraph{Seeds and repeated runs.}
+\subsubsection*{Seeds and repeated runs}
 Every trained system runs with seeds 13, 42 and 1234, and we report the mean and standard deviation. A seed fixes the validation split, the adapter initialisation and the order of training batches. The zero-shot systems are deterministic and run once.
 
-\paragraph{Hardware.}
+\subsubsection*{Hardware}
 DeBERTa ran on one NVIDIA T4 per seed on Modal, in float32 (\path{experiments/2026-09-29-deberta-base-track1/config.json}). The decoder settings were fixed after the first timing run on 14 November 2026 and hold for every later run: one NVIDIA L4 per job on Modal, bfloat16 activations with float32 weights, and the 16 pairs of a step passed through the model 8 at a time, which leaves the optimisation step unchanged. Peak memory was 16.1~GB, so a 16~GB T4 does not fit, and one epoch took about 135 seconds (\path{experiments/2026-11-14-decoder-preliminary-track1/tables/run_costs.csv} and \path{tables/training_history.csv}). The 0.5B model is used on CPU for pipeline checks only.
 
-\paragraph{Software.}
+\subsubsection*{Software}
 Python 3.11, with dependencies locked in \path{uv.lock} (\path{pyproject.toml}). The Modal images pin \texttt{torch} 2.14.0, \texttt{transformers} 5.17.0, \texttt{scikit-learn} 1.9.1 and \texttt{pandas} 3.0.6 (\path{scripts/modal/train_encoder.py}); the encoder image adds \texttt{sentencepiece} 0.2.2 and \texttt{protobuf} 6.33.6, and the decoder image (\path{scripts/modal/train_decoder.py}) adds \texttt{peft} 0.21.3 and \texttt{accelerate} 1.15.0. Every run records the repository commit, whether the tree was dirty, the data commit, the seed and the exact command in its \path{config.json}.
 
 \subsection{Class imbalance}
@@ -205,16 +198,16 @@ The training labels are \EQ{} 26.4\%, \FW{} 29.0\%, \BW{} 29.0\% and \NO{} 15.7\
 \subsection{Leakage prevention}
 \label{sec:protocol-leakage}
 
-\paragraph{No identifier reaches the model.}
+\subsubsection*{No identifier reaches the model}
 Every \path{__flipped} instance is the reversal of an \path{__original} one, and \NO{} instances have no flipped twin, so the instance id reveals the label (docstring of \path{src/dico_nli/data.py}). The model input is built from the two phrase strings only; \path{instance_id}, \path{pair_id} and \path{reverse_pair_id} are used for bookkeeping and scoring alone.
 
-\paragraph{Pairs stay together.}
+\subsubsection*{Pairs stay together}
 Both orders of a source pair always sit on the same side of a split, in the validation split and in the classical baselines' cross-validation folds. Track 1 train and dev share no \path{pair_id}.
 
-\paragraph{Nothing is chosen on dev.}
+\subsubsection*{Nothing is chosen on the development set}
 Checkpoints, $\lambda$ and every other setting are chosen on training data. The development set is scored once per finished system.
 
-\paragraph{Overlap is reported.}
+\subsubsection*{Overlap is reported}
 Seven unordered text pairs and 155 of the 712 distinct development phrases (22\%) also occur in train (\path{experiments/2026-09-29-eda-track1/tables/train_dev_overlap.csv}). They come from the released data and we do not remove them, since that would change the official development set. Results on the development instances whose phrases were seen in train are reported separately from the rest.
 
 \subsection{Missing and duplicated instances}
@@ -224,7 +217,7 @@ No text field is missing or empty in either split (\path{experiments/2026-09-29-
 
 \begin{center}
 \footnotesize
-\begin{tabular}{@{}p{0.27\columnwidth}p{0.42\columnwidth}l@{}}
+\begin{tabular}{@{}L{0.27\columnwidth}L{0.42\columnwidth}l@{}}
 \toprule
 Source pair & $a$, $b$ & Label \\
 \midrule
@@ -237,15 +230,15 @@ Source pair & $a$, $b$ & Label \\
 Our policy is to keep the training duplicates as released and report the conflict, since removing either copy would mean overruling the annotation. The development set is never altered. Exact duplicates with different source pairs can fall on both sides of the validation split; this touches at most the 51 extra training instances and never the development set.
 
 
-\section{Implementation Details}
+\section{Implementation details}
 \label{app:implementation}
 
 \Cref{tab:implementation} lists each part of the implementation with the file that holds it.
 
-\begin{table}[t]
+\begin{table}[H]
 \centering
 \small
-\begin{tabular}{@{}p{0.50\columnwidth}p{0.44\columnwidth}@{}}
+\begin{tabular}{@{}L{0.50\columnwidth}L{0.44\columnwidth}@{}}
 \toprule
 Part & Where \\
 \midrule
@@ -266,17 +259,17 @@ Reliability notebook & notebook 02 \\
 \label{tab:implementation}
 \end{table}
 
-\paragraph{Configuration and seeds.}
+\subsection{Configuration and seeds}
 All settings live in one frozen \texttt{DecoderConfig}: model name, adapter rank, scaling, dropout and target modules, token limit, batch size, epochs, learning rate, warm-up, weight decay, $\lambda$ and the seed. The configuration is written next to every result. Two further settings change memory use and leave the optimisation step as it is: a step's pairs can pass through the model a few at a time with their gradients added up, and activations can be computed in bfloat16 on a GPU while the weights stay in float32.
 
-\paragraph{Checkpoints.}
+\subsection{Checkpoints}
 \texttt{save} writes the adapter weights and the configuration, and \texttt{load} restores a classifier whose scores are identical to the saved one. During training the full state (adapters, optimiser, schedule, random generators, history) is also written after every epoch. A run that is interrupted continues from its last finished epoch and ends with the same losses and predictions as an uninterrupted one. We built this in before the first GPU run, because rented GPU containers can be preempted.
 
-\paragraph{Tests.}
+\subsection{Tests}
 Every module was written after its test. The decoder tests train a one-layer, randomly initialised model of the same architecture family over a word-level vocabulary, so they download nothing and finish in seconds. They check, among other things, that the backbone weights are bit-identical after training, that a score does not depend on what else is in the batch, that the reversed order of a pair is scored like its twin, that a prompt over the limit is an error, that the same seed gives the same model, and that symmetrized predictions of a pair and its twin always agree under the reversal rule with \NO{} mapped to itself. One integration test trains on the twelve-row fixture and passes both decodings through the official scorer. One regression test pins the mistake described in \cref{sec:preliminary}: the official scorer counts a \NO{} answer on a reversible pair as inconsistent.
 
 
-\paragraph{What a run folder records.}
+\subsection{What a run folder records}
 Every recorded run folder contains \texttt{config.json}. Its common fields are the random
 seed, track, task-data commit, project-repository commit, dirty-worktree flag, and exact
 command. A run can add method-specific fields such as the resample count, comparison names,
@@ -286,15 +279,15 @@ outputs remain under the uncommitted \texttt{artifacts/} directory. GPU checkpoi
 kept on the uncommitted Modal volume \texttt{dico-nli-runs}.
 
 
-\section{Assignment 3 Run List}
+\section{Assignment 3 run list}
 \label{app:planned}
 
-\Cref{tab:planned} belongs to \cref{sec:planned}.
+\Cref{tab:planned} lists the runs summarised in \cref{sec:planned}.
 
-\begin{table*}[t]
+\begin{table}[H]
 \centering
 \small
-\begin{tabular}{@{}p{0.05\textwidth}p{0.33\textwidth}p{0.10\textwidth}p{0.30\textwidth}r@{}}
+\begin{tabular}{@{}L{0.05\textwidth}L{0.33\textwidth}L{0.10\textwidth}L{0.30\textwidth}r@{}}
 \toprule
 \# & System & Seeds & What it tests & GPU min \\
 \midrule
@@ -312,10 +305,10 @@ kept on the uncommitted Modal volume \texttt{dico-nli-runs}.
 \end{tabular}
 \caption{Assignment 3 run list. Symmetrized decoding reuses the saved probabilities of each trained run, so it adds no training. Row 4 runs on the CPU. Minutes are rough, from the measured timings named in the text.}
 \label{tab:planned}
-\end{table*}
+\end{table}
 
-\paragraph{Order.}
+\subsection{Order}
 We run the rows in the order of the table. Rows 1 and 2 come first because every comparison needs them, and row 2 with three seeds also gives the spread against which every later difference is judged. Row 3 is the main result. Row 4 costs no GPU time and can run whenever Fawwad's saved DeBERTa probabilities are at hand. Rows 5 to 7 follow once $\lambda$ is chosen, since each of them reuses it. The final development scores of each system are computed only after its configuration is fixed.
 
-\paragraph{What we drop first.}
+\subsection{What we drop first}
 If compute runs short, we drop row 8, then row 7, then row 6, in that order. Next the $\lambda$ grid shrinks to $\{0.5, 1\}$, which halves row 3. Rows 1 to 5 and three seeds per trained system are the minimum we would report; we would rather run fewer ablations than report single seeds.

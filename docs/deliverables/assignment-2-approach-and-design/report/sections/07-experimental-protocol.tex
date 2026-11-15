@@ -1,19 +1,12 @@
-\section{Experimental Protocol}
+\section{Experimental protocol}
 \label{sec:protocol}
 
-This section summarises the protocol that every run follows. \Cref{app:protocol} gives it in full, with the file behind each setting.
+Every run follows the protocol summarised here; \cref{app:protocol} gives it in full, with the file behind each setting.
 
-\paragraph{Data and splits.}
-We use Track 1 (English) of the organizers' repository at commit \texttt{588968e}: 3{,}042 training instances in 1{,}760 source pairs and 660 development instances in 383 source pairs. The official test set is released on 10 January 2027, after this course ends, so the development set is our test set. It is scored once per finished system, and our scores are local runs of the official scorer. Validation data come from train: 20\% of the source pairs, drawn with the run's seed. The split is by source pair, so the two orders of a pair never sit on opposite sides. With seed 13 it gives 2{,}443 instances to fit on and 599 to validate on.
+We use Track 1 (English) of the organizers' repository at commit \texttt{588968e}: 3,042 training instances in 1,760 source pairs, and 660 development instances in 383 source pairs. The official test set is released on 10 January 2027, after the course ends, so the development set serves as our test set. It is scored once per finished system, with a local run of the official scorer. Validation data come from train: 20\% of the source pairs, drawn with the run's seed, so that the two orders of a pair never sit on opposite sides. With seed 13 this gives 2,443 instances to train on and 599 to validate on.
 
-\paragraph{Input.}
-Phrases enter the prompt exactly as released. The prompt limit is 160 tokens with truncation off; the longest prompt over both orders of every instance is 132 tokens, and a longer one raises an error.
+Phrases enter the prompt exactly as released. The prompt limit is 160 tokens with truncation switched off; the longest prompt over both orders of every instance is 132 tokens, and a longer one would raise an error.
 
-\paragraph{Training and model selection.}
-The decoder trains for 3 epochs with AdamW, learning rate $2 \times 10^{-4}$, a linear schedule with 6\% warm-up, weight decay 0.01, gradient clipping at 1.0 and 16 pairs per step in both orders. The epoch with the best validation weighted F1 is kept. Everything except $\lambda$ is fixed before the first run. For Assignment 3, $\lambda$ is chosen from $\{0.25, 0.5, 1, 2\}$ by mean validation weighted F1 over the three seeds, with validation \HardCons{} reported beside it. Every trained system runs with seeds 13, 42 and 1234.
+The decoder trains for three epochs with AdamW at learning rate $2 \times 10^{-4}$, a linear schedule with 6\% warm-up, weight decay 0.01, gradient clipping at 1.0, and 16 pairs per step in both orders. The epoch with the best validation weighted F1 is kept. Everything except $\lambda$ is fixed before the first run. For Assignment 3, $\lambda$ is chosen from $\{0.25, 0.5, 1, 2\}$ by mean validation weighted F1 over the three seeds, with validation \HardCons{} reported beside it. Every trained system runs with seeds 13, 42 and 1234. Each decoder job runs on one NVIDIA L4 on Modal, with bfloat16 activations and float32 weights; peak memory was 16.1 GB, one epoch took about 135 seconds, and all library versions are pinned.
 
-\paragraph{Hardware and software.}
-Each decoder job runs on one NVIDIA L4 on Modal, with bfloat16 activations and float32 weights. Peak memory was 16.1~GB and one epoch took about 135 seconds. All library versions are pinned.
-
-\paragraph{Imbalance, leakage and duplicates.}
-The loss carries no class weights (\NO{}, the smallest class, is 15.7\% of train), and macro F1 and per-label F1 keep a weak class visible. No identifier reaches the model, both orders of a pair always sit on the same side of a split, and nothing is chosen on the development set. Seven unordered text pairs and 155 of the 712 distinct development phrases (22\%) also occur in train; we report this overlap and score the affected instances separately. No text field is missing. Train holds 43 groups of exact duplicates, one of them with conflicting labels (\emph{South Africans} / \emph{South Africa}, labelled \FW{} once and \NO{} once). We keep the data as released and report the conflict.
+The loss carries no class weights, since \NO{}, the smallest class, still makes up 15.7\% of train; macro F1 and per-label F1 keep a weak class visible. Leakage is blocked in three ways: no identifier reaches the model, both orders of a pair always sit on the same side of a split, and nothing is chosen on the development set. Seven unordered text pairs and 155 of the 712 distinct development phrases (22\%) also occur in train; we report this overlap and score the affected instances separately. No text field is missing. Train holds 43 groups of exact duplicates, one with conflicting labels: \emph{South Africans} / \emph{South Africa} is labelled \FW{} once and \NO{} once. We keep the data as released and report the conflict.

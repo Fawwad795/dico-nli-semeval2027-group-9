@@ -7,9 +7,11 @@ LaTeX source of the Assignment 2 report, on the ACL template in preprint mode (n
 | `main.tex` | Preamble, title, and the section includes |
 | `sections/` | The abstract, one file per section of the brief (01 proposed approach to 11 planned experiments), and `A-appendix.tex` |
 | `references.bib` | BibTeX for the whole report; every entry was checked at its source |
-| `figures/` | `architecture.pdf`, the system diagram |
+| `figures/` | `architecture.tex`, the system diagram as a standalone TikZ file, and `architecture.pdf`, built from it |
 
-The main text has the length of the Assignment 1 report: it ends on page 8, before the references. The appendix holds the detailed tables (evidence, ablations, training settings, implementation parts, run list) and the protocol in full.
+The main text has the length of the Assignment 1 report: it ends on page 8, where the references start. The appendix is set in one column and holds the detailed tables (evidence, ablations, training settings, implementation parts, run list) and the protocol in full.
+
+To rebuild the diagram after a change, run `pdflatex architecture.tex` in `figures/` and keep the resulting `architecture.pdf`.
 
 Who wrote what: sections 1, 8 and 9 Syed Fawwad Ahmed; sections 2 and 3 Ahmad Imran; sections 4, 5, 7 and 11 Aqib Raza; sections 6 and 10 M. Shaheer Saleh. The sections were then edited together into one text.
 
