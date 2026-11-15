@@ -1,0 +1,3 @@
+system_a,system_b,a_wrong_b_right,a_right_b_wrong,p_value
+deberta-seed13,both+logreg,37,189,9.330408417003249e-26
+deberta-seed13,deberta-seed1234,26,44,0.04139142867391546
