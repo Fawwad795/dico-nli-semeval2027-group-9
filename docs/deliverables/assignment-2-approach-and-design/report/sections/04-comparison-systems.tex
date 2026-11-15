@@ -1,44 +1,11 @@
-\section{Comparison Systems}
+\section{Comparison systems}
 \label{sec:comparison}
 
-Every system in \cref{tab:comparison} is trained on the same Track 1 training file, selects its settings on nothing but training data, and is scored once on the same 660 development instances by the official scorer, run unchanged. Where a system holds out validation data, it uses the same grouped 20\% split by source pair (\cref{sec:protocol}). The settings of the existing systems are read from their recorded \path{config.json} files, not restated from memory; the decoder settings are the fixed decisions of \cref{sec:approach}.
+Every system in \cref{tab:comparison} is trained on the same Track 1 training file, chooses its settings on training data only, and is scored once on the same 660 development instances by the official scorer, run unchanged. Where a system holds out validation data, it uses the same grouped 20\% split by source pair (\cref{sec:protocol}). The settings of the existing systems are read from their recorded \path{config.json} files; \cref{app:comparison} gives them in full.
 
-\begin{table*}[t]
-\centering
-\small
-\begin{tabular}{@{}p{0.10\textwidth}p{0.19\textwidth}p{0.42\textwidth}p{0.20\textwidth}@{}}
-\toprule
-Group & System & Representation and training & Settings recorded in \\
-\midrule
-3.1 Simple & majority & constant \FW{} (tie with \BW{} broken by label order) & \path{trivial-baselines} \\
- & uniform random & one uniform label per instance, seed 13 & same \\
- & always \EQ{} & constant & same \\
- & always \NO{} & constant & same \\
-\midrule
-3.2 Classical ML & cues + logreg & 17 standardised surface cues; logistic regression, $C = 1$, balanced class weights & \path{ml-baseline} \\
- & tfidf + logreg & word 1--2 gram TF-IDF of ``$a$ \texttt{[SEP]} $b$'', sublinear tf; same regression & same \\
- & both + logreg & cues and TF-IDF concatenated; same regression & same \\
- & cues + gbdt & 17 cues; histogram gradient boosting, 300 iterations, learning rate 0.05, balanced class weights & same \\
-\midrule
-3.3 Pretrained & DeBERTa-v3-base & fully fine-tuned, linear classification head, 5 epochs, 3 seeds & \path{deberta-base} \\
- & Qwen2.5-1.5B, zero-shot & frozen, prompted; scores of the four option letters & plan (\cref{sec:approach}) \\
- & Qwen2.5-1.5B, LoRA $\lambda = 0$ & frozen backbone, LoRA adapters, both orders, cross-entropy only; single-pass decoding & plan (\cref{sec:approach}) \\
-\midrule
-3.4 Proposed & Qwen2.5-1.5B, LoRA $\lambda > 0$ & as above plus the consistency term of \cref{eq:loss}; symmetrized decoding (\cref{eq:sym}) & plan (\cref{sec:approach}) \\
-\bottomrule
-\end{tabular}
-\caption{Comparison systems. The folders are \texttt{experiments/2026-09-29-<name>-track1/}. All systems share the training data, the grouped validation split where one is used, the development set and the official scorer.}
-\label{tab:comparison}
-\end{table*}
 
-\paragraph{Simple baselines (3.1).}
-They mark the floor and show what the metrics reward without any knowledge of the task. The labels are close to balanced, so the majority system is weak (weighted F1 0.129) and scores 0 on both consistency measures, since a constant \FW{} contradicts itself on every reversible pair. Always \EQ{} is the instructive one: \SoftCons{} 1.000 at weighted F1 0.110 (\path{experiments/2026-09-29-trivial-baselines-track1/results.md}). A system can be perfectly self-consistent and know nothing, so \SoftCons{} is never read on its own. Always \NO{} and the seeded random system complete the floor.
+The simple baselines mark the floor. Always \EQ{} is the telling one: it scores \SoftCons{} 1.000 at weighted F1 0.110, which is why \SoftCons{} is never read on its own. The classical baselines measure how far surface form goes. The cue model reaches \SoftCons{} 0.794 largely because its features behave predictably under reversal, which takes no understanding of the pair.
 
-\paragraph{Classical baselines (3.2).}
-They measure how far surface form goes. Preprocessing is minimal: the phrases are lower-cased and tokenised on word boundaries for TF-IDF, with a pattern that keeps one-letter words and keeps the separator as its own token, so the bigrams that straddle it record which side a word came from. The cues are computed from the raw strings and standardised on the training data. There is no feature selection. Both models use balanced class weights; the logistic regression runs up to 5{,}000 iterations, and every other hyperparameter is a scikit-learn default \citep{pedregosa-etal-2011-scikit}. The best of the four by grouped five-fold cross-validation on train was both + logreg (\path{config.json}, \path{best_by_cv}). The cue model matters most to this assignment: with \SoftCons{} 0.794 it is consistent largely because its features behave predictably under reversal, not because it understands the pair.
+DeBERTa-v3-base \citep{he-etal-2023-debertav3}, fully fine-tuned with a linear classification head, is the bar to reach: weighted F1 0.807, \SoftCons{} 0.877 and \HardCons{} 0.810, the mean of three seeds. The zero-shot decoder shows what the backbone knows before any adaptation.
 
-\paragraph{Pretrained baselines (3.3).}
-DeBERTa-v3-base \citep{he-etal-2023-debertav3} is the bar to reach: fully fine-tuned, with the sequence-classification head of Transformers \citep{wolf-etal-2020-transformers}, a linear layer over the pooled first-token representation. The pair is one sequence of at most 32 tokens; training is 5 epochs of AdamW at $2 \times 10^{-5}$, batch size 16, weight decay 0.01, 6\% linear warm-up, gradient clipping at 1.0, float32, and the epoch with the best validation weighted F1 is kept. Its mean over three seeds is weighted F1 0.807, \SoftCons{} 0.877 and \HardCons{} 0.810 (\path{experiments/2026-09-29-deberta-base-track1/results.md}). The zero-shot decoder is the same backbone as the proposed system with every weight frozen and no training at all; it answers through the prompt and the four option-letter scores of \cref{sec:approach}. It tells us what the backbone knows before adaptation. The plain-LoRA decoder ($\lambda = 0$) has the same prompt, adapters, data, both training orders and schedule as the proposed system and differs only in the two components we propose. It is therefore the comparison that isolates what they add.
-
-\paragraph{Proposed system (3.4).}
-Two components separate it from the plain-LoRA decoder: the Jensen--Shannon consistency term in the training loss and symmetrized decoding at prediction time. Each can be switched off independently (\cref{sec:ablations}). Symmetrized decoding raises \SoftCons{} by design, so \SoftCons{} is not evidence for it; weighted F1 and \HardCons{} are.
+The plain-LoRA decoder ($\lambda = 0$) isolates our contribution. It has the same prompt, adapters, data, training orders and schedule as the proposed system, and differs only in the two components we propose: the consistency term in the training loss and symmetrized decoding at inference. Each component can be switched off on its own (\cref{sec:ablations}).

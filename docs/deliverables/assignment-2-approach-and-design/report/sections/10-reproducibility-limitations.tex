@@ -1,49 +1,18 @@
-\section{Reproducibility and Limitations}
+\section{Reproducibility and limitations}
 \label{sec:reproducibility}
 
 \subsection{Reproducibility}
 
-Training runs use seeds 13, 42, and 1234. We report the mean and sample standard deviation
-over these seeds rather than selecting the best run. Every comparison uses identical train,
-held-out, and dev splits and the same fixed scorer through \texttt{dico\_nli.scoring.score}.
-For score differences, we use a paired bootstrap with 10,000 resamples and seed 13. The
-resampling unit is the source pair, which keeps both ordered instances together
-\citep{berg-kirkpatrick-etal-2012-empirical}. We report the observed A-minus-B difference and
-the 2.5th and 97.5th percentiles. We also apply the exact two-sided McNemar test to the two
-systems' per-instance correctness outcomes \citep{mcnemar1947}. A difference is described as
-separated on a metric only when its bootstrap interval excludes zero; McNemar supplies a
-paired check for accuracy.
+Training runs use seeds 13, 42 and 1234, and we report the mean and sample standard deviation over all three. For a given seed, the encoder and the decoder systems use the same grouped split of train. All systems share the development set and one fixed scorer, called through \texttt{dico\_nli.scoring.score}.
 
-Every recorded run folder contains \texttt{config.json}. Its common fields are the random
-seed, track, task-data commit, project-repository commit, dirty-worktree flag, and exact
-command. A run can add method-specific fields such as the resample count, comparison names,
-or training hyperparameters. The committed \texttt{experiments/} folders contain predictions,
-tables, scorer outputs, configurations, and findings. Model checkpoints and other large local
-outputs remain under the uncommitted \texttt{artifacts/} directory. GPU checkpoints are also
-kept on the uncommitted Modal volume \texttt{dico-nli-runs}.
+To compare two systems we use a paired bootstrap with 10,000 resamples and seed 13 \citep{berg-kirkpatrick-etal-2012-empirical}. It resamples source pairs, so both orders of a pair stay together, and reports the difference with its 95\% percentile interval. We also apply the exact two-sided McNemar test to the two systems' per-instance correctness \citep{mcnemar1947}. A difference counts as real on a metric only when its bootstrap interval excludes zero.
 
-The Assignment 1 DeBERTa run was executed twice on T4 GPUs after code-identity recording was
-added. All three seeds produced byte-identical dev prediction files on the repeat. This checks
-determinism for the recorded code, seed, and GPU type; it does not establish identical output
-on every accelerator or software stack.
+We ran both tests on the fixed Assignment 1 predictions. DeBERTa seed 13 is separated from the best classical system on all four metrics, with a weighted F1 difference of 0.228, interval $[0.175, 0.282]$. The same tests also separate two seeds of the same encoder on weighted F1: seed 13 exceeds seed 1234 by 0.029, interval $[0.002, 0.057]$, McNemar $p = 0.041$, while the \SoftCons{} and \HardCons{} intervals include zero. A single favourable seed can therefore pass a paired test on this development set, so claims about the proposed method rest on the mean over three seeds, with paired comparisons matched by seed.
+
+Every run folder records its seed, the data and code commits and the exact command (\cref{app:implementation}). The Assignment 1 DeBERTa run was executed twice on T4 GPUs and produced byte-identical development predictions for all three seeds, which checks determinism for that code, seed and GPU type. A repeat of the decoder run on the GPU has not been made yet.
 
 \subsection{Limitations}
 
-The dev set contains only 277 reversible pairs. One pair therefore changes SoftCons or
-HardCons by $1/277=0.00361$, or 0.36 percentage points. Confidence intervals can remain wide
-even when the point estimate changes by several pairs. McNemar's test is per instance, while
-the bootstrap retains the source-pair dependence; neither test turns this dev set into a new
-independent sample from the eventual evaluation population.
+The development set has only 277 reversible pairs, so one pair moves \SoftCons{} or \HardCons{} by 0.36 percentage points, and confidence intervals stay wide. We study English Track 1 only, and results may not carry to Spanish, Basque or the mixed-language track. Train and development share 155 of the 712 distinct development phrases (22\%), and scores are much higher when phrases recur (\cref{sec:evaluation}), which limits any claim of lexical generalisation.
 
-We study English track 1 only. Results may not carry to Spanish, Basque, or mixed-language
-tracks. Train and dev also share 155 of 712 unique dev phrases (22\%), and performance is much
-higher when phrases recur: DeBERTa seed 13 obtains 0.970 weighted F1 when both phrases occur
-in train and 0.757 when neither occurs. This association does not identify whether any one
-prediction was memorized, but it limits a simple claim of lexical generalization.
-
-Finally, the public dev split doubles as the course test set. It was scored repeatedly for
-Assignment 1 analysis and now informs the Assignment 2 evaluation design. We do not tune the
-proposed method against individual dev examples, but repeated inspection can still bias
-research choices. Model selection therefore uses only a fixed grouped holdout from train,
-and final claims must be revisited on the official hidden test set when it is released.
-
+Finally, the public development set doubles as our test set. We never tune the method on individual development examples, but repeated inspection can still bias research choices, so final claims must be checked on the official test set once it is released.

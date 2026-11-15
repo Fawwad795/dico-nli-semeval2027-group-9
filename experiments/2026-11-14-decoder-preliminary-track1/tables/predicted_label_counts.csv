@@ -1,0 +1,5 @@
+,gold,qwen2.5-0.5b-zero-shot__single,qwen2.5-0.5b-zero-shot__symmetrized,qwen2.5-1.5b-zero-shot__single,qwen2.5-1.5b-zero-shot__symmetrized,qwen2.5-1.5b-lora-lambda0-seed13__single,qwen2.5-1.5b-lora-lambda0-seed13__symmetrized,qwen2.5-1.5b-lora-lambda1-seed13__single,qwen2.5-1.5b-lora-lambda1-seed13__symmetrized
+EQUIVALENCE,174,644,660,125,154,158,159,196,197
+FORWARD_ENTAILMENT,190,16,0,426,224,195,189,210,207
+BACKWARD_ENTAILMENT,190,0,0,52,229,182,186,199,208
+NEGATIVE_OTHER,106,0,0,57,53,125,126,55,48

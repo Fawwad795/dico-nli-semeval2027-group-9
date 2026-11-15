@@ -1,0 +1,3 @@
+split,negatives,with_reversed_copy,reversed_copies
+train,478,3,on Wednesday / on Friday: NEGATIVE_OTHER; South Africa / South Africans: BACKWARD_ENTAILMENT; on Friday / on Wednesday: NEGATIVE_OTHER
+dev,106,0,

@@ -5,7 +5,7 @@
 | | Due | Branch area | Lands in |
 |---|---|---|---|
 | Assignment 1: problem formulation, literature and baseline | Sunday 4 October 2026, 11:59 PM (extended from 2 October) | `assignment-1/` | `docs/deliverables/assignment-1-problem-and-baseline/` |
-| Assignment 2: proposed approach and experimental design | Friday 13 November 2026, 11:59 PM | `assignment-2/` | `docs/deliverables/assignment-2-approach-and-design/` |
+| Assignment 2: proposed approach and experimental design | Sunday 15 November 2026, 11:59 PM (extended from 13 November) | `assignment-2/` | `docs/deliverables/assignment-2-approach-and-design/` |
 | Assignment 3: experiments, analysis and research paper | Friday 4 December 2026, 11:59 PM | `assignment-3/` | `docs/deliverables/assignment-3-experiments-and-paper/` |
 
 Notebooks that produce an assignment's runs live under `notebooks/assignment-<n>/`.
@@ -26,12 +26,18 @@ The professor's brief (received 2026-10-02) is `docs/deliverables/assignment-1-p
 
 ## Assignment 2: proposed approach and experimental design
 
-- Proposed method
-- Justification
-- Comparison systems
-- Evaluation measures
-- Experimental protocol
-- Initial implementation
+The professor's brief (received 2026-11-13) is `docs/deliverables/assignment-2-approach-and-design/Assignment_2_Proposed_Approach_and_Experimental_Design.pdf` and replaces the generic list. The plan, the fixed decisions and the split of work are GitHub issue 13; the four task issues are 14 to 17. What the brief requires:
+
+- Core principle: naming a model is not a proposed approach. Every design decision traces to Assignment 1 evidence.
+- Proposed method specific enough to reimplement: flow from input to prediction, target, objective, loss, prediction strategy, preprocessing and sampling, expected limitations. A method diagram that marks trainable and frozen components.
+- Justification as a table (evidence from Assignment 1, design decision, expected effect) and as observation, interpretation, modeling implication. "Modern" or "widely used" is not a justification.
+- Comparison systems on identical splits and scorer: simple baseline, classical ML baseline, pretrained baseline (state frozen, fine-tuned or prompted, and the head), proposed system.
+- Ablation plan as a table: ablation, hypothesis, expected interpretation. Each row answers a research question.
+- Evaluation: the official metric defined mathematically, secondary metrics, subgroup and robustness analysis.
+- Full experimental protocol: data version and partitions, validation split, preprocessing, every training setting, seeds, hardware, software, model selection, search strategy, duplicates, imbalance, leakage prevention, local dev against official test.
+- Statistical reliability: several seeds, mean and standard deviation, confidence intervals or significance tests, no superiority claim on a small difference.
+- Initial implementation that runs end to end, and a preliminary verification reported as a pipeline check, never as a performance claim.
+- Report in LaTeX in eleven sections: proposed approach, method justification, system architecture, comparison systems, ablation plan, evaluation measures, experimental protocol, initial implementation, preliminary results, reproducibility and limitations, planned experiments.
 
 ## Assignment 3: experiments, analysis and research paper
 

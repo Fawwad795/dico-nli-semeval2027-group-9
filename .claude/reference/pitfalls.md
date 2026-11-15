@@ -401,6 +401,21 @@ classified feature columns this way failed on the first string column. Use
 `pd.api.types.is_numeric_dtype` / `is_string_dtype` (they accept the Series itself), and expect
 `object` to be rare in frames pandas built from Python strings.
 
+## The official SoftCons counts NEGATIVE_OTHER on a reversible pair as inconsistent (2026-11-14)
+
+The Assignment 2 plan claimed that symmetrized decoding (average the two orders of a pair, then
+argmax) makes SoftCons 1.0 "by construction", and that claim went into five issue texts and two
+report sections before the first trained run scored 0.906 and 0.986. The two predictions of a pair
+do always agree under the project's rule, where NEGATIVE_OTHER reverses to itself. The scorer has
+no reverse for NEGATIVE_OTHER and counts that answer on a reversible pair as incompatible, which
+the Assignment 1 report already said in one sentence. The unit and integration tests passed
+because the tiny fixture model never answered NEGATIVE_OTHER on a reversible pair.
+
+Before writing "by construction" about an official metric, test the claim against the official
+scorer on a case built to break it, not against our own definition of the rule. A warm Modal
+container is also reused across jobs of one `starmap`, so `torch.cuda.max_memory_allocated()`
+carries over; reset it at the start of each job.
+
 ## Renaming the project folder breaks the uv venv's script launchers (2026-09-29)
 
 After the repository folder was renamed, `uv sync` reported success and `uv run python -c

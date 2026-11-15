@@ -1,89 +1,65 @@
-\section{Method Justification}
-\label{sec:method-justification}
+\section{Method justification}
+\label{sec:justification}
 
-\subsection{Evidence and design decisions}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/architecture.pdf}
+\caption{The proposed system; the legend gives what each colour marks, and the blue box holds the only trained weights. Both orders of a pair share the prompt, the tokenizer and the model weights. $\tilde{p}_{ba} = P\,p_{ba}$ is the reversed-order prediction mapped back to the labels of $(a,b)$, as in \cref{eq:loss,eq:sym}.}
+\label{fig:a2-architecture}
+\end{figure*}
+
+Each design choice in \cref{sec:approach} answers something Assignment 1 measured. \Cref{tab:method-justification} in \cref{app:evidence} maps eleven findings, each with its source file, to a decision and to the effect we expect to test.
+
+\subsection{Evidence from Assignment 1}
 \label{sec:method-evidence}
 
-\begin{table*}[!t]
-\centering
-\footnotesize
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{0.88}
-\begin{tabular}{p{0.30\textwidth}p{0.32\textwidth}p{0.30\textwidth}}
-\toprule
-Evidence (file or source) & Design decision & Expected effect to test \\
-\midrule
-\multicolumn{3}{p{0.92\textwidth}}{\scriptsize Folder keys: EDA = \url{experiments/2026-09-29-eda-track1}; ML = \url{experiments/2026-09-29-ml-baseline-track1}; encoder = \url{experiments/2026-09-29-deberta-base-track1}; error = \url{experiments/2026-10-02-error-analysis-track1}.}\\
-\addlinespace[2pt]
-\texttt{EDA/findings.md}: 78\% of forward premises are longer; phrases average 3 words, max 15. &
-Keep both phrases ordered; cap input at 160 tokens and check truncation. &
-Keep direction cues without relying on length alone. \\
-\addlinespace[2pt]
-\texttt{EDA/findings.md}: containment is 45\% forward vs. 2\% backward. &
-Preserve order and train on each orientation's label. &
-Use containment when present; test beyond it. \\
-\addlinespace[2pt]
-\texttt{EDA/findings.md}: cosine medians 0.76 (equivalence), 0.77 (directional), 0.64 (negative); symmetric. &
-Use ordered context, not cosine alone. &
-Use relatedness while preserving direction. \\
-\addlinespace[2pt]
-\texttt{ML/findings.md}; \texttt{error/findings.md}: cue weighted F1 0.531, SoftCons 0.794; 67/277 reversible dev pairs are consistently wrong. &
-Combine classification loss with reversal consistency. &
-Test for better consistency without repeating those errors. \\
-\addlinespace[2pt]
-\texttt{encoder/findings.md}; \texttt{error/pair\_outcomes.csv}: weighted F1 0.807 $\pm$ 0.015, SoftCons 0.877 $\pm$ 0.010; 32--37 inconsistent pairs per seed. &
-Compare encoder fine-tuning and consistency-aware training on the same split. &
-Test decoder consistency while tracking F1. \\
-\addlinespace[2pt]
-\texttt{EDA/pair\_structure.csv}: 3,042 instances; 1,282 reversible pairs; 478 negatives. &
-Group each pair with its reversal; do not count it as new data. &
-Use existing pair structure without overstating sample size. \\
-\addlinespace[2pt]
-\texttt{EDA/label\_distribution.csv}: 26.4\% equivalence, 29.0\% each direction, 15.7\% negative. &
-Start unweighted; report weighted and macro F1 and per-class scores. &
-Avoid unnecessary weights; expose negative-class errors. \\
-\addlinespace[2pt]
-\texttt{encoder/dev\_per\_label.csv}: mean F1 0.781 (equivalence), 0.627 (negative), 0.863/0.874 (directions). &
-Track equivalence and negative errors, including manual categories. &
-Test semantic boundaries, not only direction. \\
-\addlinespace[2pt]
-\texttt{datasets/dico-nli.json}: 3,042 English examples; Qwen2.5-1.5B-Instruct. &
-Freeze the backbone; train attention LoRA (rank 16, alpha 32, dropout 0.05). &
-Reduce trainable parameters; do not assume a quality gain \citep{hu-etal-2022-lora,qwen2025qwen25technicalreport}. \\
-\addlinespace[2pt]
-\texttt{Apaolaza et al. (2026)}: task pilot decoder-only models trail encoders on NLI and coherence. &
-Target a decoder; compare with DeBERTa and classical baselines. &
-Test the decoder gap; pilot results do not predict our score \citep{apaolaza-larraya-etal-2026-assessing}. \\
-\addlinespace[2pt]
-\texttt{Wang et al. (2019)}: evaluates NLI pair swaps and swapped-example training. &
-Use label-aligned loss and inference symmetrization for four labels. &
-Test a distributional constraint beyond swap augmentation \citep{wang-sun-xing-2019-swap}. \\
-\bottomrule
-\end{tabular}
-\caption{Assignment 1 evidence mapped to method decisions and falsifiable expectations. Values are descriptive results from the recorded runs, not performance guarantees for Assignment 2.}
-\label{tab:method-justification}
-\end{table*}
+The four findings that shaped the method most are below. Each paragraph gives the observation, what we read from it, and the design decision that follows.
 
-\paragraph{Surface evidence.}
-\textbf{Observation:} forward entailment often has a longer premise and full containment favors the forward direction, while cosine similarity cannot encode direction. \textbf{Interpretation:} ordered surface cues help, but leave cases unresolved; symmetric similarity can measure relatedness, not direction. \textbf{Modeling implication:} give the decoder both phrases in order and use cue-only and cosine systems as interpretable comparisons, not complete solutions.
+The order of the phrases carries the direction. In 78\% of forward training instances the premise is the longer phrase, and full containment favours the forward direction (45\% of forward pairs against 2\% of backward ones). The cosine similarity of the two phrases, however, is the same for forward and backward pairs. Surface cues help but leave many cases open, and a symmetric similarity cannot show which way the entailment runs. The decoder reads both phrases in order, and the cue-only and cosine systems stay as interpretable comparisons.
 
-\paragraph{Consistency is not correctness.}
-\textbf{Observation:} 67 of 277 reversible dev pairs are consistently wrong under the cue model, and the encoder has 32--37 inconsistent pairs per seed. \textbf{Interpretation:} reversal agreement and gold accuracy are separate properties, even when aggregate SoftCons is high. \textbf{Modeling implication:} combine supervised classification with a distribution-level consistency penalty, and report weighted F1, macro F1, SoftCons, HardCons, and per-label results together.
+A consistent model can still be wrong. Under the cue model, 67 of the 277 reversible development pairs are consistent but wrong, and the encoder still breaks the reversal rule on 32 to 37 pairs per seed. We therefore combine supervised training with a consistency penalty on the pair, and report weighted F1, macro F1, \SoftCons{}, \HardCons{} and per-label scores together.
 
-\paragraph{Use the available pair structure.}
-\textbf{Observation:} training already contains 1,282 reversible pairs, while negative examples have no reversed twins. \textbf{Interpretation:} adding reversed copies alone would repeat observed inputs, and the negative label's reversal rule is not established by pair counts. \textbf{Modeling implication:} process both orientations together, exchange forward and backward labels, keep equivalence fixed, and treat \texttt{NEGATIVE\_OTHER} as fixed only under an explicit assumption to check in error analysis.
+The training file already contains both orders of its 1,282 reversible pairs, while its 478 negatives have no official reversed twin (the phrases of one negative pair do occur reversed, again as a negative). Adding reversed copies alone would repeat inputs the model has already seen, and the pair counts say nothing about how a negative reverses. We train on both orders of every pair, swap the directional labels, and treat \NO{} as its own reverse only as an explicit assumption, which the ablation without reversed negatives tests (\cref{sec:ablations}).
 
-\paragraph{Adapt modestly and inspect hard classes.}
-\textbf{Observation:} with 3,042 training instances, DeBERTa's mean F1 is lower for \texttt{NEGATIVE\_OTHER} and equivalence than for either directional class. \textbf{Interpretation:} a small-data decoder experiment should test semantic boundaries as well as direction, with parameter cost kept manageable. \textbf{Modeling implication:} use frozen-backbone LoRA and class-token scoring; PET and R-Drop motivate scoring and distribution matching but do not establish this method's performance \citep{schick-schutze-2021-exploiting,liang-etal-2021-rdrop}.
+The hard classes are semantic, and the training set is small. With 3,042 training instances, DeBERTa's mean F1 is lower on \NO{} (0.627) and \EQ{} (0.781) than on either direction (0.863 and 0.874). The experiment should test where meaning changes as well as direction, at a modest parameter cost. We train adapters on a frozen backbone and classify by scoring label tokens. Pattern-based label scoring \citep{schick-schutze-2021-exploiting} and output-matching regularisation \citep{liang-etal-2021-rdrop} are precedents for these two choices; neither shows that this method will work.
 
-\subsection{Relation to the closest prior work}
+\subsection{Closest prior work}
 \label{sec:wang-comparison}
 
-Wang et al. (2019) are the closest prior work because they make premise/hypothesis reversal an explicit NLI robustness test and vary how many swapped examples enter training. Their experiments use the three-way entailment, neutral, and contradiction setting. DiCo-NLI instead has four labels, including separate forward and backward entailment. Our method aligns the reversed output by a label permutation, penalizes the Jensen--Shannon divergence between the two aligned distributions, and averages them at inference. It also tests a $\lambda=0$ classification-only run against $\lambda=1$. These choices are motivated by the existing reversible-pair structure: swap augmentation alone does not express a consistency objective or inference-time symmetrization. We therefore treat Wang et al. as the closest precedent and a methodological contrast, not as evidence that our four-way method will improve performance.
+\citet{wang-sun-xing-2019-swap} are the closest prior work. They make premise and hypothesis reversal an explicit robustness test for NLI and vary how many swapped examples enter training, in the three-way entailment, neutral and contradiction setting. DiCo-NLI has four labels, with separate forward and backward entailment. Our method aligns the reversed output by a label permutation, penalises the divergence between the two aligned distributions, and averages them at inference. Swap augmentation alone provides neither the consistency objective nor the averaging step. We treat their work as a precedent and a contrast, and it gives no evidence that our method will improve performance.
 
-\subsection{Limitations and error categories}
+\subsection{Limitations of the evidence}
 \label{sec:method-limitations}
 
-The evidence comes from one English track and one recorded development split. The train and dev sets share phrases and seven unordered text pairs, and the reference files lack source metadata, limiting claims about domain robustness. The negative class has no reversed twins, so its reversal rule is assumed. The short maximum observed phrase length supports a compact prompt, but the tokenizer's actual option-token behavior and truncation must be checked in implementation. LoRA reduces the number of trainable parameters but does not establish that a 1.5B decoder will beat DeBERTa, nor that a consistency term will improve both accuracy and consistency. The planned comparison varies $\lambda$ between 0 and 1; a broader search and more seeds remain future work.
+The evidence comes from one English track and one development split, and the reference files lack source metadata, which limits claims about other domains. The reversal rule for \NO{} is our assumption. LoRA reduces the number of trainable parameters, but nothing yet shows that a 1.5B decoder will beat DeBERTa. The consistency term may also suppress \NO{}: on the one seed we have, the $\lambda = 1$ model answers it 55 times against 106 in the gold labels (\cref{sec:preliminary}).
 
-The manual review of 20 selected seed-13 encoder errors found five recurring categories: prepositional-relation errors, numeral or quantifier errors, near-synonym or taxonomy errors, one-word negative contrasts, and chunking or fragment errors. These are four examples per category in that selected set, not estimates of corpus-wide error rates. We will use them to organize qualitative analysis and will avoid treating their counts as a representative error distribution.
+A manual review of 20 seed-13 encoder errors found five recurring categories: prepositional relations, numerals or quantifiers, near-synonyms or taxonomy, one-word negative contrasts, and phrase fragments. We use them to organise the qualitative analysis. Their counts come from a selected set and are no estimate of error rates.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{@{}N{0.10\textwidth}N{0.19\textwidth}L{0.42\textwidth}N{0.20\textwidth}@{}}
+\toprule
+Group & System & Representation and training & Settings recorded in \\
+\midrule
+Simple & majority & constant \FW{} (tie with \BW{} broken by label order) & \path{trivial-baselines} \\
+ & uniform random & one uniform label per instance, seed 13 & same \\
+ & always \EQ{} & constant & same \\
+ & always \NO{} & constant & same \\
+\midrule
+Classical ML & cues + logreg & 17 standardised surface cues; logistic regression, ${C = 1}$, balanced class weights & \path{ml-baseline} \\
+ & tfidf + logreg & word 1--2 gram TF-IDF of ``$a$ \texttt{[SEP]} $b$'', sublinear tf; same regression & same \\
+ & both + logreg & cues and TF-IDF concatenated; same regression & same \\
+ & cues + gbdt & 17 cues; histogram gradient boosting, 300 iterations, learning rate 0.05, balanced class weights & same \\
+\midrule
+Pretrained & DeBERTa-v3-base & fully fine-tuned, linear classification head, 5 epochs, 3 seeds & \path{deberta-base} \\
+ & Qwen2.5-1.5B, zero-shot & frozen, prompted; scores of the four option letters & \cref{sec:approach} \\
+ & Qwen2.5-1.5B, LoRA, ${\lambda = 0}$ & frozen backbone, LoRA adapters, both orders, cross-entropy only; single-pass decoding & \cref{sec:approach} \\
+\midrule
+Proposed & Qwen2.5-1.5B, LoRA, ${\lambda > 0}$ & as above, plus the consistency term of \cref{eq:loss} and symmetrized decoding (\cref{eq:sym}) & \cref{sec:approach} \\
+\bottomrule
+\end{tabular}
+\caption{Comparison systems. The settings folders are \texttt{experiments/2026-09-29-<name>-track1/}. All systems share the training data, the grouped validation split where one is used, the development set and the official scorer.}
+\label{tab:comparison}
+\end{table*}

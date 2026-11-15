@@ -1,0 +1,5 @@
+system,reversible_pairs,counted_inconsistent,both_orders_negative,exact_forward_backward_ties,unexplained
+qwen2.5-0.5b-zero-shot,277,0,0,0,0
+qwen2.5-1.5b-zero-shot,277,14,13,1,0
+qwen2.5-1.5b-lora-lambda0-seed13,277,26,26,0,0
+qwen2.5-1.5b-lora-lambda1-seed13,277,4,4,0,0

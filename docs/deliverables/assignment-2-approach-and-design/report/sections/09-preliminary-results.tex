@@ -1,0 +1,49 @@
+\section{Preliminary results}
+\label{sec:preliminary}
+
+We ran the implementation once, end to end, to check that the system and the evaluation pipeline work. Every trained system below uses a single seed (13). The numbers verify the pipeline, and we draw no conclusion from a difference between two rows.
+
+\subsection{Setup and scores}
+
+Four systems were scored on the 660 development instances, each with single-pass and with symmetrized decoding: the 0.5B model without training, on a laptop CPU; and the 1.5B model without training, with LoRA at $\lambda = 0$ and with LoRA at $\lambda = 1$, on one NVIDIA L4. A three-epoch training run takes about seven minutes, and the adapters hold 0.28\% of the model's parameters.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+System & Decoding & wF1 & Soft & Hard \\
+\midrule
+0.5B, no training & single & 0.112 & 0.957 & 0.310 \\
+ & sym. & 0.110 & 1.000 & 0.314 \\
+\addlinespace[2pt]
+1.5B, no training & single & 0.267 & 0.144 & 0.087 \\
+ & sym. & 0.359 & 0.949 & 0.383 \\
+\addlinespace[2pt]
+1.5B, LoRA, $\lambda = 0$ & single & 0.823 & 0.801 & 0.776 \\
+ & sym. & 0.836 & 0.906 & 0.859 \\
+\addlinespace[2pt]
+1.5B, LoRA, $\lambda = 1$ & single & 0.792 & 0.845 & 0.823 \\
+ & sym. & 0.809 & 0.986 & 0.910 \\
+\midrule
+DeBERTa-v3-base & single & 0.807 & 0.877 & 0.810 \\
+\bottomrule
+\end{tabular}
+\caption{Pipeline check on the Track 1 development set, official scorer. One seed per decoder system; the DeBERTa row is the three-seed mean from Assignment 1. wF1 is weighted F1; Soft and Hard are \SoftCons{} and \HardCons{}.}
+\label{tab:preliminary}
+\end{table}
+
+Without training, the two model sizes fail in opposite ways (\cref{tab:preliminary}). The 0.5B model answers \EQ{} for 644 of the 660 instances, so it lands on the always-\EQ{} baseline: self-consistent and wrong. The 1.5B model answers \FW{} for 426 instances whichever order it is shown, and so contradicts itself on 237 of the 277 pairs. Neither reads direction.
+
+After training, the predicted label counts are close to the gold counts. At $\lambda = 0$ the model answers \EQ{}, \FW{}, \BW{} and \NO{} 158, 195, 182 and 125 times, against 174, 190, 190 and 106 in the gold labels, and 215 of the 277 pairs are right in both directions.
+
+On this one seed, plain LoRA is in the encoder's range on weighted F1 and below it on \SoftCons{}, as H5 expects. The consistency term raised single-pass \SoftCons{} from 0.801 to 0.845 and lowered weighted F1 from 0.823 to 0.792, a loss that sits in \NO{}, which the $\lambda = 1$ model answers only 55 times. The two runs also kept different epochs, the third and the first, so the comparison is confounded. Symmetrized decoding raised weighted F1 and \HardCons{} in all three 1.5B systems.
+
+\subsection{A claim the run disproved}
+
+We had expected symmetrized decoding to make \SoftCons{} equal to 1 by construction. The first trained run scored 0.906 and 0.986. The two predictions of a pair do agree under our rule, but the official scorer counts a \NO{} answer on a reversible pair as incompatible. We traced every pair the scorer counts as inconsistent under symmetrized decoding. For the two trained systems all of them, 26 and 4, are pairs answered \NO{} in both orders; for the untrained 1.5B model there are 13 such pairs and one exact tie between \FW{} and \BW{}. No case is left unexplained, and a regression test now pins the behaviour.
+
+\subsection{Open issues}
+
+Every comparison above needs three seeds and the paired tests of \cref{sec:reproducibility} before it means anything. We will report how many reversible pairs each system answers \NO{}, next to \SoftCons{}. And we need to find out whether the consistency term suppresses \NO{} in general, which the ablation without reversed negatives addresses directly.

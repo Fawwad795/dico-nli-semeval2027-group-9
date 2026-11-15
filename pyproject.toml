@@ -8,6 +8,7 @@ dependencies = [
     "en-core-web-sm",
     "matplotlib>=3.11.2",
     "pandas>=3.0.6",
+    "peft>=0.21.3",
     "scikit-learn>=1.9.1",
     "seaborn>=0.13.2",
     "sentence-transformers>=6.1.0",

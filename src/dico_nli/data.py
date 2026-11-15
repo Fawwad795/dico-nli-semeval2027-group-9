@@ -85,6 +85,23 @@ def group_pairs(instances: Iterable[Instance]) -> dict[str, list[Instance]]:
     return groups
 
 
+def reversed_text_twins(
+    instances: Iterable[Instance], pool: Iterable[Instance]
+) -> list[tuple[Instance, Instance]]:
+    """``(instance, twin)`` for every instance whose two phrases occur in ``pool`` in the opposite
+    order. The match is on the text alone, so it also finds a reversed copy that the organizers
+    did not link through ``reverse_pair_id``, such as the reverse of a NEGATIVE_OTHER pair."""
+    by_text: dict[tuple[str, str], list[Instance]] = {}
+    for candidate in pool:
+        by_text.setdefault((candidate.text1, candidate.text2), []).append(candidate)
+    return [
+        (instance, twin)
+        for instance in instances
+        for twin in by_text.get((instance.text2, instance.text1), [])
+        if twin.instance_id != instance.instance_id
+    ]
+
+
 def grouped_split(
     instances: Sequence[Instance], holdout_fraction: float, seed: int
 ) -> tuple[list[Instance], list[Instance]]:

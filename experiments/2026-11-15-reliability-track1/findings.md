@@ -48,6 +48,12 @@ exclude zero.
 The DeBERTa-to-both+logreg gap is much larger than the observed encoder seed gap on every
 metric, so the Assignment 1 encoder remains a defensible strong baseline. Evaluation of the
 proposed decoder method must show the complete weighted-F1, SoftCons, and HardCons profile.
-SoftCons alone cannot establish improvement because symmetrized decoding, like constant
-EQUIVALENCE prediction, makes it 1.0 by construction.
+SoftCons alone cannot establish improvement because symmetrized decoding raises it by design,
+and constant EQUIVALENCE prediction scores 1.0 on it.
+
+Correction, 15 November 2026: this paragraph first said that symmetrized decoding makes
+SoftCons 1.0 by construction. The preliminary decoder run measured 0.906 and 0.986. The
+official scorer counts a NEGATIVE_OTHER answer on a reversible pair as incompatible, so the
+SoftCons of symmetrized predictions is one minus the share of reversible pairs answered
+NEGATIVE_OTHER (`experiments/2026-11-14-decoder-preliminary-track1/findings.md`).
 

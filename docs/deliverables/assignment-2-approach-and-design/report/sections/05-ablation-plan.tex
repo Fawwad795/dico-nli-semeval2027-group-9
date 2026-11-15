@@ -1,48 +1,18 @@
-\section{Ablation Plan}
+\section{Ablation plan}
 \label{sec:ablations}
 
-Each ablation in \cref{tab:ablations} changes one thing against a named reference system and is decided by a metric fixed in advance. All decoder ablations run with the three seeds of \cref{sec:protocol} and are compared as mean and standard deviation; a difference smaller than the spread across seeds is reported as no difference. Every row also says what the outcome that goes against us would mean.
+Each ablation changes one thing against a named reference system and is decided by a metric fixed in advance. \Cref{tab:ablations} in \cref{app:ablations} gives, for every row, the hypothesis, the deciding metric and what each outcome would mean, including the outcome that goes against us.
 
-\begin{table*}[t]
-\centering
-\small
-\begin{tabular}{@{}p{0.17\textwidth}p{0.30\textwidth}p{0.45\textwidth}@{}}
-\toprule
-Ablation & Hypothesis & Expected interpretation (deciding metric in bold) \\
-\midrule
-Frozen zero-shot against LoRA ($\lambda = 0$) &
-H4, H5: task adaptation is needed; zero-shot is far below the encoder on all three scores and LoRA recovers most of the weighted F1 gap. &
-\textbf{Weighted F1 and \HardCons{}}, single-pass. A large gain means generic instruction tuning does not carry the four-way directional scheme. If zero-shot came close to LoRA, the adapters would add little and the comparison with DeBERTa would rest on the backbone alone. A high zero-shot \SoftCons{} with low weighted F1 is the always-\EQ{} pattern, not knowledge. \\
-\addlinespace
-$\lambda = 0$ against $\lambda > 0$ &
-H6: the consistency term raises single-pass \SoftCons{} without lowering weighted F1. &
-\textbf{Single-pass \SoftCons{}, with weighted F1 as the constraint.} Higher \SoftCons{} at equal weighted F1 supports H6. Higher \SoftCons{} at lower weighted F1 means the term buys agreement with correctness, possibly by moving pairs to \EQ{} or \NO{}, which are their own reverses; the consistent-but-wrong pair count and the predicted-label counts show that. No change means the both-order cross-entropy already teaches the rule. \\
-\addlinespace
-Single-pass against symmetrized decoding &
-H7: averaging the two orders raises \HardCons{} and weighted F1, not only \SoftCons{}. &
-\textbf{\HardCons{} and weighted F1.} \SoftCons{} is not evidence here, because symmetrized decoding raises it by design. If only \SoftCons{} moves, the averaging repairs agreement and leaves correctness alone. A drop in weighted F1 would mean the weaker order drags the stronger one down. No training is needed: both decodings come from the same trained adapters. \\
-\addlinespace
-With and without the reversed copies of the negatives &
-The assumption $\Rev(\NO{}) = \NO{}$ helps \NO{} F1, or at least does not hurt it. &
-\textbf{\NO{} F1}, plus the number of reversible pairs answered \NO{}. Without the copies, the second cross-entropy term and the consistency term skip the 478 negatives. If \NO{} F1 rises when the copies are removed, the assumption is wrong for this data; the training file can barely test it, with a single real reversed negative (\path{negatives_with_reversed_copy.csv} in \path{experiments/2026-11-14-decoder-preliminary-track1/tables/}). \\
-\addlinespace
-Option letters against label words &
-The result does not depend on how the label is verbalised. &
-\textbf{Weighted F1}, zero-shot and LoRA. Same prompt, but the answer is scored on the first token of each label word instead of A to D. A large gap zero-shot that closes after LoRA means the verbaliser matters only before adaptation. A gap that survives LoRA means our conclusions are tied to the letter format. \\
-\addlinespace
-0.5B against 1.5B backbone &
-The gain of the proposed components does not depend on model size. &
-\textbf{Difference of differences}: the gain in \HardCons{} and weighted F1 from $\lambda = 0$ to the chosen $\lambda$, at each size. A gain only at 0.5B suggests the components compensate for a weak model; a gain only at 1.5B suggests they need a model that already reads direction. \\
-\addlinespace
-Symmetrized decoding on DeBERTa's saved probabilities &
-The gain of symmetrized decoding is a general property of the reversal rule, not specific to decoders. &
-\textbf{\HardCons{} and weighted F1} of DeBERTa, single-pass against symmetrized. A similar gain means the decoding step is model-agnostic and the decoder-specific claim is the training loss only. No gain on the encoder, which already has \SoftCons{} 0.877, would mean averaging helps only a model that disagrees with itself more often. \\
-\bottomrule
-\end{tabular}
-\caption{Ablation plan. Each row is compared against the system it changes, on the development set, with three seeds where training is involved.}
-\label{tab:ablations}
-\end{table*}
+\begin{enumerate}
+\setlength{\itemsep}{1pt}
+\setlength{\parskip}{0pt}
+\item Zero-shot against LoRA with $\lambda = 0$ (H4, H5), decided by weighted F1 and \HardCons{}: how much does task adaptation add?
+\item $\lambda = 0$ against $\lambda > 0$ (H6), decided by single-pass \SoftCons{} with weighted F1 as the constraint: does the consistency term buy agreement without costing correctness?
+\item Single-pass against symmetrized decoding (H7), decided by \HardCons{} and weighted F1, since averaging the two orders raises \SoftCons{} whether or not the answers are right.
+\item With and without the reversed copies of the negatives, decided by \NO{} F1: does the assumption $\Rev(\NO) = \NO$ help or hurt?
+\item Option letters against label words as answer tokens, decided by weighted F1: does the result depend on how the labels are written?
+\item The 0.5B against the 1.5B backbone: does the gain from the proposed components depend on model size?
+\item Symmetrized decoding on DeBERTa's saved probabilities: is the gain specific to decoders?
+\end{enumerate}
 
-The last row needs no new training. DeBERTa's per-label probabilities were saved for all three seeds, but outside the repository, in Fawwad's \path{artifacts/} folder and on the Modal volume, so Fawwad runs that ablation. Symmetrized decoding applies to the encoder exactly as in \cref{eq:sym}, with its probabilities in place of the decoder's.
-
-Two rows are not ablations of a trained component. The verbaliser row tests the measurement, and the size row tests how far the conclusions generalise. We keep both because a reader cannot judge the main result without them.
+All decoder ablations run with the three seeds of \cref{sec:protocol} and are compared as mean and standard deviation; a difference smaller than the spread across seeds counts as no difference. The last ablation needs no new training, because DeBERTa's per-label probabilities were saved for all three seeds. Ablations 5 and 6 test the measurement and how far the conclusions carry, and a reader needs both to judge the main result.

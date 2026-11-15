@@ -1,0 +1,78 @@
+{
+  "system": "qwen2.5-1.5b-lora-lambda0-seed13",
+  "mode": "lora",
+  "config": {
+    "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "max_length": 160,
+    "batch_size": 16,
+    "epochs": 3,
+    "learning_rate": 0.0002,
+    "warmup_fraction": 0.06,
+    "weight_decay": 0.01,
+    "consistency_weight": 0.0,
+    "micro_batch_size": 8,
+    "mixed_precision": true,
+    "seed": 13
+  },
+  "holdout_fraction": 0.2,
+  "fit_size": 2443,
+  "holdout_size": 599,
+  "dev_size": 660,
+  "longest_prompt_tokens": 132,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.6801907734894332,
+      "train_ce": 1.6801907734894332,
+      "train_js": 0.06926027845287855,
+      "holdout_weighted_f1": 0.7609289522240459,
+      "holdout_accuracy": 0.7729549248747913,
+      "seconds": 133.7
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.6808575781209396,
+      "train_ce": 0.6808575781209396,
+      "train_js": 0.04135501071314373,
+      "holdout_weighted_f1": 0.7595590051293631,
+      "holdout_accuracy": 0.7562604340567612,
+      "seconds": 134.7
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.31715567364779423,
+      "train_ce": 0.31715567364779423,
+      "train_js": 0.026309834412894563,
+      "holdout_weighted_f1": 0.7811661218443317,
+      "holdout_accuracy": 0.7796327212020033,
+      "seconds": 135.9
+    }
+  ],
+  "best_epoch": 3,
+  "train_seconds": 404.3,
+  "predict_seconds": 13.5,
+  "trainable_parameters": 4358144,
+  "total_parameters": 1548072448,
+  "gpu": "NVIDIA L4",
+  "peak_gpu_memory_gb": 16.14,
+  "precision": "bfloat16 activations, float32 weights",
+  "versions": {
+    "torch": "2.14.0+cu130",
+    "transformers": "5.17.0",
+    "peft": "0.21.3"
+  },
+  "code": {
+    "repo_commit": "629ec34a6f751a51f55224d71efac50c53c0d56c",
+    "repo_dirty": false,
+    "source_sha256": "4b91938dde634f6d74c9608c7f09663b3717b76174035c7d7a4fed75975e9ff4"
+  }
+}
