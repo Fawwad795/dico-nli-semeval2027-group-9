@@ -1,0 +1,109 @@
+\section{Experimental Protocol}
+\label{sec:protocol}
+
+This protocol holds for every run in \cref{sec:comparison,sec:ablations,sec:planned}. Where a setting comes from a file, the file is named.
+
+\subsection{Data and splits}
+\label{sec:protocol-data}
+
+\paragraph{Source and version.}
+Track 1 (English) of the organizers' repository, \url{https://github.com/ilopezgazpio/SemEval-2027-Task-2-DiCo-NLI}, at commit \texttt{588968e}. The git object id and a line-ending-normalised MD5 of every file we read are recorded in \path{datasets/dico-nli.json}, so a checkout on any platform can be checked against them. We use the official files \path{final_data/train/dico_nli_train_track1_reference.csv} (3{,}042 instances in 1{,}760 source pairs) and \path{final_data/dev/dico_nli_dev_track1_reference.csv} (660 instances in 383 source pairs).
+
+\paragraph{Test set.}
+The official test set is released on 10 January 2027, after this course ends. The development set is therefore our test set. It is scored once per finished system and never used to choose anything. Our development scores are local runs of the official scorer, not scores from the competition server, and will not be presented as official results.
+
+\paragraph{Validation split.}
+Every model that needs held-out data takes it from train: 20\% of the source pairs, drawn by \path{dico_nli.data.grouped_split} with holdout fraction 0.2 and the run's seed. The split is grouped because both orders of a reversible pair share a source pair. Splitting by instance would put the two orders of one pair on opposite sides, and the validation score would reward recall of the reversed copy. With seed 13 the split gives 2{,}443 instances (1{,}408 pairs) to fit on and 599 (352 pairs) to validate on (\path{experiments/2026-11-14-decoder-preliminary-track1/config.json} and \path{tables/split_sizes.csv}). Each seed draws its own split, as for the encoder in Assignment 1.
+
+\subsection{Preprocessing and input}
+\label{sec:protocol-input}
+
+Phrases enter the prompt of \cref{sec:approach} exactly as released, with no lower-casing or normalisation. The tokenizer is the backbone's own. The prompt length limit is 160 tokens with truncation off; the longest prompt over both orders of every train and development instance is 132 tokens, and a prompt over the limit raises an error instead of being cut, because truncation would remove the answer position. Batches are padded on the left. There is no augmentation beyond scoring each pair in both orders.
+
+\subsection{Training settings}
+\label{sec:protocol-training}
+
+\Cref{tab:protocol} lists the decoder settings; they are the fixed decisions of the plan and match the recorded run configuration (\path{experiments/2026-11-14-decoder-preliminary-track1/config.json}). The DeBERTa settings are those of \cref{sec:comparison}.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\begin{tabular}{@{}ll@{}}
+\toprule
+Setting & Value \\
+\midrule
+Backbone (frozen) & Qwen2.5-1.5B-Instruct \\
+Initialisation & released, LoRA $B = 0$ \\
+LoRA targets & q, k, v, o projections \\
+LoRA rank, alpha, dropout & 16, 32, 0.05 \\
+Trainable parameters & 4{,}358{,}144 (0.28\%) \\
+Optimizer & AdamW \\
+Learning rate & $2 \times 10^{-4}$ \\
+Schedule & linear, 6\% warm-up \\
+Weight decay & 0.01 \\
+Gradient clipping & norm 1.0 \\
+Epochs & 3 \\
+Batch & 16 pairs, both orders \\
+Loss & \cref{eq:loss}, $\lambda \in \{0, 1\}$ \\
+Weights, activations & float32, bfloat16 \\
+Checkpoint & best validation wF1 \\
+Seeds & 13, 42, 1234 \\
+\bottomrule
+\end{tabular}
+\caption{Decoder training settings; $\lambda$ as in the preliminary run. Parameter counts from \texttt{tables/run\_costs.csv} of the preliminary run.}
+\label{tab:protocol}
+\end{table}
+
+\paragraph{Stopping, model selection and checkpoints.}
+Training runs a fixed three epochs. After each epoch the model scores the validation split, and the epoch with the best validation weighted F1 is kept and used for the development predictions. The adapters of every kept checkpoint and the per-label probabilities for both orders are saved, so symmetrized decoding and later analyses need no retraining.
+
+\paragraph{Hyperparameter search.}
+Everything except $\lambda$ is fixed before the first run, with no search. For Assignment 3, $\lambda$ is chosen from the grid $\{0.25, 0.5, 1, 2\}$ by mean validation weighted F1 over the three seeds, the same criterion as checkpoint selection, so the choice of $\lambda$ is not driven by a consistency score that the $\lambda$ term itself optimises. Validation \HardCons{} is reported beside it. The development set plays no part in the choice.
+
+\paragraph{Seeds and repeated runs.}
+Every trained system runs with seeds 13, 42 and 1234, and we report the mean and standard deviation. A seed fixes the validation split, the adapter initialisation and the order of training batches. The zero-shot systems are deterministic and run once.
+
+\paragraph{Hardware.}
+DeBERTa ran on one NVIDIA T4 per seed on Modal, in float32 (\path{experiments/2026-09-29-deberta-base-track1/config.json}). The decoder settings were fixed after the first timing run on 14 November 2026 and hold for every later run: one NVIDIA L4 per job on Modal, bfloat16 activations with float32 weights, and the 16 pairs of a step passed through the model 8 at a time, which leaves the optimisation step unchanged. Peak memory was 16.1~GB, so a 16~GB T4 does not fit, and one epoch took about 135 seconds (\path{experiments/2026-11-14-decoder-preliminary-track1/tables/run_costs.csv} and \path{tables/training_history.csv}). The 0.5B model is used on CPU for pipeline checks only.
+
+\paragraph{Software.}
+Python 3.11, with dependencies locked in \path{uv.lock} (\path{pyproject.toml}). The Modal images pin \texttt{torch} 2.14.0, \texttt{transformers} 5.17.0, \texttt{scikit-learn} 1.9.1 and \texttt{pandas} 3.0.6 (\path{scripts/modal/train_encoder.py}); the encoder image adds \texttt{sentencepiece} 0.2.2 and \texttt{protobuf} 6.33.6, and the decoder image (\path{scripts/modal/train_decoder.py}) adds \texttt{peft} 0.21.3 and \texttt{accelerate} 1.15.0. Every run records the repository commit, whether the tree was dirty, the data commit, the seed and the exact command in its \path{config.json}.
+
+\subsection{Class imbalance}
+\label{sec:protocol-imbalance}
+
+The training labels are \EQ{} 26.4\%, \FW{} 29.0\%, \BW{} 29.0\% and \NO{} 15.7\%; the development labels are 26.4\%, 28.8\%, 28.8\% and 16.1\% (\path{experiments/2026-09-29-eda-track1/tables/label_distribution.csv}). The smallest class is about half the size of the largest, so the decoder loss carries no class weights at first: reweighting would change the objective we are trying to study and adds a setting to tune. The classical baselines keep their balanced weights from Assignment 1. Macro F1 and per-label F1 are reported next to weighted F1, so a weak \NO{} class stays visible. If \NO{} F1 falls clearly below the other labels, class weighting becomes a candidate ablation for Assignment 3.
+
+\subsection{Leakage prevention}
+\label{sec:protocol-leakage}
+
+\paragraph{No identifier reaches the model.}
+Every \path{__flipped} instance is the reversal of an \path{__original} one, and \NO{} instances have no flipped twin, so the instance id reveals the label (docstring of \path{src/dico_nli/data.py}). The model input is built from the two phrase strings only; \path{instance_id}, \path{pair_id} and \path{reverse_pair_id} are used for bookkeeping and scoring alone.
+
+\paragraph{Pairs stay together.}
+Both orders of a source pair always sit on the same side of a split, in the validation split and in the classical baselines' cross-validation folds. Track 1 train and dev share no \path{pair_id}.
+
+\paragraph{Nothing is chosen on dev.}
+Checkpoints, $\lambda$ and every other setting are chosen on training data. The development set is scored once per finished system.
+
+\paragraph{Overlap is reported, not hidden.}
+Seven unordered text pairs and 155 of the 712 distinct development phrases (22\%) also occur in train (\path{experiments/2026-09-29-eda-track1/tables/train_dev_overlap.csv}). They come from the released data and we do not remove them, since that would change the official development set. Results on the development instances whose phrases were seen in train are reported separately from the rest.
+
+\subsection{Missing and duplicated instances}
+\label{sec:protocol-quality}
+
+No text field is missing or empty in either split (\path{experiments/2026-09-29-eda-track1/tables/data_quality_by_split.csv}). Train holds 43 groups of exact ordered duplicates with 51 extra instances, one of them with conflicting labels; dev holds 4 groups with 4 extra instances and no conflict. The conflict, confirmed in the training reference file at the recorded commit:
+
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}p{0.27\columnwidth}p{0.42\columnwidth}l@{}}
+\toprule
+Source pair & $a$, $b$ & Label \\
+\midrule
+\texttt{0000065}, flipped & South Africans, South Africa & \FW{} \\
+\texttt{0002985} & South Africans, South Africa & \NO{} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Our policy is to keep the training duplicates as released and report the conflict, since removing either copy would mean overruling the annotation. The development set is never altered. Exact duplicates with different source pairs can fall on both sides of the validation split; this touches at most the 51 extra training instances and never the development set.

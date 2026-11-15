@@ -1,0 +1,24 @@
+\section{System Architecture}
+\label{sec:system-architecture}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/architecture.pdf}
+\caption{Proposed system. Both orientations share the tokenizer and model weights. The training branch applies two supervised losses and a Jensen--Shannon consistency penalty after aligning the reversed label distribution; inference averages the aligned distributions before selecting the relation.}
+\label{fig:a2-architecture}
+\end{figure*}
+
+\Cref{fig:a2-architecture} shows the flow from an ordered phrase pair to a four-way prediction and its official evaluation. The prompt presents the premise and hypothesis with the four relation options. The same Qwen2.5-1.5B-Instruct tokenizer and model process $(a,b)$ and $(b,a)$. The backbone is frozen; rank-16 LoRA adapters with alpha 32 and dropout 0.05 are trainable on the attention projections \citep{qwen2025qwen25technicalreport,hu-etal-2022-lora}.
+
+At the answer position, the model scores the four option continuations $A$, $B$, $C$, and $D$, mapped respectively to \texttt{EQUIVALENCE}, \texttt{FORWARD\_ENTAILMENT}, \texttt{BACKWARD\_ENTAILMENT}, and \texttt{NEGATIVE\_OTHER}. Softmax over these scores gives $p_{ab}$ and $p_{ba}$. Let $P$ swap the forward and backward entries while leaving equivalence and negative unchanged. For label $y$ and its reversed target $\Rev(y)$, the training objective is
+\begin{equation}
+\begin{aligned}
+\mathcal{L}
+&= \mathrm{CE}(p_{ab},y)
+ + \mathrm{CE}(p_{ba},\Rev(y)) \\
+&\quad + \lambda\,\mathrm{JS}(p_{ab},Pp_{ba}).
+\end{aligned}
+\end{equation}
+where $\lambda=0$ is the classification-only comparison and $\lambda=1$ is the consistency-aware system. The plan assumes $\Rev(\texttt{NEGATIVE\_OTHER})=\texttt{NEGATIVE\_OTHER}$; the reference training data contains no reversed negative twins, so this target is an explicit assumption rather than a label pattern confirmed by the data.
+
+At inference, the system evaluates both orientations and computes $p^*=\tfrac{1}{2}(p_{ab}+Pp_{ba})$. The argmax label is written to the required \texttt{predictions.csv}; the official scorer reports weighted F1, SoftCons, and HardCons. The two-orientation inference costs two model passes per unordered pair. Before the full run, implementation must check the tokenizer's option-letter tokenization, ensure no phrase is truncated, and validate the output format against the scorer.
