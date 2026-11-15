@@ -8,7 +8,7 @@ Each ablation changes one thing against a named reference system and is decided 
 \setlength{\parskip}{0pt}
 \item Zero-shot against LoRA with $\lambda = 0$ (H4, H5), decided by weighted F1 and \HardCons{}: how much does task adaptation add?
 \item $\lambda = 0$ against $\lambda > 0$ (H6), decided by single-pass \SoftCons{} with weighted F1 as the constraint: does the consistency term buy agreement without costing correctness?
-\item Single-pass against symmetrized decoding (H7), decided by \HardCons{} and weighted F1, since the step raises \SoftCons{} by design.
+\item Single-pass against symmetrized decoding (H7), decided by \HardCons{} and weighted F1, since averaging the two orders raises \SoftCons{} whether or not the answers are right.
 \item With and without the reversed copies of the negatives, decided by \NO{} F1: does the assumption $\Rev(\NO) = \NO$ help or hurt?
 \item Option letters against label words as answer tokens, decided by weighted F1: does the result depend on how the labels are written?
 \item The 0.5B against the 1.5B backbone: does the gain from the proposed components depend on model size?

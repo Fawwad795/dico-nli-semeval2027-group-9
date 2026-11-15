@@ -39,17 +39,18 @@
 \node[lbl, above=1mm of dec.north] {one decoder, shared by both orders};
 \node[lbl, above=1mm of prompt.north] {input};
 
-% ---------------- prediction branch (bottom right) ----------------
-\node[pred, below=17mm of score] (sym) {symmetrized decoding\\$p_{\mathrm{sym}}=\tfrac12\big(p_{ab}+P\,p_{ba}\big)$\\argmax $\rightarrow$ label};
+% ---------------- inference branch (bottom right) ----------------
+\node[pred, below=17mm of score] (sym) {symmetrized decoding\\$p_{\mathrm{sym}}=\tfrac12\big(p_{ab}+\tilde{p}_{ba}\big)$\\argmax $\rightarrow$ label};
 \node[pred, right=7mm of sym] (scorer) {\texttt{predictions.csv}\\official scorer:\\weighted F1, SoftCons,\\HardCons};
 \draw[arr] (sym) -- (scorer);
-\node[lbl, above=1mm of scorer.north] {prediction};
+\node[lbl, above=1mm of scorer.north] {inference};
 
 % ---------------- training branch (bottom left) ----------------
 \node[train, left=9mm of sym] (loss)
   {training loss for one pair\\[1pt]
-   $\mathcal{L}=\CE(p_{ab},y)+\CE\big(p_{ba},\Rev(y)\big)+\lambda\,\JS(p_{ab},P\,p_{ba})$\\[1pt]
-   $P$ swaps \textsf{F} and \textsf{B};\quad $\lambda=0$ is plain LoRA};
+   $\mathcal{L}=\CE(p_{ab},y)+\CE(p_{ba},\bar{y})+\lambda\,\JS(p_{ab},\tilde{p}_{ba})$\\[1pt]
+   $\bar{y}=\Rev(y)$,\quad $\tilde{p}_{ba}=P\,p_{ba}$ ($P$ swaps \textsf{F} and \textsf{B})\\[1pt]
+   $\lambda=0$ is plain LoRA};
 \node[lbl, above=1mm of loss.north west, anchor=south west] {training only};
 
 % ---------------- connections between the rows ----------------
@@ -59,5 +60,19 @@
 \draw[arr] (j) -| ($(loss.north east)+(-6mm,0)$);
 \coordinate (g) at ($(lora.south)+(-9mm,0)$);
 \draw[back] (g |- loss.north) -- node[lbl, left] {gradients reach the adapters only} (g);
+
+% ---------------- legend (top right) ----------------
+\begin{scope}[dot/.style={circle, draw=black!70, minimum size=2.4mm, inner sep=0pt},
+              key/.style={font=\scriptsize, anchor=west, inner sep=1pt}]
+  \coordinate (L) at ($(scorer.east |- dec.north)+(0,1mm)$);
+  \node[dot, fill=black!3,   anchor=north east] (k1) at ($(L)+(-17mm,0)$) {};
+  \node[key, right=1mm of k1] {frozen};
+  \node[dot, fill=blue!8,    below=1.6mm of k1] (k2) {};
+  \node[key, right=1mm of k2] {trained};
+  \node[dot, fill=orange!12, below=1.6mm of k2] (k3) {};
+  \node[key, right=1mm of k3] {training only};
+  \node[dot, fill=green!8,   below=1.6mm of k3] (k4) {};
+  \node[key, right=1mm of k4] {inference};
+\end{scope}
 \end{tikzpicture}
 \end{document}

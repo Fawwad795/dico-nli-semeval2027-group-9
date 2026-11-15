@@ -3,34 +3,9 @@
 
 Every system in \cref{tab:comparison} is trained on the same Track 1 training file, chooses its settings on training data only, and is scored once on the same 660 development instances by the official scorer, run unchanged. Where a system holds out validation data, it uses the same grouped 20\% split by source pair (\cref{sec:protocol}). The settings of the existing systems are read from their recorded \path{config.json} files; \cref{app:comparison} gives them in full.
 
-\begin{table*}[t]
-\centering
-\small
-\begin{tabular}{@{}L{0.10\textwidth}L{0.19\textwidth}L{0.42\textwidth}L{0.20\textwidth}@{}}
-\toprule
-Group & System & Representation and training & Settings recorded in \\
-\midrule
-Simple & majority & constant \FW{} (tie with \BW{} broken by label order) & \path{trivial-baselines} \\
- & uniform random & one uniform label per instance, seed 13 & same \\
- & always \EQ{} & constant & same \\
- & always \NO{} & constant & same \\
-\midrule
-Classical ML & cues + logreg & 17 standardised surface cues; logistic regression, $C = 1$, balanced class weights & \path{ml-baseline} \\
- & tfidf + logreg & word 1--2 gram TF-IDF of ``$a$ \texttt{[SEP]} $b$'', sublinear tf; same regression & same \\
- & both + logreg & cues and TF-IDF concatenated; same regression & same \\
- & cues + gbdt & 17 cues; histogram gradient boosting, 300 iterations, learning rate 0.05, balanced class weights & same \\
-\midrule
-Pretrained & DeBERTa-v3-base & fully fine-tuned, linear classification head, 5 epochs, 3 seeds & \path{deberta-base} \\
- & Qwen2.5-1.5B, zero-shot & frozen, prompted; scores of the four option letters & \cref{sec:approach} \\
- & Qwen2.5-1.5B, LoRA, $\lambda = 0$ & frozen backbone, LoRA adapters, both orders, cross-entropy only; single-pass decoding & \cref{sec:approach} \\
-\midrule
-Proposed & Qwen2.5-1.5B, LoRA, $\lambda > 0$ & as above, plus the consistency term of \cref{eq:loss} and symmetrized decoding (\cref{eq:sym}) & \cref{sec:approach} \\
-\bottomrule
-\end{tabular}
-\caption{Comparison systems. The settings folders are \texttt{experiments/2026-09-29-<name>-track1/}. All systems share the training data, the grouped validation split where one is used, the development set and the official scorer.}
-\label{tab:comparison}
-\end{table*}
 
-The simple baselines mark the floor. Always \EQ{} is the telling one: it scores \SoftCons{} 1.000 at weighted F1 0.110, which is why \SoftCons{} is never read on its own. The classical baselines measure how far surface form goes. The cue model reaches \SoftCons{} 0.794 largely because its features behave predictably under reversal, which takes no understanding of the pair. DeBERTa-v3-base \citep{he-etal-2023-debertav3}, fully fine-tuned with a linear classification head, is the bar to reach: weighted F1 0.807, \SoftCons{} 0.877 and \HardCons{} 0.810, the mean of three seeds. The zero-shot decoder shows what the backbone knows before any adaptation.
+The simple baselines mark the floor. Always \EQ{} is the telling one: it scores \SoftCons{} 1.000 at weighted F1 0.110, which is why \SoftCons{} is never read on its own. The classical baselines measure how far surface form goes. The cue model reaches \SoftCons{} 0.794 largely because its features behave predictably under reversal, which takes no understanding of the pair.
 
-The plain-LoRA decoder ($\lambda = 0$) isolates our contribution. It has the same prompt, adapters, data, training orders and schedule as the proposed system, and differs only in the two components we propose: the consistency term in the training loss and symmetrized decoding at prediction time. Each component can be switched off on its own (\cref{sec:ablations}).
+DeBERTa-v3-base \citep{he-etal-2023-debertav3}, fully fine-tuned with a linear classification head, is the bar to reach: weighted F1 0.807, \SoftCons{} 0.877 and \HardCons{} 0.810, the mean of three seeds. The zero-shot decoder shows what the backbone knows before any adaptation.
+
+The plain-LoRA decoder ($\lambda = 0$) isolates our contribution. It has the same prompt, adapters, data, training orders and schedule as the proposed system, and differs only in the two components we propose: the consistency term in the training loss and symmetrized decoding at inference. Each component can be switched off on its own (\cref{sec:ablations}).

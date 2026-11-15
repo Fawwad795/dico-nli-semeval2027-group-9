@@ -8,6 +8,13 @@ import pytest
 
 from dico_nli.experiments import data_commit, experiment_dir, repo_state, write_config, write_results_table
 from dico_nli.scoring import Scores
+from tests.support import REPO_ROOT
+
+# A copy of the project without its git history (a release zip) records the code commit as "unknown".
+requires_git_checkout = pytest.mark.skipif(
+    not (REPO_ROOT / ".git").exists(),
+    reason="the project is not a git checkout, so there is no code commit to record",
+)
 
 
 def test_experiment_dir_is_dated_and_slugged(tmp_path):
@@ -70,6 +77,7 @@ def test_data_commit_comes_from_the_dataset_record():
     assert data_commit() == "588968e610197ddc4c440314701cbc587afc4c1b"
 
 
+@requires_git_checkout
 def test_write_config_records_seed_data_commit_repo_commit_and_command(tmp_path):
     path = write_config(tmp_path, seed=13, track=1, command="uv run jupyter execute notebooks/assignment-1/x.ipynb", extra={"note": "x"})
 

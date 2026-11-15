@@ -14,8 +14,11 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{float}
-% Ragged-right table cells: justified text in narrow cells leaves wide gaps between words.
-\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+% Justified table cells. \hspace{0pt} lets TeX hyphenate a cell's first word, and the small stretch
+% allowance keeps short lines in narrow cells from spreading into wide gaps.
+\newcolumntype{L}[1]{>{\hspace{0pt}\emergencystretch=1em}p{#1}}
+% Narrow label columns (names, groups, short phrases) stay flush left.
+\newcolumntype{N}[1]{>{\raggedright\arraybackslash}p{#1}}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[capitalise,noabbrev]{cleveref}

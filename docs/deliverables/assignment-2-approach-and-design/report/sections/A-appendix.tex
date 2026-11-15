@@ -1,72 +1,85 @@
 \onecolumn
 \raggedbottom
+\begin{center}
+{\LARGE\bfseries Appendices}
+\end{center}
+\vspace{4pt}
 \appendix
 \crefalias{section}{appendix}
 
 \section{Evidence behind each design decision}
 \label{app:evidence}
 
-\Cref{tab:method-justification} gives the full evidence behind \cref{sec:justification}: each finding from Assignment 1, its source file, the design decision it supports and the effect we expect to test.
+\Cref{tab:method-justification} gives the full evidence behind \cref{sec:justification}: each design decision, the Assignment 1 finding that supports it with its source file, and the effect we expect to test. File names are relative to four run folders under \path{experiments/}: EDA is \path{2026-09-29-eda-track1}, ML is \path{2026-09-29-ml-baseline-track1}, encoder is \path{2026-09-29-deberta-base-track1}, and error is \path{2026-10-02-error-analysis-track1}.
 
 \begin{table}[H]
 \centering
 \footnotesize
-\setlength{\tabcolsep}{3pt}
-\renewcommand{\arraystretch}{0.88}
-\begin{tabular}{L{0.30\textwidth}L{0.32\textwidth}L{0.30\textwidth}}
+\setlength{\tabcolsep}{7pt}
+\begin{tabular}{@{}L{0.26\textwidth}N{0.35\textwidth}L{0.29\textwidth}@{}}
 \toprule
-Evidence (file or source) & Design decision & Expected effect to test \\
+Design decision & Evidence from Assignment 1 (source) & Expected effect to test \\
 \midrule
-\multicolumn{3}{p{0.92\textwidth}}{\scriptsize Folder keys: EDA = \url{experiments/2026-09-29-eda-track1}; ML = \url{experiments/2026-09-29-ml-baseline-track1}; encoder = \url{experiments/2026-09-29-deberta-base-track1}; error = \url{experiments/2026-10-02-error-analysis-track1}.}\\
-\addlinespace[2pt]
-\texttt{EDA/findings.md}: 78\% of forward premises are longer; phrases average 3 words, max 15. &
 Keep both phrases ordered; cap input at 160 tokens and check truncation. &
+\texttt{EDA/findings.md}\newline 78\% of forward premises are longer; phrases average 3 words, max 15. &
 Keep direction cues without relying on length alone. \\
-\addlinespace[2pt]
-\texttt{EDA/findings.md}: containment is 45\% forward vs. 2\% backward. &
+\addlinespace[5pt]
 Preserve order and train on each orientation's label. &
+\texttt{EDA/findings.md}\newline Containment is 45\% forward vs.\ 2\% backward. &
 Use containment when present; test beyond it. \\
-\addlinespace[2pt]
-\texttt{EDA/findings.md}: cosine medians 0.76 (equivalence), 0.77 (directional), 0.64 (negative); symmetric. &
+\addlinespace[5pt]
 Use ordered context; cosine alone is symmetric. &
+\texttt{EDA/findings.md}\newline Cosine medians 0.76 (equivalence), 0.77 (directional), 0.64 (negative); symmetric. &
 Use relatedness while preserving direction. \\
-\addlinespace[2pt]
-\texttt{ML/findings.md}; \texttt{error/findings.md}: cue weighted F1 0.531, SoftCons 0.794; 67/277 reversible dev pairs are consistently wrong. &
+\addlinespace[5pt]
 Combine classification loss with reversal consistency. &
-Test for better consistency without repeating those errors. \\
-\addlinespace[2pt]
-\texttt{encoder/findings.md}; \texttt{error/pair\_outcomes.csv}: weighted F1 0.807 $\pm$ 0.015, SoftCons 0.877 $\pm$ 0.010; 32--37 inconsistent pairs per seed. &
+\texttt{ML/findings.md}, \texttt{error/findings.md}\newline Cue model: weighted F1 0.531, SoftCons 0.794; 67 of 277 reversible pairs consistent but wrong. &
+Better consistency without repeating those errors. \\
+\addlinespace[5pt]
 Compare encoder fine-tuning and consistency-aware training on the same split. &
-Test decoder consistency while tracking F1. \\
-\addlinespace[2pt]
-\texttt{EDA/pair\_structure.csv}: 3,042 instances; 1,282 reversible pairs; 478 negatives. &
+\texttt{encoder/findings.md}, \texttt{error/pair\_outcomes.csv}\newline Weighted F1 0.807 $\pm$ 0.015, SoftCons 0.877 $\pm$ 0.010; 32--37 inconsistent pairs per seed. &
+Measure decoder consistency while tracking weighted F1. \\
+\addlinespace[5pt]
 Group each pair with its reversal; do not count it as new data. &
-Use existing pair structure without overstating sample size. \\
-\addlinespace[2pt]
-\texttt{EDA/label\_distribution.csv}: 26.4\% equivalence, 29.0\% each direction, 15.7\% negative. &
-Start unweighted; report weighted and macro F1 and per-class scores. &
-Avoid unnecessary weights; expose negative-class errors. \\
-\addlinespace[2pt]
-\texttt{encoder/dev\_per\_label.csv}: mean F1 0.781 (equivalence), 0.627 (negative), 0.863/0.874 (directions). &
+\texttt{EDA/pair\_structure.csv}\newline 3,042 instances; 1,282 reversible pairs; 478 negatives. &
+Use the pair structure without overstating sample size. \\
+\addlinespace[5pt]
+Use no class weights at first; report weighted F1, macro F1 and per-class scores. &
+\texttt{EDA/label\_distribution.csv}\newline 26.4\% equivalence, 29.0\% each direction, 15.7\% negative. &
+Avoid needless weights; expose negative-class errors. \\
+\addlinespace[5pt]
 Track equivalence and negative errors, including manual categories. &
+\texttt{encoder/dev\_per\_label.csv}\newline Mean F1 0.781 (equivalence), 0.627 (negative), 0.863 and 0.874 (directions). &
 Test semantic boundaries as well as direction. \\
-\addlinespace[2pt]
-\texttt{datasets/dico-nli.json}: 3,042 English examples; Qwen2.5-1.5B-Instruct. &
+\addlinespace[5pt]
 Freeze the backbone; train attention LoRA (rank 16, alpha 32, dropout 0.05). &
-Reduce trainable parameters; do not assume a quality gain \citep{hu-etal-2022-lora,qwen2025qwen25technicalreport}. \\
-\addlinespace[2pt]
-\citet{apaolaza-larraya-etal-2026-assessing}: in the task pilot, decoder-only models trail encoders on NLI and coherence. &
+\texttt{datasets/dico-nli.json}\newline 3,042 English examples; Qwen2.5-1.5B-Instruct. &
+Fewer trainable parameters, with no assumed quality gain \citep{hu-etal-2022-lora,qwen2025qwen25technicalreport}. \\
+\addlinespace[5pt]
 Target a decoder; compare with DeBERTa and classical baselines. &
+\citet{apaolaza-larraya-etal-2026-assessing}\newline In the task pilot, decoder-only models trail encoders on NLI and coherence. &
 Test the decoder gap; pilot results do not predict our score. \\
-\addlinespace[2pt]
-\citet{wang-sun-xing-2019-swap}: evaluate NLI pair swaps and swapped-example training. &
-Use label-aligned loss and inference symmetrization for four labels. &
-Test a distributional constraint beyond swap augmentation. \\
+\addlinespace[5pt]
+Use a label-aligned loss and inference symmetrization for four labels. &
+\citet{wang-sun-xing-2019-swap}\newline Evaluate NLI pair swaps and swapped-example training. &
+A distributional constraint beyond swap augmentation. \\
 \bottomrule
 \end{tabular}
-\caption{Assignment 1 evidence mapped to method decisions and falsifiable expectations. Values are descriptive results from the recorded runs, not performance guarantees for Assignment 2.}
+\caption{Design decisions, the Assignment 1 evidence behind each, and the effect we expect to test. Values are descriptive results from the recorded runs, not performance guarantees for Assignment 2.}
 \label{tab:method-justification}
 \end{table}
+
+
+\section{Settings of the comparison systems}
+\label{app:comparison}
+
+These paragraphs give the full settings behind \cref{tab:comparison}.
+
+\subsection{Classical baselines}
+They measure how far surface form goes. Preprocessing is minimal: the phrases are lower-cased and tokenised on word boundaries for TF-IDF, with a pattern that keeps one-letter words and keeps the separator as its own token, so the bigrams that straddle it record which side a word came from. The cues are computed from the raw strings and standardised on the training data. There is no feature selection. Both models use balanced class weights; the logistic regression runs up to 5{,}000 iterations, and every other hyperparameter is a scikit-learn default \citep{pedregosa-etal-2011-scikit}. The best of the four by grouped five-fold cross-validation on train was both + logreg (\path{config.json}, \path{best_by_cv}).
+
+\subsection{Pretrained baselines}
+DeBERTa-v3-base \citep{he-etal-2023-debertav3} is fully fine-tuned, with the sequence-classification head of Transformers \citep{wolf-etal-2020-transformers}, a linear layer over the pooled first-token representation. The pair is one sequence of at most 32 tokens; training is 5 epochs of AdamW at $2 \times 10^{-5}$, batch size 16, weight decay 0.01, 6\% linear warm-up, gradient clipping at 1.0, float32, and the epoch with the best validation weighted F1 is kept (\path{experiments/2026-09-29-deberta-base-track1/config.json}). The zero-shot and plain-LoRA decoders use the prompt, scoring and settings of the proposed system (\cref{sec:approach,app:protocol}).
 
 
 \section{Ablation plan in full}
@@ -77,54 +90,42 @@ Test a distributional constraint beyond swap augmentation. \\
 \begin{table}[H]
 \centering
 \footnotesize
-\begin{tabular}{@{}L{0.16\textwidth}L{0.28\textwidth}L{0.50\textwidth}@{}}
+\begin{tabular}{@{}N{0.15\textwidth}L{0.24\textwidth}L{0.55\textwidth}@{}}
 \toprule
 Ablation & Hypothesis & Expected interpretation (deciding metric in bold) \\
 \midrule
 Frozen zero-shot against LoRA ($\lambda = 0$) &
 H4, H5: task adaptation is needed; zero-shot is far below the encoder on all three scores and LoRA recovers most of the weighted F1 gap. &
-\textbf{Weighted F1 and \HardCons{}}, single-pass. A large gain means generic instruction tuning does not carry the four-way directional scheme. If zero-shot came close to LoRA, the adapters would add little and the comparison with DeBERTa would rest on the backbone alone. A high zero-shot \SoftCons{} with low weighted F1 is the always-\EQ{} pattern, not knowledge. \\
+\textbf{Weighted F1 and \HardCons{}}, single-pass. A large gain means generic instruction tuning does not carry the four-way directional scheme. If zero-shot came close to LoRA, the adapters would add little and the comparison with DeBERTa would rest on the backbone alone. A high zero-shot \SoftCons{} with low weighted F1 is the always-\EQ{} pattern. \\
 \addlinespace
-$\lambda = 0$ against $\lambda > 0$ &
+${\lambda = 0}$ against ${\lambda > 0}$ &
 H6: the consistency term raises single-pass \SoftCons{} without lowering weighted F1. &
 \textbf{Single-pass \SoftCons{}, with weighted F1 as the constraint.} Higher \SoftCons{} at equal weighted F1 supports H6. Higher \SoftCons{} at lower weighted F1 means the term buys agreement with correctness, possibly by moving pairs to \EQ{} or \NO{}, which are their own reverses; the consistent-but-wrong pair count and the predicted-label counts show that. No change means the both-order cross-entropy already teaches the rule. \\
 \addlinespace
 Single-pass against symmetrized decoding &
-H7: averaging the two orders raises \HardCons{} and weighted F1, not only \SoftCons{}. &
-\textbf{\HardCons{} and weighted F1.} \SoftCons{} is not evidence here, because symmetrized decoding raises it by design. If only \SoftCons{} moves, the averaging repairs agreement and leaves correctness alone. A drop in weighted F1 would mean the weaker order drags the stronger one down. No training is needed: both decodings come from the same trained adapters. \\
+H7: averaging the two orders raises \HardCons{} and weighted F1 as well as \SoftCons{}. &
+\textbf{\HardCons{} and weighted F1.} \SoftCons{} is not evidence here, because symmetrized decoding raises it whether or not the answers are right. If only \SoftCons{} moves, the averaging repairs agreement and leaves correctness alone. A drop in weighted F1 would mean the weaker order drags the stronger one down. No training is needed: both decodings come from the same trained adapters. \\
 \addlinespace
 With and without the reversed copies of the negatives &
-The assumption $\Rev(\NO{}) = \NO{}$ helps \NO{} F1, or at least does not hurt it. &
+The assumption that \NO{} reverses to itself helps \NO{} F1, or at least does not hurt it. &
 \textbf{\NO{} F1}, plus the number of reversible pairs answered \NO{}. Without the copies, the second cross-entropy term and the consistency term skip the 478 negatives. If \NO{} F1 rises when the copies are removed, the assumption is wrong for this data; the training file can barely test it, with a single real reversed negative (\path{negatives_with_reversed_copy.csv} in \path{experiments/2026-11-14-decoder-preliminary-track1/tables/}). \\
 \addlinespace
 Option letters against label words &
-The result does not depend on how the label is verbalised. &
-\textbf{Weighted F1}, zero-shot and LoRA. Same prompt, but the answer is scored on the first token of each label word instead of A to D. A large gap zero-shot that closes after LoRA means the verbaliser matters only before adaptation. A gap that survives LoRA means our conclusions are tied to the letter format. \\
+The result does not depend on how the labels are written. &
+\textbf{Weighted F1}, zero-shot and LoRA. Same prompt, but the answer is scored on the first token of each label word instead of A to D. A large gap zero-shot that closes after LoRA means the label format matters only before adaptation. A gap that survives LoRA means our conclusions are tied to the letter format. \\
 \addlinespace
 0.5B against 1.5B backbone &
 The gain of the proposed components does not depend on model size. &
 \textbf{Difference of differences}: the gain in \HardCons{} and weighted F1 from $\lambda = 0$ to the chosen $\lambda$, at each size. A gain only at 0.5B suggests the components compensate for a weak model; a gain only at 1.5B suggests they need a model that already reads direction. \\
 \addlinespace
 Symmetrized decoding on DeBERTa's saved probabilities &
-The gain of symmetrized decoding is a general property of the reversal rule, not specific to decoders. &
+The gain of symmetrized decoding is a general property of the reversal rule and holds for an encoder too. &
 \textbf{\HardCons{} and weighted F1} of DeBERTa, single-pass against symmetrized. A similar gain means the decoding step is model-agnostic and the decoder-specific claim is the training loss only. No gain on the encoder, which already has \SoftCons{} 0.877, would mean averaging helps only a model that disagrees with itself more often. \\
 \bottomrule
 \end{tabular}
 \caption{Ablation plan. Each row is compared against the system it changes, on the development set, with three seeds where training is involved.}
 \label{tab:ablations}
 \end{table}
-
-
-\section{Settings of the comparison systems}
-\label{app:comparison}
-
-These paragraphs give the full settings behind \cref{tab:comparison}.
-
-\subsection{Classical baselines}
-They measure how far surface form goes. Preprocessing is minimal: the phrases are lower-cased and tokenised on word boundaries for TF-IDF, with a pattern that keeps one-letter words and keeps the separator as its own token, so the bigrams that straddle it record which side a word came from. The cues are computed from the raw strings and standardised on the training data. There is no feature selection. Both models use balanced class weights; the logistic regression runs up to 5{,}000 iterations, and every other hyperparameter is a scikit-learn default \citep{pedregosa-etal-2011-scikit}. The best of the four by grouped five-fold cross-validation on train was both + logreg (\path{config.json}, \path{best_by_cv}). The cue model matters most to this assignment: with \SoftCons{} 0.794 it is consistent largely because its features behave predictably under reversal, which takes no understanding of the pair.
-
-\subsection{Pretrained baselines}
-DeBERTa-v3-base \citep{he-etal-2023-debertav3} is the bar to reach: fully fine-tuned, with the sequence-classification head of Transformers \citep{wolf-etal-2020-transformers}, a linear layer over the pooled first-token representation. The pair is one sequence of at most 32 tokens; training is 5 epochs of AdamW at $2 \times 10^{-5}$, batch size 16, weight decay 0.01, 6\% linear warm-up, gradient clipping at 1.0, float32, and the epoch with the best validation weighted F1 is kept. Its mean over three seeds is weighted F1 0.807, \SoftCons{} 0.877 and \HardCons{} 0.810 (\path{experiments/2026-09-29-deberta-base-track1/results.md}). The zero-shot decoder is the same backbone as the proposed system with every weight frozen and no training at all; it answers through the prompt and the four option-letter scores of \cref{sec:approach}. It tells us what the backbone knows before adaptation. The plain-LoRA decoder ($\lambda = 0$) has the same prompt, adapters, data, both training orders and schedule as the proposed system and differs only in the two components we propose. It is therefore the comparison that isolates what they add.
 
 
 \section{Experimental protocol in full}
@@ -152,7 +153,7 @@ Phrases enter the prompt of \cref{sec:approach} exactly as released, with no low
 \subsection{Training settings}
 \label{sec:protocol-training}
 
-\Cref{tab:protocol} lists the decoder settings; they are the fixed decisions of the plan and match the recorded run configuration (\path{experiments/2026-11-14-decoder-preliminary-track1/config.json}). The DeBERTa settings are those of \cref{sec:comparison}.
+\Cref{tab:protocol} lists the decoder settings; they were fixed before the first run and match the recorded run configuration (\path{experiments/2026-11-14-decoder-preliminary-track1/config.json}). The DeBERTa settings are those of \cref{sec:comparison}.
 
 \begin{table}[H]
 \centering
@@ -202,7 +203,7 @@ The training labels are \EQ{} 26.4\%, \FW{} 29.0\%, \BW{} 29.0\% and \NO{} 15.7\
 Every \path{__flipped} instance is the reversal of an \path{__original} one, and \NO{} instances have no flipped twin, so the instance id reveals the label (docstring of \path{src/dico_nli/data.py}). The model input is built from the two phrase strings only; \path{instance_id}, \path{pair_id} and \path{reverse_pair_id} are used for bookkeeping and scoring alone.
 
 \subsubsection*{Pairs stay together}
-Both orders of a source pair always sit on the same side of a split, in the validation split and in the classical baselines' cross-validation folds. Track 1 train and dev share no \path{pair_id}.
+Both orders of a source pair always sit on the same side of a split, in the validation split and in the classical baselines' cross-validation folds. The Track 1 training and development sets share no \path{pair_id}.
 
 \subsubsection*{Nothing is chosen on the development set}
 Checkpoints, $\lambda$ and every other setting are chosen on training data. The development set is scored once per finished system.
@@ -213,7 +214,7 @@ Seven unordered text pairs and 155 of the 712 distinct development phrases (22\%
 \subsection{Missing and duplicated instances}
 \label{sec:protocol-quality}
 
-No text field is missing or empty in either split (\path{experiments/2026-09-29-eda-track1/tables/data_quality_by_split.csv}). Train holds 43 groups of exact ordered duplicates with 51 extra instances, one of them with conflicting labels; dev holds 4 groups with 4 extra instances and no conflict. The conflict, confirmed in the training reference file at the recorded commit:
+No text field is missing or empty in either split (\path{experiments/2026-09-29-eda-track1/tables/data_quality_by_split.csv}). Train holds 43 groups of exact ordered duplicates with 51 extra instances, one of them with conflicting labels; the development set holds 4 groups with 4 extra instances and no conflict. The conflict, confirmed in the training reference file at the recorded commit:
 
 \begin{center}
 \footnotesize
@@ -238,7 +239,7 @@ Our policy is to keep the training duplicates as released and report the conflic
 \begin{table}[H]
 \centering
 \small
-\begin{tabular}{@{}L{0.50\columnwidth}L{0.44\columnwidth}@{}}
+\begin{tabular}{@{}N{0.50\columnwidth}N{0.44\columnwidth}@{}}
 \toprule
 Part & Where \\
 \midrule
@@ -251,8 +252,8 @@ Prediction format, official scorer & \texttt{scoring.py} \\
 Run record (seed, commits, command) & \texttt{experiments.py} \\
 Paired bootstrap, McNemar, subgroup tags & \texttt{stats.py} \\
 GPU launcher & \texttt{train\_decoder.py} \\
-Scoring notebook & notebook 01 \\
-Reliability notebook & notebook 02 \\
+Scoring notebook & \texttt{01\_preliminary\_verification.ipynb} \\
+Reliability notebook & \texttt{02\_reliability\_track1.ipynb} \\
 \bottomrule
 \end{tabular}
 \caption{Parts of the initial implementation. The modules are under \texttt{src/dico\_nli/}, the launcher under \texttt{scripts/modal/} and the notebooks under \texttt{notebooks/assignment-2/}.}
@@ -287,7 +288,7 @@ kept on the uncommitted Modal volume \texttt{dico-nli-runs}.
 \begin{table}[H]
 \centering
 \small
-\begin{tabular}{@{}L{0.05\textwidth}L{0.33\textwidth}L{0.10\textwidth}L{0.30\textwidth}r@{}}
+\begin{tabular}{@{}N{0.05\textwidth}L{0.33\textwidth}N{0.10\textwidth}N{0.30\textwidth}r@{}}
 \toprule
 \# & System & Seeds & What it tests & GPU min \\
 \midrule
@@ -295,8 +296,8 @@ kept on the uncommitted Modal volume \texttt{dico-nli-runs}.
 2 & LoRA $\lambda = 0$, single and symmetrized & 3 & H5; reference for every row below & 21 \\
 3 & LoRA $\lambda \in \{0.25, 0.5, 1, 2\}$, chosen on validation & 3 each & H6, H7: the proposed system & 84 \\
 4 & DeBERTa-v3-base, symmetrized decoding of saved probabilities & 3 & is the decoding gain decoder-specific & 0 \\
-5 & Without reversed negatives, $\lambda = 0$ and chosen $\lambda$ & 3 each & the $\Rev(\NO{}) = \NO{}$ assumption & 42 \\
-6 & Label words instead of option letters, zero-shot and chosen $\lambda$ & 3 for LoRA & sensitivity to the verbaliser & 22 \\
+5 & Without reversed negatives, $\lambda = 0$ and chosen $\lambda$ & 3 each & the assumption that \NO{} reverses to itself & 42 \\
+6 & Label words instead of option letters, zero-shot and chosen $\lambda$ & 3 for LoRA & sensitivity to the label format & 22 \\
 7 & Qwen2.5-0.5B, $\lambda = 0$ and chosen $\lambda$ & 3 each & dependence on model size & $\le 42$ \\
 8 & Tracks 2 and 3 (Spanish, Basque), best Track 1 configuration & 3 & optional: the method beyond English & not estimated \\
 \midrule
@@ -307,8 +308,4 @@ kept on the uncommitted Modal volume \texttt{dico-nli-runs}.
 \label{tab:planned}
 \end{table}
 
-\subsection{Order}
-We run the rows in the order of the table. Rows 1 and 2 come first because every comparison needs them, and row 2 with three seeds also gives the spread against which every later difference is judged. Row 3 is the main result. Row 4 costs no GPU time and can run whenever Fawwad's saved DeBERTa probabilities are at hand. Rows 5 to 7 follow once $\lambda$ is chosen, since each of them reuses it. The final development scores of each system are computed only after its configuration is fixed.
-
-\subsection{What we drop first}
-If compute runs short, we drop row 8, then row 7, then row 6, in that order. Next the $\lambda$ grid shrinks to $\{0.5, 1\}$, which halves row 3. Rows 1 to 5 and three seeds per trained system are the minimum we would report; we would rather run fewer ablations than report single seeds.
+We run the rows in the order of the table. Rows 1 and 2 come first because every comparison needs them, and row 2 with three seeds also gives the spread against which every later difference is judged. Row 3 is the main result. Row 4 costs no GPU time and can run whenever the saved DeBERTa probabilities are at hand. Rows 5 to 7 follow once $\lambda$ is chosen, since each of them reuses it. The final development scores of each system are computed only after its configuration is fixed.

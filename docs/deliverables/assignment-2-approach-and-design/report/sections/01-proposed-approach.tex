@@ -1,7 +1,7 @@
 \section{Proposed approach}
 \label{sec:approach}
 
-Assignment 1 left two results side by side. A fine-tuned DeBERTa-v3-base reaches weighted F1 0.807 on the development set, yet it still gives incompatible answers on 32 to 37 of the 277 reversible pairs, depending on the seed. The organizers' pilot study found decoder language models to be the least self-consistent family of all \citep{apaolaza-larraya-etal-2026-assessing}. We therefore propose a small decoder adapted to the task, with the reversal rule built into both its training loss and its prediction step. We call it reversal-equivariant LoRA; \cref{sec:architecture} draws it.
+Assignment 1 left two results side by side. A fine-tuned DeBERTa-v3-base reaches weighted F1 0.807 on the development set, yet it still gives incompatible answers on 32 to 37 of the 277 reversible pairs, depending on the seed. The organizers' pilot study found decoder language models to be the least self-consistent family of all \citep{apaolaza-larraya-etal-2026-assessing}. We therefore propose a small decoder adapted to the task, with the reversal rule built into both its training loss and its inference step. We call it reversal-equivariant LoRA; \cref{sec:architecture} draws it.
 
 \subsection{Input, model and scoring}
 
@@ -24,11 +24,13 @@ Every training step scores each pair in both orders. We write $p_{ab}$ and $p_{b
 \end{equation}
 The two cross-entropy terms train on both orders. The third term, $\mathcal{L}_{\mathrm{JS}} = \JS(p_{ab}, \tilde{p}_{ba})$, is a consistency loss in the manner of \citet{li-etal-2019-logic}: the Jensen--Shannon divergence between the two aligned predictions is zero exactly when they agree, and it needs no gold label. With $\lambda = 0$ the method is plain LoRA fine-tuning on both orders, which is our closest comparison system.
 
-The organizers define no reverse for \NO{}. We set $\Rev(\NO) = \NO$, and this is our assumption: a reversed negative pair could in principle hold a directional relation. Phrases enter the prompt exactly as released, and no prompt is ever truncated. The only augmentation is the second order of each pair, which adds new inputs only for the 478 negatives, because the training file already holds both orders of every reversible pair. The labels are close to balanced (\NO{} is the smallest class at 16\%), so the loss carries no class weights.
+The organizers define no reverse for \NO{}. We set $\Rev(\NO) = \NO$, and this is our assumption: a reversed negative pair could in principle hold a directional relation.
 
-\subsection{Prediction}
+Phrases enter the prompt exactly as released, and no prompt is ever truncated. The only augmentation is the second order of each pair, which adds new inputs only for the 478 negatives, because the training file already holds both orders of every reversible pair. The labels are close to balanced (\NO{} is the smallest class at 16\%), so the loss carries no class weights.
 
-At prediction time we score both orders again, map the reversed prediction back and average:
+\subsection{Inference}
+
+At inference we score both orders again, map the reversed prediction back and average:
 \begin{equation}
 p_{\mathrm{sym}} = \tfrac{1}{2}\,(p_{ab} + \tilde{p}_{ba}),
 \label{eq:sym}

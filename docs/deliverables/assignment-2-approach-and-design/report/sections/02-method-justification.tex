@@ -1,6 +1,14 @@
 \section{Method justification}
 \label{sec:justification}
 
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/architecture.pdf}
+\caption{The proposed system; the legend gives what each colour marks, and the blue box holds the only trained weights. Both orders of a pair share the prompt, the tokenizer and the model weights. $\tilde{p}_{ba} = P\,p_{ba}$ is the reversed-order prediction mapped back to the labels of $(a,b)$, as in \cref{eq:loss,eq:sym}.}
+\label{fig:a2-architecture}
+\end{figure*}
+
 Each design choice in \cref{sec:approach} answers something Assignment 1 measured. \Cref{tab:method-justification} in \cref{app:evidence} maps eleven findings, each with its source file, to a decision and to the effect we expect to test.
 
 \subsection{Evidence from Assignment 1}
@@ -8,11 +16,11 @@ Each design choice in \cref{sec:approach} answers something Assignment 1 measure
 
 The four findings that shaped the method most are below. Each paragraph gives the observation, what we read from it, and the design decision that follows.
 
-Direction lives in the order of the phrases. In 78\% of forward training instances the premise is the longer phrase, and full containment favours the forward direction (45\% of forward pairs against 2\% of backward ones). The cosine similarity of the two phrases, however, is the same for forward and backward pairs. Surface cues therefore help but leave many cases open, and a symmetric similarity can tell how related two phrases are but not which way the entailment runs. The decoder reads both phrases in order, and the cue-only and cosine systems stay as interpretable comparisons.
+The order of the phrases carries the direction. In 78\% of forward training instances the premise is the longer phrase, and full containment favours the forward direction (45\% of forward pairs against 2\% of backward ones). The cosine similarity of the two phrases, however, is the same for forward and backward pairs. Surface cues help but leave many cases open, and a symmetric similarity cannot show which way the entailment runs. The decoder reads both phrases in order, and the cue-only and cosine systems stay as interpretable comparisons.
 
-A consistent model can still be wrong. Under the cue model, 67 of the 277 reversible development pairs are consistent but wrong, and the encoder still breaks the reversal rule on 32 to 37 pairs per seed. Agreement between the two orders and agreement with the gold label are separate properties. We therefore combine supervised training with a consistency penalty on the pair, and report weighted F1, macro F1, \SoftCons{}, \HardCons{} and per-label scores together.
+A consistent model can still be wrong. Under the cue model, 67 of the 277 reversible development pairs are consistent but wrong, and the encoder still breaks the reversal rule on 32 to 37 pairs per seed. We therefore combine supervised training with a consistency penalty on the pair, and report weighted F1, macro F1, \SoftCons{}, \HardCons{} and per-label scores together.
 
-The training file already contains both orders. It holds 1,282 reversible pairs in both orders, while its 478 negatives have no official reversed twin; the phrases of one negative pair do occur in the opposite order, again as a negative. Adding reversed copies alone would repeat inputs the model has already seen, and the pair counts say nothing about how a negative reverses. We train on both orders of every pair, swap the directional labels, and treat \NO{} as its own reverse only as an explicit assumption, which the ablation without reversed negatives tests (\cref{sec:ablations}).
+The training file already contains both orders of its 1,282 reversible pairs, while its 478 negatives have no official reversed twin (the phrases of one negative pair do occur reversed, again as a negative). Adding reversed copies alone would repeat inputs the model has already seen, and the pair counts say nothing about how a negative reverses. We train on both orders of every pair, swap the directional labels, and treat \NO{} as its own reverse only as an explicit assumption, which the ablation without reversed negatives tests (\cref{sec:ablations}).
 
 The hard classes are semantic, and the training set is small. With 3,042 training instances, DeBERTa's mean F1 is lower on \NO{} (0.627) and \EQ{} (0.781) than on either direction (0.863 and 0.874). The experiment should test where meaning changes as well as direction, at a modest parameter cost. We train adapters on a frozen backbone and classify by scoring label tokens. Pattern-based label scoring \citep{schick-schutze-2021-exploiting} and output-matching regularisation \citep{liang-etal-2021-rdrop} are precedents for these two choices; neither shows that this method will work.
 
@@ -27,3 +35,31 @@ The hard classes are semantic, and the training set is small. With 3,042 trainin
 The evidence comes from one English track and one development split, and the reference files lack source metadata, which limits claims about other domains. The reversal rule for \NO{} is our assumption. LoRA reduces the number of trainable parameters, but nothing yet shows that a 1.5B decoder will beat DeBERTa. The consistency term may also suppress \NO{}: on the one seed we have, the $\lambda = 1$ model answers it 55 times against 106 in the gold labels (\cref{sec:preliminary}).
 
 A manual review of 20 seed-13 encoder errors found five recurring categories: prepositional relations, numerals or quantifiers, near-synonyms or taxonomy, one-word negative contrasts, and phrase fragments. We use them to organise the qualitative analysis. Their counts come from a selected set and are no estimate of error rates.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{@{}N{0.10\textwidth}N{0.19\textwidth}L{0.42\textwidth}N{0.20\textwidth}@{}}
+\toprule
+Group & System & Representation and training & Settings recorded in \\
+\midrule
+Simple & majority & constant \FW{} (tie with \BW{} broken by label order) & \path{trivial-baselines} \\
+ & uniform random & one uniform label per instance, seed 13 & same \\
+ & always \EQ{} & constant & same \\
+ & always \NO{} & constant & same \\
+\midrule
+Classical ML & cues + logreg & 17 standardised surface cues; logistic regression, ${C = 1}$, balanced class weights & \path{ml-baseline} \\
+ & tfidf + logreg & word 1--2 gram TF-IDF of ``$a$ \texttt{[SEP]} $b$'', sublinear tf; same regression & same \\
+ & both + logreg & cues and TF-IDF concatenated; same regression & same \\
+ & cues + gbdt & 17 cues; histogram gradient boosting, 300 iterations, learning rate 0.05, balanced class weights & same \\
+\midrule
+Pretrained & DeBERTa-v3-base & fully fine-tuned, linear classification head, 5 epochs, 3 seeds & \path{deberta-base} \\
+ & Qwen2.5-1.5B, zero-shot & frozen, prompted; scores of the four option letters & \cref{sec:approach} \\
+ & Qwen2.5-1.5B, LoRA, ${\lambda = 0}$ & frozen backbone, LoRA adapters, both orders, cross-entropy only; single-pass decoding & \cref{sec:approach} \\
+\midrule
+Proposed & Qwen2.5-1.5B, LoRA, ${\lambda > 0}$ & as above, plus the consistency term of \cref{eq:loss} and symmetrized decoding (\cref{eq:sym}) & \cref{sec:approach} \\
+\bottomrule
+\end{tabular}
+\caption{Comparison systems. The settings folders are \texttt{experiments/2026-09-29-<name>-track1/}. All systems share the training data, the grouped validation split where one is used, the development set and the official scorer.}
+\label{tab:comparison}
+\end{table*}
