@@ -1,0 +1,36 @@
+\section{Planned Experiments}
+\label{sec:planned}
+
+\Cref{tab:planned} lists the runs for Assignment 3, all on Track 1 under the protocol of \cref{sec:protocol}. The GPU minutes are rough and come from measured runs, not from a model of cost. A DeBERTa seed trained in about 140 seconds on a T4 (\path{experiments/2026-09-29-deberta-base-track1/config.json}). A 1.5B LoRA run trained in 404 to 411 seconds on an L4 and scored the development set in both orders in about 14 seconds, and the zero-shot 1.5B system scored it in 28 seconds (\path{experiments/2026-11-14-decoder-preliminary-track1/tables/run_costs.csv}). We therefore count about 7 GPU minutes per trained decoder run. These decoder timings come from one seed of one preliminary run; the 0.5B model has not been timed on a GPU, so its figure is an upper bound taken from the 1.5B timing.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{@{}p{0.05\textwidth}p{0.33\textwidth}p{0.10\textwidth}p{0.30\textwidth}r@{}}
+\toprule
+\# & System & Seeds & What it tests & GPU min \\
+\midrule
+1 & Qwen2.5-1.5B zero-shot, single and symmetrized & none & H4, floor of the backbone & 1 \\
+2 & LoRA $\lambda = 0$, single and symmetrized & 3 & H5; reference for every row below & 21 \\
+3 & LoRA $\lambda \in \{0.25, 0.5, 1, 2\}$, chosen on validation & 3 each & H6, H7: the proposed system & 84 \\
+4 & DeBERTa-v3-base, symmetrized decoding of saved probabilities & 3 & is the decoding gain decoder-specific & 0 \\
+5 & Without reversed negatives, $\lambda = 0$ and chosen $\lambda$ & 3 each & the $\Rev(\NO{}) = \NO{}$ assumption & 42 \\
+6 & Label words instead of option letters, zero-shot and chosen $\lambda$ & 3 for LoRA & sensitivity to the verbaliser & 22 \\
+7 & Qwen2.5-0.5B, $\lambda = 0$ and chosen $\lambda$ & 3 each & dependence on model size & $\le 42$ \\
+8 & Tracks 2 and 3 (Spanish, Basque), best Track 1 configuration & 3 & optional: the method beyond English & not estimated \\
+\midrule
+ & Total, rows 1 to 7 & & & about 212 \\
+\bottomrule
+\end{tabular}
+\caption{Assignment 3 run list. Symmetrized decoding reuses the saved probabilities of each trained run, so it adds no training. Row 4 runs on the CPU. Minutes are rough, from the measured timings named in the text.}
+\label{tab:planned}
+\end{table*}
+
+\paragraph{Order.}
+We run the rows in the order of the table. Rows 1 and 2 come first because every comparison needs them, and row 2 with three seeds also gives the spread against which every later difference is judged. Row 3 is the main result. Row 4 costs no GPU time and can run whenever Fawwad's saved DeBERTa probabilities are at hand. Rows 5 to 7 follow once $\lambda$ is chosen, since each of them reuses it. The final development scores of each system are computed only after its configuration is fixed.
+
+\paragraph{What we drop first.}
+If compute runs short, we drop row 8, then row 7, then row 6, in that order. Next the $\lambda$ grid shrinks to $\{0.5, 1\}$, which halves row 3. Rows 1 to 5 and three seeds per trained system are the minimum we would report; we would rather run fewer ablations than report single seeds.
+
+\paragraph{Other tracks.}
+Spanish and Basque (Tracks 2 and 3) are optional. They need the data files of those tracks to be checked against the recorded commit first, and our plan makes no claim about them.
