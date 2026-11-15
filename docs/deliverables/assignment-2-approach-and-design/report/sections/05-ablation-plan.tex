@@ -1,0 +1,17 @@
+\section{Ablation Plan}
+\label{sec:ablations}
+
+Each ablation changes one thing against a named reference system and is decided by a metric fixed in advance. \Cref{tab:ablations} in \cref{app:ablations} gives, for every row, the hypothesis, the deciding metric and what the outcome that goes against us would mean. The seven ablations are:
+
+\begin{enumerate}
+\setlength{\itemsep}{0pt}
+\item Frozen zero-shot against LoRA with $\lambda = 0$ (H4, H5), decided by weighted F1 and \HardCons{}: how much does task adaptation add?
+\item $\lambda = 0$ against $\lambda > 0$ (H6), decided by single-pass \SoftCons{} with weighted F1 as the constraint: does the consistency term buy agreement without costing correctness?
+\item Single-pass against symmetrized decoding (H7), decided by \HardCons{} and weighted F1. \SoftCons{} is not evidence here, because the step raises it by design.
+\item With and without the reversed copies of the negatives, decided by \NO{} F1: does the assumption $\Rev(\NO) = \NO$ help or hurt?
+\item Option letters against label words as answer tokens, decided by weighted F1: does the result depend on how the label is written?
+\item The 0.5B against the 1.5B backbone: does the gain of the proposed components depend on model size?
+\item Symmetrized decoding applied to DeBERTa's saved probabilities: is the gain specific to decoders?
+\end{enumerate}
+
+All decoder ablations run with the three seeds of \cref{sec:protocol} and are compared as mean and standard deviation. A difference smaller than the spread across seeds is reported as no difference. The last ablation needs no new training, because DeBERTa's per-label probabilities were saved for all three seeds. Rows 5 and 6 test the measurement and how far the conclusions generalise; a reader cannot judge the main result without them.

@@ -1,0 +1,32 @@
+\section{Method Justification}
+\label{sec:justification}
+
+\subsection{Evidence and design decisions}
+\label{sec:method-evidence}
+
+\Cref{tab:method-justification} in \cref{app:evidence} maps eleven pieces of evidence, each with its source file, to a design decision and to the effect we expect to test. The four decisions that matter most are written out here.
+
+
+\paragraph{Surface evidence.}
+\textbf{Observation:} forward entailment often has a longer premise and full containment favors the forward direction, while cosine similarity cannot encode direction. \textbf{Interpretation:} ordered surface cues help, but leave cases unresolved; symmetric similarity can measure relatedness, not direction. \textbf{Modeling implication:} give the decoder both phrases in order and use cue-only and cosine systems as interpretable comparison systems.
+
+\paragraph{Consistency is not correctness.}
+\textbf{Observation:} 67 of 277 reversible dev pairs are consistently wrong under the cue model, and the encoder has 32--37 inconsistent pairs per seed. \textbf{Interpretation:} reversal agreement and gold accuracy are separate properties, even when aggregate \SoftCons{} is high. \textbf{Modeling implication:} combine supervised classification with a distribution-level consistency penalty, and report weighted F1, macro F1, \SoftCons{}, \HardCons{}, and per-label results together.
+
+\paragraph{Use the available pair structure.}
+\textbf{Observation:} training already contains 1,282 reversible pairs, while the 478 negatives have no official reversed twin (the phrases of a single negative pair also occur in the opposite order, again as a negative). \textbf{Interpretation:} adding reversed copies alone would repeat observed inputs, and the negative label's reversal rule is not established by pair counts. \textbf{Modeling implication:} process both orientations together, exchange forward and backward labels, keep equivalence fixed, and treat \NO{} as fixed only under an explicit assumption, which the ablation without reversed negatives tests (\cref{sec:ablations}).
+
+\paragraph{Adapt modestly and inspect hard classes.}
+\textbf{Observation:} with 3,042 training instances, DeBERTa's mean F1 is lower for \NO{} and equivalence than for either directional class. \textbf{Interpretation:} a small-data decoder experiment should test semantic boundaries as well as direction, with parameter cost kept manageable. \textbf{Modeling implication:} use frozen-backbone LoRA and class-token scoring; PET and R-Drop motivate scoring and distribution matching but do not establish this method's performance \citep{schick-schutze-2021-exploiting,liang-etal-2021-rdrop}.
+
+\subsection{Relation to the closest prior work}
+\label{sec:wang-comparison}
+
+\citet{wang-sun-xing-2019-swap} are the closest prior work: they make premise/hypothesis reversal an explicit NLI robustness test and vary how many swapped examples enter training. Their experiments use the three-way entailment, neutral and contradiction setting. DiCo-NLI has four labels, including separate forward and backward entailment. Our method aligns the reversed output by a label permutation, penalizes the Jensen--Shannon divergence between the two aligned distributions, and averages them at inference. Swap augmentation alone expresses neither a consistency objective nor inference-time symmetrization. We treat their work as a precedent and a contrast, and it is no evidence that our four-way method will improve performance.
+
+\subsection{Limitations and error categories}
+\label{sec:method-limitations}
+
+The evidence comes from one English track and one development split, and the reference files lack source metadata, which limits claims about domain robustness. The organizers give negatives no reversed twin, so the reversal rule for that label is our assumption. LoRA reduces the number of trainable parameters but does not establish that a 1.5B decoder will beat DeBERTa. The consistency term may also suppress \NO{}: on the one seed we have, the $\lambda=1$ model answers it 55 times against 106 in the gold labels (\cref{sec:preliminary}).
+
+The manual review of 20 seed-13 encoder errors found five recurring categories: prepositional relations, numerals or quantifiers, near-synonyms or taxonomy, one-word negative contrasts, and chunking or fragments. We use them to organize the qualitative analysis; their counts come from a selected set and are no estimate of error rates.

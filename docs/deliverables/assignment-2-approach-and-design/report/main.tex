@@ -22,6 +22,17 @@
 \renewcommand{\thebibliography}[1]{\acl@thebibliography{#1}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}}
 \makeatother
 
+% Let large tables sit near their text: a float may fill most of a page or column.
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\dbltopfraction}{0.95}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\dblfloatpagefraction}{0.8}
+\setcounter{topnumber}{3}
+\setcounter{dbltopnumber}{3}
+\setcounter{totalnumber}{5}
+
 % Label names. The official tokens are EQUIVALENCE, FORWARD_ENTAILMENT,
 % BACKWARD_ENTAILMENT and NEGATIVE_OTHER.
 \newcommand{\EQ}{\textsc{Equivalence}}
@@ -72,5 +83,8 @@ Fine-Grained Natural Language Inference}
 \sectionfile{11-planned-experiments}{Planned Experiments}{sec:planned}{Aqib Raza}
 
 \bibliography{references}
+
+% The detailed tables and the full protocol. The main text summarises them.
+\input{sections/A-appendix}
 
 \end{document}

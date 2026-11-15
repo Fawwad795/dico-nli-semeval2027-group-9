@@ -1,0 +1,18 @@
+\section{Reproducibility and Limitations}
+\label{sec:reproducibility}
+
+\subsection{Reproducibility}
+
+Training runs use seeds 13, 42, and 1234. We report the mean and sample standard deviation over all three seeds. For a given seed, the encoder and the decoder systems use the same grouped split of train into fit and held-out parts. All systems share the dev set and one fixed scorer, called through \texttt{dico\_nli.scoring.score}. For score differences, we use a paired bootstrap with 10,000 resamples and seed 13. The resampling unit is the source pair, which keeps both ordered instances together \citep{berg-kirkpatrick-etal-2012-empirical}. We report the difference and its 95\% percentile interval. We also apply the exact two-sided McNemar test to the two systems' per-instance correctness outcomes \citep{mcnemar1947}. A difference counts as real on a metric only when its bootstrap interval excludes zero.
+
+We ran both tests on the fixed Assignment 1 predictions. DeBERTa seed 13 is separated from the best classical system on all four metrics; the weighted F1 difference is 0.228 with interval $[0.175, 0.282]$. The same tests also separate two seeds of the same encoder on weighted F1: seed 13 exceeds seed 1234 by 0.029 with interval $[0.002, 0.057]$ and McNemar $p = 0.041$, while the \SoftCons{} and \HardCons{} intervals include zero. A single favourable seed can therefore pass a paired test on this dev set, so claims about the proposed method are made on the mean over three seeds, with paired comparisons matched by seed.
+
+Every run folder records its seed, the data and code commits and the exact command (\cref{app:implementation}). The Assignment 1 DeBERTa run was executed twice on T4 GPUs after code-identity recording was
+added. All three seeds produced byte-identical dev prediction files on the repeat. This checks determinism for the recorded code, seed, and GPU type. A repeat of the decoder run on the
+GPU has not been made yet.
+
+\subsection{Limitations}
+
+The dev set contains only 277 reversible pairs, so one pair changes \SoftCons{} or \HardCons{} by 0.36 percentage points, and confidence intervals stay wide. We study English track 1 only; results may not carry to Spanish, Basque, or mixed-language tracks. Train and dev share 155 of 712 unique dev phrases (22\%), and performance is much higher when phrases recur (\cref{sec:evaluation}), which limits a simple claim of lexical generalization.
+
+Finally, the public dev split doubles as the course test set. We do not tune the method against individual dev examples, but repeated inspection can still bias research choices. Final claims must be revisited on the official hidden test set when it is released.

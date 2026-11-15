@@ -12,21 +12,23 @@ The brief is `Assignment_2_Proposed_Approach_and_Experimental_Design.pdf` in thi
 | Method code | `src/dico_nli/method/` (`reversal.py`, `decoder.py`), tests under `tests/` |
 | GPU launcher | `scripts/modal/train_decoder.py` |
 | Preliminary verification | `notebooks/assignment-2/01_preliminary_verification.ipynb`, recorded in `experiments/2026-11-14-decoder-preliminary-track1/` |
+| Significance tests and subgroups | `src/dico_nli/stats.py`, `notebooks/assignment-2/02_reliability_track1.ipynb`, recorded in `experiments/2026-11-15-reliability-track1/` |
+| Submitted report | `SemEval_Task2_DiCo_NLI_Group_9_Assignment_2.pdf` |
 
-Items from the brief's checklist, ticked as they land on `main`:
+Items from the brief's checklist:
 
-- [ ] Clearly specified proposed method (report section 1)
-- [ ] Justification grounded in Assignment 1 findings and literature (section 2)
-- [ ] Architecture diagram marking trainable and frozen parts (section 3)
-- [ ] Simple baseline, classical ML system, pretrained system (section 4)
-- [ ] Ablation experiments (section 5)
-- [ ] Official and secondary evaluation measures (section 6)
-- [ ] Complete experimental protocol, leakage prevention, data-split description (section 7)
-- [ ] Initial end-to-end implementation (section 8)
-- [ ] Preliminary verification experiment (section 9)
-- [ ] Reproducibility details, seeds and configurations (section 10)
-- [ ] Limitations and planned next experiments (sections 10 and 11)
-- [ ] LaTeX report with tables, figures and references
+- [x] Clearly specified proposed method (report section 1)
+- [x] Justification grounded in Assignment 1 findings and literature (section 2)
+- [x] Architecture diagram marking trainable and frozen parts (section 3)
+- [x] Simple baseline, classical ML system, pretrained system (section 4)
+- [x] Ablation experiments (section 5)
+- [x] Official and secondary evaluation measures (section 6)
+- [x] Complete experimental protocol, leakage prevention, data-split description (section 7)
+- [x] Initial end-to-end implementation (section 8)
+- [x] Preliminary verification experiment (section 9)
+- [x] Reproducibility details, seeds and configurations (section 10)
+- [x] Limitations and planned next experiments (sections 10 and 11)
+- [x] LaTeX report with tables, figures and references
 
 No item of the brief is inapplicable to this topic.
 

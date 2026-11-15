@@ -1,0 +1,6 @@
+\section{Planned Experiments}
+\label{sec:planned}
+
+\Cref{tab:planned} in \cref{app:planned} lists the runs for Assignment 3, all on Track 1 under the protocol of \cref{sec:protocol}. The main result is LoRA over the grid $\lambda \in \{0.25, 0.5, 1, 2\}$ with three seeds each, compared with the zero-shot backbone and with LoRA at $\lambda = 0$. The remaining rows are the ablations of \cref{sec:ablations}. A trained decoder run costs about 7 GPU minutes, measured on one seed of the preliminary run, and the whole list about 212 GPU minutes.
+
+If compute runs short, we drop the optional Spanish and Basque tracks first, then the 0.5B model, then the label-word ablation, and then shrink the $\lambda$ grid to $\{0.5, 1\}$. Three seeds per trained system are the minimum: we would rather run fewer ablations than report single seeds.
