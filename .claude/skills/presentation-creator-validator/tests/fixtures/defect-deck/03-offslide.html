@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Text off the slide</title>
+<link rel="stylesheet" href="slide.css">
+</head>
+<body>
+<div data-pcv-slide>
+  <h1 data-pcv-title>Text running off the slide</h1>
+  <!-- Defect: a nowrap line that starts near the right edge and runs past x = 1920. -->
+  <p style="position:absolute; left:1500px; top:500px; margin:0; font-size:40px; white-space:nowrap;">This line runs far past the right edge</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+/* Deck theme. Loaded after /__pcv__/pcv.css; override any --pcv-* property here.
+ *
+ * Type: Newsreader (display serif, optical sizes) for titles and big numbers, IBM Plex Sans for
+ * text, IBM Plex Mono for kickers and folios. Each slide loads them from Google Fonts with the
+ * pinned css2 URL in its <head>; the system fonts after each name are the fallback.
+ *
+ * Palette (contrast on --pcv-bg #F4F1EA, WCAG 2.x):
+ *   ink #15171C 15.9:1 | ink-2 #3B3F47 9.4:1 | ink-3 #62666E 5.1:1
+ *   accent #B83D12 5.0:1 | accent-2 #1E5A78 6.7:1 | white on accent 5.7:1
+ *   rule #D3CEC3 and mark #ABA699 are for lines and bars only, never for text.
+ */
+:root {
+  --pcv-bg: #F4F1EA;
+  --pcv-surface: #EAE6DC;
+  --pcv-ink: #15171C;
+  --pcv-ink-2: #3B3F47;
+  --pcv-ink-3: #62666E;
+  --pcv-rule: #D3CEC3;
+  --pcv-mark: #ABA699;
+  --pcv-accent: #B83D12;
+  --pcv-accent-soft: #F3DFD3;
+  --pcv-accent-2: #1E5A78;
+  --pcv-on-accent: #FFFFFF;
+
+  --pcv-font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --pcv-font-text: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --pcv-font-mono: "IBM Plex Mono", "Cascadia Mono", Consolas, Menlo, monospace;
+
+  --pcv-margin: 112px;
+  --pcv-margin-y: 96px;
+}

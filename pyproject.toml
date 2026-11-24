@@ -39,6 +39,14 @@ dev = [
     "pymupdf>=1.28.2",
     "pytest>=9.1.1",
 ]
+slides = [
+    "numpy>=2.4.6",
+    "pillow>=12.3.0",
+    "playwright>=1.65.2",
+    "pymupdf>=1.28.2",
+    "pyspellchecker>=0.9.1",
+    "python-pptx>=1.0.2",
+]
 
 # torch: CPU wheels on Windows and Linux so a teammate's `uv sync` stays small; macOS uses
 # the PyPI wheel (the CPU index has none). GPU runs build their own CUDA image on Modal.

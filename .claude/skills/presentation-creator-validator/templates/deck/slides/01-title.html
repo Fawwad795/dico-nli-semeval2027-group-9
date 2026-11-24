@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Title</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=block">
+<link rel="stylesheet" href="/__pcv__/pcv.css">
+<link rel="stylesheet" href="../theme.css">
+<style>
+  /* The ruler: a 2px rule across the 12 columns, a tick at every column edge, and an accent
+     bar over the first three columns. It recurs as the deck's motif. */
+  .ruler { position: absolute; left: var(--pcv-margin); right: var(--pcv-margin); top: 208px; height: 16px; }
+  .ruler::before { content: ""; position: absolute; left: 0; right: 0; top: 0; border-top: 2px solid var(--pcv-ink); }
+  .ruler i { position: absolute; top: 0; width: 2px; height: 16px; background: var(--pcv-ink); }
+  .ruler b { position: absolute; left: 0; top: -6px; width: 400px; height: 8px; background: var(--pcv-accent); }
+
+  .topline { position: absolute; left: var(--pcv-margin); right: var(--pcv-margin); top: var(--pcv-margin-y);
+             display: flex; justify-content: space-between; }
+
+  .title { position: absolute; left: var(--pcv-margin); top: 300px; width: 1408px; height: 270px;
+           display: flex; align-items: flex-end; }
+  .title h1 { font-size: 112px; }
+  .title em { font-style: italic; color: var(--pcv-accent); }
+
+  .sub { position: absolute; left: var(--pcv-margin); top: 612px; width: 984px; }
+
+  .meta { position: absolute; left: var(--pcv-margin); right: var(--pcv-margin); bottom: var(--pcv-margin-y);
+          display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--pcv-gutter);
+          padding-top: 24px; border-top: 1px solid var(--pcv-rule); }
+  .meta div { grid-column: span 4; }
+  .meta .pcv-kicker { margin-bottom: 8px; }
+  .meta p { font-size: 26px; line-height: 1.35; color: var(--pcv-ink); }
+</style>
+</head>
+<body>
+<main data-pcv-slide class="pcv-bg-grain">
+  <div class="topline">
+    <span class="pcv-kicker">Course name &middot; Session</span>
+    <span class="pcv-kicker">Month and year</span>
+  </div>
+
+  <div class="ruler" aria-hidden="true">
+    <i style="left:0"></i><i style="left:144px"></i><i style="left:288px"></i><i style="left:432px"></i>
+    <i style="left:576px"></i><i style="left:720px"></i><i style="left:864px"></i><i style="left:1008px"></i>
+    <i style="left:1152px"></i><i style="left:1296px"></i><i style="left:1440px"></i><i style="left:1584px"></i>
+    <i style="left:1694px"></i>
+    <b></b>
+  </div>
+
+  <div class="title">
+    <h1 class="pcv-display" data-pcv-title>The claim this talk makes, <em>stated</em> in one line</h1>
+  </div>
+
+  <p class="sub pcv-lead">One sentence of context: what was studied, on which data, and what the audience should take away.</p>
+
+  <div class="meta">
+    <div><div class="pcv-kicker">Presented by</div><p>Speaker names</p></div>
+    <div><div class="pcv-kicker">Affiliation</div><p>Department and institution</p></div>
+    <div><div class="pcv-kicker">Venue</div><p>Event or course, room</p></div>
+  </div>
+</main>
+</body>
+</html>

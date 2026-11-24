@@ -1,0 +1,389 @@
+/* pcv.css: base canvas for presentation-creator-validator slides.
+ *
+ * One slide = one HTML file whose root element carries data-pcv-slide and measures exactly
+ * 1920x1080 CSS px at the page origin. A deck re-themes by overriding the --pcv-* custom
+ * properties in its own theme.css (load it after this file). Every size here is a whole pixel
+ * at 1920 wide, so lines land on device pixels at render scale 2.
+ *
+ * Grid: 112px side margin, 12 columns of 112px with 32px gutters (1696px content width).
+ */
+
+:root {
+  /* Colour. Contrast on --pcv-bg (#F4F1EA): ink 15.9:1, ink-2 9.4:1, ink-3 5.1:1,
+     accent 5.0:1, accent-2 6.7:1. --pcv-rule and --pcv-mark are for lines and marks, never text. */
+  --pcv-bg: #F4F1EA;
+  --pcv-surface: #EAE6DC;
+  --pcv-ink: #15171C;
+  --pcv-ink-2: #3B3F47;
+  --pcv-ink-3: #62666E;
+  --pcv-rule: #D3CEC3;
+  --pcv-mark: #ABA699;
+  --pcv-accent: #B83D12;
+  --pcv-accent-soft: #F3DFD3;
+  --pcv-accent-2: #1E5A78;
+  --pcv-on-accent: #FFFFFF;
+
+  /* Type. System stacks so a slide renders without web fonts; theme.css swaps in loaded faces. */
+  --pcv-font-display: Georgia, "Times New Roman", serif;
+  --pcv-font-text: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --pcv-font-mono: "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
+
+  /* Space. */
+  --pcv-margin: 112px;
+  --pcv-margin-y: 96px;
+  --pcv-gutter: 32px;
+  --pcv-col: 112px;
+  --pcv-unit: 8px;
+  --pcv-hairline: 1px;
+  --pcv-stroke: 2px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--pcv-bg);
+}
+
+[data-pcv-slide] {
+  position: relative;
+  box-sizing: border-box;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  margin: 0;
+  background-color: var(--pcv-bg);
+  color: var(--pcv-ink);
+  font-family: var(--pcv-font-text);
+  font-size: 28px;
+  line-height: 1.45;
+  font-kerning: normal;
+  font-variant-numeric: lining-nums;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-pcv-slide] *,
+[data-pcv-slide] *::before,
+[data-pcv-slide] *::after {
+  box-sizing: border-box;
+}
+
+[data-pcv-slide] :where(h1, h2, h3, h4, p, ul, ol, figure, blockquote, table) {
+  margin: 0;
+}
+
+/* ---------- Type ---------- */
+
+.pcv-display {
+  font-family: var(--pcv-font-display);
+  font-size: 120px;
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--pcv-ink);
+  text-wrap: balance;
+}
+
+.pcv-h1 {
+  font-family: var(--pcv-font-display);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+  color: var(--pcv-ink);
+  text-wrap: balance;
+}
+
+.pcv-h2 {
+  font-family: var(--pcv-font-text);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  color: var(--pcv-ink);
+}
+
+.pcv-lead {
+  font-family: var(--pcv-font-text);
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.38;
+  color: var(--pcv-ink-2);
+  text-wrap: pretty;
+}
+
+.pcv-body {
+  font-family: var(--pcv-font-text);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--pcv-ink-2);
+  text-wrap: pretty;
+}
+
+.pcv-small {
+  font-family: var(--pcv-font-text);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--pcv-ink-3);
+}
+
+.pcv-kicker {
+  font-family: var(--pcv-font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pcv-ink-3);
+}
+
+.pcv-num {
+  font-family: var(--pcv-font-display);
+  font-size: 168px;
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--pcv-ink);
+}
+
+.pcv-accent { color: var(--pcv-accent); }
+.pcv-accent-2 { color: var(--pcv-accent-2); }
+.pcv-muted { color: var(--pcv-ink-3); }
+.pcv-tabular { font-variant-numeric: lining-nums tabular-nums; }
+.pcv-mono { font-family: var(--pcv-font-mono); }
+
+/* A source note: small, quiet, pinned to the bottom margin by .pcv-foot. */
+[data-pcv-source] {
+  font-family: var(--pcv-font-text);
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--pcv-ink-3);
+}
+
+/* ---------- Layout ---------- */
+
+/* The content frame: absolute, inset by the margins. */
+.pcv-frame {
+  position: absolute;
+  top: var(--pcv-margin-y);
+  right: var(--pcv-margin);
+  bottom: var(--pcv-margin-y);
+  left: var(--pcv-margin);
+}
+
+/* 12-column grid matching the frame. Place children with grid-column: 1 / span 6 etc. */
+.pcv-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--pcv-gutter);
+  align-content: start;
+}
+
+/* Header band: kicker over title, aligned to the top margin. */
+.pcv-head {
+  position: absolute;
+  top: var(--pcv-margin-y);
+  left: var(--pcv-margin);
+  right: var(--pcv-margin);
+}
+.pcv-head > .pcv-kicker + * { margin-top: 20px; }
+
+/* Footer band: source note left, folio right, on one baseline above the bottom margin. */
+.pcv-foot {
+  position: absolute;
+  left: var(--pcv-margin);
+  right: var(--pcv-margin);
+  bottom: calc(var(--pcv-margin-y) - 24px);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--pcv-gutter);
+  font-size: 20px;
+  line-height: 1.35;
+  color: var(--pcv-ink-3);
+}
+
+.pcv-folio {
+  font-family: var(--pcv-font-mono);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--pcv-ink-3);
+}
+
+.pcv-rule { height: 0; border: 0; border-top: var(--pcv-stroke) solid var(--pcv-ink); margin: 0; }
+.pcv-rule-thin { height: 0; border: 0; border-top: var(--pcv-hairline) solid var(--pcv-rule); margin: 0; }
+
+/* ---------- Backgrounds (compose with background-color; keep text contrast intact) ---------- */
+
+/* Paper grain: a fixed-seed fractal-noise tile, so every render is identical. */
+.pcv-bg-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.08  0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0.9 -0.38'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+}
+
+/* Dot lattice on the 8px unit, registered to the margins (every 32px). */
+.pcv-bg-dots {
+  background-image: radial-gradient(circle at 1.5px 1.5px, color-mix(in srgb, var(--pcv-ink) 22%, transparent) 1.5px, transparent 1.6px);
+  background-size: 32px 32px;
+  background-position: calc(var(--pcv-margin) - 1.5px) calc(var(--pcv-margin-y) - 1.5px);
+}
+
+/* Column lines: one hairline at every column edge of the 12-column grid. */
+.pcv-bg-lines {
+  background-image:
+    repeating-linear-gradient(to right,
+      color-mix(in srgb, var(--pcv-rule) 55%, transparent) 0 1px, transparent 1px var(--pcv-col),
+      color-mix(in srgb, var(--pcv-rule) 55%, transparent) var(--pcv-col) calc(var(--pcv-col) + 1px),
+      transparent calc(var(--pcv-col) + 1px) calc(var(--pcv-col) + var(--pcv-gutter)));
+  background-position: var(--pcv-margin) 0;
+  background-size: calc(100% - 2 * var(--pcv-margin) + 1px) 100%;
+  background-repeat: no-repeat;
+}
+
+/* ---------- Components (pcv-components.js builds these) ---------- */
+
+.pcv-chart { position: relative; display: block; }
+.pcv-chart > svg { display: block; overflow: visible; }
+.pcv-chart text {
+  font-family: var(--pcv-font-text);
+  font-variant-numeric: lining-nums tabular-nums;
+  font-kerning: normal;
+}
+
+/* Flow diagram */
+.pcv-flow { position: relative; }
+.pcv-flow > svg { position: absolute; left: 0; top: 0; display: block; overflow: visible; }
+.pcv-flow-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: safe center;
+  gap: 6px;
+  padding: 18px 24px;
+  background: var(--pcv-bg);
+  border: var(--pcv-stroke) solid var(--pcv-ink);
+  overflow: hidden;
+}
+.pcv-flow-node[data-tone="accent"] { background: var(--pcv-accent-soft); border-color: var(--pcv-accent); }
+.pcv-flow-node[data-tone="muted"] { background: var(--pcv-surface); border-color: var(--pcv-surface); }
+.pcv-flow-title {
+  font-family: var(--pcv-font-text);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--pcv-ink);
+}
+.pcv-flow-body {
+  font-family: var(--pcv-font-text);
+  font-size: 22px;
+  line-height: 1.35;
+  color: var(--pcv-ink-2);
+}
+.pcv-flow-node[data-tone="muted"] .pcv-flow-title { color: var(--pcv-ink-2); }
+.pcv-flow-label {
+  position: absolute;
+  padding: 0 10px;
+  background: var(--pcv-bg);
+  font-family: var(--pcv-font-text);
+  font-size: 20px;
+  line-height: 28px;
+  white-space: nowrap;
+  color: var(--pcv-ink-3);
+}
+
+/* Timeline */
+.pcv-timeline {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  column-gap: var(--pcv-gutter);
+}
+.pcv-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: var(--pcv-tl-axis, 56px);
+  border-top: var(--pcv-stroke) solid var(--pcv-ink);
+}
+.pcv-tl-item { position: relative; padding-top: calc(var(--pcv-tl-axis, 56px) + 36px); }
+.pcv-tl-when {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: var(--pcv-font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--pcv-ink-3);
+}
+.pcv-tl-mark {
+  position: absolute;
+  left: 0;
+  top: calc(var(--pcv-tl-axis, 56px) - 9px);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--pcv-bg);
+  border: 3px solid var(--pcv-ink);
+}
+.pcv-tl-title {
+  font-family: var(--pcv-font-text);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.22;
+  color: var(--pcv-ink);
+}
+.pcv-tl-body {
+  margin-top: 12px;
+  font-family: var(--pcv-font-text);
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--pcv-ink-2);
+}
+.pcv-tl-item[data-emphasis] .pcv-tl-mark { background: var(--pcv-accent); border-color: var(--pcv-accent); }
+.pcv-tl-item[data-emphasis] .pcv-tl-when { color: var(--pcv-accent); }
+
+/* Table. Cells carry 16px side padding and the table hangs 16px into each margin, so cell text
+   aligns with the column edges while an emphasised row's tint extends past them. */
+.pcv-table {
+  width: calc(100% + 32px);
+  margin: 0 -16px;
+  border-collapse: collapse;
+  font-family: var(--pcv-font-text);
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--pcv-ink-2);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.pcv-table th {
+  padding: 0 16px 14px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: left;
+  vertical-align: bottom;
+  color: var(--pcv-ink-3);
+}
+.pcv-table td {
+  padding: 16px;
+  vertical-align: baseline;
+}
+/* Rules belong to rows, not cells, so each is one unbroken line. */
+.pcv-table thead tr { border-bottom: var(--pcv-stroke) solid var(--pcv-ink); }
+.pcv-table tbody tr { border-bottom: var(--pcv-hairline) solid var(--pcv-rule); }
+.pcv-table tbody tr:last-child { border-bottom: var(--pcv-stroke) solid var(--pcv-ink); }
+.pcv-table [data-align="right"] { text-align: right; }
+.pcv-table [data-align="center"] { text-align: center; }
+.pcv-table td[data-numeric] { color: var(--pcv-ink); }
+.pcv-table td[data-emphasis] { font-weight: 600; color: var(--pcv-accent); }
+.pcv-table tr[data-emphasis] td { font-weight: 600; color: var(--pcv-ink); background: var(--pcv-accent-soft); }
+.pcv-table tr[data-emphasis] td:first-child { box-shadow: inset 4px 0 0 var(--pcv-accent); }

@@ -1,0 +1,4 @@
+metric,value
+dev_accuracy,0.814
+phrase_pairs,1250
+epochs_total,42

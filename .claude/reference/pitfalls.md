@@ -311,6 +311,11 @@ Building an HTML slide deck cost four rounds of fixes that measurement would hav
   way, when re-checking regenerated files.
 - **Overflow checks must include absolutely positioned elements.** A title slide's bottom band
   was `position: absolute`, a check that skipped such elements passed, and the band ran off the slide.
+- **`scrollHeight > clientHeight` is not overflow for headings.** Chrome counts glyph overhang into
+  an element's scroll size, so a one-line 64 px title at line-height 1.1 reported 59 px of content in
+  a 53 px box, and an automatic fix shrank it to 41 px. Compare the text's Range rects (middle 70 %
+  of each line box) with the element box, with a tolerance of a quarter of the font size
+  (presentation-creator-validator `checks_dom.py`).
 - **The Claude Design skill is user-only.** `/design` has `disable-model-invocation`; the model's
   Skill call fails, and the skill says not to replicate it by other means. Ask the user to type
   `/design`, and prepare the artboards before they do.

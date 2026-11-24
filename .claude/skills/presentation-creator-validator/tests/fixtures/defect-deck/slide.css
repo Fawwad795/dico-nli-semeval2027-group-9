@@ -1,0 +1,18 @@
+/* Fixture styles: self-contained on purpose (no /__pcv__/ library, no web fonts). */
+html, body { margin: 0; padding: 0; }
+[data-pcv-slide] {
+  position: relative; width: 1920px; height: 1080px; overflow: hidden;
+  background: #ffffff; color: #1a1a1a; font-family: sans-serif;
+}
+h1 {
+  position: absolute; left: 120px; top: 120px; width: 1600px; margin: 0;
+  font-size: 56px; line-height: 1.2; font-weight: 700;
+}
+.body {
+  position: absolute; left: 120px; top: 320px; width: 1000px; margin: 0;
+  font-size: 36px; line-height: 1.4;
+}
+.note {
+  position: absolute; left: 120px; top: 880px; margin: 0;
+  font-size: 22px; color: #555555;
+}

@@ -1,0 +1,26 @@
+{
+  "title": "Defect fixture deck",
+  "author": "presentation-creator-validator tests",
+  "slides": [
+    "01-clean.html",
+    "02-clipped.html",
+    "03-offslide.html",
+    "04-overlap.html",
+    "05-missing-image.html",
+    "06-stretched.html",
+    "07-title-size.html",
+    "08-small-text.html",
+    "09-contrast.html",
+    "10-unsupported-number.html",
+    "11-missing-citation.html",
+    "12-misspelling.html",
+    "13-clipped-hard.html"
+  ],
+  "sources": ["data/results.csv"],
+  "references": {
+    "smith2020": "A. Smith. A placeholder reference used only by the validator tests."
+  },
+  "rules": {
+    "min_font_px": 20
+  }
+}

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Clipped text</title>
+<link rel="stylesheet" href="slide.css">
+</head>
+<body>
+<div data-pcv-slide>
+  <h1 data-pcv-title>Text clipped by its box</h1>
+  <!-- Defect: one nowrap line wider than its overflow:hidden box; shrinking to about 27px fits it. -->
+  <div style="position:absolute; left:120px; top:320px; width:700px; height:80px; overflow:hidden; white-space:nowrap; font-size:48px; line-height:80px;">This sentence is much too long for the narrow box</div>
+</div>
+</body>
+</html>
