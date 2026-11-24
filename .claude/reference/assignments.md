@@ -41,12 +41,18 @@ The professor's brief (received 2026-11-13) is `docs/deliverables/assignment-2-a
 
 ## Assignment 3: experiments, analysis and research paper
 
-- Completed experiments
-- Ablations and error analysis
-- Comparison with baselines and relevant work
-- Findings
-- Paper-style report
-- Presentation or demo
+The professor's brief (received 2026-11-23) is `docs/deliverables/assignment-3-experiments-and-paper/Assignment_3_Experiments_Analysis_and_Research_Paper.pdf` and replaces the generic list. The item-by-item checklist is that folder's `README.md`. What the brief requires:
+
+- Core principle: the project is judged on the evidence for what works, why, where it fails and how reliable it is, not on the best score.
+- Execute the Assignment 2 protocol: all comparison systems and the proposed system, the planned ablations, repeated seeds where feasible, the fixed scorer, official and secondary metrics. Preserve predictions, checkpoints, logs, configs and summaries. Report final configs, splits, preprocessing, settings, seeds, hardware and compute cost. Explain every deviation from the protocol.
+- Results: measurement separate from interpretation; tables for exact comparisons, figures for trends; mean and variation over runs; consistent rounding; intervals or tests; say whether conclusions hold across seeds, subsets and metrics.
+- Ablations: restate each hypothesis against the observed result; components that help consistently, weakly or negatively; interactions; effects separated from variance, leakage or data-coverage changes.
+- Error analysis: categories defined before examples are chosen, quantified; false positives and negatives; failures tied to linguistic, semantic, source or annotation factors; representative examples with target, prediction and explanation; annotation ambiguity, label noise, shortcuts, artifacts.
+- Comparison: simple, classical and pretrained baselines; say whether shared-task comparisons share split, metric and conditions; literature only when aligned; accuracy, interpretability, efficiency and resource trade-offs; each comparison marked direct, approximate or not comparable.
+- Findings: strongest finding with evidence; which design choices mattered; negative and unexpected results; observation separate from explanation; limitations, threats to validity, compute, generalization; concrete next steps.
+- Paper in LaTeX with BibTeX, maths, labelled tables and figures, cross-references, in twelve sections: title and abstract, introduction and research questions, related work, task and dataset, proposed method, experimental setup, results, ablation and error analysis, comparison with relevant work, discussion and limitations, conclusion and future work, references. Source in `docs/paper/`.
+- Presentation (problem, data and research questions, approach, design and comparison systems, results with ablations and errors, findings and limitations, conclusion) and a demo of the input-to-output workflow with success and failure cases, stating live model, saved checkpoint or scripted, with a fallback recording or screenshots and no credentials or private data.
+- Reproducibility package: code for preprocessing, training, inference and evaluation; configs and dependency information; split definitions and data instructions; saved predictions, logs and result tables; checkpoint or a documented redistribution limitation; a README with execution order and expected outputs; slides and demo materials.
 
 ## Professor's working notes (recorded 2026-09-29)
 
