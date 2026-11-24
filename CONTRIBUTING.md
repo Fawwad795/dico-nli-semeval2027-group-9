@@ -53,7 +53,7 @@ Nothing lands on `main` directly. Every change goes on its own branch and reache
    gh pr create --fill --base main
    ```
    Without `gh`, open the pull request on GitHub; it will offer the branch you just pushed.
-4. A teammate reviews and approves. The author squash-merges and deletes the branch.
+4. A teammate reviews. Fawwad squash-merges (only he can merge into `main`), and GitHub deletes the branch.
 
 Unrelated changes never share a branch or a commit. If you notice a second problem while fixing the first, note it and open a second branch.
 
