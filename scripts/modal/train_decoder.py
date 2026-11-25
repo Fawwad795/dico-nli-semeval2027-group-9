@@ -310,10 +310,10 @@ def main(
     settings = {"track": track, "epochs": epochs, "batch_size": batch_size, "micro_batch_size": micro_batch_size,
                 "mixed_precision": mixed_precision, "holdout_fraction": 0.2}
     # One failed job must not hide the others: exceptions come back as results.
-    results = run.starmap([(job, run_id, settings, code) for job in job_list],
-                          return_exceptions=True, wrap_returned_exceptions=False)
+    results = run.starmap([(job, run_id, settings, code) for job in job_list], return_exceptions=True)
     failed = []
-    for name, result in zip(names, results):
+    for index, result in enumerate(results):  # read to the end, so the result stream closes cleanly
+        name = names[index]
         if isinstance(result, BaseException):
             failed.append(name)
             print(f"FAILED {name}: {result!r}")
