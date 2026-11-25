@@ -22,16 +22,18 @@ def word_level_tokenizer(texts):
     return PreTrainedTokenizerFast(tokenizer_object=raw, pad_token="[PAD]", unk_token="[UNK]"), len(vocab)
 
 
-def tiny_decoder(instances):
+def tiny_decoder(instances, answer_format="letters"):
     """``(tokenizer, model_factory)`` for a one-layer randomly initialised Qwen2 causal LM over
-    the words of the instances' prompts. Nothing is downloaded, and the attention projections
-    carry the same names as in the real backbone, so LoRA attaches the same way."""
+    the words of the instances' prompts in the given answer format. Nothing is downloaded, and
+    the attention projections carry the same names as in the real backbone, so LoRA attaches the
+    same way. The default call builds the same model as before the format option existed; the
+    pinned default-path test depends on that."""
     import torch
     from transformers import Qwen2Config, Qwen2ForCausalLM
 
     from dico_nli.method.decoder import build_prompt, plain_prompt
 
-    prompts = [plain_prompt(build_prompt(a, b))
+    prompts = [plain_prompt(build_prompt(a, b, answer_format=answer_format))
                for i in instances for a, b in ((i.text1, i.text2), (i.text2, i.text1))]
     tokenizer, vocab_size = word_level_tokenizer(prompts)
 

@@ -1,4 +1,4 @@
-"""Reversal-equivariant LoRA: a frozen decoder LLM scored on four option letters, adapted with
+"""Reversal-equivariant LoRA: a frozen decoder LLM scored on four answer tokens, adapted with
 LoRA under a loss that ties the prediction for ``(a, b)`` to the one for ``(b, a)``.
 
 The pair goes into a fixed prompt that asks for one option letter. The classifier reads the
@@ -12,6 +12,12 @@ Training scores every pair in both orders in the same step::
 ``Rev`` and ``P`` come from ``reversal.py`` (NEGATIVE_OTHER maps to itself, by assumption).
 ``consistency_weight`` is lambda; 0 gives plain LoRA. Epoch selection uses a held-out slice of
 the training data passed as ``holdout``; the dev set is never seen during fitting.
+
+Two options exist for the Assignment 3 ablations, and their defaults are the method as proposed.
+``reverse_negatives=False`` drops the reverse cross-entropy and the consistency term for
+NEGATIVE_OTHER pairs, which removes the assumption that NEGATIVE_OTHER reverses to itself.
+``answer_format="words"`` asks for one answer word instead of an option letter and scores the
+first token of each word.
 
 ``model_factory`` and ``tokenizer`` can be injected, which is how the tests train a tiny
 randomly initialised model without downloading anything. Without ``fit`` the classifier scores
@@ -54,14 +60,34 @@ USER_TEMPLATE = (
     "D. Other: neither phrase entails the other.\n\n"
     "Answer with one letter."
 )
+# The same prompt without the option letters: each option is named by its answer word, and the
+# last line asks for that word. The classifier scores the first token of each word.
+ANSWER_WORDS: tuple[str, ...] = ("Equivalence", "Forward", "Backward", "Other")  # in LABELS order
+WORDS_TEMPLATE = (
+    "Phrase 1: {text1}\n"
+    "Phrase 2: {text2}\n\n"
+    "Which relation holds?\n"
+    "Equivalence: the two phrases mean the same.\n"
+    "Forward: Phrase 1 is more specific, so it entails Phrase 2.\n"
+    "Backward: Phrase 2 is more specific, so it entails Phrase 1.\n"
+    "Other: neither phrase entails the other.\n\n"
+    "Answer with one word: Equivalence, Forward, Backward or Other."
+)
+TEMPLATES = {"letters": USER_TEMPLATE, "words": WORDS_TEMPLATE}
 
 
-def build_prompt(text1: str, text2: str) -> list[dict[str, str]]:
+def _check_answer_format(answer_format: str) -> None:
+    if answer_format not in TEMPLATES:
+        raise ValueError(f"answer_format must be one of {sorted(TEMPLATES)}, got {answer_format!r}")
+
+
+def build_prompt(text1: str, text2: str, *, answer_format: str = "letters") -> list[dict[str, str]]:
     """The fixed instruction for one ordered pair, as chat messages. It takes the two phrases
-    and nothing else: an instance id would leak the label."""
+    and the answer format, nothing else: an instance id would leak the label."""
+    _check_answer_format(answer_format)
     return [
         {"role": "system", "content": SYSTEM_PROMPT},
-        {"role": "user", "content": USER_TEMPLATE.format(text1=text1, text2=text2)},
+        {"role": "user", "content": TEMPLATES[answer_format].format(text1=text1, text2=text2)},
     ]
 
 
@@ -70,9 +96,9 @@ def plain_prompt(messages: Sequence[dict[str, str]]) -> str:
     return "\n\n".join(message["content"] for message in messages)
 
 
-def render_prompt(tokenizer, text1: str, text2: str) -> str:
+def render_prompt(tokenizer, text1: str, text2: str, answer_format: str = "letters") -> str:
     """The text the model reads, ending where its answer starts."""
-    messages = build_prompt(text1, text2)
+    messages = build_prompt(text1, text2, answer_format=answer_format)
     if getattr(tokenizer, "chat_template", None):
         return tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     return plain_prompt(messages)
@@ -99,6 +125,49 @@ class DecoderConfig:
     micro_batch_size: int | None = None
     mixed_precision: bool = False
     seed: int = 13
+    # Ablation options; the defaults are the proposed method (see the module docstring).
+    reverse_negatives: bool = True
+    answer_format: str = "letters"
+
+    def __post_init__(self) -> None:
+        _check_answer_format(self.answer_format)
+
+
+def pair_loss(
+    forward: torch.Tensor,
+    reverse: torch.Tensor,
+    target: torch.Tensor,
+    consistency_weight: float,
+    reverse_negatives: bool = True,
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    """``(loss, cross-entropy, consistency term)`` for the pairs of one micro-batch.
+
+    ``forward`` holds the log-probabilities for ``(a, b)``; ``reverse`` holds those for ``(b, a)``
+    mapped back into the label space of ``(a, b)``, so a cross-entropy against ``target`` there is
+    the cross-entropy of ``p(. | b, a)`` against ``Rev(y)``. Every term is a mean over all pairs.
+
+    With ``reverse_negatives=False`` the reverse cross-entropy and the consistency term of a
+    NEGATIVE_OTHER pair are zero, and the sums are still divided by the number of pairs, so every
+    other pair weighs what it weighs by default.
+
+    The default branch keeps the statements, and their order, of the code the first runs were
+    made with. Reordering them changes the order in which gradients are summed and with it the
+    last digits of a run, so do not merge or tidy the two branches.
+    """
+    if reverse_negatives:
+        ce = F.nll_loss(forward, target) + F.nll_loss(reverse, target)
+        mixture = torch.logsumexp(torch.stack([forward, reverse]), dim=0) - math.log(2)
+        js = 0.5 * (F.kl_div(mixture, forward, reduction="batchmean", log_target=True)
+                    + F.kl_div(mixture, reverse, reduction="batchmean", log_target=True))
+    else:
+        keep = (target != LABEL_TO_ID["NEGATIVE_OTHER"]).to(forward.dtype)
+        pairs = len(target)
+        ce = F.nll_loss(forward, target) + (F.nll_loss(reverse, target, reduction="none") * keep).sum() / pairs
+        mixture = torch.logsumexp(torch.stack([forward, reverse]), dim=0) - math.log(2)
+        js_per_pair = 0.5 * (F.kl_div(mixture, forward, reduction="none", log_target=True)
+                             + F.kl_div(mixture, reverse, reduction="none", log_target=True)).sum(dim=1)
+        js = (js_per_pair * keep).sum() / pairs
+    return ce + consistency_weight * js, ce, js
 
 
 class DecoderClassifier:
@@ -117,6 +186,7 @@ class DecoderClassifier:
         self.history: list[dict] = []
         self.best_epoch: int | None = None
         self._letter_ids: list[int] | None = None
+        self._word_ids: list[int] | None = None
 
     # --- tokenizer and model ----------------------------------------------------------------
 
@@ -145,6 +215,26 @@ class DecoderClassifier:
             self._letter_ids = ids
         return self._letter_ids
 
+    @property
+    def answer_ids(self) -> list[int]:
+        """The token id scored for each label: its option letter, or in words mode the first
+        token of its answer word. The four must be distinct known tokens."""
+        if self.config.answer_format == "letters":
+            return self.letter_ids
+        if self._word_ids is None:
+            ids = []
+            for word in ANSWER_WORDS:
+                encoded = self.tokenizer.encode(word, add_special_tokens=False)
+                if not encoded or encoded[0] == self.tokenizer.unk_token_id:
+                    raise ValueError(f"answer word {word!r} does not start with a known token for this tokenizer: {encoded}")
+                ids.append(encoded[0])
+            if len(set(ids)) != len(ids):
+                raise ValueError(
+                    f"the answer words do not start with distinct tokens for this tokenizer: {dict(zip(ANSWER_WORDS, ids))}"
+                )
+            self._word_ids = ids
+        return self._word_ids
+
     def _new_backbone(self) -> torch.nn.Module:
         if self._model_factory is not None:
             return self._model_factory()
@@ -166,7 +256,7 @@ class DecoderClassifier:
 
     def max_prompt_tokens(self, instances: Sequence[Instance]) -> int:
         """The longest prompt over both orders of every instance, in tokens."""
-        texts = [render_prompt(self.tokenizer, a, b)
+        texts = [render_prompt(self.tokenizer, a, b, self.config.answer_format)
                  for i in instances for a, b in ((i.text1, i.text2), (i.text2, i.text1))]
         return max(len(ids) for ids in self.tokenizer(texts)["input_ids"])
 
@@ -177,14 +267,14 @@ class DecoderClassifier:
                 "prompts are never truncated, because that would cut off the answer position"
             )
 
-    def _letter_log_probs(self, pairs: Sequence[tuple[str, str]]) -> torch.Tensor:
-        """Log-probabilities over the four letters at the answer position, one row per pair."""
-        batch = self.tokenizer([render_prompt(self.tokenizer, a, b) for a, b in pairs],
+    def _answer_log_probs(self, pairs: Sequence[tuple[str, str]]) -> torch.Tensor:
+        """Log-probabilities over the four answer tokens at the answer position, one row per pair."""
+        batch = self.tokenizer([render_prompt(self.tokenizer, a, b, self.config.answer_format) for a, b in pairs],
                                return_tensors="pt", padding=True)
         self._check_length(batch["input_ids"].shape[1])
         model = self._ensure_model()
         # Run the transformer body and apply the output layer to the last position and the four
-        # letter rows only; the full vocabulary logits at every position are never built.
+        # answer rows only; the full vocabulary logits at every position are never built.
         causal_lm = model.get_base_model() if hasattr(model, "get_base_model") else model
         head = causal_lm.get_output_embeddings()
         with self._autocast():
@@ -192,8 +282,8 @@ class DecoderClassifier:
                 input_ids=batch["input_ids"].to(self.device),
                 attention_mask=batch["attention_mask"].to(self.device),
             ).last_hidden_state[:, -1, :]
-            bias = None if head.bias is None else head.bias[self.letter_ids]
-            logits = F.linear(hidden, head.weight[self.letter_ids], bias)
+            bias = None if head.bias is None else head.bias[self.answer_ids]
+            logits = F.linear(hidden, head.weight[self.answer_ids], bias)
         return F.log_softmax(logits.float(), dim=-1)
 
     def _frame(self, instances: Sequence[Instance], probabilities: np.ndarray) -> pd.DataFrame:
@@ -204,7 +294,7 @@ class DecoderClassifier:
     @torch.no_grad()
     def _probabilities(self, pairs: Sequence[tuple[str, str]], batch_size: int) -> np.ndarray:
         self._ensure_model().eval()
-        chunks = [self._letter_log_probs(pairs[start:start + batch_size]).exp().cpu().numpy()
+        chunks = [self._answer_log_probs(pairs[start:start + batch_size]).exp().cpu().numpy()
                   for start in range(0, len(pairs), batch_size)]
         return np.vstack(chunks)
 
@@ -298,15 +388,10 @@ class DecoderClassifier:
                 micro = cfg.micro_batch_size or len(batch)
                 for offset in range(0, len(batch), micro):
                     part, target = batch[offset:offset + micro], gold[offset:offset + micro]
-                    forward = self._letter_log_probs([(i.text1, i.text2) for i in part])
-                    # The reversed order, mapped back into the label space of (a, b): a cross-entropy
-                    # against y here is the cross-entropy of p(. | b, a) against Rev(y).
-                    reverse = self._letter_log_probs([(i.text2, i.text1) for i in part])[:, reverse_index]
-                    ce = F.nll_loss(forward, target) + F.nll_loss(reverse, target)
-                    mixture = torch.logsumexp(torch.stack([forward, reverse]), dim=0) - math.log(2)
-                    js = 0.5 * (F.kl_div(mixture, forward, reduction="batchmean", log_target=True)
-                                + F.kl_div(mixture, reverse, reduction="batchmean", log_target=True))
-                    loss = ce + cfg.consistency_weight * js
+                    forward = self._answer_log_probs([(i.text1, i.text2) for i in part])
+                    # The reversed order, mapped back into the label space of (a, b).
+                    reverse = self._answer_log_probs([(i.text2, i.text1) for i in part])[:, reverse_index]
+                    loss, ce, js = pair_loss(forward, reverse, target, cfg.consistency_weight, cfg.reverse_negatives)
                     share = len(part) / len(batch)  # every term is a mean over the pairs of the part
                     (loss * share).backward()
                     for key, value in (("train_loss", loss), ("train_ce", ce), ("train_js", js)):
