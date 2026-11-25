@@ -46,3 +46,5 @@ The official SoftCons of symmetrized predictions is therefore one minus the shar
 - Check whether the consistency loss suppresses NEGATIVE_OTHER in general or only on this seed. It is the smallest class and the one where our reversal assumption applies.
 - The launcher reported peak GPU memory per container, and the three jobs shared one container, so the lambda 1 figure includes the earlier jobs. The launcher now resets the counter at the start of each job.
 - The settings for every later run are fixed by this run: NVIDIA L4, bfloat16 activations with float32 weights, micro-batches of 8 pairs.
+
+Promoted on 24 November 2026: `probabilities/<system>__forward.csv` and `__reverse.csv` for the 1.5B zero-shot run and both seed-13 LoRA runs are byte-identical copies of the gitignored `artifacts/decoder-preliminary-track1/2026-11-14-decoder-preliminary-track1/<system>/probabilities_forward.csv` and `probabilities_reverse.csv`. Single-pass and symmetrized predictions and official scores recomputed from them match `predictions/` and `scores/` exactly, so no number changed. The 0.5B zero-shot run has no saved probabilities in `artifacts/`, so none are promoted for it.
