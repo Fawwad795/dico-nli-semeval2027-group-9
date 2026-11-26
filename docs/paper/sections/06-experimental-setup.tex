@@ -1,5 +1,85 @@
-% Placeholder. Syed Fawwad Ahmed replaces this file; keep the heading and the label.
 \section{Experimental Setup}
 \label{sec:setup}
 
-\emph{Written by Syed Fawwad Ahmed; arrives with their pull request.}
+The protocol was fixed before the final runs. This section gives the settings as they were run; \cref{app:deviations} lists every point where they differ from the plan, with the reason.
+
+\subsection{Data and splits}
+\label{sec:setup-data}
+
+We use Track 1 (English) of the organizers' repository at commit \texttt{588968e}: 3,042 training instances in 1,760 source pairs, and 660 development instances in 383 source pairs, of which 277 are reversible pairs and 106 are single negative instances (\cref{sec:task}). % docs/deliverables/assignment-1-problem-and-baseline/report/sections/03-dataset.tex
+The official test set is released after this work ends, so the development set serves as our test set. Nothing is chosen on it.
+
+Validation data come from the training file: 20\% of the source pairs, drawn with the run's seed, so that the two orders of a pair never sit on opposite sides of the split. Seeds 13, 42 and 1234 leave 2,443, 2,427 and 2,439 instances to train on and 599, 615 and 603 to validate on. % experiments/2026-11-25-decoder-final-track1/tables/run_costs.csv
+The validation split picks the epoch of each run and the consistency weight of the proposed system. An untrained system has no seed; it is scored on the validation split of seed 13.
+
+\subsection{Preprocessing}
+\label{sec:setup-preprocessing}
+
+Phrases enter the prompt exactly as released, with no normalisation. The backbone's own tokenizer and chat template are used. The prompt limit is 160 tokens with truncation switched off, because a truncated prompt would lose the answer position; the longest prompt over both orders of every training and development instance is 132 tokens. % runs/*.json, longest_prompt_tokens
+Batches are padded on the left, so that the last position of every row is the answer position.
+
+\subsection{Systems}
+\label{sec:setup-systems}
+
+\Cref{tab:systems} lists what was run. The first three rows are the main comparison: the untrained decoder, LoRA without the consistency term, and LoRA with it. Row 4 applies symmetrized decoding to the encoder baseline's saved probabilities and needs no GPU. Rows 5 to 7 are ablations at $\lambda = 0$ and at the chosen $\lambda$:
+
+\begin{itemize}
+\setlength{\itemsep}{1pt}
+\setlength{\parskip}{0pt}
+\item \textbf{Without reversed negatives.} For \NO{} pairs the reverse cross-entropy and the consistency term of \cref{eq:loss} are set to zero, which removes the assumption $\Rev(\NO) = \NO$ from training. Every term is still divided by the number of pairs in the batch, so each reversible pair weighs what it weighs in the reference system.
+\item \textbf{Label words.} The prompt names each option by a word (Equivalence, Forward, Backward, Other) and asks for one word. The option letters are gone, and the model is scored on the first token of each word.
+\item \textbf{Model size.} Qwen2.5-0.5B-Instruct replaces the 1.5B backbone, with every other setting unchanged.
+\end{itemize}
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{@{}rN{0.50\columnwidth}cc@{}}
+\toprule
+ & System & Seeds & GPU jobs \\
+\midrule
+1 & Qwen2.5-1.5B, zero-shot & -- & 1 \\
+2 & LoRA, $\lambda = 0$ & 3 & 3 \\
+3 & LoRA, $\lambda \in \{0.25, 0.5, 1, 2\}$ & 3 each & 12 \\
+4 & DeBERTa-v3-base, symmetrized from saved probabilities & 3 & 0 \\
+5 & Without reversed negatives, $\lambda \in \{0, 2\}$ & 3 each & 6 \\
+6 & Label words, zero-shot and $\lambda = 2$ & -- and 3 & 4 \\
+7 & Qwen2.5-0.5B, $\lambda \in \{0, 2\}$ & 3 each & 6 \\
+\midrule
+ & Total & & 32 \\
+\bottomrule
+\end{tabular}
+\caption{The systems that were run. Rows 1 to 3 ran first; rows 5 to 7 ran after $\lambda = 2$ had been chosen on validation. Every job saved its validation and development probabilities in both orders, so single-pass and symmetrized results come from the same run.}
+\label{tab:systems}
+\end{table}
+
+\subsection{Training settings and hardware}
+\label{sec:setup-training}
+
+Every trained system uses the same settings. The adapters train for three epochs with AdamW at learning rate $2 \times 10^{-4}$, a linear schedule with 6\% warm-up, weight decay 0.01, gradient clipping at 1.0, and 16 pairs per step, each scored in both orders. After every epoch the validation split is scored in a single pass, and the epoch with the highest validation weighted F1 is kept. These settings were fixed before the first run and none was tuned; $\lambda$ is the only value chosen from the data. % experiments/2026-11-25-decoder-final-track1/config.json
+
+Each job ran on one NVIDIA L4 on Modal, with bfloat16 activations and float32 weights, and with each step's 16 pairs passed through the model 8 at a time. The software was torch 2.14.0, transformers 5.17.0 and peft 0.21.3. % config.json, versions
+A three-epoch run of the 1.5B model took 411 to 509 seconds of training at a peak of 16.3 GB of GPU memory; the 0.5B model took 319 to 352 seconds at 6.0 GB. % tables/run_costs.csv
+The 32 jobs used 3.7 hours of measured GPU work and were billed 3.87 US dollars in total. % tables/run_costs.csv (sum of train, validation and predict seconds); tables/wave_costs.csv
+No job failed, and none was rerun.
+
+All 32 jobs ran the same version of the method code, recorded as one digest of the source shipped to the container. To check that a run repeats, the final runs include the untrained model and seed 13 at $\lambda = 0$ and $\lambda = 1$, which had first been run twelve days earlier, before the ablation options existed in the code. In all three, the development probabilities in both orders are identical to those of the earlier run. % tables/repeat_check.csv
+Given the seed and the GPU type, the pipeline is deterministic.
+
+\subsection{Choosing the consistency weight}
+\label{sec:setup-lambda}
+
+The rule was fixed in advance: the chosen $\lambda$ is the grid value with the highest mean validation weighted F1, single pass and at the kept epoch, over the three seeds; only an exactly equal mean goes to the smaller value. The grid is $\{0.25, 0.5, 1, 2\}$. $\lambda = 0$ is the comparison system and is not in it.
+
+The order of events keeps the development set out of the choice. Each job wrote its development probabilities to a separate folder. The choice was computed from the validation folders alone, then committed and pushed, and only then were the development folders of those runs fetched. The repository history records that order.
+
+The rule selects $\lambda = 2$, with a mean validation weighted F1 of 0.795 against 0.792, 0.789 and 0.787 for $\lambda = 0.25$, 0.5 and 1. % experiments/2026-11-25-decoder-final-track1/lambda_selection.json
+Two cautions apply. The chosen value is the upper edge of the grid, and no larger value was run. The four means also lie within 0.008 of each other, while the same $\lambda$ differs by about 0.03 between seeds, so the choice is weakly determined. Rows 5 to 7 of \cref{tab:systems} reuse the chosen value. The development scores of every $\lambda$ are reported in \cref{sec:results}, marked as not used for selection.
+
+\subsection{Evaluation and decision rule}
+\label{sec:setup-evaluation}
+
+Every prediction file is scored by the organizers' scorer, unchanged, which reports weighted F1, \SoftCons{} and \HardCons{}. Trained systems are reported as the mean and sample standard deviation over the three seeds.
+
+A comparison is system A minus system B on one metric, matched by seed. For each seed we compute the difference, its 95\% interval from a paired bootstrap that resamples source pairs 10,000 times, and an exact McNemar test on per-instance correctness. A difference is \emph{shown} when all three intervals exclude zero on the same side and the absolute mean difference exceeds the standard deviation of the three per-seed differences. It is \emph{mixed} when intervals exclude zero on opposite sides, and \emph{not shown} otherwise, which means the data do not separate the two systems and is never read as ``no effect''. A is \emph{non-inferior} to B when the lower bound of every interval is above $-0.02$, a margin close to the encoder's standard deviation across seeds on weighted F1 (0.015). % experiments/2026-09-29-deberta-base-track1/tables/dev_scores_summary.csv
+We make many comparisons and apply no correction for their number.

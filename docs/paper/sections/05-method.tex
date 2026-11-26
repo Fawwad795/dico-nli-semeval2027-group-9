@@ -1,5 +1,54 @@
-% Placeholder. Syed Fawwad Ahmed replaces this file; keep the heading and the label.
 \section{Proposed Method}
 \label{sec:method}
 
-\emph{Written by Syed Fawwad Ahmed; arrives with their pull request.}
+We adapt a small decoder language model to the task and build the reversal rule into both its training loss and its inference step. We call the method reversal-equivariant LoRA. \Cref{fig:architecture} traces one pair through it.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{architecture.pdf}
+\caption{The proposed system. Both orders of a pair share the prompt, the tokenizer and the frozen model weights; the blue box holds the only trained weights. $\tilde{p}_{ba} = P\,p_{ba}$ is the reversed-order prediction mapped back to the labels of $(a,b)$, as in \cref{eq:loss,eq:sym}.}
+\label{fig:architecture}
+\end{figure*}
+
+\subsection{Input, model and scoring}
+\label{sec:method-scoring}
+
+The input is an ordered pair of English phrases $(a,b)$, and the output is one of four labels: \EQ{}, \FW{}, \BW{} or \NO{}. For the reversed pair $(b,a)$ the correct label follows from the reversal operator $\Rev$: \EQ{} stays, and \FW{} and \BW{} swap. The model reads the two phrases and nothing else. The instance identifier never reaches it, because the identifier says whether an instance is a reversed copy and so gives the label away.
+
+Each pair goes into one fixed chat prompt that lists the four relations as options A to D and asks for a single letter. The model generates no text. We take the logits $z$ of the next token for the four letters and normalise them:
+\begin{equation}
+p_\theta(y \mid a,b) = \operatorname{softmax}(z_{\mathrm{A}}, z_{\mathrm{B}}, z_{\mathrm{C}}, z_{\mathrm{D}})_y .
+\label{eq:score}
+\end{equation}
+One forward pass gives a full distribution over the labels, with no sampling and no output to parse.
+
+The backbone is Qwen2.5-1.5B-Instruct \citep{qwen2025qwen25technicalreport}, an open-weight instruction-tuned decoder, and all of its weights stay frozen. Training changes only low-rank adapters \citep{hu-etal-2022-lora} on the query, key, value and output projections of every attention layer, with rank 16, scaling 32 and dropout 0.05. That is 4,358,144 trained parameters, 0.28\% of the model. % experiments/2026-11-25-decoder-final-track1/tables/run_costs.csv
+The output layer is frozen as well: its four letter rows act as the classifier.
+
+\subsection{Training objective}
+\label{sec:method-loss}
+
+Every training step scores each pair in both orders. We write $p_{ab}$ and $p_{ba}$ for the two distributions, and $P$ for the permutation that swaps their \FW{} and \BW{} entries, so that $\tilde{p}_{ba} = P\,p_{ba}$ is the reversed-order prediction expressed in the labels of $(a,b)$. With $\bar{y} = \Rev(y)$, the loss for one pair is
+\begin{equation}
+\mathcal{L} = \CE(p_{ab}, y) + \CE(p_{ba}, \bar{y}) + \lambda\, \JS(p_{ab}, \tilde{p}_{ba}) .
+\label{eq:loss}
+\end{equation}
+The two cross-entropy terms train on both orders. The third term is a consistency loss in the manner of \citet{li-etal-2019-logic}: the Jensen--Shannon divergence between the two aligned predictions is zero exactly when they agree, and it needs no gold label. With $\lambda = 0$ the method is plain LoRA fine-tuning on both orders, which is our closest comparison system.
+
+The organizers define no reverse for \NO{}. We set $\Rev(\NO) = \NO$. This is our assumption, and it can be wrong: a reversed negative pair could in principle hold a directional relation. One ablation removes it (\cref{sec:setup-systems}).
+
+The only augmentation is the second order of each pair. It adds new inputs only for the negatives, because the training file already holds both orders of every reversible pair. The loss carries no class weights.
+
+\subsection{Symmetrized decoding}
+\label{sec:method-decoding}
+
+At inference we score both orders again, map the reversed prediction back and average:
+\begin{equation}
+p_{\mathrm{sym}} = \tfrac{1}{2}\,(p_{ab} + \tilde{p}_{ba}),
+\label{eq:sym}
+\end{equation}
+and predict the label with the highest $p_{\mathrm{sym}}$. We call this symmetrized decoding. It costs two forward passes per prediction. Single-pass decoding, the most likely label under $p_{ab}$ alone, is reported next to it for every system, and both come from the same saved probabilities.
+
+Under symmetrized decoding the two predicted labels of a pair always agree with the reversal rule as we extended it, with \NO{} mapped to itself. The official \SoftCons{} is stricter. The scorer defines no reverse for \NO{} and counts a \NO{} answer on a reversible pair as incompatible, so the \SoftCons{} of symmetrized predictions is one minus the share of reversible pairs answered \NO{}, and it is below 1 whenever the model gives that answer. A system cannot avoid this at decoding time without knowing which pairs are reversible, and that information is in the identifier it never sees.
+
+Symmetrized decoding raises \SoftCons{} by construction, so \SoftCons{} cannot count as evidence for it. Weighted F1 and \HardCons{} decide whether the step makes answers more correct or only more self-consistent.
