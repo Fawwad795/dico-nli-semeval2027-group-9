@@ -1,0 +1,18 @@
+[
+  {"mode": "lora", "seed": 13, "consistency_weight": 0, "reverse_negatives": false},
+  {"mode": "lora", "seed": 42, "consistency_weight": 0, "reverse_negatives": false},
+  {"mode": "lora", "seed": 1234, "consistency_weight": 0, "reverse_negatives": false},
+  {"mode": "lora", "seed": 13, "consistency_weight": 2, "reverse_negatives": false},
+  {"mode": "lora", "seed": 42, "consistency_weight": 2, "reverse_negatives": false},
+  {"mode": "lora", "seed": 1234, "consistency_weight": 2, "reverse_negatives": false},
+  {"mode": "zero-shot", "answer_format": "words"},
+  {"mode": "lora", "seed": 13, "consistency_weight": 2, "answer_format": "words"},
+  {"mode": "lora", "seed": 42, "consistency_weight": 2, "answer_format": "words"},
+  {"mode": "lora", "seed": 1234, "consistency_weight": 2, "answer_format": "words"},
+  {"mode": "lora", "seed": 13, "consistency_weight": 0, "model_name": "Qwen/Qwen2.5-0.5B-Instruct"},
+  {"mode": "lora", "seed": 42, "consistency_weight": 0, "model_name": "Qwen/Qwen2.5-0.5B-Instruct"},
+  {"mode": "lora", "seed": 1234, "consistency_weight": 0, "model_name": "Qwen/Qwen2.5-0.5B-Instruct"},
+  {"mode": "lora", "seed": 13, "consistency_weight": 2, "model_name": "Qwen/Qwen2.5-0.5B-Instruct"},
+  {"mode": "lora", "seed": 42, "consistency_weight": 2, "model_name": "Qwen/Qwen2.5-0.5B-Instruct"},
+  {"mode": "lora", "seed": 1234, "consistency_weight": 2, "model_name": "Qwen/Qwen2.5-0.5B-Instruct"}
+]

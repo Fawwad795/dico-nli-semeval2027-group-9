@@ -1,0 +1,57 @@
+{
+  "system": "qwen2.5-1.5b-zero-shot",
+  "mode": "zero-shot",
+  "config": {
+    "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "max_length": 160,
+    "batch_size": 16,
+    "epochs": 3,
+    "learning_rate": 0.0002,
+    "warmup_fraction": 0.06,
+    "weight_decay": 0.01,
+    "consistency_weight": 0.0,
+    "micro_batch_size": 8,
+    "mixed_precision": true,
+    "seed": 13,
+    "reverse_negatives": true,
+    "answer_format": "letters"
+  },
+  "holdout_fraction": 0.2,
+  "split_seed": 13,
+  "fit_size": 2443,
+  "holdout_size": 599,
+  "dev_size": 660,
+  "longest_prompt_tokens": 132,
+  "history": [],
+  "best_epoch": null,
+  "validation_check": {
+    "weighted_f1_from_saved_probabilities": 0.24354448424179992
+  },
+  "train_seconds": 0,
+  "validation_seconds": 41.1,
+  "predict_seconds": 12.9,
+  "trainable_parameters": 0,
+  "total_parameters": 1543714304,
+  "gpu": "NVIDIA L4",
+  "peak_gpu_memory_gb": 8.71,
+  "precision": "bfloat16 activations, float32 weights",
+  "versions": {
+    "torch": "2.14.0+cu130",
+    "transformers": "5.17.0",
+    "peft": "0.21.3"
+  },
+  "code": {
+    "repo_commit": "21a261eceedda604e47986583ca306e93c96d589",
+    "repo_dirty": false,
+    "source_sha256": "2176a5a4bbf3083dd04162101f9e5e352a374461d77b5f320c74966a97159f22"
+  }
+}

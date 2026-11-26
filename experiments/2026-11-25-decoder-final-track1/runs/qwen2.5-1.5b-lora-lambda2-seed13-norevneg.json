@@ -1,0 +1,87 @@
+{
+  "system": "qwen2.5-1.5b-lora-lambda2-seed13-norevneg",
+  "mode": "lora",
+  "config": {
+    "model_name": "Qwen/Qwen2.5-1.5B-Instruct",
+    "lora_rank": 16,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "max_length": 160,
+    "batch_size": 16,
+    "epochs": 3,
+    "learning_rate": 0.0002,
+    "warmup_fraction": 0.06,
+    "weight_decay": 0.01,
+    "consistency_weight": 2,
+    "micro_batch_size": 8,
+    "mixed_precision": true,
+    "seed": 13,
+    "reverse_negatives": false,
+    "answer_format": "letters"
+  },
+  "holdout_fraction": 0.2,
+  "split_seed": 13,
+  "fit_size": 2443,
+  "holdout_size": 599,
+  "dev_size": 660,
+  "longest_prompt_tokens": 132,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 1.513181068481991,
+      "train_ce": 1.421151723930741,
+      "train_js": 0.04601467238675088,
+      "holdout_weighted_f1": 0.7176306051975025,
+      "holdout_accuracy": 0.7595993322203672,
+      "seconds": 148.4
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.6002331021265861,
+      "train_ce": 0.549982897725339,
+      "train_js": 0.025125102832497106,
+      "holdout_weighted_f1": 0.7858515190183885,
+      "holdout_accuracy": 0.7896494156928213,
+      "seconds": 143.3
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.26527408933525465,
+      "train_ce": 0.2485511424885304,
+      "train_js": 0.008361472875583476,
+      "holdout_weighted_f1": 0.7998823326042551,
+      "holdout_accuracy": 0.8030050083472454,
+      "seconds": 146.0
+    }
+  ],
+  "best_epoch": 3,
+  "validation_check": {
+    "weighted_f1_from_saved_probabilities": 0.7998823326042551,
+    "weighted_f1_at_kept_epoch": 0.7998823326042551,
+    "difference": 0.0
+  },
+  "train_seconds": 437.7,
+  "validation_seconds": 12.9,
+  "predict_seconds": 13.9,
+  "trainable_parameters": 4358144,
+  "total_parameters": 1548072448,
+  "gpu": "NVIDIA L4",
+  "peak_gpu_memory_gb": 16.16,
+  "precision": "bfloat16 activations, float32 weights",
+  "versions": {
+    "torch": "2.14.0+cu130",
+    "transformers": "5.17.0",
+    "peft": "0.21.3"
+  },
+  "code": {
+    "repo_commit": "324debe2891c596f2cd6a57b24fe20311ebe4282",
+    "repo_dirty": false,
+    "source_sha256": "2176a5a4bbf3083dd04162101f9e5e352a374461d77b5f320c74966a97159f22"
+  }
+}

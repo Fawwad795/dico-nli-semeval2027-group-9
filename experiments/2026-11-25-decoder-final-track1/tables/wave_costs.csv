@@ -1,0 +1,3 @@
+wave,run_id,app_id,jobs,measured_gpu_work_seconds,billed_l4_usd,billed_cpu_usd,billed_memory_usd,billed_network_usd,billed_total_usd
+A,2026-11-25-decoder-final-wave-a,ap-eOvzhee5YGcEo56Mn1oenz,16,7164.4,1.82954197,0.11065264,0.06023138,0.01005569,2.01048168
+B,2026-11-26-decoder-final-wave-b,ap-lBQKpGhqBd5dga2exsuOeR,16,6213.6,1.68487106,0.10241762,0.05298897,0.01524602,1.85552367

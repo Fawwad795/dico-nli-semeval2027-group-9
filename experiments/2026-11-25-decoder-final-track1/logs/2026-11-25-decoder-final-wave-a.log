@@ -1,0 +1,224 @@
+2026-11-26 01:11:43+05:00 qwen2.5-1.5b-zero-shot: fit 2443 validation 599 dev 660 on NVIDIA L4
+2026-11-26 01:11:43+05:00 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-11-26 01:11:47+05:00 qwen2.5-1.5b-zero-shot: longest prompt 132 tokens, limit 160
+2026-11-26 01:12:11+05:00 
+2026-11-26 01:12:11+05:00 [1A2026-11-26 01:12:11+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:12:11+05:00 [1A2026-11-26 01:12:11+05:00 Loading weights:   0%|          | 1/338 [00:00<02:01,  2.77it/s]
+2026-11-26 01:12:11+05:00 [1A2026-11-26 01:12:11+05:00 Loading weights:  51%|█████     | 173/338 [00:00<00:00, 488.26it/s]
+2026-11-26 01:12:11+05:00 [1ALoading weights:  81%|████████  | 274/338 [00:00<00:00, 437.35it/s]
+2026-11-26 01:12:12+05:00 
+2026-11-26 01:12:12+05:00 [1A2026-11-26 01:12:12+05:00 Loading weights: 100%|██████████| 338/338 [00:00<00:00, 400.14it/s]
+2026-11-26 01:12:29+05:00 qwen2.5-1.5b-zero-shot: validation {'weighted_f1_from_saved_probabilities': 0.24354448424179992}
+2026-11-26 01:12:45+05:00 qwen2.5-1.5b-lora-lambda0-seed13: fit 2443 validation 599 dev 660 on NVIDIA L4
+2026-11-26 01:12:47+05:00 qwen2.5-1.5b-lora-lambda0-seed13: longest prompt 132 tokens, limit 160
+2026-11-26 01:12:48+05:00 
+2026-11-26 01:12:48+05:00 [1A2026-11-26 01:12:48+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:12:48+05:00 [1A2026-11-26 01:12:48+05:00 Loading weights:   0%|          | 1/338 [00:00<02:04,  2.72it/s]
+2026-11-26 01:12:48+05:00 [1A2026-11-26 01:12:48+05:00 Loading weights:  61%|██████    | 207/338 [00:00<00:00, 560.25it/s]
+2026-11-26 01:12:48+05:00 [1A2026-11-26 01:12:48+05:00 Loading weights:  94%|█████████▍| 317/338 [00:00<00:00, 539.58it/s]2026-11-26 01:12:48+05:00 Loading weights: 100%|██████████| 338/338 [00:00<00:00, 471.40it/s]
+2026-11-26 01:12:52+05:00 qwen2.5-1.5b-lora-lambda0-seed13: first_loss=4.0630 peak_gpu_memory_gb=15.7
+2026-11-26 01:15:14+05:00 qwen2.5-1.5b-lora-lambda0-seed13: epoch=1 train_loss=1.6802 train_ce=1.6802 train_js=0.0693 holdout_weighted_f1=0.7609 holdout_accuracy=0.7730 seconds=143.0000 peak_gpu_memory_gb=16.1
+2026-11-26 01:17:44+05:00 qwen2.5-1.5b-lora-lambda0-seed13: epoch=2 train_loss=0.6809 train_ce=0.6809 train_js=0.0414 holdout_weighted_f1=0.7596 holdout_accuracy=0.7563 seconds=142.9000 peak_gpu_memory_gb=16.1
+2026-11-26 01:18:32+05:00 qwen2.5-1.5b-lora-lambda0-seed42: fit 2427 validation 615 dev 660 on NVIDIA L4
+2026-11-26 01:18:33+05:00 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-11-26 01:18:36+05:00 qwen2.5-1.5b-lora-lambda0-seed42: longest prompt 132 tokens, limit 160
+2026-11-26 01:18:52+05:00 
+2026-11-26 01:18:52+05:00 [1A2026-11-26 01:18:52+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:18:52+05:00 [1A2026-11-26 01:18:52+05:00 Loading weights:   0%|          | 1/338 [00:00<01:52,  2.98it/s]
+2026-11-26 01:18:52+05:00 [1A2026-11-26 01:18:52+05:00 Loading weights:  54%|█████▍    | 183/338 [00:00<00:00, 540.41it/s]
+2026-11-26 01:18:52+05:00 [1A2026-11-26 01:18:52+05:00 Loading weights:  85%|████████▍ | 287/338 [00:00<00:00, 554.59it/s]
+2026-11-26 01:18:52+05:00 [1A2026-11-26 01:18:52+05:00 Loading weights: 100%|██████████| 338/338 [00:00<00:00, 476.39it/s]
+2026-11-26 01:18:59+05:00 qwen2.5-1.5b-lora-lambda0-seed42: first_loss=4.0813 peak_gpu_memory_gb=15.8
+2026-11-26 01:20:13+05:00 qwen2.5-1.5b-lora-lambda0-seed13: epoch=3 train_loss=0.3172 train_ce=0.3172 train_js=0.0263 holdout_weighted_f1=0.7812 holdout_accuracy=0.7796 seconds=142.4000 peak_gpu_memory_gb=16.1
+2026-11-26 01:20:33+05:00 qwen2.5-1.5b-lora-lambda0-seed13: validation {'weighted_f1_from_saved_probabilities': 0.7811661218443317, 'weighted_f1_at_kept_epoch': 0.7811661218443317, 'difference': 0.0}
+2026-11-26 01:20:51+05:00 qwen2.5-1.5b-lora-lambda0-seed1234: fit 2439 validation 603 dev 660 on NVIDIA L4
+2026-11-26 01:20:53+05:00 qwen2.5-1.5b-lora-lambda0-seed1234: longest prompt 132 tokens, limit 160
+2026-11-26 01:20:54+05:00 
+2026-11-26 01:20:54+05:00 [1ALoading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:20:55+05:00 
+2026-11-26 01:20:55+05:00 [1A2026-11-26 01:20:55+05:00 Loading weights:   0%|          | 1/338 [00:00<03:01,  1.86it/s]
+2026-11-26 01:20:55+05:00 [1A2026-11-26 01:20:55+05:00 Loading weights:  51%|█████     | 172/338 [00:00<00:00, 351.50it/s]
+2026-11-26 01:20:55+05:00 [1ALoading weights:  78%|███████▊  | 262/338 [00:00<00:00, 359.49it/s]
+2026-11-26 01:20:56+05:00 
+2026-11-26 01:20:56+05:00 [1A2026-11-26 01:20:56+05:00 Loading weights:  97%|█████████▋| 328/338 [00:01<00:00, 351.37it/s]2026-11-26 01:20:56+05:00 Loading weights: 100%|██████████| 338/338 [00:01<00:00, 309.78it/s]
+2026-11-26 01:20:58+05:00 qwen2.5-1.5b-lora-lambda0-seed1234: first_loss=4.5846 peak_gpu_memory_gb=15.8
+2026-11-26 01:21:23+05:00 qwen2.5-1.5b-lora-lambda0-seed42: epoch=1 train_loss=1.6863 train_ce=1.6863 train_js=0.0774 holdout_weighted_f1=0.7590 holdout_accuracy=0.7561 seconds=148.2000 peak_gpu_memory_gb=16.2
+2026-11-26 01:23:19+05:00 qwen2.5-1.5b-lora-lambda0-seed1234: epoch=1 train_loss=1.7368 train_ce=1.7368 train_js=0.0726 holdout_weighted_f1=0.7622 holdout_accuracy=0.7695 seconds=141.8000 peak_gpu_memory_gb=16.3
+2026-11-26 01:23:52+05:00 qwen2.5-1.5b-lora-lambda0-seed42: epoch=2 train_loss=0.6788 train_ce=0.6788 train_js=0.0432 holdout_weighted_f1=0.7726 holdout_accuracy=0.7642 seconds=143.9000 peak_gpu_memory_gb=16.2
+2026-11-26 01:25:50+05:00 qwen2.5-1.5b-lora-lambda0-seed1234: epoch=2 train_loss=0.7377 train_ce=0.7377 train_js=0.0469 holdout_weighted_f1=0.8057 holdout_accuracy=0.8060 seconds=142.3000 peak_gpu_memory_gb=16.3
+2026-11-26 01:26:22+05:00 qwen2.5-1.5b-lora-lambda0-seed42: epoch=3 train_loss=0.2939 train_ce=0.2939 train_js=0.0256 holdout_weighted_f1=0.7766 holdout_accuracy=0.7691 seconds=144.6000 peak_gpu_memory_gb=16.2
+2026-11-26 01:26:39+05:00 qwen2.5-1.5b-lora-lambda0-seed42: validation {'weighted_f1_from_saved_probabilities': 0.7765573285659145, 'weighted_f1_at_kept_epoch': 0.7765573285659145, 'difference': 0.0}
+2026-11-26 01:26:55+05:00 qwen2.5-1.5b-lora-lambda0.25-seed13: fit 2443 validation 599 dev 660 on NVIDIA L4
+2026-11-26 01:26:57+05:00 qwen2.5-1.5b-lora-lambda0.25-seed13: longest prompt 132 tokens, limit 160
+2026-11-26 01:26:57+05:00 
+2026-11-26 01:26:57+05:00 [1ALoading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:26:58+05:00 
+2026-11-26 01:26:58+05:00 [1A2026-11-26 01:26:58+05:00 Loading weights:   0%|          | 1/338 [00:00<02:48,  2.00it/s]
+2026-11-26 01:26:58+05:00 [1A2026-11-26 01:26:58+05:00 Loading weights:  47%|████▋     | 159/338 [00:00<00:00, 349.59it/s]
+2026-11-26 01:26:58+05:00 [1A2026-11-26 01:26:58+05:00 Loading weights:  74%|███████▎  | 249/338 [00:00<00:00, 350.60it/s]
+2026-11-26 01:26:58+05:00 [1A2026-11-26 01:26:58+05:00 Loading weights:  93%|█████████▎| 314/338 [00:01<00:00, 353.81it/s]2026-11-26 01:26:58+05:00 Loading weights: 100%|██████████| 338/338 [00:01<00:00, 306.17it/s]
+2026-11-26 01:27:01+05:00 qwen2.5-1.5b-lora-lambda0.25-seed13: first_loss=4.1351 peak_gpu_memory_gb=15.6
+2026-11-26 01:27:44+05:00 qwen2.5-1.5b-lora-lambda0.25-seed42: fit 2427 validation 615 dev 660 on NVIDIA L4
+2026-11-26 01:27:45+05:00 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-11-26 01:27:53+05:00 qwen2.5-1.5b-lora-lambda0.25-seed42: longest prompt 132 tokens, limit 160
+2026-11-26 01:28:16+05:00 
+2026-11-26 01:28:16+05:00 [1ALoading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:28:17+05:00 
+2026-11-26 01:28:17+05:00 [1A2026-11-26 01:28:17+05:00 Loading weights:   0%|          | 1/338 [00:00<01:55,  2.93it/s]
+2026-11-26 01:28:17+05:00 [1A2026-11-26 01:28:17+05:00 Loading weights:  55%|█████▍    | 185/338 [00:00<00:00, 543.20it/s]
+2026-11-26 01:28:17+05:00 [1A2026-11-26 01:28:17+05:00 Loading weights:  87%|████████▋ | 293/338 [00:00<00:00, 535.08it/s]2026-11-26 01:28:17+05:00 Loading weights: 100%|██████████| 338/338 [00:00<00:00, 471.80it/s]
+2026-11-26 01:28:19+05:00 qwen2.5-1.5b-lora-lambda0-seed1234: epoch=3 train_loss=0.3685 train_ce=0.3685 train_js=0.0287 holdout_weighted_f1=0.8048 holdout_accuracy=0.8043 seconds=142.0000 peak_gpu_memory_gb=16.3
+2026-11-26 01:28:25+05:00 qwen2.5-1.5b-lora-lambda0.25-seed42: first_loss=4.1656 peak_gpu_memory_gb=15.8
+2026-11-26 01:28:42+05:00 qwen2.5-1.5b-lora-lambda0-seed1234: validation {'weighted_f1_from_saved_probabilities': 0.8056525529112223, 'weighted_f1_at_kept_epoch': 0.8056525529112223, 'difference': 0.0}
+2026-11-26 01:28:59+05:00 qwen2.5-1.5b-lora-lambda0.25-seed1234: fit 2439 validation 603 dev 660 on NVIDIA L4
+2026-11-26 01:29:02+05:00 qwen2.5-1.5b-lora-lambda0.25-seed1234: longest prompt 132 tokens, limit 160
+2026-11-26 01:29:03+05:00 
+2026-11-26 01:29:03+05:00 [1A2026-11-26 01:29:03+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:29:03+05:00 [1A2026-11-26 01:29:03+05:00 Loading weights:   0%|          | 1/338 [00:00<03:01,  1.86it/s]
+2026-11-26 01:29:03+05:00 [1ALoading weights:  54%|█████▍    | 183/338 [00:00<00:00, 375.79it/s]
+2026-11-26 01:29:04+05:00 
+2026-11-26 01:29:04+05:00 [1A2026-11-26 01:29:04+05:00 Loading weights:  83%|████████▎ | 281/338 [00:00<00:00, 364.71it/s]
+2026-11-26 01:29:04+05:00 [1A2026-11-26 01:29:04+05:00 Loading weights: 100%|██████████| 338/338 [00:01<00:00, 320.74it/s]
+2026-11-26 01:29:06+05:00 qwen2.5-1.5b-lora-lambda0.25-seed1234: first_loss=4.6689 peak_gpu_memory_gb=15.8
+2026-11-26 01:29:26+05:00 qwen2.5-1.5b-lora-lambda0.25-seed13: epoch=1 train_loss=1.6940 train_ce=1.6774 train_js=0.0664 holdout_weighted_f1=0.7616 holdout_accuracy=0.7730 seconds=144.7000 peak_gpu_memory_gb=16.1
+2026-11-26 01:30:54+05:00 qwen2.5-1.5b-lora-lambda0.25-seed42: epoch=1 train_loss=1.6954 train_ce=1.6771 train_js=0.0732 holdout_weighted_f1=0.7518 holdout_accuracy=0.7480 seconds=154.3000 peak_gpu_memory_gb=16.2
+2026-11-26 01:31:31+05:00 qwen2.5-1.5b-lora-lambda0.25-seed1234: epoch=1 train_loss=1.7525 train_ce=1.7353 train_js=0.0690 holdout_weighted_f1=0.7566 holdout_accuracy=0.7645 seconds=145.0000 peak_gpu_memory_gb=16.3
+2026-11-26 01:31:57+05:00 qwen2.5-1.5b-lora-lambda0.25-seed13: epoch=2 train_loss=0.6922 train_ce=0.6823 train_js=0.0395 holdout_weighted_f1=0.7643 holdout_accuracy=0.7613 seconds=146.6000 peak_gpu_memory_gb=16.1
+2026-11-26 01:33:32+05:00 qwen2.5-1.5b-lora-lambda0.25-seed42: epoch=2 train_loss=0.6915 train_ce=0.6812 train_js=0.0413 holdout_weighted_f1=0.7828 holdout_accuracy=0.7724 seconds=149.3000 peak_gpu_memory_gb=16.2
+2026-11-26 01:34:03+05:00 qwen2.5-1.5b-lora-lambda0.25-seed1234: epoch=2 train_loss=0.7501 train_ce=0.7389 train_js=0.0445 holdout_weighted_f1=0.8102 holdout_accuracy=0.8109 seconds=144.9000 peak_gpu_memory_gb=16.3
+2026-11-26 01:34:29+05:00 qwen2.5-1.5b-lora-lambda0.25-seed13: epoch=3 train_loss=0.3291 train_ce=0.3228 train_js=0.0251 holdout_weighted_f1=0.7829 holdout_accuracy=0.7813 seconds=147.3000 peak_gpu_memory_gb=16.1
+2026-11-26 01:34:47+05:00 qwen2.5-1.5b-lora-lambda0.25-seed13: validation {'weighted_f1_from_saved_probabilities': 0.7829086807118824, 'weighted_f1_at_kept_epoch': 0.7829086807118824, 'difference': 0.0}
+2026-11-26 01:35:03+05:00 qwen2.5-1.5b-lora-lambda0.5-seed13: fit 2443 validation 599 dev 660 on NVIDIA L4
+2026-11-26 01:35:05+05:00 qwen2.5-1.5b-lora-lambda0.5-seed13: longest prompt 132 tokens, limit 160
+2026-11-26 01:35:06+05:00 
+2026-11-26 01:35:06+05:00 [1A2026-11-26 01:35:06+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:35:06+05:00 [1A2026-11-26 01:35:06+05:00 Loading weights:   0%|          | 1/338 [00:00<02:04,  2.70it/s]
+2026-11-26 01:35:06+05:00 [1ALoading weights:  65%|██████▍   | 219/338 [00:00<00:00, 602.75it/s]
+2026-11-26 01:35:07+05:00 
+2026-11-26 01:35:07+05:00 [1A2026-11-26 01:35:07+05:00 Loading weights: 100%|██████████| 338/338 [00:00<00:00, 505.10it/s]
+2026-11-26 01:35:09+05:00 qwen2.5-1.5b-lora-lambda0.5-seed13: first_loss=4.2072 peak_gpu_memory_gb=15.6
+2026-11-26 01:36:10+05:00 qwen2.5-1.5b-lora-lambda0.25-seed42: epoch=3 train_loss=0.3050 train_ce=0.2989 train_js=0.0242 holdout_weighted_f1=0.7817 holdout_accuracy=0.7740 seconds=150.0000 peak_gpu_memory_gb=16.2
+2026-11-26 01:36:34+05:00 qwen2.5-1.5b-lora-lambda0.25-seed1234: epoch=3 train_loss=0.3712 train_ce=0.3644 train_js=0.0273 holdout_weighted_f1=0.8007 holdout_accuracy=0.7993 seconds=143.2000 peak_gpu_memory_gb=16.3
+2026-11-26 01:36:35+05:00 qwen2.5-1.5b-lora-lambda0.25-seed42: validation {'weighted_f1_from_saved_probabilities': 0.7828350325090638, 'weighted_f1_at_kept_epoch': 0.7828350325090638, 'difference': 0.0}
+2026-11-26 01:36:54+05:00 qwen2.5-1.5b-lora-lambda0.5-seed42: fit 2427 validation 615 dev 660 on NVIDIA L4
+2026-11-26 01:36:55+05:00 qwen2.5-1.5b-lora-lambda0.25-seed1234: validation {'weighted_f1_from_saved_probabilities': 0.8101672413107222, 'weighted_f1_at_kept_epoch': 0.8101672413107222, 'difference': 0.0}
+2026-11-26 01:36:57+05:00 qwen2.5-1.5b-lora-lambda0.5-seed42: longest prompt 132 tokens, limit 160
+2026-11-26 01:36:59+05:00 
+2026-11-26 01:36:59+05:00 [1A2026-11-26 01:36:59+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:36:59+05:00 [1A2026-11-26 01:36:59+05:00 Loading weights:   0%|          | 1/338 [00:00<02:59,  1.88it/s]
+2026-11-26 01:36:59+05:00 [1A2026-11-26 01:36:59+05:00 Loading weights:  41%|████      | 137/338 [00:00<00:00, 282.32it/s]
+2026-11-26 01:36:59+05:00 [1ALoading weights:  62%|██████▏   | 209/338 [00:00<00:00, 303.79it/s]
+2026-11-26 01:37:00+05:00 
+2026-11-26 01:37:00+05:00 [1A2026-11-26 01:37:00+05:00 Loading weights:  78%|███████▊  | 264/338 [00:00<00:00, 331.09it/s]
+2026-11-26 01:37:00+05:00 [1A2026-11-26 01:37:00+05:00 Loading weights:  93%|█████████▎| 314/338 [00:01<00:00, 330.91it/s]2026-11-26 01:37:00+05:00 Loading weights: 100%|██████████| 338/338 [00:01<00:00, 282.64it/s]
+2026-11-26 01:37:03+05:00 qwen2.5-1.5b-lora-lambda0.5-seed42: first_loss=4.2500 peak_gpu_memory_gb=15.8
+2026-11-26 01:37:13+05:00 qwen2.5-1.5b-lora-lambda0.5-seed1234: fit 2439 validation 603 dev 660 on NVIDIA L4
+2026-11-26 01:37:15+05:00 qwen2.5-1.5b-lora-lambda0.5-seed1234: longest prompt 132 tokens, limit 160
+2026-11-26 01:37:16+05:00 
+2026-11-26 01:37:16+05:00 [1ALoading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:37:17+05:00 
+2026-11-26 01:37:17+05:00 [1A2026-11-26 01:37:17+05:00 Loading weights:   0%|          | 1/338 [00:00<02:59,  1.87it/s]
+2026-11-26 01:37:17+05:00 [1A2026-11-26 01:37:17+05:00 Loading weights:  51%|█████     | 172/338 [00:00<00:00, 351.04it/s]
+2026-11-26 01:37:17+05:00 [1A2026-11-26 01:37:17+05:00 Loading weights:  77%|███████▋  | 260/338 [00:00<00:00, 360.17it/s]
+2026-11-26 01:37:17+05:00 [1A2026-11-26 01:37:17+05:00 Loading weights:  96%|█████████▌| 325/338 [00:01<00:00, 367.52it/s]
+2026-11-26 01:37:17+05:00 [1A2026-11-26 01:37:17+05:00 Loading weights: 100%|██████████| 338/338 [00:01<00:00, 316.00it/s]
+2026-11-26 01:37:20+05:00 qwen2.5-1.5b-lora-lambda0.5-seed1234: first_loss=4.7531 peak_gpu_memory_gb=15.8
+2026-11-26 01:37:34+05:00 qwen2.5-1.5b-lora-lambda0.5-seed13: epoch=1 train_loss=1.7096 train_ce=1.6780 train_js=0.0633 holdout_weighted_f1=0.7691 holdout_accuracy=0.7813 seconds=145.5000 peak_gpu_memory_gb=16.1
+2026-11-26 01:37:45+05:00 qwen2.5-1.5b-lora-lambda1-seed13: fit 2443 validation 599 dev 660 on NVIDIA L4
+2026-11-26 01:37:46+05:00 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-11-26 01:37:49+05:00 qwen2.5-1.5b-lora-lambda1-seed13: longest prompt 132 tokens, limit 160
+2026-11-26 01:38:06+05:00 
+2026-11-26 01:38:06+05:00 [1A2026-11-26 01:38:06+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:38:06+05:00 [1A2026-11-26 01:38:06+05:00 Loading weights:   0%|          | 1/338 [00:00<01:55,  2.92it/s]
+2026-11-26 01:38:06+05:00 [1A2026-11-26 01:38:06+05:00 Loading weights:  58%|█████▊    | 195/338 [00:00<00:00, 559.72it/s]
+2026-11-26 01:38:06+05:00 [1ALoading weights:  89%|████████▉ | 301/338 [00:00<00:00, 564.17it/s]
+2026-11-26 01:38:07+05:00 2026-11-26 01:38:07+05:00 Loading weights: 100%|██████████| 338/338 [00:00<00:00, 477.11it/s]
+2026-11-26 01:38:14+05:00 qwen2.5-1.5b-lora-lambda1-seed13: first_loss=4.3513 peak_gpu_memory_gb=15.7
+2026-11-26 01:39:31+05:00 qwen2.5-1.5b-lora-lambda0.5-seed42: epoch=1 train_loss=1.7073 train_ce=1.6724 train_js=0.0698 holdout_weighted_f1=0.7547 holdout_accuracy=0.7528 seconds=148.4000 peak_gpu_memory_gb=16.2
+2026-11-26 01:39:43+05:00 qwen2.5-1.5b-lora-lambda0.5-seed1234: epoch=1 train_loss=1.7731 train_ce=1.7398 train_js=0.0665 holdout_weighted_f1=0.7636 holdout_accuracy=0.7711 seconds=143.1000 peak_gpu_memory_gb=16.3
+2026-11-26 01:40:05+05:00 qwen2.5-1.5b-lora-lambda0.5-seed13: epoch=2 train_loss=0.7021 train_ce=0.6834 train_js=0.0373 holdout_weighted_f1=0.7738 holdout_accuracy=0.7713 seconds=145.5000 peak_gpu_memory_gb=16.1
+2026-11-26 01:40:37+05:00 qwen2.5-1.5b-lora-lambda1-seed13: epoch=1 train_loss=1.7407 train_ce=1.6824 train_js=0.0583 holdout_weighted_f1=0.7748 holdout_accuracy=0.7896 seconds=147.8000 peak_gpu_memory_gb=16.2
+2026-11-26 01:42:16+05:00 qwen2.5-1.5b-lora-lambda0.5-seed1234: epoch=2 train_loss=0.7612 train_ce=0.7401 train_js=0.0421 holdout_weighted_f1=0.8034 holdout_accuracy=0.8043 seconds=143.3000 peak_gpu_memory_gb=16.3
+2026-11-26 01:42:16+05:00 qwen2.5-1.5b-lora-lambda0.5-seed42: epoch=2 train_loss=0.7056 train_ce=0.6857 train_js=0.0397 holdout_weighted_f1=0.7786 holdout_accuracy=0.7691 seconds=149.8000 peak_gpu_memory_gb=16.2
+2026-11-26 01:42:38+05:00 qwen2.5-1.5b-lora-lambda0.5-seed13: epoch=3 train_loss=0.3340 train_ce=0.3219 train_js=0.0241 holdout_weighted_f1=0.7733 holdout_accuracy=0.7713 seconds=148.0000 peak_gpu_memory_gb=16.1
+2026-11-26 01:42:50+05:00 qwen2.5-1.5b-lora-lambda1-seed42: fit 2427 validation 615 dev 660 on NVIDIA L4
+2026-11-26 01:42:50+05:00 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-11-26 01:42:53+05:00 qwen2.5-1.5b-lora-lambda1-seed42: longest prompt 132 tokens, limit 160
+2026-11-26 01:42:55+05:00 qwen2.5-1.5b-lora-lambda0.5-seed13: validation {'weighted_f1_from_saved_probabilities': 0.7737866061479677, 'weighted_f1_at_kept_epoch': 0.7737866061479677, 'difference': 0.0}
+2026-11-26 01:43:07+05:00 qwen2.5-1.5b-lora-lambda1-seed13: epoch=2 train_loss=0.7183 train_ce=0.6833 train_js=0.0349 holdout_weighted_f1=0.7673 holdout_accuracy=0.7663 seconds=145.2000 peak_gpu_memory_gb=16.2
+2026-11-26 01:43:09+05:00 
+2026-11-26 01:43:09+05:00 [1A2026-11-26 01:43:09+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:43:09+05:00 [1A2026-11-26 01:43:09+05:00 Loading weights:   0%|          | 1/338 [00:00<01:58,  2.84it/s]
+2026-11-26 01:43:09+05:00 [1ALoading weights:  58%|█████▊    | 195/338 [00:00<00:00, 542.23it/s]
+2026-11-26 01:43:10+05:00 
+2026-11-26 01:43:10+05:00 [1A2026-11-26 01:43:10+05:00 Loading weights:  88%|████████▊ | 297/338 [00:00<00:00, 540.78it/s]2026-11-26 01:43:10+05:00 Loading weights: 100%|██████████| 338/338 [00:00<00:00, 467.05it/s]
+2026-11-26 01:43:12+05:00 qwen2.5-1.5b-lora-lambda1-seed1234: fit 2439 validation 603 dev 660 on NVIDIA L4
+2026-11-26 01:43:14+05:00 qwen2.5-1.5b-lora-lambda1-seed1234: longest prompt 132 tokens, limit 160
+2026-11-26 01:43:15+05:00 
+2026-11-26 01:43:15+05:00 [1A2026-11-26 01:43:15+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:43:15+05:00 [1A2026-11-26 01:43:15+05:00 Loading weights:   0%|          | 1/338 [00:00<02:17,  2.46it/s]
+2026-11-26 01:43:15+05:00 [1A2026-11-26 01:43:15+05:00 Loading weights:  61%|██████    | 207/338 [00:00<00:00, 534.45it/s]
+2026-11-26 01:43:15+05:00 [1A2026-11-26 01:43:15+05:00 Loading weights:  96%|█████████▋| 326/338 [00:00<00:00, 526.25it/s]
+2026-11-26 01:43:15+05:00 [1A2026-11-26 01:43:15+05:00 Loading weights: 100%|██████████| 338/338 [00:00<00:00, 444.99it/s]
+2026-11-26 01:43:17+05:00 qwen2.5-1.5b-lora-lambda1-seed42: first_loss=4.4186 peak_gpu_memory_gb=15.8
+2026-11-26 01:43:18+05:00 qwen2.5-1.5b-lora-lambda1-seed1234: first_loss=4.9216 peak_gpu_memory_gb=15.9
+2026-11-26 01:44:45+05:00 qwen2.5-1.5b-lora-lambda0.5-seed1234: epoch=3 train_loss=0.3761 train_ce=0.3632 train_js=0.0258 holdout_weighted_f1=0.8142 holdout_accuracy=0.8143 seconds=142.7000 peak_gpu_memory_gb=16.3
+2026-11-26 01:44:55+05:00 qwen2.5-1.5b-lora-lambda0.5-seed42: epoch=3 train_loss=0.3120 train_ce=0.3004 train_js=0.0232 holdout_weighted_f1=0.7765 holdout_accuracy=0.7691 seconds=148.4000 peak_gpu_memory_gb=16.2
+2026-11-26 01:44:58+05:00 qwen2.5-1.5b-lora-lambda2-seed13: fit 2443 validation 599 dev 660 on NVIDIA L4
+2026-11-26 01:44:58+05:00 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-11-26 01:45:00+05:00 qwen2.5-1.5b-lora-lambda2-seed13: longest prompt 132 tokens, limit 160
+2026-11-26 01:45:04+05:00 qwen2.5-1.5b-lora-lambda0.5-seed1234: validation {'weighted_f1_from_saved_probabilities': 0.8142163307247295, 'weighted_f1_at_kept_epoch': 0.8142163307247295, 'difference': 0.0}
+2026-11-26 01:45:12+05:00 
+2026-11-26 01:45:12+05:00 [1A2026-11-26 01:45:12+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:45:12+05:00 [1A2026-11-26 01:45:12+05:00 Loading weights:   0%|          | 1/338 [00:00<00:47,  7.04it/s]
+2026-11-26 01:45:12+05:00 [1A2026-11-26 01:45:12+05:00 Loading weights:  51%|█████     | 173/338 [00:00<00:00, 858.89it/s]
+2026-11-26 01:45:12+05:00 [1A2026-11-26 01:45:12+05:00 Loading weights:  81%|████████  | 273/338 [00:00<00:00, 855.30it/s]2026-11-26 01:45:12+05:00 Loading weights: 100%|██████████| 338/338 [00:00<00:00, 781.34it/s]
+2026-11-26 01:45:16+05:00 qwen2.5-1.5b-lora-lambda2-seed13: first_loss=4.6397 peak_gpu_memory_gb=15.7
+2026-11-26 01:45:17+05:00 qwen2.5-1.5b-lora-lambda0.5-seed42: validation {'weighted_f1_from_saved_probabilities': 0.7785756478334884, 'weighted_f1_at_kept_epoch': 0.7785756478334884, 'difference': 0.0}
+2026-11-26 01:45:21+05:00 qwen2.5-1.5b-lora-lambda2-seed42: fit 2427 validation 615 dev 660 on NVIDIA L4
+2026-11-26 01:45:24+05:00 qwen2.5-1.5b-lora-lambda2-seed42: longest prompt 132 tokens, limit 160
+2026-11-26 01:45:25+05:00 
+2026-11-26 01:45:25+05:00 [1A2026-11-26 01:45:25+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:45:25+05:00 [1ALoading weights:   0%|          | 1/338 [00:00<04:54,  1.14it/s]
+2026-11-26 01:45:26+05:00 
+2026-11-26 01:45:26+05:00 [1A2026-11-26 01:45:26+05:00 Loading weights:  48%|████▊     | 161/338 [00:01<00:00, 177.13it/s]
+2026-11-26 01:45:26+05:00 [1A2026-11-26 01:45:26+05:00 Loading weights:  58%|█████▊    | 195/338 [00:01<00:00, 194.09it/s]
+2026-11-26 01:45:26+05:00 [1A2026-11-26 01:45:26+05:00 Loading weights:  68%|██████▊   | 231/338 [00:01<00:00, 219.53it/s]
+2026-11-26 01:45:26+05:00 [1A2026-11-26 01:45:26+05:00 Loading weights:  79%|███████▉  | 268/338 [00:01<00:00, 239.43it/s]
+2026-11-26 01:45:26+05:00 [1A2026-11-26 01:45:26+05:00 Loading weights:  90%|█████████ | 305/338 [00:01<00:00, 264.23it/s]2026-11-26 01:45:26+05:00 Loading weights: 100%|██████████| 338/338 [00:01<00:00, 202.77it/s]
+2026-11-26 01:45:29+05:00 qwen2.5-1.5b-lora-lambda2-seed42: first_loss=4.7559 peak_gpu_memory_gb=15.8
+2026-11-26 01:45:34+05:00 qwen2.5-1.5b-lora-lambda2-seed1234: fit 2439 validation 603 dev 660 on NVIDIA L4
+2026-11-26 01:45:36+05:00 qwen2.5-1.5b-lora-lambda2-seed1234: longest prompt 132 tokens, limit 160
+2026-11-26 01:45:38+05:00 
+2026-11-26 01:45:38+05:00 qwen2.5-1.5b-lora-lambda1-seed42: epoch=1 train_loss=1.7385 train_ce=1.6741 train_js=0.0644 holdout_weighted_f1=0.7431 holdout_accuracy=0.7431 seconds=145.9000 peak_gpu_memory_gb=16.2
+2026-11-26 01:45:38+05:00 [1A2026-11-26 01:45:38+05:00 Loading weights:   0%|          | 0/338 [00:00<?, ?it/s]
+2026-11-26 01:45:38+05:00 [1A2026-11-26 01:45:38+05:00 Loading weights:   0%|          | 1/338 [00:00<02:57,  1.90it/s]
+2026-11-26 01:45:38+05:00 [1ALoading weights:  51%|█████     | 171/338 [00:00<00:00, 358.77it/s]
+2026-11-26 01:45:39+05:00 
+2026-11-26 01:45:39+05:00 [1A2026-11-26 01:45:39+05:00 Loading weights:  78%|███████▊  | 265/338 [00:00<00:00, 374.07it/s]
+2026-11-26 01:45:39+05:00 [1A2026-11-26 01:45:39+05:00 Loading weights:  99%|█████████▉| 334/338 [00:01<00:00, 362.94it/s]
+2026-11-26 01:45:39+05:00 [1A2026-11-26 01:45:39+05:00 Loading weights: 100%|██████████| 338/338 [00:01<00:00, 314.65it/s]
+2026-11-26 01:45:40+05:00 qwen2.5-1.5b-lora-lambda1-seed13: epoch=3 train_loss=0.3393 train_ce=0.3168 train_js=0.0225 holdout_weighted_f1=0.7649 holdout_accuracy=0.7629 seconds=144.4000 peak_gpu_memory_gb=16.2
+2026-11-26 01:45:41+05:00 qwen2.5-1.5b-lora-lambda2-seed1234: first_loss=5.2585 peak_gpu_memory_gb=15.9
+2026-11-26 01:46:04+05:00 qwen2.5-1.5b-lora-lambda1-seed13: validation {'weighted_f1_from_saved_probabilities': 0.7748107429298648, 'weighted_f1_at_kept_epoch': 0.7748107429298648, 'difference': 0.0}
+2026-11-26 01:46:12+05:00 qwen2.5-1.5b-lora-lambda1-seed1234: epoch=1 train_loss=1.8050 train_ce=1.7425 train_js=0.0625 holdout_weighted_f1=0.7631 holdout_accuracy=0.7711 seconds=173.6000 peak_gpu_memory_gb=16.2
+2026-11-26 01:47:30+05:00 qwen2.5-1.5b-lora-lambda2-seed13: epoch=1 train_loss=1.7967 train_ce=1.6931 train_js=0.0518 holdout_weighted_f1=0.7702 holdout_accuracy=0.7846 seconds=136.2000 peak_gpu_memory_gb=16.2
+2026-11-26 01:47:51+05:00 qwen2.5-1.5b-lora-lambda2-seed42: epoch=1 train_loss=1.8007 train_ce=1.6869 train_js=0.0569 holdout_weighted_f1=0.7418 holdout_accuracy=0.7398 seconds=142.4000 peak_gpu_memory_gb=16.3
+2026-11-26 01:48:04+05:00 qwen2.5-1.5b-lora-lambda1-seed42: epoch=2 train_loss=0.7270 train_ce=0.6911 train_js=0.0360 holdout_weighted_f1=0.7725 holdout_accuracy=0.7626 seconds=142.4000 peak_gpu_memory_gb=16.2
+2026-11-26 01:48:08+05:00 qwen2.5-1.5b-lora-lambda2-seed1234: epoch=1 train_loss=1.8726 train_ce=1.7609 train_js=0.0558 holdout_weighted_f1=0.7789 holdout_accuracy=0.7861 seconds=146.9000 peak_gpu_memory_gb=16.2
+2026-11-26 01:49:10+05:00 qwen2.5-1.5b-lora-lambda1-seed1234: epoch=2 train_loss=0.7862 train_ce=0.7463 train_js=0.0399 holdout_weighted_f1=0.7981 holdout_accuracy=0.7993 seconds=172.2000 peak_gpu_memory_gb=16.2
+2026-11-26 01:49:51+05:00 qwen2.5-1.5b-lora-lambda2-seed13: epoch=2 train_loss=0.7581 train_ce=0.6959 train_js=0.0311 holdout_weighted_f1=0.7725 holdout_accuracy=0.7713 seconds=138.0000 peak_gpu_memory_gb=16.2
+2026-11-26 01:50:19+05:00 qwen2.5-1.5b-lora-lambda2-seed42: epoch=2 train_loss=0.7825 train_ce=0.7188 train_js=0.0318 holdout_weighted_f1=0.7804 holdout_accuracy=0.7707 seconds=142.0000 peak_gpu_memory_gb=16.3
+2026-11-26 01:50:33+05:00 qwen2.5-1.5b-lora-lambda1-seed42: epoch=3 train_loss=0.3277 train_ce=0.3071 train_js=0.0207 holdout_weighted_f1=0.7740 holdout_accuracy=0.7675 seconds=142.6000 peak_gpu_memory_gb=16.2
+2026-11-26 01:50:51+05:00 qwen2.5-1.5b-lora-lambda1-seed42: validation {'weighted_f1_from_saved_probabilities': 0.77398666847012, 'weighted_f1_at_kept_epoch': 0.77398666847012, 'difference': 0.0}
+2026-11-26 01:51:26+05:00 qwen2.5-1.5b-lora-lambda2-seed1234: epoch=2 train_loss=0.8212 train_ce=0.7507 train_js=0.0353 holdout_weighted_f1=0.8027 holdout_accuracy=0.8027 seconds=189.2000 peak_gpu_memory_gb=16.2
+2026-11-26 01:51:55+05:00 qwen2.5-1.5b-lora-lambda1-seed1234: epoch=3 train_loss=0.3865 train_ce=0.3631 train_js=0.0234 holdout_weighted_f1=0.8112 holdout_accuracy=0.8109 seconds=159.9000 peak_gpu_memory_gb=16.2
+2026-11-26 01:52:11+05:00 qwen2.5-1.5b-lora-lambda2-seed13: epoch=3 train_loss=0.3666 train_ce=0.3283 train_js=0.0192 holdout_weighted_f1=0.7834 holdout_accuracy=0.7830 seconds=138.2000 peak_gpu_memory_gb=16.2
+2026-11-26 01:52:14+05:00 qwen2.5-1.5b-lora-lambda1-seed1234: validation {'weighted_f1_from_saved_probabilities': 0.8111950573955402, 'weighted_f1_at_kept_epoch': 0.8111950573955402, 'difference': 0.0}
+2026-11-26 01:52:26+05:00 qwen2.5-1.5b-lora-lambda2-seed13: validation {'weighted_f1_from_saved_probabilities': 0.783449040657759, 'weighted_f1_at_kept_epoch': 0.783449040657759, 'difference': 0.0}
+2026-11-26 01:53:48+05:00 qwen2.5-1.5b-lora-lambda2-seed42: epoch=3 train_loss=0.3739 train_ce=0.3341 train_js=0.0199 holdout_weighted_f1=0.7840 holdout_accuracy=0.7772 seconds=198.7000 peak_gpu_memory_gb=16.3
+2026-11-26 01:54:14+05:00 qwen2.5-1.5b-lora-lambda2-seed42: validation {'weighted_f1_from_saved_probabilities': 0.7839708150329766, 'weighted_f1_at_kept_epoch': 0.7839708150329766, 'difference': 0.0}
+2026-11-26 01:54:33+05:00 qwen2.5-1.5b-lora-lambda2-seed1234: epoch=3 train_loss=0.4284 train_ce=0.3859 train_js=0.0212 holdout_weighted_f1=0.8168 holdout_accuracy=0.8176 seconds=172.5000 peak_gpu_memory_gb=16.2
+2026-11-26 01:54:54+05:00 qwen2.5-1.5b-lora-lambda2-seed1234: validation {'weighted_f1_from_saved_probabilities': 0.8167796880396824, 'weighted_f1_at_kept_epoch': 0.8167796880396824, 'difference': 0.0}
+2026-11-26 01:55:22+05:00 Runner terminated.
+2026-11-26 01:55:25+05:00 Runner terminated.
