@@ -1,5 +1,35 @@
-% Placeholder. Syed Fawwad Ahmed replaces this file; keep the heading and the label.
 \section{Introduction}
 \label{sec:introduction}
 
-\emph{Written by Syed Fawwad Ahmed; arrives with their pull request.}
+Natural language inference is usually scored one pair at a time. SemEval-2027 Task 2, DiCo-NLI \citep{dico-nli-2027-task}, adds a second requirement. A system reads two short phrases in a fixed order and chooses one of four relations: the phrases are equivalent, the first entails the second, the second entails the first, or neither holds. The same pair then appears reversed, and the two answers must be compatible: a forward entailment has to become a backward one. The official scorer reports weighted F1 for the labels, \SoftCons{} for the share of reversible pairs answered compatibly, and \HardCons{} for the share answered correctly in both orders.
+
+Consistency is easy to reach for the wrong reason. A system that answers \EQ{} for every instance is perfectly self-consistent and almost always wrong: on the development set it scores \SoftCons{} 1.000 at weighted F1 0.110. % experiments/2026-09-29-trivial-baselines-track1/results.md
+A consistency score therefore says little unless correctness is read beside it. The organizers' pilot study found decoder language models to be the least self-consistent model family on this kind of data \citep{apaolaza-larraya-etal-2026-assessing}, and our own fine-tuned DeBERTa-v3-base encoder \citep{he-etal-2023-debertav3}, at weighted F1 0.807, still answers 32 to 37 of the 277 reversible development pairs incompatibly, depending on the seed. % experiments/2026-09-29-deberta-base-track1/findings.md
+
+We ask whether the reversal rule can be built into a small decoder, and what that buys. Our method, reversal-equivariant LoRA (\cref{sec:method}), adapts a frozen Qwen2.5-1.5B-Instruct model with low-rank adapters. It enforces the rule twice: a training loss ties the prediction for a pair to the prediction for its reverse, and at inference the two orders are averaged.
+
+\paragraph{Research question.} Can a small decoder language model adapted with LoRA reach a fine-tuned encoder on weighted F1 and \HardCons{}, and does enforcing the reversal rule, through a training loss and through symmetrized decoding, improve correctness or only self-consistency?
+
+\paragraph{Hypotheses.} We test four hypotheses. Each one, and the exact result that would support or contradict it, was fixed before the final runs (\cref{tab:hypotheses}); the terms ``shown'' and ``non-inferior'' are defined in \cref{sec:setup-evaluation}.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{@{}N{0.04\textwidth}L{0.27\textwidth}L{0.34\textwidth}L{0.26\textwidth}@{}}
+\toprule
+ & Hypothesis & Supported when & Contradicted when \\
+\midrule
+H4 & Without training, the decoder is far below the encoder on all three official scores. & Zero-shot minus encoder, single pass, is shown lower on weighted F1, \SoftCons{} and \HardCons{}. We report the size and do not grade ``far''. & Any of the three is shown higher. \\
+\addlinespace
+H5 & LoRA at $\lambda = 0$ recovers most of the weighted F1 gap, and its single-pass \SoftCons{} stays below the encoder's. & (a) The recovered share of the gap, (LoRA $-$ zero-shot) / (encoder $-$ zero-shot) on weighted F1, single pass, matched by seed, is at least 0.5 for every seed. (b) LoRA minus encoder single-pass \SoftCons{} is shown lower. & (a) The share is below 0.5 for every seed, or (b) \SoftCons{} is shown higher. \\
+\addlinespace
+H6 & The consistency term raises single-pass \SoftCons{} without lowering weighted F1. & Chosen $\lambda$ minus $\lambda = 0$, single pass: \SoftCons{} shown higher and weighted F1 non-inferior. & \SoftCons{} not shown higher, or weighted F1 shown lower. \\
+\addlinespace
+H7 & Symmetrized decoding raises \HardCons{} and weighted F1, not only \SoftCons{}. & For the proposed system, symmetrized minus single pass: \HardCons{} and weighted F1 both shown higher. & Either is shown lower. If only \SoftCons{} rises, H7 is not supported. \\
+\bottomrule
+\end{tabular}
+\caption{The four hypotheses and their criteria, fixed before the final runs. Differences are matched by seed over seeds 13, 42 and 1234.}
+\label{tab:hypotheses}
+\end{table*}
+
+\paragraph{What this paper reports.} We run the method and its comparison systems on Track 1 (English) with three seeds each: 32 GPU jobs, covering the untrained decoder, LoRA at five values of $\lambda$, and three ablations that test the treatment of negative pairs, the answer format and the model size (\cref{sec:setup}). The consistency weight is chosen on validation data and committed before any development score of those runs is read. Every comparison is decided by a rule fixed in advance, with paired bootstrap intervals and McNemar tests per seed (\cref{sec:results,sec:analysis}). We then count the errors of the main systems by category (\cref{sec:errors}), compare with the baselines and with published work (\cref{sec:comparison}), and report results that go against the hypotheses with the same weight as those that support them (\cref{sec:discussion}).

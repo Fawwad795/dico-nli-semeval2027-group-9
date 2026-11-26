@@ -1,8 +1,44 @@
-% Placeholder for the appendices. Each owner adds their appendix as its own \section here
-% through Fawwad, who edits this file and main.tex.
+% Appendices. Each owner's appendix is its own \section here; Fawwad collects them.
 \appendix
 
-\section{Run Records and Deviations}
+\section{Deviations from the Planned Protocol}
+\label{app:deviations}
+
+The protocol was written before the final runs. \Cref{tab:deviations} lists each point where the runs differ from it. Training and model selection are unchanged in all of them except where the table says so.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{@{}N{0.03\textwidth}L{0.24\textwidth}L{0.31\textwidth}L{0.34\textwidth}@{}}
+\toprule
+ & The plan said & What was done & Why \\
+\midrule
+D1 & Validation \HardCons{} is reported beside the choice of $\lambda$. & Each job saves its validation probabilities in both orders, for the kept epoch. & The earlier code logged validation weighted F1 and accuracy only and saved no validation predictions. Both orders also give symmetrized validation scores. \\
+\addlinespace
+D2 & Symmetrized decoding is applied to the encoder's saved probabilities. & Each reversible instance is averaged with the saved probabilities of its twin, found through the released pair identifier. The 106 negatives keep their single-pass prediction. The decoder is also reported under this twin-only variant. & The encoder saved development probabilities in one order only, negatives have no twin in the development set, and no encoder checkpoint was kept. \\
+\addlinespace
+D3 & Label words: the same prompt, scored on the first token of each label word. & The option letters are removed and the last line asks for one word. The scored tokens are \texttt{Equ}, \texttt{Forward}, \texttt{Back} and \texttt{Other}. & Scoring words under an instruction to answer with a letter would measure the mismatch between the two. The four tokens are distinct in the backbone's tokenizer. \\
+\addlinespace
+D4 & The reversed copies of the negatives are left out. & For \NO{} pairs the reverse cross-entropy and the consistency term are set to zero; every term is still divided by the number of pairs in the batch. & The plan did not fix the normalisation. This keeps the weight of each reversible pair the same as in the reference system. \\
+\addlinespace
+D5 & Seed 13 at $\lambda = 0$ and $\lambda = 1$ had already been run. & Both were rerun with the final code; the earlier runs serve only as the repeat check. & Every reported number comes from one version of the method code. \\
+\addlinespace
+D6 & Spanish and Basque tracks, optional. & Not run. & First in the planned order of what to drop; they test none of the hypotheses. \\
+\addlinespace
+D7 & Development scores are computed only after a system's configuration is fixed. & Each job writes its development probabilities in the training container, to a separate folder that is fetched only after the choice of $\lambda$ is committed. & It saves a second GPU pass per run. The fetch order and the recorded commit make the order checkable. \\
+\addlinespace
+D8 & Subgroup slices report classification metrics only, because a slice could split a pair. & Slices stay descriptive, with no verdicts, and \SoftCons{} and \HardCons{} are reported on them too. & The three slice families are tagged on the unordered source pair, so no slice splits a pair. \\
+\addlinespace
+D9 & A difference smaller than the spread across seeds counts as no difference; the spread was not defined. & The spread is the sample standard deviation of the matched per-seed differences. A margin of 0.02 defines ``non-inferior'' and ``equivalent''. The two interaction comparisons use one bootstrap over four prediction sets. & Three hypotheses could not be decided without these definitions. \\
+\addlinespace
+D10 & If the F1 of \NO{} falls clearly below the other labels, class weighting becomes a candidate ablation. & Not run, although the condition was met on the first trained seed (\NO{} F1 0.632 against 0.819 to 0.887 for the other labels). & Class weighting changes the objective whose consistency effect is under study, and no hypothesis covers it. The run without reversed negatives, the counts of \NO{} answers and the error analysis study that label instead. \\
+\bottomrule
+\end{tabular}
+\caption{Deviations from the protocol fixed before the final runs.}
+\label{tab:deviations}
+\end{table*}
+
+\section{Run Records}
 \label{app:runs}
 
-\emph{Detailed tables arrive with the section pull requests.}
+Every reported number traces to a file in the project repository. The folder \nolinkurl{experiments/2026-11-25-decoder-final-track1/} holds, for each of the 32 jobs, the single-pass and symmetrized predictions in the official format with the scorer's output, the validation and development probabilities in both orders, and a run record with the configuration, the per-epoch history, the kept epoch, the measured seconds and memory, the library versions and the identity of the code. It also holds the two job lists, the logs of both launches, the file that records the choice of $\lambda$, and the billing figures.
