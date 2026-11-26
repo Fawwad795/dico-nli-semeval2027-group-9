@@ -1,0 +1,600 @@
+instance_id,pair_id,text1_lang,text2_lang,text1,text2,reverse_pair_id,label
+dico_phrasis_0000011__en-en__flipped,dico_phrasis_0000011,en,en,Landslide Win,'s win,dico_phrasis_0000011__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000011__en-en__original,dico_phrasis_0000011,en,en,'s win,Landslide Win,dico_phrasis_0000011__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000029__en-en__flipped,dico_phrasis_0000029,en,en,after full 5 years in captivity,after almost five years captivity,dico_phrasis_0000029__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000029__en-en__original,dico_phrasis_0000029,en,en,after almost five years captivity,after full 5 years in captivity,dico_phrasis_0000029__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000043__en-en__flipped,dico_phrasis_0000043,en,en,of chemical weapons,chemical weapons,dico_phrasis_0000043__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000043__en-en__original,dico_phrasis_0000043,en,en,chemical weapons,of chemical weapons,dico_phrasis_0000043__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000044__en-en__flipped,dico_phrasis_0000044,en,en,UN Chemical Arms Experts,Chemical Arms Team,dico_phrasis_0000044__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000044__en-en__original,dico_phrasis_0000044,en,en,Chemical Arms Team,UN Chemical Arms Experts,dico_phrasis_0000044__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000065__en-en__flipped,dico_phrasis_0000065,en,en,South Africans,South Africa,dico_phrasis_0000065__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000065__en-en__original,dico_phrasis_0000065,en,en,South Africa,South Africans,dico_phrasis_0000065__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000076__en-en__flipped,dico_phrasis_0000076,en,en,16 soldiers,12 Soldiers,dico_phrasis_0000076__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000076__en-en__original,dico_phrasis_0000076,en,en,12 Soldiers,16 soldiers,dico_phrasis_0000076__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000079__en-en__flipped,dico_phrasis_0000079,en,en,for Iraq refinery,for Oil Refinery,dico_phrasis_0000079__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000079__en-en__original,dico_phrasis_0000079,en,en,for Oil Refinery,for Iraq refinery,dico_phrasis_0000079__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000090__en-en__flipped,dico_phrasis_0000090,en,en,piracy charges,charges,dico_phrasis_0000090__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000090__en-en__original,dico_phrasis_0000090,en,en,charges,piracy charges,dico_phrasis_0000090__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000097__en-en__flipped,dico_phrasis_0000097,en,en,Two ladies,Two women,dico_phrasis_0000097__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000097__en-en__original,dico_phrasis_0000097,en,en,Two women,Two ladies,dico_phrasis_0000097__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000137__en-en__flipped,dico_phrasis_0000137,en,en,jumps up,jumping,dico_phrasis_0000137__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000137__en-en__original,dico_phrasis_0000137,en,en,jumping,jumps up,dico_phrasis_0000137__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000144__en-en__flipped,dico_phrasis_0000144,en,en,in foam bubbles,with bubbles,dico_phrasis_0000144__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000144__en-en__original,dico_phrasis_0000144,en,en,with bubbles,in foam bubbles,dico_phrasis_0000144__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000147__en-en__flipped,dico_phrasis_0000147,en,en,through a large grassy area,on grass,dico_phrasis_0000147__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000147__en-en__original,dico_phrasis_0000147,en,en,on grass,through a large grassy area,dico_phrasis_0000147__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000153__en-en__flipped,dico_phrasis_0000153,en,en,through a watery field,through the grass,dico_phrasis_0000153__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000153__en-en__original,dico_phrasis_0000153,en,en,through the grass,through a watery field,dico_phrasis_0000153__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000160__en-en__flipped,dico_phrasis_0000160,en,en,under an expressway ledge,under the bridge,dico_phrasis_0000160__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000160__en-en__original,dico_phrasis_0000160,en,en,under the bridge,under an expressway ledge,dico_phrasis_0000160__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000169__en-en__flipped,dico_phrasis_0000169,en,en,The dogs,The two dogs,dico_phrasis_0000169__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000169__en-en__original,dico_phrasis_0000169,en,en,The two dogs,The dogs,dico_phrasis_0000169__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000172__en-en__flipped,dico_phrasis_0000172,en,en,in a grassy plain,on the grass,dico_phrasis_0000172__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000172__en-en__original,dico_phrasis_0000172,en,en,on the grass,in a grassy plain,dico_phrasis_0000172__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000173__en-en__flipped,dico_phrasis_0000173,en,en,on a tree branch,a tree,dico_phrasis_0000173__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000173__en-en__original,dico_phrasis_0000173,en,en,a tree,on a tree branch,dico_phrasis_0000173__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000209__en-en__flipped,dico_phrasis_0000209,en,en,a green and white playpen,green playpen,dico_phrasis_0000209__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000209__en-en__original,dico_phrasis_0000209,en,en,green playpen,a green and white playpen,dico_phrasis_0000209__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000213__en-en__flipped,dico_phrasis_0000213,en,en,Two tan dogs,Two dogs,dico_phrasis_0000213__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000213__en-en__original,dico_phrasis_0000213,en,en,Two dogs,Two tan dogs,dico_phrasis_0000213__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000217__en-en__flipped,dico_phrasis_0000217,en,en,Women,A woman,dico_phrasis_0000217__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000217__en-en__original,dico_phrasis_0000217,en,en,A woman,Women,dico_phrasis_0000217__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000218__en-en__flipped,dico_phrasis_0000218,en,en,through the grass,on the grass,dico_phrasis_0000218__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000218__en-en__original,dico_phrasis_0000218,en,en,on the grass,through the grass,dico_phrasis_0000218__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000222__en-en__flipped,dico_phrasis_0000222,en,en,A brown dog,a dog,dico_phrasis_0000222__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000222__en-en__original,dico_phrasis_0000222,en,en,a dog,A brown dog,dico_phrasis_0000222__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000227__en-en__flipped,dico_phrasis_0000227,en,en,through the ocean,through the water,dico_phrasis_0000227__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000227__en-en__original,dico_phrasis_0000227,en,en,through the water,through the ocean,dico_phrasis_0000227__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000234__en-en__flipped,dico_phrasis_0000234,en,en,over horse meat scandal,horsemeat scandal,dico_phrasis_0000234__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000234__en-en__original,dico_phrasis_0000234,en,en,horsemeat scandal,over horse meat scandal,dico_phrasis_0000234__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000243__en-en__flipped,dico_phrasis_0000243,en,en,polymer Naira notes,polymer notes,dico_phrasis_0000243__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000243__en-en__original,dico_phrasis_0000243,en,en,polymer notes,polymer Naira notes,dico_phrasis_0000243__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000258__en-en__flipped,dico_phrasis_0000258,en,en,UN chief presses,UN presses,dico_phrasis_0000258__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000258__en-en__original,dico_phrasis_0000258,en,en,UN presses,UN chief presses,dico_phrasis_0000258__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000267__en-en__flipped,dico_phrasis_0000267,en,en,6 dead,One dead,dico_phrasis_0000267__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000267__en-en__original,dico_phrasis_0000267,en,en,One dead,6 dead,dico_phrasis_0000267__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000289__en-en__flipped,dico_phrasis_0000289,en,en,Over 70 dead,Up to 50 dead,dico_phrasis_0000289__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000289__en-en__original,dico_phrasis_0000289,en,en,Up to 50 dead,Over 70 dead,dico_phrasis_0000289__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000292__en-en__flipped,dico_phrasis_0000292,en,en,for every new settler homes,900 settlement homes,dico_phrasis_0000292__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000292__en-en__original,dico_phrasis_0000292,en,en,900 settlement homes,for every new settler homes,dico_phrasis_0000292__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000296__en-en__flipped,dico_phrasis_0000296,en,en,"Virginia 's ex-Gov . Bob McDonnell , wife",Ex-Virginia governor Bob McDonnell,dico_phrasis_0000296__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000296__en-en__original,dico_phrasis_0000296,en,en,Ex-Virginia governor Bob McDonnell,"Virginia 's ex-Gov . Bob McDonnell , wife",dico_phrasis_0000296__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000298__en-en__flipped,dico_phrasis_0000298,en,en,` groundless ' US hacking accusations,US hacking claims,dico_phrasis_0000298__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000298__en-en__original,dico_phrasis_0000298,en,en,US hacking claims,` groundless ' US hacking accusations,dico_phrasis_0000298__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000302__en-en__flipped,dico_phrasis_0000302,en,en,in Virginia cemetery,in Virginia,dico_phrasis_0000302__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000302__en-en__original,dico_phrasis_0000302,en,en,in Virginia,in Virginia cemetery,dico_phrasis_0000302__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000314__en-en__flipped,dico_phrasis_0000314,en,en,seven attempted murder charges,murder charge,dico_phrasis_0000314__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000314__en-en__original,dico_phrasis_0000314,en,en,murder charge,seven attempted murder charges,dico_phrasis_0000314__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000318__en-en__flipped,dico_phrasis_0000318,en,en,among 5 dead,Five killed,dico_phrasis_0000318__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000318__en-en__original,dico_phrasis_0000318,en,en,Five killed,among 5 dead,dico_phrasis_0000318__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000319__en-en__flipped,dico_phrasis_0000319,en,en,Israel airstrikes,Israel planes,dico_phrasis_0000319__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000319__en-en__original,dico_phrasis_0000319,en,en,Israel planes,Israel airstrikes,dico_phrasis_0000319__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000322__en-en__flipped,dico_phrasis_0000322,en,en,to Morsi dialogue call,president 's call for dialogue,dico_phrasis_0000322__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000322__en-en__original,dico_phrasis_0000322,en,en,president 's call for dialogue,to Morsi dialogue call,dico_phrasis_0000322__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000323__en-en__flipped,dico_phrasis_0000323,en,en,Sistine Chapel,Vatican,dico_phrasis_0000323__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000323__en-en__original,dico_phrasis_0000323,en,en,Vatican,Sistine Chapel,dico_phrasis_0000323__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000324__en-en__flipped,dico_phrasis_0000324,en,en,SW Pakistan,Pakistan,dico_phrasis_0000324__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000324__en-en__original,dico_phrasis_0000324,en,en,Pakistan,SW Pakistan,dico_phrasis_0000324__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000334__en-en__flipped,dico_phrasis_0000334,en,en,after police,Police,dico_phrasis_0000334__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000334__en-en__original,dico_phrasis_0000334,en,en,Police,after police,dico_phrasis_0000334__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000347__en-en__flipped,dico_phrasis_0000347,en,en,of Mubarak,Mubarak,dico_phrasis_0000347__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000347__en-en__original,dico_phrasis_0000347,en,en,Mubarak,of Mubarak,dico_phrasis_0000347__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000355__en-en__flipped,dico_phrasis_0000355,en,en,of British no-frills airline easyJet,of easyJet,dico_phrasis_0000355__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000355__en-en__original,dico_phrasis_0000355,en,en,of easyJet,of British no-frills airline easyJet,dico_phrasis_0000355__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000356__en-en__flipped,dico_phrasis_0000356,en,en,Tunisia opposition leader,Tunisian opposition politician,dico_phrasis_0000356__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000356__en-en__original,dico_phrasis_0000356,en,en,Tunisian opposition politician,Tunisia opposition leader,dico_phrasis_0000356__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000359__en-en__flipped,dico_phrasis_0000359,en,en,in Afghan attack,in Afghanistan,dico_phrasis_0000359__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000359__en-en__original,dico_phrasis_0000359,en,en,in Afghanistan,in Afghan attack,dico_phrasis_0000359__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000363__en-en__flipped,dico_phrasis_0000363,en,en,on Cyprus banks,of Banks,dico_phrasis_0000363__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000363__en-en__original,dico_phrasis_0000363,en,en,of Banks,on Cyprus banks,dico_phrasis_0000363__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000379__en-en__flipped,dico_phrasis_0000379,en,en,Austrian man,Austrian,dico_phrasis_0000379__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000379__en-en__original,dico_phrasis_0000379,en,en,Austrian,Austrian man,dico_phrasis_0000379__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000388__en-en__flipped,dico_phrasis_0000388,en,en,Zambia 's ex-President Rupiah Banda,Former Zambian president,dico_phrasis_0000388__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000388__en-en__original,dico_phrasis_0000388,en,en,Former Zambian president,Zambia 's ex-President Rupiah Banda,dico_phrasis_0000388__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000390__en-en__flipped,dico_phrasis_0000390,en,en,at least 75,47 people,dico_phrasis_0000390__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000390__en-en__original,dico_phrasis_0000390,en,en,47 people,at least 75,dico_phrasis_0000390__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000398__en-en__flipped,dico_phrasis_0000398,en,en,on ` Concrete ' Chemical Weapons Plans,chemical weapons,dico_phrasis_0000398__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000398__en-en__original,dico_phrasis_0000398,en,en,chemical weapons,on ` Concrete ' Chemical Weapons Plans,dico_phrasis_0000398__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000409__en-en__flipped,dico_phrasis_0000409,en,en,in US drone strike,after drone strike,dico_phrasis_0000409__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000409__en-en__original,dico_phrasis_0000409,en,en,after drone strike,in US drone strike,dico_phrasis_0000409__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000437__en-en__flipped,dico_phrasis_0000437,en,en,outside a bookstore,by a shop,dico_phrasis_0000437__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000437__en-en__original,dico_phrasis_0000437,en,en,by a shop,outside a bookstore,dico_phrasis_0000437__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000441__en-en__flipped,dico_phrasis_0000441,en,en,Bird with a green head and white chest,Green and white bird,dico_phrasis_0000441__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000441__en-en__original,dico_phrasis_0000441,en,en,Green and white bird,Bird with a green head and white chest,dico_phrasis_0000441__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000450__en-en__flipped,dico_phrasis_0000450,en,en,on a green couch,on the sofa,dico_phrasis_0000450__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000450__en-en__original,dico_phrasis_0000450,en,en,on the sofa,on a green couch,dico_phrasis_0000450__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000455__en-en__flipped,dico_phrasis_0000455,en,en,A pink bicycle,A bicycle,dico_phrasis_0000455__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000455__en-en__original,dico_phrasis_0000455,en,en,A bicycle,A pink bicycle,dico_phrasis_0000455__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000460__en-en__flipped,dico_phrasis_0000460,en,en,Close up image,A close-up,dico_phrasis_0000460__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000460__en-en__original,dico_phrasis_0000460,en,en,A close-up,Close up image,dico_phrasis_0000460__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000483__en-en__flipped,dico_phrasis_0000483,en,en,on the side,the side,dico_phrasis_0000483__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000483__en-en__original,dico_phrasis_0000483,en,en,the side,on the side,dico_phrasis_0000483__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000490__en-en__flipped,dico_phrasis_0000490,en,en,in an Italian restaurant,in a restaurant,dico_phrasis_0000490__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000490__en-en__original,dico_phrasis_0000490,en,en,in a restaurant,in an Italian restaurant,dico_phrasis_0000490__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000498__en-en__flipped,dico_phrasis_0000498,en,en,are sitting,are,dico_phrasis_0000498__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000498__en-en__original,dico_phrasis_0000498,en,en,are,are sitting,dico_phrasis_0000498__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000501__en-en__flipped,dico_phrasis_0000501,en,en,An elegant pink dining room,Elegant dining room,dico_phrasis_0000501__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000501__en-en__original,dico_phrasis_0000501,en,en,Elegant dining room,An elegant pink dining room,dico_phrasis_0000501__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000505__en-en__flipped,dico_phrasis_0000505,en,en,in a red canoe,a red canoe,dico_phrasis_0000505__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000505__en-en__original,dico_phrasis_0000505,en,en,a red canoe,in a red canoe,dico_phrasis_0000505__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000508__en-en__flipped,dico_phrasis_0000508,en,en,Small office space,An office,dico_phrasis_0000508__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000508__en-en__original,dico_phrasis_0000508,en,en,An office,Small office space,dico_phrasis_0000508__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000511__en-en__flipped,dico_phrasis_0000511,en,en,A black swan,A bird,dico_phrasis_0000511__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000511__en-en__original,dico_phrasis_0000511,en,en,A bird,A black swan,dico_phrasis_0000511__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000531__en-en__flipped,dico_phrasis_0000531,en,en,on a white horse,a white horse,dico_phrasis_0000531__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000531__en-en__original,dico_phrasis_0000531,en,en,a white horse,on a white horse,dico_phrasis_0000531__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000532__en-en__flipped,dico_phrasis_0000532,en,en,on train tracks,the tracks,dico_phrasis_0000532__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000532__en-en__original,dico_phrasis_0000532,en,en,the tracks,on train tracks,dico_phrasis_0000532__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000543__en-en__flipped,dico_phrasis_0000543,en,en,A smiling woman,A woman,dico_phrasis_0000543__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000543__en-en__original,dico_phrasis_0000543,en,en,A woman,A smiling woman,dico_phrasis_0000543__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000544__en-en__flipped,dico_phrasis_0000544,en,en,with beer and food,that has drinks,dico_phrasis_0000544__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000544__en-en__original,dico_phrasis_0000544,en,en,that has drinks,with beer and food,dico_phrasis_0000544__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000564__en-en__flipped,dico_phrasis_0000564,en,en,A BMW motorcycle,A motorcycle,dico_phrasis_0000564__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000564__en-en__original,dico_phrasis_0000564,en,en,A motorcycle,A BMW motorcycle,dico_phrasis_0000564__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000571__en-en__flipped,dico_phrasis_0000571,en,en,Red buses,Two red buses,dico_phrasis_0000571__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000571__en-en__original,dico_phrasis_0000571,en,en,Two red buses,Red buses,dico_phrasis_0000571__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000578__en-en__flipped,dico_phrasis_0000578,en,en,with snacks,containing food,dico_phrasis_0000578__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000578__en-en__original,dico_phrasis_0000578,en,en,containing food,with snacks,dico_phrasis_0000578__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000579__en-en__flipped,dico_phrasis_0000579,en,en,with a white horse,a white horse,dico_phrasis_0000579__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000579__en-en__original,dico_phrasis_0000579,en,en,a white horse,with a white horse,dico_phrasis_0000579__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000582__en-en__flipped,dico_phrasis_0000582,en,en,Three dark haired young women,Three young women,dico_phrasis_0000582__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000582__en-en__original,dico_phrasis_0000582,en,en,Three young women,Three dark haired young women,dico_phrasis_0000582__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000584__en-en__flipped,dico_phrasis_0000584,en,en,"jeans , a dark bikini top , and a bracelet",with a bracelet a bikini top and jeans,dico_phrasis_0000584__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000584__en-en__original,dico_phrasis_0000584,en,en,with a bracelet a bikini top and jeans,"jeans , a dark bikini top , and a bracelet",dico_phrasis_0000584__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000589__en-en__flipped,dico_phrasis_0000589,en,en,A man,Someone,dico_phrasis_0000589__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000589__en-en__original,dico_phrasis_0000589,en,en,Someone,A man,dico_phrasis_0000589__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000612__en-en__flipped,dico_phrasis_0000612,en,en,of a living room,A living room,dico_phrasis_0000612__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000612__en-en__original,dico_phrasis_0000612,en,en,A living room,of a living room,dico_phrasis_0000612__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000625__en-en__flipped,dico_phrasis_0000625,en,en,in black and white lira,in black,dico_phrasis_0000625__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000625__en-en__original,dico_phrasis_0000625,en,en,in black,in black and white lira,dico_phrasis_0000625__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000635__en-en__flipped,dico_phrasis_0000635,en,en,while sitting,sitting,dico_phrasis_0000635__en-en__original,FORWARD_ENTAILMENT
+dico_phrasis_0000635__en-en__original,dico_phrasis_0000635,en,en,sitting,while sitting,dico_phrasis_0000635__en-en__flipped,BACKWARD_ENTAILMENT
+dico_phrasis_0000638__en-en__flipped,dico_phrasis_0000638,en,en,to repeal,revokes,dico_phrasis_0000638__en-en__original,EQUIVALENCE
+dico_phrasis_0000638__en-en__original,dico_phrasis_0000638,en,en,revokes,to repeal,dico_phrasis_0000638__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000640__en-en__flipped,dico_phrasis_0000640,en,en,three goals scored by Ronaldo,Ronaldo 's hat trick,dico_phrasis_0000640__en-en__original,EQUIVALENCE
+dico_phrasis_0000640__en-en__original,dico_phrasis_0000640,en,en,Ronaldo 's hat trick,three goals scored by Ronaldo,dico_phrasis_0000640__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000670__en-en__flipped,dico_phrasis_0000670,en,en,American football player Aaron Hernandez,Pro football player Aaron Hernandez,dico_phrasis_0000670__en-en__original,EQUIVALENCE
+dico_phrasis_0000670__en-en__original,dico_phrasis_0000670,en,en,Pro football player Aaron Hernandez,American football player Aaron Hernandez,dico_phrasis_0000670__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000673__en-en__flipped,dico_phrasis_0000673,en,en,Red Cross members,Red Cross workers,dico_phrasis_0000673__en-en__original,EQUIVALENCE
+dico_phrasis_0000673__en-en__original,dico_phrasis_0000673,en,en,Red Cross workers,Red Cross members,dico_phrasis_0000673__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000677__en-en__flipped,dico_phrasis_0000677,en,en,as Egyptian forces,as Egypt police,dico_phrasis_0000677__en-en__original,EQUIVALENCE
+dico_phrasis_0000677__en-en__original,dico_phrasis_0000677,en,en,as Egypt police,as Egyptian forces,dico_phrasis_0000677__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000678__en-en__flipped,dico_phrasis_0000678,en,en,of ' breakthrough ' guided missile,a guided missile described as a breakthrough,dico_phrasis_0000678__en-en__original,EQUIVALENCE
+dico_phrasis_0000678__en-en__original,dico_phrasis_0000678,en,en,a guided missile described as a breakthrough,of ' breakthrough ' guided missile,dico_phrasis_0000678__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000686__en-en__flipped,dico_phrasis_0000686,en,en,after fire breaks out in Moscow Metro,in Moscow metro fire,dico_phrasis_0000686__en-en__original,EQUIVALENCE
+dico_phrasis_0000686__en-en__original,dico_phrasis_0000686,en,en,in Moscow metro fire,after fire breaks out in Moscow Metro,dico_phrasis_0000686__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000713__en-en__flipped,dico_phrasis_0000713,en,en,' Glee ' star Cory Monteith,"Cory Monteith, an actor from Glee",dico_phrasis_0000713__en-en__original,EQUIVALENCE
+dico_phrasis_0000713__en-en__original,dico_phrasis_0000713,en,en,"Cory Monteith, an actor from Glee",' Glee ' star Cory Monteith,dico_phrasis_0000713__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000717__en-en__flipped,dico_phrasis_0000717,en,en,Malaysia Airlines plane,an aircraft operated by Malaysia Airlines,dico_phrasis_0000717__en-en__original,EQUIVALENCE
+dico_phrasis_0000717__en-en__original,dico_phrasis_0000717,en,en,an aircraft operated by Malaysia Airlines,Malaysia Airlines plane,dico_phrasis_0000717__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000722__en-en__flipped,dico_phrasis_0000722,en,en,is walking,moving on foot,dico_phrasis_0000722__en-en__original,EQUIVALENCE
+dico_phrasis_0000722__en-en__original,dico_phrasis_0000722,en,en,moving on foot,is walking,dico_phrasis_0000722__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000735__en-en__flipped,dico_phrasis_0000735,en,en,are running,moving at a run,dico_phrasis_0000735__en-en__original,EQUIVALENCE
+dico_phrasis_0000735__en-en__original,dico_phrasis_0000735,en,en,moving at a run,are running,dico_phrasis_0000735__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000740__en-en__flipped,dico_phrasis_0000740,en,en,are standing,stand,dico_phrasis_0000740__en-en__original,EQUIVALENCE
+dico_phrasis_0000740__en-en__original,dico_phrasis_0000740,en,en,stand,are standing,dico_phrasis_0000740__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000746__en-en__flipped,dico_phrasis_0000746,en,en,A group of cars,Many cars,dico_phrasis_0000746__en-en__original,EQUIVALENCE
+dico_phrasis_0000746__en-en__original,dico_phrasis_0000746,en,en,Many cars,A group of cars,dico_phrasis_0000746__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000753__en-en__flipped,dico_phrasis_0000753,en,en,is blowing,blows,dico_phrasis_0000753__en-en__original,EQUIVALENCE
+dico_phrasis_0000753__en-en__original,dico_phrasis_0000753,en,en,blows,is blowing,dico_phrasis_0000753__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000755__en-en__flipped,dico_phrasis_0000755,en,en,colored boxes,multi-colored blocks,dico_phrasis_0000755__en-en__original,EQUIVALENCE
+dico_phrasis_0000755__en-en__original,dico_phrasis_0000755,en,en,multi-colored blocks,colored boxes,dico_phrasis_0000755__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000767__en-en__flipped,dico_phrasis_0000767,en,en,is bounding,leaping in long bounds,dico_phrasis_0000767__en-en__original,EQUIVALENCE
+dico_phrasis_0000767__en-en__original,dico_phrasis_0000767,en,en,leaping in long bounds,is bounding,dico_phrasis_0000767__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000785__en-en__flipped,dico_phrasis_0000785,en,en,in front of a snow covered mountain,in front of a snowy mountain,dico_phrasis_0000785__en-en__original,EQUIVALENCE
+dico_phrasis_0000785__en-en__original,dico_phrasis_0000785,en,en,in front of a snowy mountain,in front of a snow covered mountain,dico_phrasis_0000785__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000795__en-en__flipped,dico_phrasis_0000795,en,en,Three people,Three individuals,dico_phrasis_0000795__en-en__original,EQUIVALENCE
+dico_phrasis_0000795__en-en__original,dico_phrasis_0000795,en,en,Three individuals,Three people,dico_phrasis_0000795__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000796__en-en__flipped,dico_phrasis_0000796,en,en,behind a no skiing sign,behind a sign that prohibits skiing,dico_phrasis_0000796__en-en__original,EQUIVALENCE
+dico_phrasis_0000796__en-en__original,dico_phrasis_0000796,en,en,behind a sign that prohibits skiing,behind a no skiing sign,dico_phrasis_0000796__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000797__en-en__flipped,dico_phrasis_0000797,en,en,A black and white dog,the canine with black-and-white fur,dico_phrasis_0000797__en-en__original,EQUIVALENCE
+dico_phrasis_0000797__en-en__original,dico_phrasis_0000797,en,en,the canine with black-and-white fur,A black and white dog,dico_phrasis_0000797__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000800__en-en__flipped,dico_phrasis_0000800,en,en,A black and white dog,a canine with black-and-white fur,dico_phrasis_0000800__en-en__original,EQUIVALENCE
+dico_phrasis_0000800__en-en__original,dico_phrasis_0000800,en,en,a canine with black-and-white fur,A black and white dog,dico_phrasis_0000800__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000812__en-en__flipped,dico_phrasis_0000812,en,en,across the grass,over grass,dico_phrasis_0000812__en-en__original,EQUIVALENCE
+dico_phrasis_0000812__en-en__original,dico_phrasis_0000812,en,en,over grass,across the grass,dico_phrasis_0000812__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000814__en-en__flipped,dico_phrasis_0000814,en,en,in a batman costume,in a batman suit,dico_phrasis_0000814__en-en__original,EQUIVALENCE
+dico_phrasis_0000814__en-en__original,dico_phrasis_0000814,en,en,in a batman suit,in a batman costume,dico_phrasis_0000814__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000820__en-en__flipped,dico_phrasis_0000820,en,en,are playing,engaging in play,dico_phrasis_0000820__en-en__original,EQUIVALENCE
+dico_phrasis_0000820__en-en__original,dico_phrasis_0000820,en,en,engaging in play,are playing,dico_phrasis_0000820__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000821__en-en__flipped,dico_phrasis_0000821,en,en,leaping away from,is jumping off,dico_phrasis_0000821__en-en__original,EQUIVALENCE
+dico_phrasis_0000821__en-en__original,dico_phrasis_0000821,en,en,is jumping off,leaping away from,dico_phrasis_0000821__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000828__en-en__flipped,dico_phrasis_0000828,en,en,stand,are standing,dico_phrasis_0000828__en-en__original,EQUIVALENCE
+dico_phrasis_0000828__en-en__original,dico_phrasis_0000828,en,en,are standing,stand,dico_phrasis_0000828__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000838__en-en__flipped,dico_phrasis_0000838,en,en,through the shallow water,across water of little depth,dico_phrasis_0000838__en-en__original,EQUIVALENCE
+dico_phrasis_0000838__en-en__original,dico_phrasis_0000838,en,en,across water of little depth,through the shallow water,dico_phrasis_0000838__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000839__en-en__flipped,dico_phrasis_0000839,en,en,in the red shirt,dressed in a red-colored shirt,dico_phrasis_0000839__en-en__original,EQUIVALENCE
+dico_phrasis_0000839__en-en__original,dico_phrasis_0000839,en,en,dressed in a red-colored shirt,in the red shirt,dico_phrasis_0000839__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000840__en-en__flipped,dico_phrasis_0000840,en,en,The boy,the male child,dico_phrasis_0000840__en-en__original,EQUIVALENCE
+dico_phrasis_0000840__en-en__original,dico_phrasis_0000840,en,en,the male child,The boy,dico_phrasis_0000840__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000843__en-en__flipped,dico_phrasis_0000843,en,en,A bunch,A crowd,dico_phrasis_0000843__en-en__original,EQUIVALENCE
+dico_phrasis_0000843__en-en__original,dico_phrasis_0000843,en,en,A crowd,A bunch,dico_phrasis_0000843__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000848__en-en__flipped,dico_phrasis_0000848,en,en,moving back and forth,is swinging,dico_phrasis_0000848__en-en__original,EQUIVALENCE
+dico_phrasis_0000848__en-en__original,dico_phrasis_0000848,en,en,is swinging,moving back and forth,dico_phrasis_0000848__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000850__en-en__flipped,dico_phrasis_0000850,en,en,upon the grassy ground,in the grass,dico_phrasis_0000850__en-en__original,EQUIVALENCE
+dico_phrasis_0000850__en-en__original,dico_phrasis_0000850,en,en,in the grass,upon the grassy ground,dico_phrasis_0000850__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000851__en-en__flipped,dico_phrasis_0000851,en,en,a dog,a domestic canine,dico_phrasis_0000851__en-en__original,EQUIVALENCE
+dico_phrasis_0000851__en-en__original,dico_phrasis_0000851,en,en,a domestic canine,a dog,dico_phrasis_0000851__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000857__en-en__flipped,dico_phrasis_0000857,en,en,The white dog,a canine with white fur,dico_phrasis_0000857__en-en__original,EQUIVALENCE
+dico_phrasis_0000857__en-en__original,dico_phrasis_0000857,en,en,a canine with white fur,The white dog,dico_phrasis_0000857__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000860__en-en__flipped,dico_phrasis_0000860,en,en,John Demjanjuk convicted Nazi death camp guard,Former Nazi death camp guard Demjanjuk,dico_phrasis_0000860__en-en__original,EQUIVALENCE
+dico_phrasis_0000860__en-en__original,dico_phrasis_0000860,en,en,Former Nazi death camp guard Demjanjuk,John Demjanjuk convicted Nazi death camp guard,dico_phrasis_0000860__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000871__en-en__flipped,dico_phrasis_0000871,en,en,Lance Armstrong in biopic,a biographical film about Lance Armstrong,dico_phrasis_0000871__en-en__original,EQUIVALENCE
+dico_phrasis_0000871__en-en__original,dico_phrasis_0000871,en,en,a biographical film about Lance Armstrong,Lance Armstrong in biopic,dico_phrasis_0000871__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000885__en-en__flipped,dico_phrasis_0000885,en,en,by police,carried out by law-enforcement officers,dico_phrasis_0000885__en-en__original,EQUIVALENCE
+dico_phrasis_0000885__en-en__original,dico_phrasis_0000885,en,en,carried out by law-enforcement officers,by police,dico_phrasis_0000885__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000886__en-en__flipped,dico_phrasis_0000886,en,en,"relating to Diana, Princess of Wales, and Dodi Al-Fayed",of Princess Diana and Dodi Fayed,dico_phrasis_0000886__en-en__original,EQUIVALENCE
+dico_phrasis_0000886__en-en__original,dico_phrasis_0000886,en,en,of Princess Diana and Dodi Fayed,"relating to Diana, Princess of Wales, and Dodi Al-Fayed",dico_phrasis_0000886__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000891__en-en__flipped,dico_phrasis_0000891,en,en,Votes,to vote,dico_phrasis_0000891__en-en__original,EQUIVALENCE
+dico_phrasis_0000891__en-en__original,dico_phrasis_0000891,en,en,to vote,Votes,dico_phrasis_0000891__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000910__en-en__flipped,dico_phrasis_0000910,en,en,to delay,may delay,dico_phrasis_0000910__en-en__original,EQUIVALENCE
+dico_phrasis_0000910__en-en__original,dico_phrasis_0000910,en,en,may delay,to delay,dico_phrasis_0000910__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000914__en-en__flipped,dico_phrasis_0000914,en,en,Egypt 's interior minister,Egypt's minister responsible for internal affairs,dico_phrasis_0000914__en-en__original,EQUIVALENCE
+dico_phrasis_0000914__en-en__original,dico_phrasis_0000914,en,en,Egypt's minister responsible for internal affairs,Egypt 's interior minister,dico_phrasis_0000914__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000920__en-en__flipped,dico_phrasis_0000920,en,en,three-week highs,3-wk high,dico_phrasis_0000920__en-en__original,EQUIVALENCE
+dico_phrasis_0000920__en-en__original,dico_phrasis_0000920,en,en,3-wk high,three-week highs,dico_phrasis_0000920__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000922__en-en__flipped,dico_phrasis_0000922,en,en,Philippines,the Philippine nation,dico_phrasis_0000922__en-en__original,EQUIVALENCE
+dico_phrasis_0000922__en-en__original,dico_phrasis_0000922,en,en,the Philippine nation,Philippines,dico_phrasis_0000922__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000926__en-en__flipped,dico_phrasis_0000926,en,en,to sign up,signs up,dico_phrasis_0000926__en-en__original,EQUIVALENCE
+dico_phrasis_0000926__en-en__original,dico_phrasis_0000926,en,en,signs up,to sign up,dico_phrasis_0000926__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000927__en-en__flipped,dico_phrasis_0000927,en,en,'s killing,killed,dico_phrasis_0000927__en-en__original,EQUIVALENCE
+dico_phrasis_0000927__en-en__original,dico_phrasis_0000927,en,en,killed,'s killing,dico_phrasis_0000927__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000938__en-en__flipped,dico_phrasis_0000938,en,en,questioned,faces questions,dico_phrasis_0000938__en-en__original,EQUIVALENCE
+dico_phrasis_0000938__en-en__original,dico_phrasis_0000938,en,en,faces questions,questioned,dico_phrasis_0000938__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000956__en-en__flipped,dico_phrasis_0000956,en,en,Kenya SC,Kenya Supreme Court,dico_phrasis_0000956__en-en__original,EQUIVALENCE
+dico_phrasis_0000956__en-en__original,dico_phrasis_0000956,en,en,Kenya Supreme Court,Kenya SC,dico_phrasis_0000956__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000960__en-en__flipped,dico_phrasis_0000960,en,en,Sees No Conclusive Evidence,Can not ` Conclusively Determine ',dico_phrasis_0000960__en-en__original,EQUIVALENCE
+dico_phrasis_0000960__en-en__original,dico_phrasis_0000960,en,en,Can not ` Conclusively Determine ',Sees No Conclusive Evidence,dico_phrasis_0000960__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000970__en-en__flipped,dico_phrasis_0000970,en,en,to Mandela,to Nelson Mandela,dico_phrasis_0000970__en-en__original,EQUIVALENCE
+dico_phrasis_0000970__en-en__original,dico_phrasis_0000970,en,en,to Nelson Mandela,to Mandela,dico_phrasis_0000970__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000971__en-en__flipped,dico_phrasis_0000971,en,en,during press dinner,at reporters ' dinner,dico_phrasis_0000971__en-en__original,EQUIVALENCE
+dico_phrasis_0000971__en-en__original,dico_phrasis_0000971,en,en,at reporters ' dinner,during press dinner,dico_phrasis_0000971__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000976__en-en__flipped,dico_phrasis_0000976,en,en,Brazil leader,Brazilian leader,dico_phrasis_0000976__en-en__original,EQUIVALENCE
+dico_phrasis_0000976__en-en__original,dico_phrasis_0000976,en,en,Brazilian leader,Brazil leader,dico_phrasis_0000976__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000984__en-en__flipped,dico_phrasis_0000984,en,en,into Syria,inside Syria,dico_phrasis_0000984__en-en__original,EQUIVALENCE
+dico_phrasis_0000984__en-en__original,dico_phrasis_0000984,en,en,inside Syria,into Syria,dico_phrasis_0000984__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000987__en-en__flipped,dico_phrasis_0000987,en,en,the television series Doctor Who,Doctor Who,dico_phrasis_0000987__en-en__original,EQUIVALENCE
+dico_phrasis_0000987__en-en__original,dico_phrasis_0000987,en,en,Doctor Who,the television series Doctor Who,dico_phrasis_0000987__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000989__en-en__flipped,dico_phrasis_0000989,en,en,Former first lady Barbara Bush,Ex-first lady Barbara Bush,dico_phrasis_0000989__en-en__original,EQUIVALENCE
+dico_phrasis_0000989__en-en__original,dico_phrasis_0000989,en,en,Ex-first lady Barbara Bush,Former first lady Barbara Bush,dico_phrasis_0000989__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000997__en-en__flipped,dico_phrasis_0000997,en,en,given warning,with warning,dico_phrasis_0000997__en-en__original,EQUIVALENCE
+dico_phrasis_0000997__en-en__original,dico_phrasis_0000997,en,en,with warning,given warning,dico_phrasis_0000997__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000998__en-en__flipped,dico_phrasis_0000998,en,en,on Mohamed Morsi supporters,on Morsi Supporters,dico_phrasis_0000998__en-en__original,EQUIVALENCE
+dico_phrasis_0000998__en-en__original,dico_phrasis_0000998,en,en,on Morsi Supporters,on Mohamed Morsi supporters,dico_phrasis_0000998__en-en__flipped,EQUIVALENCE
+dico_phrasis_0000999__en-en__flipped,dico_phrasis_0000999,en,en,the married pair comprising Hrithik Roshan and Sussanne,"Hrithik Roshan , wife Sussanne",dico_phrasis_0000999__en-en__original,EQUIVALENCE
+dico_phrasis_0000999__en-en__original,dico_phrasis_0000999,en,en,"Hrithik Roshan , wife Sussanne",the married pair comprising Hrithik Roshan and Sussanne,dico_phrasis_0000999__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001011__en-en__flipped,dico_phrasis_0001011,en,en,acquitted,found not guilty,dico_phrasis_0001011__en-en__original,EQUIVALENCE
+dico_phrasis_0001011__en-en__original,dico_phrasis_0001011,en,en,found not guilty,acquitted,dico_phrasis_0001011__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001012__en-en__flipped,dico_phrasis_0001012,en,en,US-Russian deal,US-Russia Deal,dico_phrasis_0001012__en-en__original,EQUIVALENCE
+dico_phrasis_0001012__en-en__original,dico_phrasis_0001012,en,en,US-Russia Deal,US-Russian deal,dico_phrasis_0001012__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001019__en-en__flipped,dico_phrasis_0001019,en,en,abdicates,to abdicate,dico_phrasis_0001019__en-en__original,EQUIVALENCE
+dico_phrasis_0001019__en-en__original,dico_phrasis_0001019,en,en,to abdicate,abdicates,dico_phrasis_0001019__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001021__en-en__flipped,dico_phrasis_0001021,en,en,"Red grapes , blueberries",a combination of blueberries and crimson grapes,dico_phrasis_0001021__en-en__original,EQUIVALENCE
+dico_phrasis_0001021__en-en__original,dico_phrasis_0001021,en,en,a combination of blueberries and crimson grapes,"Red grapes , blueberries",dico_phrasis_0001021__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001041__en-en__flipped,dico_phrasis_0001041,en,en,to talks,to negotiations,dico_phrasis_0001041__en-en__original,EQUIVALENCE
+dico_phrasis_0001041__en-en__original,dico_phrasis_0001041,en,en,to negotiations,to talks,dico_phrasis_0001041__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001052__en-en__flipped,dico_phrasis_0001052,en,en,Powerful new earthquake,Strong new quake,dico_phrasis_0001052__en-en__original,EQUIVALENCE
+dico_phrasis_0001052__en-en__original,dico_phrasis_0001052,en,en,Strong new quake,Powerful new earthquake,dico_phrasis_0001052__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001056__en-en__flipped,dico_phrasis_0001056,en,en,"John McAfee, an expert in software",software guru John McAfee,dico_phrasis_0001056__en-en__original,EQUIVALENCE
+dico_phrasis_0001056__en-en__original,dico_phrasis_0001056,en,en,software guru John McAfee,"John McAfee, an expert in software",dico_phrasis_0001056__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001060__en-en__flipped,dico_phrasis_0001060,en,en,3 dead,Three dead,dico_phrasis_0001060__en-en__original,EQUIVALENCE
+dico_phrasis_0001060__en-en__original,dico_phrasis_0001060,en,en,Three dead,3 dead,dico_phrasis_0001060__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001074__en-en__flipped,dico_phrasis_0001074,en,en,within the city of Bethlehem,in Bethlehem,dico_phrasis_0001074__en-en__original,EQUIVALENCE
+dico_phrasis_0001074__en-en__original,dico_phrasis_0001074,en,en,in Bethlehem,within the city of Bethlehem,dico_phrasis_0001074__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001092__en-en__flipped,dico_phrasis_0001092,en,en,The old lady,An elderly woman,dico_phrasis_0001092__en-en__original,EQUIVALENCE
+dico_phrasis_0001092__en-en__original,dico_phrasis_0001092,en,en,An elderly woman,The old lady,dico_phrasis_0001092__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001099__en-en__flipped,dico_phrasis_0001099,en,en,where `` u2 '' is written,with a U2 sign,dico_phrasis_0001099__en-en__original,EQUIVALENCE
+dico_phrasis_0001099__en-en__original,dico_phrasis_0001099,en,en,with a U2 sign,where `` u2 '' is written,dico_phrasis_0001099__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001108__en-en__flipped,dico_phrasis_0001108,en,en,on chair,seated on a chair,dico_phrasis_0001108__en-en__original,EQUIVALENCE
+dico_phrasis_0001108__en-en__original,dico_phrasis_0001108,en,en,seated on a chair,on chair,dico_phrasis_0001108__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001113__en-en__flipped,dico_phrasis_0001113,en,en,are posing,assuming a pose,dico_phrasis_0001113__en-en__original,EQUIVALENCE
+dico_phrasis_0001113__en-en__original,dico_phrasis_0001113,en,en,assuming a pose,are posing,dico_phrasis_0001113__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001120__en-en__flipped,dico_phrasis_0001120,en,en,"A red , double-decker bus",a two-level bus painted red,dico_phrasis_0001120__en-en__original,EQUIVALENCE
+dico_phrasis_0001120__en-en__original,dico_phrasis_0001120,en,en,a two-level bus painted red,"A red , double-decker bus",dico_phrasis_0001120__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001140__en-en__flipped,dico_phrasis_0001140,en,en,inside a cooking area,in the kitchen,dico_phrasis_0001140__en-en__original,EQUIVALENCE
+dico_phrasis_0001140__en-en__original,dico_phrasis_0001140,en,en,in the kitchen,inside a cooking area,dico_phrasis_0001140__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001146__en-en__flipped,dico_phrasis_0001146,en,en,is perched,perches,dico_phrasis_0001146__en-en__original,EQUIVALENCE
+dico_phrasis_0001146__en-en__original,dico_phrasis_0001146,en,en,perches,is perched,dico_phrasis_0001146__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001158__en-en__flipped,dico_phrasis_0001158,en,en,in a field,in a plain,dico_phrasis_0001158__en-en__original,EQUIVALENCE
+dico_phrasis_0001158__en-en__original,dico_phrasis_0001158,en,en,in a plain,in a field,dico_phrasis_0001158__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001161__en-en__flipped,dico_phrasis_0001161,en,en,on the window sill,on the window ledge,dico_phrasis_0001161__en-en__original,EQUIVALENCE
+dico_phrasis_0001161__en-en__original,dico_phrasis_0001161,en,en,on the window ledge,on the window sill,dico_phrasis_0001161__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001170__en-en__flipped,dico_phrasis_0001170,en,en,of an old wooden fence,of a dilapidated wooden fence,dico_phrasis_0001170__en-en__original,EQUIVALENCE
+dico_phrasis_0001170__en-en__original,dico_phrasis_0001170,en,en,of a dilapidated wooden fence,of an old wooden fence,dico_phrasis_0001170__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001172__en-en__flipped,dico_phrasis_0001172,en,en,travels,is going,dico_phrasis_0001172__en-en__original,EQUIVALENCE
+dico_phrasis_0001172__en-en__original,dico_phrasis_0001172,en,en,is going,travels,dico_phrasis_0001172__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001182__en-en__flipped,dico_phrasis_0001182,en,en,Kitchen,a cooking area,dico_phrasis_0001182__en-en__original,EQUIVALENCE
+dico_phrasis_0001182__en-en__original,dico_phrasis_0001182,en,en,a cooking area,Kitchen,dico_phrasis_0001182__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001186__en-en__flipped,dico_phrasis_0001186,en,en,the adult male,The man,dico_phrasis_0001186__en-en__original,EQUIVALENCE
+dico_phrasis_0001186__en-en__original,dico_phrasis_0001186,en,en,The man,the adult male,dico_phrasis_0001186__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001198__en-en__flipped,dico_phrasis_0001198,en,en,at the camera,directed at the camera,dico_phrasis_0001198__en-en__original,EQUIVALENCE
+dico_phrasis_0001198__en-en__original,dico_phrasis_0001198,en,en,directed at the camera,at the camera,dico_phrasis_0001198__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001213__en-en__flipped,dico_phrasis_0001213,en,en,A red two story bus,Red double decker bus,dico_phrasis_0001213__en-en__original,EQUIVALENCE
+dico_phrasis_0001213__en-en__original,dico_phrasis_0001213,en,en,Red double decker bus,A red two story bus,dico_phrasis_0001213__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001228__en-en__flipped,dico_phrasis_0001228,en,en,along the railway tracks,down the tracks,dico_phrasis_0001228__en-en__original,EQUIVALENCE
+dico_phrasis_0001228__en-en__original,dico_phrasis_0001228,en,en,down the tracks,along the railway tracks,dico_phrasis_0001228__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001232__en-en__flipped,dico_phrasis_0001232,en,en,on the train tracks,upon railway lines,dico_phrasis_0001232__en-en__original,EQUIVALENCE
+dico_phrasis_0001232__en-en__original,dico_phrasis_0001232,en,en,upon railway lines,on the train tracks,dico_phrasis_0001232__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001238__en-en__flipped,dico_phrasis_0001238,en,en,on a metal bar,on a metal band,dico_phrasis_0001238__en-en__original,EQUIVALENCE
+dico_phrasis_0001238__en-en__original,dico_phrasis_0001238,en,en,on a metal band,on a metal bar,dico_phrasis_0001238__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001241__en-en__flipped,dico_phrasis_0001241,en,en,An older Asian couple,An elderly Asian couple,dico_phrasis_0001241__en-en__original,EQUIVALENCE
+dico_phrasis_0001241__en-en__original,dico_phrasis_0001241,en,en,An elderly Asian couple,An older Asian couple,dico_phrasis_0001241__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001253__en-en__flipped,dico_phrasis_0001253,en,en,in an enclosure,in a pen,dico_phrasis_0001253__en-en__original,EQUIVALENCE
+dico_phrasis_0001253__en-en__original,dico_phrasis_0001253,en,en,in a pen,in an enclosure,dico_phrasis_0001253__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001259__en-en__flipped,dico_phrasis_0001259,en,en,is standing,maintaining an upright stance,dico_phrasis_0001259__en-en__original,EQUIVALENCE
+dico_phrasis_0001259__en-en__original,dico_phrasis_0001259,en,en,maintaining an upright stance,is standing,dico_phrasis_0001259__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001283__en-en__flipped,dico_phrasis_0001283,en,en,holding,keeping hold of,dico_phrasis_0001283__en-en__original,EQUIVALENCE
+dico_phrasis_0001283__en-en__original,dico_phrasis_0001283,en,en,keeping hold of,holding,dico_phrasis_0001283__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001293__en-en__flipped,dico_phrasis_0001293,en,en,on a dirt track,on a dirt course,dico_phrasis_0001293__en-en__original,EQUIVALENCE
+dico_phrasis_0001293__en-en__original,dico_phrasis_0001293,en,en,on a dirt course,on a dirt track,dico_phrasis_0001293__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001296__en-en__flipped,dico_phrasis_0001296,en,en,into a station,moving into a transport terminal,dico_phrasis_0001296__en-en__original,EQUIVALENCE
+dico_phrasis_0001296__en-en__original,dico_phrasis_0001296,en,en,moving into a transport terminal,into a station,dico_phrasis_0001296__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001304__en-en__flipped,dico_phrasis_0001304,en,en,are sitting,sit,dico_phrasis_0001304__en-en__original,EQUIVALENCE
+dico_phrasis_0001304__en-en__original,dico_phrasis_0001304,en,en,sit,are sitting,dico_phrasis_0001304__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001316__en-en__flipped,dico_phrasis_0001316,en,en,A group,Crowd,dico_phrasis_0001316__en-en__original,EQUIVALENCE
+dico_phrasis_0001316__en-en__original,dico_phrasis_0001316,en,en,Crowd,A group,dico_phrasis_0001316__en-en__flipped,EQUIVALENCE
+dico_phrasis_0001329__en-en__flipped,dico_phrasis_0001329,en,en,talks,expert nuclear talks,dico_phrasis_0001329__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001329__en-en__original,dico_phrasis_0001329,en,en,expert nuclear talks,talks,dico_phrasis_0001329__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001333__en-en__flipped,dico_phrasis_0001333,en,en,gay marriage,on gay marriage,dico_phrasis_0001333__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001333__en-en__original,dico_phrasis_0001333,en,en,on gay marriage,gay marriage,dico_phrasis_0001333__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001343__en-en__flipped,dico_phrasis_0001343,en,en,Five dead,Much more Deaths,dico_phrasis_0001343__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001343__en-en__original,dico_phrasis_0001343,en,en,Much more Deaths,Five dead,dico_phrasis_0001343__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001357__en-en__flipped,dico_phrasis_0001357,en,en,over airbag,after airbag fault,dico_phrasis_0001357__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001357__en-en__original,dico_phrasis_0001357,en,en,after airbag fault,over airbag,dico_phrasis_0001357__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001371__en-en__flipped,dico_phrasis_0001371,en,en,as freight train,after oil trains,dico_phrasis_0001371__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001371__en-en__original,dico_phrasis_0001371,en,en,after oil trains,as freight train,dico_phrasis_0001371__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001375__en-en__flipped,dico_phrasis_0001375,en,en,Vodafone UK chief,Vodafone UK chief Guy Laurence,dico_phrasis_0001375__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001375__en-en__original,dico_phrasis_0001375,en,en,Vodafone UK chief Guy Laurence,Vodafone UK chief,dico_phrasis_0001375__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001376__en-en__flipped,dico_phrasis_0001376,en,en,in crisis,into political crisis,dico_phrasis_0001376__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001376__en-en__original,dico_phrasis_0001376,en,en,into political crisis,in crisis,dico_phrasis_0001376__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001381__en-en__flipped,dico_phrasis_0001381,en,en,Jewels worth €40m,€40 million gems,dico_phrasis_0001381__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001381__en-en__original,dico_phrasis_0001381,en,en,€40 million gems,Jewels worth €40m,dico_phrasis_0001381__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001388__en-en__flipped,dico_phrasis_0001388,en,en,Russia,into Russia,dico_phrasis_0001388__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001388__en-en__original,dico_phrasis_0001388,en,en,into Russia,Russia,dico_phrasis_0001388__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001425__en-en__flipped,dico_phrasis_0001425,en,en,Firefighters Hostage in Georgia,suburban Atlanta firefighters hostage,dico_phrasis_0001425__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001425__en-en__original,dico_phrasis_0001425,en,en,suburban Atlanta firefighters hostage,Firefighters Hostage in Georgia,dico_phrasis_0001425__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001430__en-en__flipped,dico_phrasis_0001430,en,en,run,in fast running,dico_phrasis_0001430__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001430__en-en__original,dico_phrasis_0001430,en,en,in fast running,run,dico_phrasis_0001430__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001436__en-en__flipped,dico_phrasis_0001436,en,en,two boys,into two boys,dico_phrasis_0001436__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001436__en-en__original,dico_phrasis_0001436,en,en,into two boys,two boys,dico_phrasis_0001436__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001440__en-en__flipped,dico_phrasis_0001440,en,en,climbs,climbs up,dico_phrasis_0001440__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001440__en-en__original,dico_phrasis_0001440,en,en,climbs up,climbs,dico_phrasis_0001440__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001443__en-en__flipped,dico_phrasis_0001443,en,en,in a field,across an open field,dico_phrasis_0001443__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001443__en-en__original,dico_phrasis_0001443,en,en,across an open field,in a field,dico_phrasis_0001443__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001445__en-en__flipped,dico_phrasis_0001445,en,en,The man,Two constructions workers,dico_phrasis_0001445__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001445__en-en__original,dico_phrasis_0001445,en,en,Two constructions workers,The man,dico_phrasis_0001445__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001452__en-en__flipped,dico_phrasis_0001452,en,en,a wave,on a breaking wave,dico_phrasis_0001452__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001452__en-en__original,dico_phrasis_0001452,en,en,on a breaking wave,a wave,dico_phrasis_0001452__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001460__en-en__flipped,dico_phrasis_0001460,en,en,A smiling man a small child,A smiling man and a baby girl,dico_phrasis_0001460__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001460__en-en__original,dico_phrasis_0001460,en,en,A smiling man and a baby girl,A smiling man a small child,dico_phrasis_0001460__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001466__en-en__flipped,dico_phrasis_0001466,en,en,in a towel,under a wet towel,dico_phrasis_0001466__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001466__en-en__original,dico_phrasis_0001466,en,en,under a wet towel,in a towel,dico_phrasis_0001466__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001467__en-en__flipped,dico_phrasis_0001467,en,en,A dog,A white and brown dog,dico_phrasis_0001467__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001467__en-en__original,dico_phrasis_0001467,en,en,A white and brown dog,A dog,dico_phrasis_0001467__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001473__en-en__flipped,dico_phrasis_0001473,en,en,through a puddle,through a large puddle,dico_phrasis_0001473__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001473__en-en__original,dico_phrasis_0001473,en,en,through a large puddle,through a puddle,dico_phrasis_0001473__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001476__en-en__flipped,dico_phrasis_0001476,en,en,A dog,Two dogs,dico_phrasis_0001476__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001476__en-en__original,dico_phrasis_0001476,en,en,Two dogs,A dog,dico_phrasis_0001476__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001480__en-en__flipped,dico_phrasis_0001480,en,en,A black dog,A black and grey dog,dico_phrasis_0001480__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001480__en-en__original,dico_phrasis_0001480,en,en,A black and grey dog,A black dog,dico_phrasis_0001480__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001489__en-en__flipped,dico_phrasis_0001489,en,en,play,are playing fetch,dico_phrasis_0001489__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001489__en-en__original,dico_phrasis_0001489,en,en,are playing fetch,play,dico_phrasis_0001489__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001494__en-en__flipped,dico_phrasis_0001494,en,en,holding,holds up,dico_phrasis_0001494__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001494__en-en__original,dico_phrasis_0001494,en,en,holds up,holding,dico_phrasis_0001494__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001498__en-en__flipped,dico_phrasis_0001498,en,en,the bus,in front of a bus,dico_phrasis_0001498__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001498__en-en__original,dico_phrasis_0001498,en,en,in front of a bus,the bus,dico_phrasis_0001498__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001520__en-en__flipped,dico_phrasis_0001520,en,en,wearing a helmet,with a purple and white helmet,dico_phrasis_0001520__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001520__en-en__original,dico_phrasis_0001520,en,en,with a purple and white helmet,wearing a helmet,dico_phrasis_0001520__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001533__en-en__flipped,dico_phrasis_0001533,en,en,is,is running,dico_phrasis_0001533__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001533__en-en__original,dico_phrasis_0001533,en,en,is running,is,dico_phrasis_0001533__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001572__en-en__flipped,dico_phrasis_0001572,en,en,over settlements,over settlement plans,dico_phrasis_0001572__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001572__en-en__original,dico_phrasis_0001572,en,en,over settlement plans,over settlements,dico_phrasis_0001572__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001574__en-en__flipped,dico_phrasis_0001574,en,en,Car bombing,2 car bombs,dico_phrasis_0001574__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001574__en-en__original,dico_phrasis_0001574,en,en,2 car bombs,Car bombing,dico_phrasis_0001574__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001575__en-en__flipped,dico_phrasis_0001575,en,en,on strong earnings,Google and IBM Post Strong Earnings,dico_phrasis_0001575__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001575__en-en__original,dico_phrasis_0001575,en,en,Google and IBM Post Strong Earnings,on strong earnings,dico_phrasis_0001575__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001585__en-en__flipped,dico_phrasis_0001585,en,en,Thai protesters,Thai political protests,dico_phrasis_0001585__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001585__en-en__original,dico_phrasis_0001585,en,en,Thai political protests,Thai protesters,dico_phrasis_0001585__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001589__en-en__flipped,dico_phrasis_0001589,en,en,Mugabe,Defiant Mugabe,dico_phrasis_0001589__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001589__en-en__original,dico_phrasis_0001589,en,en,Defiant Mugabe,Mugabe,dico_phrasis_0001589__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001602__en-en__flipped,dico_phrasis_0001602,en,en,White House,US Senators,dico_phrasis_0001602__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001602__en-en__original,dico_phrasis_0001602,en,en,US Senators,White House,dico_phrasis_0001602__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001607__en-en__flipped,dico_phrasis_0001607,en,en,from Libyan jail,from Libya 's al-Kweifiya prison,dico_phrasis_0001607__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001607__en-en__original,dico_phrasis_0001607,en,en,from Libya 's al-Kweifiya prison,from Libyan jail,dico_phrasis_0001607__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001617__en-en__flipped,dico_phrasis_0001617,en,en,US Capitol,US Capitol Hill,dico_phrasis_0001617__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001617__en-en__original,dico_phrasis_0001617,en,en,US Capitol Hill,US Capitol,dico_phrasis_0001617__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001619__en-en__flipped,dico_phrasis_0001619,en,en,Suicide bomber,in suicide bombings,dico_phrasis_0001619__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001619__en-en__original,dico_phrasis_0001619,en,en,in suicide bombings,Suicide bomber,dico_phrasis_0001619__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001625__en-en__flipped,dico_phrasis_0001625,en,en,Miss America,Miss America 2013,dico_phrasis_0001625__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001625__en-en__original,dico_phrasis_0001625,en,en,Miss America 2013,Miss America,dico_phrasis_0001625__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001627__en-en__flipped,dico_phrasis_0001627,en,en,Senate,US Senate,dico_phrasis_0001627__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001627__en-en__original,dico_phrasis_0001627,en,en,US Senate,Senate,dico_phrasis_0001627__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001639__en-en__flipped,dico_phrasis_0001639,en,en,Six dead,among 14 killed,dico_phrasis_0001639__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001639__en-en__original,dico_phrasis_0001639,en,en,among 14 killed,Six dead,dico_phrasis_0001639__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001646__en-en__flipped,dico_phrasis_0001646,en,en,in blast,in bomb blast,dico_phrasis_0001646__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001646__en-en__original,dico_phrasis_0001646,en,en,in bomb blast,in blast,dico_phrasis_0001646__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001649__en-en__flipped,dico_phrasis_0001649,en,en,Palestinian prisoner,26 Palestinian prisoners,dico_phrasis_0001649__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001649__en-en__original,dico_phrasis_0001649,en,en,26 Palestinian prisoners,Palestinian prisoner,dico_phrasis_0001649__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001650__en-en__flipped,dico_phrasis_0001650,en,en,Pistorius,` Blade Runner ' Pistorius,dico_phrasis_0001650__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001650__en-en__original,dico_phrasis_0001650,en,en,` Blade Runner ' Pistorius,Pistorius,dico_phrasis_0001650__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001655__en-en__flipped,dico_phrasis_0001655,en,en,in Pakistan,in northern Pakistan,dico_phrasis_0001655__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001655__en-en__original,dico_phrasis_0001655,en,en,in northern Pakistan,in Pakistan,dico_phrasis_0001655__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001660__en-en__flipped,dico_phrasis_0001660,en,en,US base,at US base,dico_phrasis_0001660__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001660__en-en__original,dico_phrasis_0001660,en,en,at US base,US base,dico_phrasis_0001660__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001664__en-en__flipped,dico_phrasis_0001664,en,en,gay marriage,on gay rights,dico_phrasis_0001664__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001664__en-en__original,dico_phrasis_0001664,en,en,on gay rights,gay marriage,dico_phrasis_0001664__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001692__en-en__flipped,dico_phrasis_0001692,en,en,Pakistan,in Pakistan,dico_phrasis_0001692__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001692__en-en__original,dico_phrasis_0001692,en,en,in Pakistan,Pakistan,dico_phrasis_0001692__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001694__en-en__flipped,dico_phrasis_0001694,en,en,date,May 5 as date,dico_phrasis_0001694__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001694__en-en__original,dico_phrasis_0001694,en,en,May 5 as date,date,dico_phrasis_0001694__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001701__en-en__flipped,dico_phrasis_0001701,en,en,Pakistan School Bus,on Pakistan school bus,dico_phrasis_0001701__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001701__en-en__original,dico_phrasis_0001701,en,en,on Pakistan school bus,Pakistan School Bus,dico_phrasis_0001701__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001707__en-en__flipped,dico_phrasis_0001707,en,en,Suu Kyi,Myanmar 's Suu Kyi,dico_phrasis_0001707__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001707__en-en__original,dico_phrasis_0001707,en,en,Myanmar 's Suu Kyi,Suu Kyi,dico_phrasis_0001707__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001716__en-en__flipped,dico_phrasis_0001716,en,en,Hundreds of French troops,French forces,dico_phrasis_0001716__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001716__en-en__original,dico_phrasis_0001716,en,en,French forces,Hundreds of French troops,dico_phrasis_0001716__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001721__en-en__flipped,dico_phrasis_0001721,en,en,in Afghan,in Afghan ` insider attack ',dico_phrasis_0001721__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001721__en-en__original,dico_phrasis_0001721,en,en,in Afghan ` insider attack ',in Afghan,dico_phrasis_0001721__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001725__en-en__flipped,dico_phrasis_0001725,en,en,Mandela,of icon Nelson Mandela,dico_phrasis_0001725__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001725__en-en__original,dico_phrasis_0001725,en,en,of icon Nelson Mandela,Mandela,dico_phrasis_0001725__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001728__en-en__flipped,dico_phrasis_0001728,en,en,N Korean ship,North Korean cargo,dico_phrasis_0001728__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001728__en-en__original,dico_phrasis_0001728,en,en,North Korean cargo,N Korean ship,dico_phrasis_0001728__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001732__en-en__flipped,dico_phrasis_0001732,en,en,in Iraq,in northern Iraq,dico_phrasis_0001732__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001732__en-en__original,dico_phrasis_0001732,en,en,in northern Iraq,in Iraq,dico_phrasis_0001732__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001733__en-en__flipped,dico_phrasis_0001733,en,en,Oklahoma City area,towards Oklahoma City,dico_phrasis_0001733__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001733__en-en__original,dico_phrasis_0001733,en,en,towards Oklahoma City,Oklahoma City area,dico_phrasis_0001733__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001745__en-en__flipped,dico_phrasis_0001745,en,en,A young girl,A young blonde girl,dico_phrasis_0001745__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001745__en-en__original,dico_phrasis_0001745,en,en,A young blonde girl,A young girl,dico_phrasis_0001745__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001761__en-en__flipped,dico_phrasis_0001761,en,en,A white cat,A small white cat,dico_phrasis_0001761__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001761__en-en__original,dico_phrasis_0001761,en,en,A small white cat,A white cat,dico_phrasis_0001761__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001774__en-en__flipped,dico_phrasis_0001774,en,en,with four computer monitors,with several computer monitors,dico_phrasis_0001774__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001774__en-en__original,dico_phrasis_0001774,en,en,with several computer monitors,with four computer monitors,dico_phrasis_0001774__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001777__en-en__flipped,dico_phrasis_0001777,en,en,Living room,Living room or den,dico_phrasis_0001777__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001777__en-en__original,dico_phrasis_0001777,en,en,Living room or den,Living room,dico_phrasis_0001777__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001780__en-en__flipped,dico_phrasis_0001780,en,en,with wooden cabinets and furniture,with wood cabinets and dining table,dico_phrasis_0001780__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001780__en-en__original,dico_phrasis_0001780,en,en,with wood cabinets and dining table,with wooden cabinets and furniture,dico_phrasis_0001780__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001786__en-en__flipped,dico_phrasis_0001786,en,en,Two cows,Two dairy cows,dico_phrasis_0001786__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001786__en-en__original,dico_phrasis_0001786,en,en,Two dairy cows,Two cows,dico_phrasis_0001786__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001819__en-en__flipped,dico_phrasis_0001819,en,en,A young girl,A young blonde girl,dico_phrasis_0001819__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001819__en-en__original,dico_phrasis_0001819,en,en,A young blonde girl,A young girl,dico_phrasis_0001819__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001827__en-en__flipped,dico_phrasis_0001827,en,en,'s gloved hand,on a gloved hand,dico_phrasis_0001827__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001827__en-en__original,dico_phrasis_0001827,en,en,on a gloved hand,'s gloved hand,dico_phrasis_0001827__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001831__en-en__flipped,dico_phrasis_0001831,en,en,A person,A woman,dico_phrasis_0001831__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001831__en-en__original,dico_phrasis_0001831,en,en,A woman,A person,dico_phrasis_0001831__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001832__en-en__flipped,dico_phrasis_0001832,en,en,A woman,Two women,dico_phrasis_0001832__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001832__en-en__original,dico_phrasis_0001832,en,en,Two women,A woman,dico_phrasis_0001832__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001838__en-en__flipped,dico_phrasis_0001838,en,en,Five birds,A red bird and four other birds,dico_phrasis_0001838__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001838__en-en__original,dico_phrasis_0001838,en,en,A red bird and four other birds,Five birds,dico_phrasis_0001838__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001843__en-en__flipped,dico_phrasis_0001843,en,en,street,in a street,dico_phrasis_0001843__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001843__en-en__original,dico_phrasis_0001843,en,en,in a street,street,dico_phrasis_0001843__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001855__en-en__flipped,dico_phrasis_0001855,en,en,A close-up picture,"A close-up , distorted photo",dico_phrasis_0001855__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001855__en-en__original,dico_phrasis_0001855,en,en,"A close-up , distorted photo",A close-up picture,dico_phrasis_0001855__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001860__en-en__flipped,dico_phrasis_0001860,en,en,of people,of black people,dico_phrasis_0001860__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001860__en-en__original,dico_phrasis_0001860,en,en,of black people,of people,dico_phrasis_0001860__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001869__en-en__flipped,dico_phrasis_0001869,en,en,Two women,Elderly woman around younger woman,dico_phrasis_0001869__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001869__en-en__original,dico_phrasis_0001869,en,en,Elderly woman around younger woman,Two women,dico_phrasis_0001869__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001876__en-en__flipped,dico_phrasis_0001876,en,en,Two trains,The red train and the yellow train,dico_phrasis_0001876__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001876__en-en__original,dico_phrasis_0001876,en,en,The red train and the yellow train,Two trains,dico_phrasis_0001876__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001888__en-en__flipped,dico_phrasis_0001888,en,en,A cat,Two cats,dico_phrasis_0001888__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001888__en-en__original,dico_phrasis_0001888,en,en,Two cats,A cat,dico_phrasis_0001888__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001895__en-en__flipped,dico_phrasis_0001895,en,en,on a mountain,on a snowy mountain,dico_phrasis_0001895__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001895__en-en__original,dico_phrasis_0001895,en,en,on a snowy mountain,on a mountain,dico_phrasis_0001895__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001907__en-en__flipped,dico_phrasis_0001907,en,en,moving,going down,dico_phrasis_0001907__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001907__en-en__original,dico_phrasis_0001907,en,en,going down,moving,dico_phrasis_0001907__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001913__en-en__flipped,dico_phrasis_0001913,en,en,the runway,on the runway,dico_phrasis_0001913__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001913__en-en__original,dico_phrasis_0001913,en,en,on the runway,the runway,dico_phrasis_0001913__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001918__en-en__flipped,dico_phrasis_0001918,en,en,with laptop,on his laptop,dico_phrasis_0001918__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001918__en-en__original,dico_phrasis_0001918,en,en,on his laptop,with laptop,dico_phrasis_0001918__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001919__en-en__flipped,dico_phrasis_0001919,en,en,A blue train,Old blue and white train,dico_phrasis_0001919__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001919__en-en__original,dico_phrasis_0001919,en,en,Old blue and white train,A blue train,dico_phrasis_0001919__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001920__en-en__flipped,dico_phrasis_0001920,en,en,on the tracks,on the railroad tracks,dico_phrasis_0001920__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001920__en-en__original,dico_phrasis_0001920,en,en,on the railroad tracks,on the tracks,dico_phrasis_0001920__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001924__en-en__flipped,dico_phrasis_0001924,en,en,A man,A long-haired man,dico_phrasis_0001924__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001924__en-en__original,dico_phrasis_0001924,en,en,A long-haired man,A man,dico_phrasis_0001924__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001946__en-en__flipped,dico_phrasis_0001946,en,en,The bird,The black bird,dico_phrasis_0001946__en-en__original,BACKWARD_ENTAILMENT
+dico_phrasis_0001946__en-en__original,dico_phrasis_0001946,en,en,The black bird,The bird,dico_phrasis_0001946__en-en__flipped,FORWARD_ENTAILMENT
+dico_phrasis_0001947__en-en__original,dico_phrasis_0001947,en,en,off Mexico,on Mexico,,NEGATIVE_OTHER
+dico_phrasis_0001956__en-en__original,dico_phrasis_0001956,en,en,in southern Iraq,in northern Iraq,,NEGATIVE_OTHER
+dico_phrasis_0001997__en-en__original,dico_phrasis_0001997,en,en,court ruling,top court,,NEGATIVE_OTHER
+dico_phrasis_0002006__en-en__original,dico_phrasis_0002006,en,en,in Jordan Valley,in West Bank attack,,NEGATIVE_OTHER
+dico_phrasis_0002055__en-en__original,dico_phrasis_0002055,en,en,swings,plays ball,,NEGATIVE_OTHER
+dico_phrasis_0002114__en-en__original,dico_phrasis_0002114,en,en,a skateboard,A skateboarder,,NEGATIVE_OTHER
+dico_phrasis_0002173__en-en__original,dico_phrasis_0002173,en,en,US State Department,State Dept security chief,,NEGATIVE_OTHER
+dico_phrasis_0002219__en-en__original,dico_phrasis_0002219,en,en,Islamist Tactics,northern Islamist militants,,NEGATIVE_OTHER
+dico_phrasis_0002227__en-en__original,dico_phrasis_0002227,en,en,in Lal Masjid case,in Pakistan,,NEGATIVE_OTHER
+dico_phrasis_0002235__en-en__original,dico_phrasis_0002235,en,en,UN resolution,Germany,,NEGATIVE_OTHER
+dico_phrasis_0002261__en-en__original,dico_phrasis_0002261,en,en,derails,of crash ordeal,,NEGATIVE_OTHER
+dico_phrasis_0002293__en-en__original,dico_phrasis_0002293,en,en,lined up,A row,,NEGATIVE_OTHER
+dico_phrasis_0002297__en-en__original,dico_phrasis_0002297,en,en,is parked,stand,,NEGATIVE_OTHER
+dico_phrasis_0002325__en-en__original,dico_phrasis_0002325,en,en,on a street,in an alley way,,NEGATIVE_OTHER
+dico_phrasis_0002327__en-en__original,dico_phrasis_0002327,en,en,in a dinner,around a table,,NEGATIVE_OTHER
+dico_phrasis_0002388__en-en__original,dico_phrasis_0002388,en,en,to joint industrial zone,to Key Industrial Zone,,NEGATIVE_OTHER
+dico_phrasis_0002389__en-en__original,dico_phrasis_0002389,en,en,after India buildings collapse,from Bangladesh building collapse,,NEGATIVE_OTHER
+dico_phrasis_0002402__en-en__original,dico_phrasis_0002402,en,en,in Singapore,in India,,NEGATIVE_OTHER
+dico_phrasis_0002410__en-en__original,dico_phrasis_0002410,en,en,In Oklahoma City,Oklahoma City Airport,,NEGATIVE_OTHER
+dico_phrasis_0002431__en-en__original,dico_phrasis_0002431,en,en,by Gibraltar/Spain row,over Gibraltar events,,NEGATIVE_OTHER
+dico_phrasis_0002432__en-en__original,dico_phrasis_0002432,en,en,"Nov. 19 , 2013","Sept. 26 , 2013",,NEGATIVE_OTHER
+dico_phrasis_0002433__en-en__original,dico_phrasis_0002433,en,en,to release,Releases,,NEGATIVE_OTHER
+dico_phrasis_0002439__en-en__original,dico_phrasis_0002439,en,en,Pro-Russia rebels,Syria rebels,,NEGATIVE_OTHER
+dico_phrasis_0002440__en-en__original,dico_phrasis_0002440,en,en,Jan. 24,April 4,,NEGATIVE_OTHER
+dico_phrasis_0002447__en-en__original,dico_phrasis_0002447,en,en,Prototype Self-Driving Car,Concept Self-Driving Car,,NEGATIVE_OTHER
+dico_phrasis_0002468__en-en__original,dico_phrasis_0002468,en,en,over peace talks,Ahead of Peace Talks,,NEGATIVE_OTHER
+dico_phrasis_0002472__en-en__original,dico_phrasis_0002472,en,en,to 6.2035,to 6.1408,,NEGATIVE_OTHER
+dico_phrasis_0002474__en-en__original,dico_phrasis_0002474,en,en,Pat Rice,Arsenal great Rice,,NEGATIVE_OTHER
+dico_phrasis_0002476__en-en__original,dico_phrasis_0002476,en,en,Polar bear DNA,Polar bear study,,NEGATIVE_OTHER
+dico_phrasis_0002484__en-en__original,dico_phrasis_0002484,en,en,in Syria,in Pakistan,,NEGATIVE_OTHER
+dico_phrasis_0002489__en-en__original,dico_phrasis_0002489,en,en,Travel Alert,global alert,,NEGATIVE_OTHER
+dico_phrasis_0002496__en-en__original,dico_phrasis_0002496,en,en,Ukraine,in Syria,,NEGATIVE_OTHER
+dico_phrasis_0002529__en-en__original,dico_phrasis_0002529,en,en,Most victims,38 bodies of victims,,NEGATIVE_OTHER
+dico_phrasis_0002541__en-en__original,dico_phrasis_0002541,en,en,a pink coat,in a pink jacket,,NEGATIVE_OTHER
+dico_phrasis_0002545__en-en__original,dico_phrasis_0002545,en,en,a set of stairs,steps,,NEGATIVE_OTHER
+dico_phrasis_0002547__en-en__original,dico_phrasis_0002547,en,en,of a blue water slide,from a water slide,,NEGATIVE_OTHER
+dico_phrasis_0002552__en-en__original,dico_phrasis_0002552,en,en,on a gravel path,along a gravel path,,NEGATIVE_OTHER
+dico_phrasis_0002555__en-en__original,dico_phrasis_0002555,en,en,water skis,kite surfing,,NEGATIVE_OTHER
+dico_phrasis_0002557__en-en__original,dico_phrasis_0002557,en,en,a blue visor,with a visor,,NEGATIVE_OTHER
+dico_phrasis_0002561__en-en__original,dico_phrasis_0002561,en,en,on or near a fence,on and by a fence,,NEGATIVE_OTHER
+dico_phrasis_0002571__en-en__original,dico_phrasis_0002571,en,en,a white dog,brown dog,,NEGATIVE_OTHER
+dico_phrasis_0002594__en-en__original,dico_phrasis_0002594,en,en,on a street,along a street,,NEGATIVE_OTHER
+dico_phrasis_0002633__en-en__original,dico_phrasis_0002633,en,en,in a doorway,on a doorstep,,NEGATIVE_OTHER
+dico_phrasis_0002646__en-en__original,dico_phrasis_0002646,en,en,A man,A hiker,,NEGATIVE_OTHER
+dico_phrasis_0002656__en-en__original,dico_phrasis_0002656,en,en,doing a trick,riding up,,NEGATIVE_OTHER
+dico_phrasis_0002657__en-en__original,dico_phrasis_0002657,en,en,chews,has in its mouth,,NEGATIVE_OTHER
+dico_phrasis_0002662__en-en__original,dico_phrasis_0002662,en,en,a big drum,next to a guitar and a drum,,NEGATIVE_OTHER
+dico_phrasis_0002673__en-en__original,dico_phrasis_0002673,en,en,A softball player,A baseball player,,NEGATIVE_OTHER
+dico_phrasis_0002680__en-en__original,dico_phrasis_0002680,en,en,brown and white dog,Black and white dog,,NEGATIVE_OTHER
+dico_phrasis_0002691__en-en__original,dico_phrasis_0002691,en,en,is building,stacks,,NEGATIVE_OTHER
+dico_phrasis_0002702__en-en__original,dico_phrasis_0002702,en,en,at a picnic table,at an outdoor table,,NEGATIVE_OTHER
+dico_phrasis_0002709__en-en__original,dico_phrasis_0002709,en,en,as legitimate representative,as sole representative,,NEGATIVE_OTHER
+dico_phrasis_0002714__en-en__original,dico_phrasis_0002714,en,en,of Bangladesh clothes factory workers,in Bangladesh factory,,NEGATIVE_OTHER
+dico_phrasis_0002730__en-en__original,dico_phrasis_0002730,en,en,6.9 magnitude earthquake,5.6 magnitude earthquake,,NEGATIVE_OTHER
+dico_phrasis_0002735__en-en__original,dico_phrasis_0002735,en,en,on Friday,on Wednesday,,NEGATIVE_OTHER
+dico_phrasis_0002748__en-en__original,dico_phrasis_0002748,en,en,Former LAPD officer,Former CIA officer,,NEGATIVE_OTHER
+dico_phrasis_0002769__en-en__original,dico_phrasis_0002769,en,en,ailing Mandela,'s former PM Nelson Mandela,,NEGATIVE_OTHER
+dico_phrasis_0002780__en-en__original,dico_phrasis_0002780,en,en,over Israeli strikes,second air strike,,NEGATIVE_OTHER
+dico_phrasis_0002795__en-en__original,dico_phrasis_0002795,en,en,through Midwest,U.S. Midwest,,NEGATIVE_OTHER
+dico_phrasis_0002799__en-en__original,dico_phrasis_0002799,en,en,as Fed 's next chair,as New Central Bank Chief,,NEGATIVE_OTHER
+dico_phrasis_0002802__en-en__original,dico_phrasis_0002802,en,en,on iPhone disappointment,after earnings disappointment,,NEGATIVE_OTHER
+dico_phrasis_0002805__en-en__original,dico_phrasis_0002805,en,en,5,up to six,,NEGATIVE_OTHER
+dico_phrasis_0002807__en-en__original,dico_phrasis_0002807,en,en,About 60,61,,NEGATIVE_OTHER
+dico_phrasis_0002831__en-en__original,dico_phrasis_0002831,en,en,female politician,5 female teachers,,NEGATIVE_OTHER
+dico_phrasis_0002833__en-en__original,dico_phrasis_0002833,en,en,Cryptic crossword,Quiz crossword,,NEGATIVE_OTHER
+dico_phrasis_0002834__en-en__original,dico_phrasis_0002834,en,en,of breast cancer,about breast cancer,,NEGATIVE_OTHER
+dico_phrasis_0002852__en-en__original,dico_phrasis_0002852,en,en,7.2-magnitude quake,7.7-magnitude earthquake,,NEGATIVE_OTHER
+dico_phrasis_0002856__en-en__original,dico_phrasis_0002856,en,en,agains NSA leaker,against Snowden over leaks,,NEGATIVE_OTHER
+dico_phrasis_0002871__en-en__original,dico_phrasis_0002871,en,en,April 23,Jan. 21,,NEGATIVE_OTHER
+dico_phrasis_0002892__en-en__original,dico_phrasis_0002892,en,en,France,Most French,,NEGATIVE_OTHER
+dico_phrasis_0002897__en-en__original,dico_phrasis_0002897,en,en,on Monday,on Thursday,,NEGATIVE_OTHER
+dico_phrasis_0002904__en-en__original,dico_phrasis_0002904,en,en,of Christmas Day flooding,more flooding,,NEGATIVE_OTHER
+dico_phrasis_0002905__en-en__original,dico_phrasis_0002905,en,en,Heavy rain,Fresh rain,,NEGATIVE_OTHER
+dico_phrasis_0002911__en-en__original,dico_phrasis_0002911,en,en,Mistake,possible ` mistake ',,NEGATIVE_OTHER
+dico_phrasis_0002921__en-en__original,dico_phrasis_0002921,en,en,India to big win,India Trophy win,,NEGATIVE_OTHER
+dico_phrasis_0002932__en-en__original,dico_phrasis_0002932,en,en,over alleged bribery,with accepting $ 3m bribe,,NEGATIVE_OTHER
+dico_phrasis_0002939__en-en__original,dico_phrasis_0002939,en,en,China 's 1st Pilot Free Trade Zone,Shanghai Free Trade Zone,,NEGATIVE_OTHER
+dico_phrasis_0002953__en-en__original,dico_phrasis_0002953,en,en,over prisoner release,Palestinian prisoners release,,NEGATIVE_OTHER
+dico_phrasis_0002954__en-en__original,dico_phrasis_0002954,en,en,over sex claims,Over ` Sex Abuse ',,NEGATIVE_OTHER
+dico_phrasis_0002957__en-en__original,dico_phrasis_0002957,en,en,ISAF soldier,British soldier,,NEGATIVE_OTHER
+dico_phrasis_0003029__en-en__original,dico_phrasis_0003029,en,en,A lamb,A sheep,,NEGATIVE_OTHER
+dico_phrasis_0003039__en-en__original,dico_phrasis_0003039,en,en,at sunset,near the sunset,,NEGATIVE_OTHER
+dico_phrasis_0003040__en-en__original,dico_phrasis_0003040,en,en,A yellow parrot,A yellow and orange bird,,NEGATIVE_OTHER
+dico_phrasis_0003041__en-en__original,dico_phrasis_0003041,en,en,in front of a fountain,in front of a statue,,NEGATIVE_OTHER
+dico_phrasis_0003058__en-en__original,dico_phrasis_0003058,en,en,a white horse,a brown horse,,NEGATIVE_OTHER
+dico_phrasis_0003085__en-en__original,dico_phrasis_0003085,en,en,A red and blue plane,A WWII fighter plane,,NEGATIVE_OTHER
+dico_phrasis_0003100__en-en__original,dico_phrasis_0003100,en,en,on the green hill,on a hillside,,NEGATIVE_OTHER
+dico_phrasis_0003103__en-en__original,dico_phrasis_0003103,en,en,down the sidewalk,along the sidewalk,,NEGATIVE_OTHER
+dico_phrasis_0003130__en-en__original,dico_phrasis_0003130,en,en,of a bottle,A bottle of water,,NEGATIVE_OTHER
+dico_phrasis_0003140__en-en__original,dico_phrasis_0003140,en,en,A black train,A long train,,NEGATIVE_OTHER
+dico_phrasis_0003151__en-en__original,dico_phrasis_0003151,en,en,A longed-haired cat,of a cat,,NEGATIVE_OTHER
+dico_phrasis_0003154__en-en__original,dico_phrasis_0003154,en,en,at a coffee house,of a coffee shop,,NEGATIVE_OTHER
+dico_phrasis_0003156__en-en__original,dico_phrasis_0003156,en,en,of a Chevrolet sports car,of a red Chevrolet concept car,,NEGATIVE_OTHER
+dico_phrasis_0003177__en-en__original,dico_phrasis_0003177,en,en,A large jet,A passenger jet,,NEGATIVE_OTHER
+dico_phrasis_0003201__en-en__original,dico_phrasis_0003201,en,en,with a yawning baby,with a newborn baby,,NEGATIVE_OTHER
+dico_phrasis_0003225__en-en__original,dico_phrasis_0003225,en,en,on brown table,on a dining table,,NEGATIVE_OTHER
+dico_phrasis_0003234__en-en__original,dico_phrasis_0003234,en,en,A orange and white cat,A ginger cat,,NEGATIVE_OTHER
+dico_phrasis_0003242__en-en__original,dico_phrasis_0003242,en,en,pushing,is steering,,NEGATIVE_OTHER
+dico_phrasis_0003255__en-en__original,dico_phrasis_0003255,en,en,A black and white photo,A black and white scene,,NEGATIVE_OTHER
+dico_phrasis_0003270__en-en__original,dico_phrasis_0003270,en,en,A woman,A girl,,NEGATIVE_OTHER
+dico_phrasis_0003282__en-en__original,dico_phrasis_0003282,en,en,in a black uniform,in a tux,,NEGATIVE_OTHER
+dico_phrasis_0003292__en-en__original,dico_phrasis_0003292,en,en,one white,the other white,,NEGATIVE_OTHER
+dico_phrasis_0003300__en-en__original,dico_phrasis_0003300,en,en,of a love seat,of couch,,NEGATIVE_OTHER
+dico_phrasis_0003303__en-en__original,dico_phrasis_0003303,en,en,A laptop computer and a computer monitor,A laptop and a PC,,NEGATIVE_OTHER
+dico_phrasis_0003315__en-en__original,dico_phrasis_0003315,en,en,on a brown chair,on a yellow chair,,NEGATIVE_OTHER
