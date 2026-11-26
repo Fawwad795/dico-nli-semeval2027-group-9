@@ -1,0 +1,4 @@
+system,largest_probability_difference_forward,largest_probability_difference_reverse,label_agreement_single,labels_changed_single,label_agreement_symmetrized,labels_changed_symmetrized,kept_epoch_preliminary,kept_epoch_final
+qwen2.5-1.5b-zero-shot,0.0,0.0,1.0,0,1.0,0,,
+qwen2.5-1.5b-lora-lambda0-seed13,0.0,0.0,1.0,0,1.0,0,3.0,3.0
+qwen2.5-1.5b-lora-lambda1-seed13,0.0,0.0,1.0,0,1.0,0,1.0,1.0

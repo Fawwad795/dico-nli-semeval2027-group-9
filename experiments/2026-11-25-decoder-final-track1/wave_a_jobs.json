@@ -1,0 +1,18 @@
+[
+  {"mode": "zero-shot"},
+  {"mode": "lora", "seed": 13, "consistency_weight": 0},
+  {"mode": "lora", "seed": 42, "consistency_weight": 0},
+  {"mode": "lora", "seed": 1234, "consistency_weight": 0},
+  {"mode": "lora", "seed": 13, "consistency_weight": 0.25},
+  {"mode": "lora", "seed": 42, "consistency_weight": 0.25},
+  {"mode": "lora", "seed": 1234, "consistency_weight": 0.25},
+  {"mode": "lora", "seed": 13, "consistency_weight": 0.5},
+  {"mode": "lora", "seed": 42, "consistency_weight": 0.5},
+  {"mode": "lora", "seed": 1234, "consistency_weight": 0.5},
+  {"mode": "lora", "seed": 13, "consistency_weight": 1},
+  {"mode": "lora", "seed": 42, "consistency_weight": 1},
+  {"mode": "lora", "seed": 1234, "consistency_weight": 1},
+  {"mode": "lora", "seed": 13, "consistency_weight": 2},
+  {"mode": "lora", "seed": 42, "consistency_weight": 2},
+  {"mode": "lora", "seed": 1234, "consistency_weight": 2}
+]

@@ -1,0 +1,66 @@
+{
+  "chosen_lambda": 2.0,
+  "command": "PYTHONIOENCODING=utf-8 uv run jupyter execute notebooks/assignment-3/02_final_runs_track1.ipynb",
+  "data_commit": "588968e610197ddc4c440314701cbc587afc4c1b",
+  "fetch_command": "PYTHONIOENCODING=utf-8 uv run python scripts/modal/fetch_wave.py --run-id <run id> --jobs <jobs file> --part validation|dev --dest artifacts/decoder-final-track1",
+  "gpu": [
+    "NVIDIA L4"
+  ],
+  "holdout_fraction": 0.2,
+  "precision": "bfloat16 activations, float32 weights",
+  "repo_commit": "324debe2891c596f2cd6a57b24fe20311ebe4282",
+  "repo_dirty": true,
+  "seed": 13,
+  "seeds": [
+    13,
+    42,
+    1234
+  ],
+  "selection_commit": "324debe2891c596f2cd6a57b24fe20311ebe4282",
+  "selection_commit_time": "2026-11-26T10:02:27+05:00",
+  "selection_notebook_command": "PYTHONIOENCODING=utf-8 uv run jupyter execute notebooks/assignment-3/01_lambda_selection.ipynb",
+  "settings": {
+    "batch_size": 16,
+    "epochs": 3,
+    "learning_rate": 0.0002,
+    "lora_alpha": 32,
+    "lora_dropout": 0.05,
+    "lora_rank": 16,
+    "max_length": 160,
+    "micro_batch_size": 8,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ],
+    "warmup_fraction": 0.06,
+    "weight_decay": 0.01
+  },
+  "track": 1,
+  "versions": {
+    "peft": "0.21.3",
+    "torch": "2.14.0+cu130",
+    "transformers": "5.17.0"
+  },
+  "volume": "dico-nli-runs",
+  "waves": {
+    "A": {
+      "app_id": "ap-eOvzhee5YGcEo56Mn1oenz",
+      "command": "PYTHONIOENCODING=utf-8 uv run modal run --detach scripts/modal/train_decoder.py::main --run-id 2026-11-25-decoder-final-wave-a --jobs experiments/2026-11-25-decoder-final-track1/wave_a_jobs.json",
+      "jobs": "wave_a_jobs.json",
+      "repo_commit": "21a261eceedda604e47986583ca306e93c96d589",
+      "run_id": "2026-11-25-decoder-final-wave-a",
+      "source_sha256": "2176a5a4bbf3083dd04162101f9e5e352a374461d77b5f320c74966a97159f22"
+    },
+    "B": {
+      "app_id": "ap-lBQKpGhqBd5dga2exsuOeR",
+      "command": "PYTHONIOENCODING=utf-8 uv run modal run --detach scripts/modal/train_decoder.py::main --run-id 2026-11-26-decoder-final-wave-b --jobs experiments/2026-11-25-decoder-final-track1/wave_b_jobs.json",
+      "jobs": "wave_b_jobs.json",
+      "repo_commit": "324debe2891c596f2cd6a57b24fe20311ebe4282",
+      "run_id": "2026-11-26-decoder-final-wave-b",
+      "source_sha256": "2176a5a4bbf3083dd04162101f9e5e352a374461d77b5f320c74966a97159f22"
+    }
+  },
+  "zero_shot_validation_split_seed": 13
+}

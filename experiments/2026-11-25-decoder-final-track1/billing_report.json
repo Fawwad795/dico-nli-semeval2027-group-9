@@ -1,0 +1,21 @@
+{
+  "source": "uv run modal billing report --for \"this month\" --show-resources, run on 2026-11-26 after wave B finished; US dollars as printed, rows of the three apps of this run folder",
+  "note": "Modal's report can lag behind the final charge by about an hour (pitfalls.md, Modal item 9). The smoke app tested the launcher before wave A and produced no reported result.",
+  "apps": {
+    "ap-P9xY4hPvGsZByq68QeTe9W": {
+      "run_id": "2026-11-26-decoder-smoke",
+      "interval_start": "2026-11-25",
+      "cost": {"L4": 0.05466682, "CPU": 0.00411946, "Memory": 0.00158369, "Network Egress": 0.00133498}
+    },
+    "ap-eOvzhee5YGcEo56Mn1oenz": {
+      "run_id": "2026-11-25-decoder-final-wave-a",
+      "interval_start": "2026-11-25",
+      "cost": {"L4": 1.82954197, "CPU": 0.11065264, "Memory": 0.06023138, "Network Egress": 0.01005569}
+    },
+    "ap-lBQKpGhqBd5dga2exsuOeR": {
+      "run_id": "2026-11-26-decoder-final-wave-b",
+      "interval_start": "2026-11-26",
+      "cost": {"L4": 1.68487106, "CPU": 0.10241762, "Memory": 0.05298897, "Network Egress": 0.01524602}
+    }
+  }
+}
