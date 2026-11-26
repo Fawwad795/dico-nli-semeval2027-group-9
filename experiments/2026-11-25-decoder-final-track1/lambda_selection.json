@@ -1,0 +1,86 @@
+{
+  "chosen_lambda": 2.0,
+  "rule": "highest mean validation weighted F1 (single pass, kept epoch) over seeds 13, 42 and 1234, compared at full precision; an exactly equal mean goes to the smaller lambda; lambda 0 is not in the grid",
+  "grid": [
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "seeds": [
+    13,
+    42,
+    1234
+  ],
+  "mean_validation_weighted_f1_single": {
+    "0.25": 0.7919703181772229,
+    "0.5": 0.7888595282353953,
+    "1": 0.7866641562651749,
+    "2": 0.7947331812434726
+  },
+  "per_seed_validation_weighted_f1_single": {
+    "0": {
+      "13": 0.7811661218443318,
+      "42": 0.7765573285659144,
+      "1234": 0.8056525529112223
+    },
+    "0.25": {
+      "13": 0.7829086807118825,
+      "42": 0.7828350325090638,
+      "1234": 0.8101672413107222
+    },
+    "0.5": {
+      "13": 0.7737866061479677,
+      "42": 0.7785756478334884,
+      "1234": 0.8142163307247295
+    },
+    "1": {
+      "13": 0.7748107429298648,
+      "42": 0.77398666847012,
+      "1234": 0.81119505739554
+    },
+    "2": {
+      "13": 0.7834490406577589,
+      "42": 0.7839708150329767,
+      "1234": 0.8167796880396824
+    }
+  },
+  "kept_epoch": {
+    "0": {
+      "13": 3,
+      "42": 3,
+      "1234": 2
+    },
+    "0.25": {
+      "13": 3,
+      "42": 2,
+      "1234": 2
+    },
+    "0.5": {
+      "13": 2,
+      "42": 2,
+      "1234": 3
+    },
+    "1": {
+      "13": 1,
+      "42": 3,
+      "1234": 3
+    },
+    "2": {
+      "13": 3,
+      "42": 3,
+      "1234": 3
+    }
+  },
+  "chosen_is_grid_edge": true,
+  "wave_a_run_id": "2026-11-25-decoder-final-wave-a",
+  "wave_a_app_id": "ap-eOvzhee5YGcEo56Mn1oenz",
+  "wave_a_repo_commit": "21a261eceedda604e47986583ca306e93c96d589",
+  "source_sha256": "2176a5a4bbf3083dd04162101f9e5e352a374461d77b5f320c74966a97159f22",
+  "data_commit": "588968e610197ddc4c440314701cbc587afc4c1b",
+  "track": 1,
+  "inputs": "validation/ and run.json of each wave A job only",
+  "dev_folders_fetched_locally_when_run": [],
+  "run_at_utc": "2026-11-26T04:58:42+00:00",
+  "command": "PYTHONIOENCODING=utf-8 uv run jupyter execute notebooks/assignment-3/01_lambda_selection.ipynb"
+}
