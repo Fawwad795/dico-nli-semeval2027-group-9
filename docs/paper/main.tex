@@ -1,0 +1,108 @@
+% Assignment 3 paper, LLM course, Group 9. ACL template, preprint mode (named authors, page numbers).
+% Build: latexmk -pdf main   (or pdflatex main && bibtex main && pdflatex main && pdflatex main)
+% Only Fawwad edits this file. Each section lives in sections/ and its owner replaces that one file.
+\documentclass[11pt]{article}
+
+\usepackage[preprint]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{float}
+% Justified table cells. \hspace{0pt} lets TeX hyphenate a cell's first word, and the small stretch
+% allowance keeps short lines in narrow cells from spreading into wide gaps.
+\newcolumntype{L}[1]{>{\hspace{0pt}\emergencystretch=1em}p{#1}}
+% Narrow label columns (names, groups, short phrases) stay flush left.
+\newcolumntype{N}[1]{>{\raggedright\arraybackslash}p{#1}}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+% Figures are PDFs generated from committed files under experiments/ and copied to figures/.
+\graphicspath{{figures/}}
+
+% Tighter reference list: no extra space between entries.
+\makeatletter
+\let\acl@thebibliography\thebibliography
+\renewcommand{\thebibliography}[1]{\acl@thebibliography{#1}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}}
+\makeatother
+
+% Let large tables sit near their text: a float may fill most of a page or column.
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\dbltopfraction}{0.95}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\dblfloatpagefraction}{0.8}
+\setcounter{topnumber}{3}
+\setcounter{dbltopnumber}{3}
+\setcounter{totalnumber}{5}
+
+% Label names. The official tokens are EQUIVALENCE, FORWARD_ENTAILMENT,
+% BACKWARD_ENTAILMENT and NEGATIVE_OTHER.
+\newcommand{\EQ}{\textsc{Equivalence}}
+\newcommand{\FW}{\textsc{Forward}}
+\newcommand{\BW}{\textsc{Backward}}
+\newcommand{\NO}{\textsc{Negative}}
+\newcommand{\Rev}{\operatorname{Rev}}
+\newcommand{\SoftCons}{\textsc{SoftCons}}
+\newcommand{\HardCons}{\textsc{HardCons}}
+\newcommand{\JS}{\operatorname{JS}}
+\newcommand{\CE}{\operatorname{CE}}
+
+\title{Flip the Pair, Keep the Logic:\\
+Reversal-Equivariant LoRA for Directionally Consistent\\
+Fine-Grained Natural Language Inference}
+
+\author{
+  M. Shaheer Saleh \\ 467668 \And
+  Ahmad Imran \\ 462852 \And
+  Syed Fawwad Ahmed \\ 463933 \And
+  Aqib Raza \\ 461312 \AND
+  Group 9, Large Language Models course, NUST \\
+  \url{https://github.com/Fawwad795/dico-nli-semeval2027-group-9}
+}
+
+\begin{document}
+\maketitle
+
+% 1 Title and abstract
+\input{sections/01-abstract}
+
+% 2 to 7
+\input{sections/02-introduction}
+\input{sections/03-related-work}
+\input{sections/04-task-and-dataset}
+\input{sections/05-method}
+\input{sections/06-experimental-setup}
+\input{sections/07-results}
+
+% 8: the heading and its introduction live here; the two files start with \subsection.
+\section{Ablation and Error Analysis}
+\label{sec:analysis}
+\Cref{sec:ablations} restates the hypothesis of each ablation and compares it with what the runs
+measured. \Cref{sec:errors} then counts the errors of the main systems by category, with the
+categories fixed before any example was drawn.
+
+\input{sections/08a-ablation-analysis}
+\input{sections/08b-error-analysis}
+
+% 9 to 11
+\input{sections/09-comparison}
+\input{sections/10-discussion}
+\input{sections/11-conclusion}
+
+% 12 References. The per-author files are folded into references.bib at the final assembly.
+% The \nocite keeps BibTeX running while no section cites anything yet; removed at the final assembly.
+\nocite{dico-nli-2027-task}
+\bibliography{references,references-shaheer,references-ahmad,references-aqib}
+
+\input{sections/A-appendix}
+
+\end{document}
